@@ -89,13 +89,7 @@ public class RunJava {
 	public String execCommand() {
 		
 		try {
-			long start = System.currentTimeMillis();
-			long end = start + 3*1000; // 60 seconds * 1000 ms/sec
-			while (System.currentTimeMillis() < end) {
-				process = Runtime.getRuntime().exec(runClass());
-				shutdown();
-			}
-			
+			process = Runtime.getRuntime().exec(runClass());
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			bufferedReader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
