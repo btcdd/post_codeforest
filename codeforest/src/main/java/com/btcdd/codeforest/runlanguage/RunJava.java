@@ -87,6 +87,10 @@ public class RunJava {
 	}
 	
 	public String execCommand() {
+		long start = System.currentTimeMillis();
+		long end = start + 5*1000; // 60 seconds * 1000 ms/sec
+		
+		
 		try {
 			process = Runtime.getRuntime().exec(runClass());
 			
@@ -96,15 +100,15 @@ public class RunJava {
 			String line = null;
 			readBuffer = new StringBuffer();
 			
-			while((line = bufferedReader.readLine()) != null) {
-				readBuffer.append(line);
-				readBuffer.append("\n");
-				Thread.sleep(5000);
+			while (System.currentTimeMillis() < end) {
+				while((line = bufferedReader.readLine()) != null) {
+					readBuffer.append(line);
+					readBuffer.append("\n");
+				}
 			}
 			while((line = bufferedReader2.readLine()) != null) {
 				readBuffer.append(line);
 				readBuffer.append("\n");
-				Thread.sleep(5000);
 			}
 			return readBuffer.toString();
 		} catch(Exception e) {
