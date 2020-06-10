@@ -18,7 +18,7 @@ $(function() {
 	          success:function(response){
 	             console.log(response.data);
 	             console.log(response.data.authUser.email);
-	          		var codetreeURL = '${pageContext.request.contextPath }/codetree/' + response.data.authUser.no
+	          		var codetreeURL = '${pageContext.request.contextPath }/codetree/list' + response.data.authUser.no
 	              window.open(codetreeURL,'_blank');
 	              
 

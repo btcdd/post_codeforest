@@ -25,7 +25,7 @@ public class CodeTreeController {
 	@Autowired
 	private MypageService mypageService;
 	
-	@RequestMapping("/{no}")
+	@RequestMapping("/list/{no}")
 	public String mypage(@PathVariable("no") Long no,Model model) {
 		Map<String, Object> map = new HashMap<>();
 		
