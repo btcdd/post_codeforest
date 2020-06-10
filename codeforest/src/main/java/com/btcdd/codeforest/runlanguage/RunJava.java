@@ -129,14 +129,4 @@ public class RunJava {
 		}
 		return null;
 	}
-	
-	public String shutdown() {
-		try {
-			process = Runtime.getRuntime().exec("^C");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
 }
