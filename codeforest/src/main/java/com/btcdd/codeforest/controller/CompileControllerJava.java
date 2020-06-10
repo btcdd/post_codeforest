@@ -52,6 +52,7 @@ public class CompileControllerJava {
                 try {
                     // 1분 후 종료
                     Thread.sleep(3000);
+                    rtt.shutdown();
                     
                 } catch (InterruptedException e) {
                     // 킬러 Thread 종료(killerThread.interrupt())하면 이곳에 도달
