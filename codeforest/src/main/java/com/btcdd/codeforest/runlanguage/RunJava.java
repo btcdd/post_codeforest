@@ -87,6 +87,7 @@ public class RunJava {
 	}
 	
 	public String execCommand() {
+		
 		try {
 			process = Runtime.getRuntime().exec(runClass());
 			
@@ -115,7 +116,7 @@ public class RunJava {
 	private String runClass() {
 		buffer = new StringBuffer();
 		
-		buffer.append("java -cp . Test");
+		buffer.append("timeout 2s java -cp . Test");
 		
 		return buffer.toString();
 	}
@@ -124,6 +125,16 @@ public class RunJava {
 		try {
 			process = Runtime.getRuntime().exec(cmd);
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String shutdown() {
+		try {
+			process = Runtime.getRuntime().exec("^C");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
