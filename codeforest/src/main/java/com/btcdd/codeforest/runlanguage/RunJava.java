@@ -99,10 +99,12 @@ public class RunJava {
 			while((line = bufferedReader.readLine()) != null) {
 				readBuffer.append(line);
 				readBuffer.append("\n");
+				Thread.sleep(5000);
 			}
 			while((line = bufferedReader2.readLine()) != null) {
 				readBuffer.append(line);
 				readBuffer.append("\n");
+				Thread.sleep(5000);
 			}
 			return readBuffer.toString();
 		} catch(Exception e) {
