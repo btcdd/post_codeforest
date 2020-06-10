@@ -19,7 +19,7 @@ import com.btcdd.codeforest.vo.UserVo;
 public class TrainingController {
 
 	@Autowired
-	private TrainingService trainingService;
+	private TrainingService trainingService;  
 
 
 	@PostMapping(value = "/list")
