@@ -11,12 +11,12 @@ public class MainController {
 	
 	@RequestMapping({"", "/main"})
 	public String index(Model model) {
-		return "main-out";
+		return "main/main-out";
 	}
 	
 	@Auth
 	@RequestMapping("/main-in")
 	public String indexA(Model model) {
-		return "main";
+		return "main/main";
 	}
 }
