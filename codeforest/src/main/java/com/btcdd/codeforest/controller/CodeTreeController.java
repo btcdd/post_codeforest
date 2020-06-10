@@ -1,8 +1,8 @@
 package com.btcdd.codeforest.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.btcdd.codeforest.service.MypageService;
 import com.btcdd.codeforest.service.TrainingService;
 import com.btcdd.codeforest.vo.SaveVo;
+import com.btcdd.codeforest.vo.UserVo;
 import com.btcdd.security.Auth;
 
 @Auth
@@ -25,9 +26,12 @@ public class CodeTreeController {
 	@Autowired
 	private MypageService mypageService;
 	
-	@RequestMapping("/{no}")
-	public String mypage(@PathVariable("no") Long no,Model model) {
-		Map<String, Object> map = new HashMap<>();
+	@Auth
+	@RequestMapping("/list")
+	public String list(@PathVariable("no") Long no, Model model, HttpSession session) {
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+
 		
 		List<SaveVo> saveVoList = trainingService.selectSaveNoList(no);
 		model.addAttribute("saveVoList",saveVoList);
@@ -54,6 +58,22 @@ public class CodeTreeController {
 		return "codetree/list";
 	}
 	
+	
+	@Auth
+	@RequestMapping("/{no}")
+	public String codetree(@PathVariable("no") Long no, Model model, HttpSession session) {
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		if(authUser.getNo() != no) {
+			return "redirect:/main-in";
+		}
+		
+		List<SaveVo> saveVoList = trainingService.selectSaveNoList(no);
+		model.addAttribute("saveVoList",saveVoList);
+
+
+		return "codetree/codetree";
+	}
 	
 }
 /*
