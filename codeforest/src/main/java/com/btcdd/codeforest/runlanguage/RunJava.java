@@ -89,22 +89,28 @@ public class RunJava {
 	public String execCommand() {
 		
 		try {
+			long start = System.currentTimeMillis();
+			long end = start + 3*1000; // 60 seconds * 1000 ms/sec
+			while (System.currentTimeMillis() < end) {
 				process = Runtime.getRuntime().exec(runClass());
-				
-				bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-				bufferedReader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-							
-				String line = null;
-				readBuffer = new StringBuffer();
-				
-				while((line = bufferedReader.readLine()) != null) {
-					readBuffer.append(line);
-					readBuffer.append("\n");
-				}
-				while((line = bufferedReader2.readLine()) != null) {
-					readBuffer.append(line);
-					readBuffer.append("\n");
-				}
+				shutdown();
+			}
+			
+			
+			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			bufferedReader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+						
+			String line = null;
+			readBuffer = new StringBuffer();
+			
+			while((line = bufferedReader.readLine()) != null) {
+				readBuffer.append(line);
+				readBuffer.append("\n");
+			}
+			while((line = bufferedReader2.readLine()) != null) {
+				readBuffer.append(line);
+				readBuffer.append("\n");
+			}
 			return readBuffer.toString();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -125,6 +131,16 @@ public class RunJava {
 		try {
 			process = Runtime.getRuntime().exec(cmd);
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String shutdown() {
+		try {
+			process = Runtime.getRuntime().exec("^C");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

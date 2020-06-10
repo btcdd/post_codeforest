@@ -25,14 +25,7 @@ public class CompileControllerJava {
 		RunJava rtt = new RunJava();
 
 		rtt.execCompile();
-		
-		long start = System.currentTimeMillis();
-		long end = start + 3*1000; // 60 seconds * 1000 ms/sec
-		String result = null;
-		while (System.currentTimeMillis() < end) {
-			result = rtt.execCommand();
-		}
-		
+		String result = rtt.execCommand();
 		String errorResult = rtt.execCompile();
 		
 		String[] res = new String[2];
