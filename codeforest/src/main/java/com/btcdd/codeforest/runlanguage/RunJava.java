@@ -116,7 +116,7 @@ public class RunJava {
 	private String runClass() {
 		buffer = new StringBuffer();
 		
-		buffer.append("timeout 5s java -cp . Test");
+		buffer.append("timeout 2s java -cp . Test");
 		
 		return buffer.toString();
 	}
