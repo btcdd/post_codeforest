@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap');
+
+body { margin: 0; padding: 0; background-color: #FFF;}
+
+.header { 
+    position: relative;
+    background-repeat : no-repeat;
+    background-size : 100vw;
+    height: 100px;
+    width: 100vw;
+}
+
+.head-navigation {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 20%);
+    width: 100%;
+}
+
+.logo { float: left; margin-right: 40px; margin-top: 4px;}
+
+.logo a { text-decoration: none; color:#ffffff; font-family: 'Teko', sans-serif; font-size: 1.7em; margin-left: 20px; margin-top: 4px; }
+.logo a:visited { color: #ffffff; }
+.logo a:hover { text-decoration:none; color: #ffffff; }
+
+.menu { float: left; font-family: 'Teko', sans-serif; font-size: 1.3em;}
+
+.menu-user { float: right; font-size: 0.8em; margin-top:2px; margin-right: 20px}
+
+.menu-item { float: left; margin: 3px 10px 0 0; padding: 8px 10px }
+
+.menu a { text-decoration: none; color: #ffffff; }
+.menu a:visited { color: #ffffff; }
+.menu a:hover { text-decoration: none; color:#000000}
+
+.menu-user a { text-decoration: none; color: #ffffff; }
+.menu-user a:visited { color: #ffffff; }
+.menu-user a:hover { text-decoration: none; color:#000000}  
+
+#code-tree a { text-decoration: none; color: #ffffff; cursor:pointer; }
+#code-tree a:visited { color: #ffffff; }
+#code-tree a:hover { text-decoration: none; color:#000000}
+#code-tree 

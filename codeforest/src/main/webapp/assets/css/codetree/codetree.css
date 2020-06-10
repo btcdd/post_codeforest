@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: auto;
+    background-color: lightgray;
+}
+
+.title {
+    float: left;
+}
+
+.time {
+    float: right;
+}
+
+.start,
+.remain {
+    float: left;
+    margin-right: 10px;
+    padding: 8px 10px;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both
+}
+
+.workbook {
+    background-color: tomato;
+    position: fixed;
+    left: 0px;
+    margin: auto;
+}
+
+.nemo {
+    background-color: yellow;
+    width: 1700px;
+    margin: auto;
+    float: right;
+}
+
+.button {
+    float: right;
+    margin-right: 300px;
+}
+
+.yo {
+    display: inline-flex;
+    background-color: violet;
+}
+
+.result {
+    float: left;
+    width: 1600px;
+    background-color: violet;
+}
+
+.content {
+    float: left;
+}
+
+#content {
+    width: 800px;
+    height: 600px;
+}
+
+.result-text {
+    clear: left;
+}
+
+#result-text {
+    width: 1600px;
+    height: 200px;
+}
+
+.stop {
+    float: right;
+}

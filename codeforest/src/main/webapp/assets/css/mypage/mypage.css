@@ -1,0 +1,137 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap')
+	;
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	width: 980px;
+	margin: auto;
+	margin-top: 20px;
+	padding: 10px 30px;
+	border: 1px solid rgb(180, 180, 180);
+	border-radius: 10px;
+}
+
+.header {
+	background-color: #283d39;
+	color: white
+}
+
+.head {
+	width: 1320px;
+	margin: auto;
+	padding: 0 0 5px 0;
+}
+
+.logo {
+	float: left;
+	margin-right: 40px;
+	margin-top: 4px;
+}
+
+.logo a {
+	text-decoration: none;
+	color: #fff;
+	font-family: 'Teko', sans-serif;
+	font-size: 1.7em;
+	margin-left: 20px;
+	margin-top: 4px;
+}
+
+.logo a:visited {
+	color: #fff
+}
+
+.logo a:hover {
+	text-decoration: none;
+	color: #fff
+}
+
+.menu-item {
+	float: left;
+	margin: 3px 10px 0 0;
+	padding: 8px 10px
+}
+
+.menu-user {
+	float: right;
+	font-size: 1em;
+	margin-top: 2px
+}
+
+.menu-user a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.menu-user a:visited {
+	color: #fff;
+}
+
+.menu-user a:hover {
+	text-decoration: none;
+	color: #fff
+}
+
+.sidemenu {
+	position: fixed;
+	left: 300px;
+	margin: auto;
+}
+
+ul {
+	list-style: none;
+	margin-left: 20px;
+	margin-right: 30px;
+	padding-left: 0px;
+	height: 600px;
+}
+
+a {
+	text-decoration: none;
+	color: #222;
+}
+
+a:visited {
+	color: #222;
+}
+
+#right-problem {
+	color: #428BCA;
+}
+
+#right-problem:hover {
+	font-weight: bold;
+}
+
+#wrong-problem {
+	color: #e7911f;
+}
+
+#wrong-problem:hover {
+	font-weight: bold;
+}
+
+.menulist {
+	margin: 5px;
+	padding: 10px 0px;
+}
+
+.correct, .wrong {
+	border-bottom: 1px solid lightgray;
+	margin-bottom: 5px;
+}
+
+.correct-answer, .wrong-answer {
+	margin: 10px 0px;
+}
+
+.clearfix::after {
+	content: "";
+	display: block;
+	clear: both;
+}

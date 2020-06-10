@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="codetree">
+	
+	<insert id="saveUserAndProblem" parameterType="hashmap" useGeneratedKeys="true" keyProperty="id">
+		<![CDATA[
+			insert into save (no, user_no, problem_no) 
+				 values((select s.no 
+				           from save s 
+				          where s.user_no = #{authUserNo } 
+				            and s.problem_no = #{problemNo }), #{authUserNo },#{problemNo }) 
+			 	 on duplicate key update user_no = #{authUserNo }, problem_no = #{problemNo }
+		]]>
+	</insert>
+	
+	<insert id="savePath" parameterType="hashmap" useGeneratedKeys="true" keyProperty="id">
+		<![CDATA[
+			insert into save_path (no, sub_problem_no, save_no, package_path)
+			values
+		]]>
+		<foreach collection="savePathVoList" item="item" separator=",">
+			<![CDATA[
+				((select sp.no 
+				          from save_path sp 
+				         where sp.sub_problem_no = ${item.subProblemNo } 
+				           and sp.save_no = ${item.saveNo }), ${item.subProblemNo }, ${item.saveNo }, '${item.packagePath }')
+			]]>
+		</foreach>
+		<![CDATA[
+			 on duplicate key update sub_problem_no = values(sub_problem_no), save_no = values(save_no), package_path= values(package_path)
+		]]>
+	</insert>
+	
+	<insert id="saveCode" parameterType="hashmap" useGeneratedKeys="true" keyProperty="id">
+		<![CDATA[
+			insert into code (no, save_path_no, language, code, file_name)
+				 values
+		]]>
+		<foreach collection="codeVoList" item="item" separator=",">
+			<![CDATA[
+				((select c.no from code c where c.save_path_no = ${item.savePathNo } and c.language = '${item.language }' and c.file_name = '${item.fileName }'), ${item.savePathNo }, '${item.language }', '${item.code }', '${item.fileName}')
+			]]>
+		</foreach>
+		<![CDATA[
+			 on duplicate key update save_path_no = values(save_path_no), language = values(language), code = values(code), file_name = values(file_name)
+		]]>
+	</insert>
+	
+	<select id="findCode" parameterType="long" resultType="codevo">
+		<![CDATA[
+			select no, save_path_no as savePathNo, language, code, file_name as fileName
+			  from code 
+			 where save_path_no = (select no from save_path where sub_problem_no = #{subProblemNo })
+		]]>
+	</select>
+	
+	<select id="findSaveNo" parameterType="map" resultType="long">
+		<![CDATA[
+			select no 
+			  from save
+			 where user_no = #{userNo }
+			   and problem_no = #{problemNo }
+		]]>
+	</select>
+	
+	<select id="findSubProblemNo" parameterType="long" resultType="subproblemvo">
+		<![CDATA[
+			select no 
+			  from sub_problem 
+			 where problem_no = #{problemNo }
+		]]>
+	</select>
+	
+</mapper>
