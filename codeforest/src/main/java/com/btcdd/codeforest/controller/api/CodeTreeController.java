@@ -1,13 +1,22 @@
 package com.btcdd.codeforest.controller.api;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.btcdd.codeforest.dto.JsonResult;
 import com.btcdd.codeforest.service.CodeTreeService;
 import com.btcdd.codeforest.service.CodingTestService;
 import com.btcdd.codeforest.service.MypageService;
 import com.btcdd.codeforest.service.TrainingService;
+import com.btcdd.codeforest.vo.UserVo;
+import com.btcdd.security.Auth;
 
 @RestController("CodeTreeController")
 @RequestMapping("/api/codetree")
@@ -23,6 +32,15 @@ public class CodeTreeController {
 	
 	@Autowired 
 	private CodingTestService testService;
+	
+	@Auth
+	@GetMapping("")// main-header에서 처음 열때
+	public JsonResult codeTree(HttpSession session) {
+		Map<String, Object> map = new HashMap<>();
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		map.put("authUser", authUser);
+		return JsonResult.success(map);
+	}
 	
 }
 

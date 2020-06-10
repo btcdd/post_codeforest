@@ -8,7 +8,7 @@
 <script>
 $(function() {
 	
-/* 	$("#code-tree").on('click',function(){
+ 	$("#code-tree").on('click',function(){
 	      $.ajax({
 	          url:'${pageContext.request.contextPath }/api/codetree',
 	          async:false,
@@ -18,8 +18,8 @@ $(function() {
 	          success:function(response){
 	             console.log(response.data);
 	             console.log(response.data.authUser.email);
-	              var url = "http://localhost:9999/codetree?userEmail="+response.data.authUser.email;
-	              window.open(url,'_blank');
+	          		var codetreeURL = '${pageContext.request.contextPath }/codetree/' + response.data.authUser.no
+	              window.open(codetreeURL,'_blank');
 	              
 
 	              
@@ -28,7 +28,7 @@ $(function() {
 	             console.error(status + ":" + e);
 	          }
 	       });
-	}); */
+	}); 
 });
 
 </script>
