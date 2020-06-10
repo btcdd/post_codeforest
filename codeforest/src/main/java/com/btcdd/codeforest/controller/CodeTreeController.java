@@ -51,7 +51,7 @@ public class CodeTreeController {
 ////		map.put("subProblemList", subProblemList);
 ////		map.put("saveVoList", saveVoList);
 
-		return "codetree/codetree";
+		return "codetree/list";
 	}
 	
 	
