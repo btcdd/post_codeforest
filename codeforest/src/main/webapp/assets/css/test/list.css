@@ -7,6 +7,7 @@ body {
     width: 80vw;
     padding: 4% 0;
     margin: auto;
+    margin-top: 3%
 }
 
 .search {
@@ -96,7 +97,7 @@ body {
 .test-mid {
 	height: 30%;
 }
-.title {
+.probtitle {
 	float: left;
 	width: 77%;
     margin-left: 3%;

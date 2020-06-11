@@ -185,20 +185,17 @@ var codetreeURL = '${pageContext.request.contextPath }/codetree/list/' + respons
 </script>   
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-		<c:import url="/WEB-INF/views/include/main-header.jsp" />
-		</div>
+	<c:import url="/WEB-INF/views/include/main-header.jsp" />
 	<!-- <div id="code-tree" class="menu-item"><a>Code Tree</a></div> -->
-			<div class="content">
-		        <div class="search">
-		            <input type="text" id="kwd" name="kwd" placeholder="Search.." onKeyDown="onKeyDown();">
-		            <input type="button" id="search" value="검색" >
-		        </div>
-		        <div class="list">
-		            <div class="problems">
-		            </div>
-		        </div>			
+	<div class="content">
+        <div class="search">
+            <input type="text" id="kwd" name="kwd" placeholder="Search.." onKeyDown="onKeyDown();">
+            <input type="button" id="search" value="검색" >
+        </div>
+        <div class="list">
+            <div class="problems">
+            </div>
+        </div>			
 <%-- 				<div class="list">		
 					<c:forEach items="${saveVoList}" var="vo" varStatus="status">
 						<div class="problem-box">
@@ -219,10 +216,7 @@ var codetreeURL = '${pageContext.request.contextPath }/codetree/list/' + respons
 					
 				</div>				
  -->				
-			</div>
-		<div id="footer">			
-		<c:import url="/WEB-INF/views/include/footer.jsp" />
-		</div>
 	</div>
+<%-- 	<c:import url="/WEB-INF/views/include/footer.jsp" /> --%>
 </body>
 </html>

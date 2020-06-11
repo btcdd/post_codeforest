@@ -24,7 +24,7 @@ body { margin: 0; padding: 0; background-color: #FFF;}
 
 .logo { float: left; margin-right: 40px; margin-left: 10px; margin-top: 4px;}
 
-.logo a { text-decoration: none; color:#244C1E; font-family: 'Pacifico', cursive; font-size: 1.7em; margin-left: 20px; margin-top: 4px; }
+.logo a { text-decoration: none; color:#244C1E; font-family: 'Pacifico', cursive; font-size: 1.7em; margin-left: 20px;}
 .logo a:visited { color: #244C1E; }
 .logo a:hover { text-decoration:none; color: #244C1E; }
 

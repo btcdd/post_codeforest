@@ -1,6 +1,8 @@
 html, body{height:100%;}
-.content{
-  height: 800px;
+.content {
+    width: 80vw;
+    margin: auto;
+    margin-top: 6%
 }
 .header {
 	background-image: url('../../images/main/autumn.jpg');
