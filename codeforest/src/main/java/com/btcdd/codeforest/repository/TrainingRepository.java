@@ -121,14 +121,7 @@ public class TrainingRepository {
 		return sqlSession.selectOne("training.findByUserEmail",email);
 	}
 
-	public int insertInputValueByUserEmail(String userName, String userBirth, String userEmail) {
-		Map<String,Object> map = new HashMap<>();
-		map.put("userName",userName);
-		map.put("userBirth",userBirth);
-		map.put("userEmail",userEmail);
-		return sqlSession.update("training.insertInputValueByUserEmail", map);
-		
-	}
+
 
 	public List<StatisticsVo> selectStatistics(Map<String, Object> map) {
 		return sqlSession.selectList("training.selectStatistics", map);
@@ -174,8 +167,8 @@ public class TrainingRepository {
 		sqlSession.insert("training.insertSaveProblemNo", map);
 	}
 
-	public Long findSaveNo(Long problemNo) {
-		return sqlSession.selectOne("training.findSaveNo", problemNo);
+	public Long findSaveNo(Map<String, Object> map) {
+		return sqlSession.selectOne("training.findSaveNo", map);
 	}
 
 	public void insertSavePath(Long[] array, Long saveNo, Long authUserNo, Long problemNo) {
@@ -249,5 +242,21 @@ public class TrainingRepository {
 
 	public Long selectRecommend(Long problemNo) {
 		return sqlSession.selectOne("training.selectRecommend", problemNo);
+	}
+
+	public List<SavePathVo> findSavePathNo(Long saveNo) {
+		return sqlSession.selectList("training.findSavePathNo", saveNo);
+	}
+
+	public void deleteCode(Map<String, Object> map) {
+		sqlSession.delete("training.deleteCode", map);
+	}
+
+	public void deleteSavePath(Long saveNo) {
+		sqlSession.delete("training.deleteSavePath", saveNo);
+	}
+
+	public void deleteSaveByProblemNo(Map<String, Object> map) {
+		sqlSession.delete("training.deleteSaveByProblemNo", map);
 	}
 }

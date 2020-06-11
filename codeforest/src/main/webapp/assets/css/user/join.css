@@ -3,11 +3,24 @@
 
 body{
 	height: 100%;
-    overflow: hidden;
-    background-image: url('../../images/main/forest-main.jpg');
-    background-position: -5px -140px;
-    background-repeat : no-repeat;
-	background-size : cover;
+	background-color: #FAFAFA;
+}
+
+
+.logo {
+	margin-left: auto;
+    margin-right: auto;
+    margin-top: 230px;
+    width: 300px;
+}
+
+.logo a {
+    font-size: 3.5em;
+    color: #244C1E;
+    text-decoration: none;
+    font-family: 'Pacifico', cursive;
+    font-weight: bold;
+/*     text-shadow: 3px 2px 2px black; */
 }
 
 #user{
@@ -24,7 +37,7 @@ body{
     margin-top: 35px;
     border: 1px solid gray;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 70%);
+    background-color: rgba(255, 255, 255, 90%);
 }
 
 label {

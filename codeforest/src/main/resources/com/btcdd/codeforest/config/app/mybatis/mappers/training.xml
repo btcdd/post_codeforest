@@ -387,13 +387,7 @@
 			 
 		]]>
 	</select>
-	<insert id="insertInputValueByUserEmail" parameterType="map">
-		<![CDATA[
-			update user
-				set name = #{userName}, birth = #{userBirth}
-			where email = #{userEmail}
-		]]>
-	</insert>		
+		
 	
 	<select id="selectStatistics" parameterType="map" resultType="statisticsvo">
 		  select lang as language, count(*) as count
@@ -482,6 +476,7 @@
 			  select no
 			    from save 
 			   where problem_no = #{problemNo }
+			     and user_no = #{authUserNo }
 		]]>
 	</select>
 	
@@ -595,5 +590,46 @@
 			   where no = #{problemNo }
 		]]>
 	</select>
+	
+	<select id="findSavePathNo" parameterType="long" resultType="savepathvo">
+		<![CDATA[
+			  select no, sub_problem_no as subProblemNo, save_no as saveNo, package_path as packagePath
+			    from save_path
+			   where save_no = #{saveNo }
+		]]>
+	</select>
+	
+	<delete id="deleteCode" parameterType="map">
+		<![CDATA[
+ 			  delete
+ 			    from code
+ 			   where save_path_no in (
+ 		]]>
+		<foreach collection="savePathVoList" item="item" separator=",">
+			<![CDATA[
+ 				${item.no }
+ 			]]>
+		</foreach>
+		<![CDATA[
+ 			)
+ 		]]>
+	</delete>
+	
+ 	<delete id="deleteSavePath" parameterType="long">
+ 		<![CDATA[
+			  delete
+ 			    from save_path
+ 			   where save_no = #{saveNo }
+ 		]]>
+ 	</delete>
+	
+ 	<delete id="deleteSaveByProblemNo" parameterType="map">
+ 		<![CDATA[
+ 			  delete
+			    from save
+ 			   where user_no = #{authUserNo }
+ 			     and problem_no = #{problemNo }
+		]]>
+ 	</delete>
 	
 </mapper>

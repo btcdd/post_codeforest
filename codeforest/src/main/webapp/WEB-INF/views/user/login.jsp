@@ -60,7 +60,9 @@ $(function(){
 </head>
 <body>
    <div id="container">
-        <c:import url="/WEB-INF/views/include/user-header.jsp" />
+        <div class="logo">
+			<a href="${pageContext.servletContext.contextPath }">Code Forest</a>
+		</div> <!-- logo -->
         <div id="content">
             <div id="user">
                 <form id="login-form" name="" method="post" action="${pageContext.servletContext.contextPath }/user/auth" >
@@ -84,15 +86,17 @@ $(function(){
                     <div>
                         <input class="login-button" type="submit" value="로그인">
                     </div>
-                    <div>
-                        <a href="${pageContext.servletContext.contextPath }/user/join"><input class="join-button" value="회원가입" readonly/></a>
-                    </div>
                     <div class="findpassword">
                         <a href="${pageContext.servletContext.contextPath }/user/find">비밀번호찾기</a>
                     </div>
                 </form>
             </div>
-        </div> 
-    </div>
+                <div class="join">
+                   계정이 없으신가요? <a class="join-link" href="${pageContext.servletContext.contextPath }/user/join">가입하기</a>
+                </div>
+        </div> <!-- content -->
+    </div> <!-- container -->
 </body>
 </html>
+
+<!-- <input class="join-button" value="회원가입" readonly/> -->

@@ -30,12 +30,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if(authUser == null ) {
 			request.setAttribute("userVo", vo);
 			request.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(request, response);
-			System.out.println("로그인 실패");
 			return false;
 		}
 		
-		System.out.println("로그인 성공");
-		System.out.println(authUser);
 		// session 처리
 		HttpSession session = request.getSession(true);
 		session.setAttribute("authUser", authUser);

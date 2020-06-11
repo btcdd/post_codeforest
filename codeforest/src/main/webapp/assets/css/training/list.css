@@ -1,11 +1,10 @@
+html {
+	background-color: #FAFAFA
+}
+
 body {
     margin: 0;
     padding: 0;
-}
-
-.header {
-	background-image: url('../../images/main/winter.jpg');
-    background-position-y: 22%;
 }
 
 .content {
@@ -193,13 +192,35 @@ input[type=text] {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px 4px 740px;
+    margin: 4px 2px 4px 640px;
     transition-duration: 0.4s;
     border: 1.5px #7A8B9B solid;
     cursor: pointer;
 }
 
 .make-problem:hover {
+    background-color: #BFB5A0;
+    color: #fff;
+    border: 1.5px #BFB5A0 solid;
+}
+
+.reset {
+    background-color: #7A8B9B;
+    border: none;
+    color: #fff;
+    padding: 10px 10px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px 4px 20px;
+    transition-duration: 0.4s;
+    border: 1.5px #7A8B9B solid;
+    cursor: pointer;
+}
+
+.reset:hover {
     background-color: #BFB5A0;
     color: #fff;
     border: 1.5px #BFB5A0 solid;

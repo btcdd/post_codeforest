@@ -198,6 +198,19 @@ $(function() {
 		levelChecked(page, kwd);
 		nextRemove();
 	});
+	
+	$('.reset').click(function() {
+		var inp = document.getElementsByTagName('input');
+		for(var i = 0; i < inp.length; i++) {
+			if(inp[i].type == 'checkbox') {
+				inp[i].checked = false;
+				inp[i].disabled = false;
+			}
+		}
+		$('#kwd').val('');
+		
+		originList('1', '', '');
+	});
 });
 
 
@@ -268,6 +281,7 @@ $(function() {
             <div class="search">
                 <input type="text" id="kwd" name="kwd" placeholder="Search.." onKeyDown="onKeyDown();">
                 <input type="button" id="search" value="검색" >
+                <button class="reset">초기화</button>
                 <button class="make-problem" onclick="location.href='${pageContext.servletContext.contextPath }/training/write'">문제작성</button>
             </div>
             <div class="problems">

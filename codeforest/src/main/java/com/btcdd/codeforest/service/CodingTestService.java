@@ -22,4 +22,15 @@ public class CodingTestService {
 	public UserVo findUserByEmail(String userEmail) {
 		return testRepository.findUserByEmail(userEmail);
 	}
+
+	public ProblemVo selectProblemOne(Long problemNo) {
+		testRepository.updateHit(problemNo);
+		return testRepository.selectProblemOne(problemNo);
+	}
+
+	public void insertUserInfo(String name, String birth, Long authUserNo) {
+		testRepository.insertInputValueByAuthUserNo(name,birth,authUserNo);
+		
+	}
+
 }

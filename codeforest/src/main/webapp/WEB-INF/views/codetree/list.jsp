@@ -147,7 +147,7 @@ $(function() {
 	        	  'saveNo':saveNo
 	        	  },
 	          success:function(response){
- 				 var codetreeURL = '${pageContext.request.contextPath }/codetree/codeMirror/' + response.data.saveNo
+ 				 var codetreeURL = '${pageContext.request.contextPath }/codetree/codemirror/' + response.data.saveNo
 			     window.open(codetreeURL,'_blank');  
 	          },
 	          error: function(xhr, status, e) {
