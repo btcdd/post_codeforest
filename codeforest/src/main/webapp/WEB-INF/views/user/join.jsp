@@ -214,7 +214,7 @@ $(function(){
 		if(email == '') {
 			$('.error-email-pattern').hide();
 			$('#auth').remove();
-			$('#join-form').css('height', '335px');
+			$('#join-form').css('height', '265px');
 			$('#email').css('background-image', 'none');
 			$("#email").focus();
 			email_pandan = false;
@@ -450,7 +450,7 @@ $(function(){
                         </p>                        
                     </div>
                     <div>
-                       <a href="${pageContext.servletContext.contextPath }/"><input class="cancel-button" value="취소"></input></a>
+                       <a href="${pageContext.servletContext.contextPath }/"><input class="cancel-button" value="취소" readonly></input></a>
                         <input type="submit" class="join-button" value="가입" >
                     </div>
                 </form:form>

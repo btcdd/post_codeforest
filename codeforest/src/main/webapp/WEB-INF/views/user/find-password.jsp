@@ -32,7 +32,6 @@ var loadingWithMask = function LoadingWithMask(){
 		'height':heightWindow,
 		'opacity':'0.3'
 	});
-			
 	$('#mask').show();
 	$('#loadingImg').show();
 }
@@ -63,10 +62,11 @@ $(function(){
 			dataType:'json',
 			data:'email='+ email,
 			success:function(response){	
+				$('#btn-auth').val('인증번호 확인');
 				alert('인증번호가 발송되었습니다.');
 				console.log(response.data);//인증키
 				tempKey = response.data;
-				closeLoadingWithMask();	
+				closeLoadingWithMask();
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
@@ -75,8 +75,7 @@ $(function(){
 	});
 	
 	$('#btn-auth-check').on('click',function(){
-		if( ($('#auth-check').val() == tempKey) && ($('#auth-check').val() != "") ){			
-			console.log("인증번호 맞았음");
+		if(($('#auth-check').val() == tempKey) && ($('#auth-check').val() != "") ){
 			$('#find-form').submit();
 		} else{
 			alert('인증번호 다시 확인해주세요.');
