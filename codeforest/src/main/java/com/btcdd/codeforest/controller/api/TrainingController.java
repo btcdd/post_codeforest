@@ -52,7 +52,7 @@ public class TrainingController {
 		
 		trainingService.insertSavePath(array, saveNo, authUser.getNo(), problemNo);
 		
-		TrainingLinux trainingLinux = new TrainingLinux();
+//		TrainingLinux trainingLinux = new TrainingLinux();
 		
 		try {
 			Process process = Runtime.getRuntime().exec("mkdir userDirectory/user10050/prob2");
