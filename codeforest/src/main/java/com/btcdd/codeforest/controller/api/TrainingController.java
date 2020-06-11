@@ -1,5 +1,6 @@
 package com.btcdd.codeforest.controller.api;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.btcdd.codeforest.dto.JsonResult;
 import com.btcdd.codeforest.linux.TrainingLinux;
 import com.btcdd.codeforest.service.TrainingService;
+import com.btcdd.codeforest.vo.SavePathVo;
 import com.btcdd.codeforest.vo.UserVo;
 
 @RestController("TrainingController")
@@ -41,18 +43,37 @@ public class TrainingController {
 		return JsonResult.success(map);
 	}
 
+	@PostMapping("/savepandan")
+	public JsonResult savePandan(Long problemNo, HttpSession session) {
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		Long saveNo = trainingService.findSaveNo(authUser.getNo(), problemNo);
+		
+		return JsonResult.success(saveNo);
+	}
+	
 	@PostMapping("/save/problem")
 	public JsonResult saveProblem(Long problemNo, HttpSession session, Long[] array) {
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		trainingService.insertSaveProblemNo(authUser.getNo(), problemNo);
-		Long saveNo = trainingService.findSaveNo(problemNo);
+		Long saveNo = trainingService.findSaveNo(authUser.getNo(), problemNo);
 		
 		trainingService.insertSavePath(array, saveNo, authUser.getNo(), problemNo);
 		
 		TrainingLinux trainingLinux = new TrainingLinux();
 		trainingLinux.saveProblemAndSubProblem(authUser.getNo(), problemNo, array);
+
+		return JsonResult.success(null);
+	}
+	
+	@PostMapping("/delete")
+	public JsonResult delete(Long problemNo, HttpSession session, Long[] array) {
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		
+		trainingService.findAndDelete(authUser.getNo(), problemNo);
 
 		return JsonResult.success(null);
 	}

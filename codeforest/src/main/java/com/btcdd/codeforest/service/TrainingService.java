@@ -101,7 +101,6 @@ public class TrainingService {
 				count = trainingRepository.getOrganizationListCount(keyword, size, checkValues);
 			}
 		}
-		System.out.println(count);
 		
 		//하단 페이징 번호([게시물 총 갯수 / 한 페이지에 출력할 갯수]의 올림)
 		int pageNum = (int)Math.ceil((double)count/postNum);
@@ -351,8 +350,12 @@ public class TrainingService {
 		trainingRepository.insertSaveProblemNo(map);
 	}
 
-	public Long findSaveNo(Long problemNo) {
-		return trainingRepository.findSaveNo(problemNo);
+	public Long findSaveNo(Long authUserNo, Long problemNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("authUserNo", authUserNo);
+		map.put("problemNo", problemNo);
+		
+		return trainingRepository.findSaveNo(map);
 	}
 
 	public void insertSavePath(Long[] array, Long saveNo, Long authUserNo, Long problemNo) {
@@ -404,19 +407,30 @@ public class TrainingService {
 	}
 
 	public void modifyProblem(ProblemVo problemVo) {
-		
-		
 		if(problemVo.getPassword() != null) {
 			if("on".equals(problemVo.getPrivacy())) {
 				problemVo.setPrivacy("y");
 			} else {
 				problemVo.setPrivacy("n");
 			}
-			
 			trainingRepository.updateTestProblem(problemVo);
 		} else {
 			trainingRepository.updateTrainingProblem(problemVo);
 		}
+	}
+
+	public void findAndDelete(Long authUserNo, Long problemNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("authUserNo", authUserNo);
+		map.put("problemNo", problemNo);
+		
+		Long saveNo = trainingRepository.findSaveNo(map);
+		
+		List<SavePathVo> savePathVoList = trainingRepository.findSavePathNo(saveNo);
+		map.put("savePathVoList", savePathVoList);
+		trainingRepository.deleteCode(map);
+		trainingRepository.deleteSavePath(saveNo);
+		trainingRepository.deleteSaveByProblemNo(map);
 	}
 
 }
