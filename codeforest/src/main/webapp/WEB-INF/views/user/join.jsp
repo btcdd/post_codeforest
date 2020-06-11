@@ -26,7 +26,7 @@ var loadingWithMask = function LoadingWithMask(){
 	var loadingImg = '';
 		
 	loadingImg += "<div id='loadingImg'>";
-	loadingImg += "<img src='${pageContext.request.contextPath}/assets/images/user/spin.svg' style='position: absolute; top: 43%; left: 43%;z-index: 100;'/>";
+	loadingImg += "<img src='${pageContext.request.contextPath}/assets/images/user/spin.svg' style='position: absolute; top: 40%; left: 44.5%;z-index: 100;'/>";
 	loadingImg += "</div>";
 		
 	$('body').append(mask).append(loadingImg);
