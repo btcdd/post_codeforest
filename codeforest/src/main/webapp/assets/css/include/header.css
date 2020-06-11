@@ -28,7 +28,7 @@ body { margin: 0; padding: 0; background-color: #FFF;}
 .logo a:visited { color: #244C1E; }
 .logo a:hover { text-decoration:none; color: #244C1E; }
 
-.menu { float: left; font-size: 1em; font-family: 'Roboto', sans-serif;}
+.menu { float: left; font-size: 1.05em; font-family: 'Roboto', sans-serif;}
 
 .menu-user { float: right; font-size: 0.8em; margin-top:2px; margin-right: 20px}
 
