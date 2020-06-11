@@ -51,7 +51,9 @@ public class TrainingController {
 		
 		trainingService.insertSavePath(array, saveNo, authUser.getNo(), problemNo);
 		
-		trainingService.saveProblemAndSubProblem(authUser.getNo(), problemNo, array);
+		TrainingLinux trainingLinux = new TrainingLinux();
+		trainingLinux.saveProblemAndSubProblem(authUser.getNo(), problemNo, array);
+//		trainingService.saveProblemAndSubProblem(authUser.getNo(), problemNo, array);
 
 		return JsonResult.success(null);
 	}
