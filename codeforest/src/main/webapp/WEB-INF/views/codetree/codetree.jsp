@@ -30,24 +30,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/codemirror/mode/clike.js"></script>
 
 <script>
-/*
-//Made with <3 by Marcus Bizal
-//github.com/marcbizal
-//linkedin.com/in/marcbizal
-*/
-
-
-
-/////////////////////////////
-
-
-
-
 $(function() {
-	
-	
-	
-	/////////////////////////////////////////////////////////
+////////////////// code-mirror /////////////////////////////
    var save = false;
    $(".codeTest").submit(function(event) {
       event.preventDefault();
@@ -141,6 +125,15 @@ $(function() {
    });
    
  	$('.CodeMirror').addClass('code');
+ 	
+ ////////////////////////////////////////////////////////////////
+ 
+ 	$(document).on('click', '.sub-problem-title', function(event) {
+		event.preventDefault();
+		var no = $(this).data("no");
+		$("#subproblem-" + no).toggle();
+	});
+ 	
 });
 
 </script>
@@ -182,34 +175,34 @@ $(function() {
     <div class="container">
         <div class='problem-list'>
             <div class='problem-title'>
-                <p class='problem-title-head'>타이틀</p>
-                <div class='problem'>
-                    <li>
-                        <div class='sub-problem-title'>
-                            <p class='problem-index'>문제 1</p>
-                            <p class='subtitle'>서브타이틀</p>
-                        </div>
-                        <div class='problem-open'>
-                            <div class='contents'>
-                                <p class='problem-contents-title'>문제 내용</p>
-                                <br />
-                                <p class='problem-contents'>문제 내용~~</p>
-                            </div>
-                            <hr class='division' />
-                            <div class='examInput'>
-                                <p class='problem-examInput-title'>입력 예제</p>
-                                <br />
-                                <p class='problem-examInput'>1111</p>
-                            </div>
-                            <hr class='division' />
-                            <div class='examOutput'>
-                                <p class='problem-examOutput-title'>출력 예제</p>
-                                <br />
-                                <p class='problem-examOutput'>2</p>
-                            </div>
-                        </div>
-                    </li>
-                </div>
+                <p class='problem-title-head'>${saveVo.title }</p>
+                <c:forEach items='${subProblemList }' var='subproblemvo' varStatus='status'>
+	                <div class='problem'>                    
+		                <div class='sub-problem-title' data-no='${subproblemvo.no }'>
+		                    <p class='problem-index'>문제 1</p>
+		                    <p class='subtitle'>${subproblemvo.title }</p>
+		                </div>
+		                <div class='problem-open' style='display:none;' id='subproblem-${subproblemvo.no }'>
+		                    <div class='contents'>
+		                        <p class='problem-contents-title'>문제 내용</p>
+		                        <br />
+		                        <p class='problem-contents'>${subproblemvo.contents }</p>
+		                    </div>
+		                    <hr class='division' />
+		                    <div class='examInput'>
+		                        <p class='problem-examInput-title'>입력 예제</p>
+		                        <br />
+		                        <p class='problem-examInput'>${subproblemvo.examInput }</p>
+		                    </div>
+		                    <hr class='division' />
+		                    <div class='examOutput'>
+		                        <p class='problem-examOutput-title'>출력 예제</p>
+		                        <br />
+		                        <p class='problem-examOutput'>${subproblemvo.examOutput }</p>
+		                    </div>
+	                  </div>                 
+	                </div>
+                </c:forEach>
             </div>
         </div>
 

@@ -60,7 +60,7 @@ var fetchList = function() {
 	$(".list .pager").remove();
 	var str="";
 	for(var i=0;i<map.list.length;i++){
-		str+= '<div data-no="'+map.list[i].no+'" class="problem-box" >'+
+		str+= '<div data-user="'+map.list[i].userNo+'" data-no="'+map.list[i].no+'" class="problem-box" >'+
 			'<div class="problem-no">'+map.list[i].problemNo+'</div>'+
 			'<div class="problem-title">'+map.list[i].title+'</div>'+
 			'<div class="problem-user">'+map.list[i].kind +" "+ map.list[i].nickname+'</div>'+
@@ -143,7 +143,9 @@ $(function() {
 	          async:false,
 	          type:'post',
 	          dataType:'json',
-	          data : {'saveNo':saveNo},
+	          data : {
+	        	  'saveNo':saveNo
+	        	  },
 	          success:function(response){
  				 var codetreeURL = '${pageContext.request.contextPath }/codetree/codeMirror/' + response.data.saveNo
 			     window.open(codetreeURL,'_blank');  

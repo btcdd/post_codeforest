@@ -131,6 +131,22 @@ public class CodeTreeService {
 		return map;
 	}
 
+	public SaveVo findSaveVo(Long saveNo) {
+		return codetreeRepository.findSaveVo(saveNo);
+	}
+
+	public List<SavePathVo> findSavePathList(Long saveNo) {
+		return codetreeRepository.findSavePathList(saveNo);
+	}
+
+	public List<CodeVo> findCodeList(Long savePathNo) {
+		return codetreeRepository.findCodeList(savePathNo);
+	}
+
+	public List<SubProblemVo> findSubProblemList(Long problemNo) {
+		return codetreeRepository.findSubProblemList(problemNo);
+	}
+
 	
 
 	
