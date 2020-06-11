@@ -288,9 +288,7 @@ $(function() {
             </div> <!-- div problems -->
         </div> <!-- div list -->
     </div>
-    <div id="footer">
-	    <c:import url="/WEB-INF/views/include/footer.jsp" />
-    </div>
+    <c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 
 </html>

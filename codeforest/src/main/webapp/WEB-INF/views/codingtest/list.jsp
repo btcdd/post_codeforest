@@ -105,7 +105,7 @@ $(function(){
 						<div class="state">예정</div>
 					</div>
 					<div class="test-mid">
-						<div class="title">${vo.title }</div>
+						<div class="probtitle">${vo.title }</div>
 						<c:choose>
 							<c:when test="${dday[vo.no] eq 0 }">
 								<div class="d-day" data-no="${vo.no }">D-DAY</div>
