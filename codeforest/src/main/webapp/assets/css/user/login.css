@@ -44,6 +44,32 @@ body{
     padding: 20px 0 9px;
 }
 
+.input-email-pattern {
+	position: fixed;
+    width: 150px;
+    top: 325px;
+    left: 805px;
+    background: #18609C;
+    border-radius: .4em;
+    padding: 5px 10px;
+    color: #fff
+}
+
+.input-email-pattern:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 10%;
+	width: 0;
+	height: 0;
+	border: 11px solid transparent;
+	border-top-color: #18609C;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -5.5px;
+	margin-bottom: -11px;
+}
+
 #password {
     width: 300px;
     margin: 0 auto;
@@ -54,6 +80,32 @@ body{
     font-size: 1em;
     border-bottom: 2px solid #c4c5c4;
     padding: 20px 0 9px;
+}
+
+.input-password-pattern {
+	position: fixed;
+    width: 166px;
+    top: 375px;
+    left: 805px;
+    background: #18609C;
+    border-radius: .4em;
+    padding: 5px 10px;
+    color: #fff
+}
+
+.input-password-pattern:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 10%;
+	width: 0;
+	height: 0;
+	border: 11px solid transparent;
+	border-top-color: #18609C;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -5.5px;
+	margin-bottom: -11px;
 }
 
 .login-button{
