@@ -16,11 +16,11 @@ public class CodingTestRepository {
 	private SqlSession sqlSession;
 
 	public List<ProblemVo> selectTestList() {
-		return sqlSession.selectList("test.selectTestList");
+		return sqlSession.selectList("codingtest.selectTestList");
 	}
 
 	public UserVo findUserByEmail(String userEmail) {
-		return sqlSession.selectOne("test.findUserByEmail", userEmail);
+		return sqlSession.selectOne("codingtest.findUserByEmail", userEmail);
 	}
 
 	
