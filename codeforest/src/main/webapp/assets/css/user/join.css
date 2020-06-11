@@ -54,6 +54,10 @@ label {
     border-bottom: 2px solid #c4c5c4;
 }
 
+#nickname:focus {
+	outline: none;
+}
+
 .error-email-pattern {
 	position: fixed;
 	width: 210px;
@@ -90,6 +94,10 @@ label {
     border-bottom: 2px solid #c4c5c4;
 }
 
+#email:focus {
+	outline: none;
+}
+
 .error-password-pattern {
 	position: fixed;
 	width: 230px;
@@ -115,6 +123,7 @@ label {
 	margin-left: -5.5px;
 	margin-bottom: -11px;
 }
+
 #password {
     margin-left: 23px;
     width: 295px;
@@ -123,6 +132,10 @@ label {
     border: none;
     background: none;
     border-bottom: 2px solid #c4c5c4;
+}
+
+#password:focus {
+	outline: none;
 }
 
 #passwordcheck {
@@ -136,6 +149,10 @@ label {
     border-bottom: 2px solid #c4c5c4;
 }
 
+#passwordcheck:focus {
+	outline: none;
+}
+
 #auth-check {
 	margin: 0 10px 15px 23px;
     width: 138px;
@@ -146,15 +163,19 @@ label {
     border-bottom: 2px solid #c4c5c4;
 }
 
+#auth-check:focus {
+	outline: none;
+}
+
 #btn-auth {
     margin-top: 5px;
 	padding : 0;
 	margin-left: 10px;
     width:143px;
     height: 25px;
-    background-color: #A5A5A5;
+    background-color: #E5E5E5;
     border:none;
-    color:#fff;
+    color:#000;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -163,21 +184,29 @@ label {
     border-radius:10px;
 }
 
+#btn-auth:focus {
+	outline: none;
+}
+
 #btn-auth-check {
     margin-top: 5px;
 	margin-left: 10px;
 	padding : 0;
     width:143px;
     height: 25px;
-    background-color: #A5A5A5;
+    background-color: #E5E5E5;
     border:none;
-    color:#fff;
+    color:#000;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
     cursor: pointer;
     border-radius:10px;
+}
+
+#btn-auth-check:focus {
+	outline: none;
 }
 
 .cancel-button{
@@ -211,6 +240,10 @@ label {
     font-size: 15px;
     cursor: pointer;
     border-radius: 10px;
+}
+
+.join-button:focus {
+	outline: none;
 }
 
 hr {
