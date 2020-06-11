@@ -87,20 +87,14 @@ $(function() {
          dataType:'json',
          data : '',
          success:function(response){
-            console.log(response.data);
-             
-             
              var url = "http://localhost:9999/codingtraining?userEmail=" + response.data.authUser.email+ "&problemNo=" + response.data.problemVo.no;
              
              window.open(url,'_blank');
-             
          },
          error: function(xhr, status, e) {
             console.error(status + ":" + e);
          }
       });
-           
-      
    });
 	
 	
@@ -127,8 +121,8 @@ $(function() {
             <p class="division">${problemVo.no }</p>
             <p>${problemVo.title }</p>
 			<p>조회수</p><p>${problemVo.hit + 1}</p>
-            <button id="save">저장</button>  
-             <button id="code-tree">코드 트리로 가져오기</button>  
+            <button id="save">저장</button>
+            <button id="code-tree">코드 트리로 가져오기</button>
             <a href="${pageContext.servletContext.contextPath }/training/statistics/${problemVo.no }"><button>통계</button></a>
             <button id="recommend">추천 ${problemVo.recommend }</button>
         </div>
