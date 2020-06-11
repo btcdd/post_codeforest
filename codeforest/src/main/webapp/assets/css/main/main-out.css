@@ -219,6 +219,10 @@ select {
     margin-top: 5px;
 }
 
+#result:focus {
+	outline: none;
+}
+
 .bottom {
 	margin: auto;
 	display: block;
@@ -233,7 +237,7 @@ select {
 .btn-run {
 	height: 35px;
     width: 50px;
-    border: 1px solid #3C3C3C;
+    border: 1px solid #999999;
     outline: 0;
     background-color: #FAFAFA;
     color: #3C3C3C;
