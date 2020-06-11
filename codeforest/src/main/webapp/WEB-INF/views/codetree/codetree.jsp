@@ -13,6 +13,7 @@
 <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>		
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
 
+
 <!-- code mirror -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/codemirror/css/codemirror.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/codemirror/theme/abcdef.css">
@@ -29,8 +30,24 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/codemirror/mode/clike.js"></script>
 
 <script>
+/*
+//Made with <3 by Marcus Bizal
+//github.com/marcbizal
+//linkedin.com/in/marcbizal
+*/
+
+
+
+/////////////////////////////
+
+
+
+
 $(function() {
 	
+	
+	
+	/////////////////////////////////////////////////////////
    var save = false;
    $(".codeTest").submit(function(event) {
       event.preventDefault();
@@ -276,19 +293,9 @@ public class Test{
 
                        
                 </div>
-                <div class='result'>
-                    <div class='result-header'>
-                        <img class='cmd-img' style="width: 13px;"/><p class='cmd-title'>명령 프롬프트</p>
-                    </div>
-                    <div class='result-body'>
-                        <p>CodeForest Windows [Version 10.0.18363.836]</p>
-                        <br></br>
-                        <p>(c) 2020 CodeForest Corporation. All rights reserved.</p>
-                        <br></br>
-                        <p>> <span>ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋzzzzzzㅋㅋ</span></p><p>></p><p class='under-bar'>_</p>
-                    </div>
+                <div class="terminal-cover">
+                	<c:import url="/WEB-INF/views/codetree/terminal2.jsp"></c:import>
                 </div>
-
             </div>
         </div>
     </div>
