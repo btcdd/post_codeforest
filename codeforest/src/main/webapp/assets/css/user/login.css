@@ -1,14 +1,13 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&family=Russo+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bigshot+One&family=Noto+Sans+KR:wght@900&family=Pacifico&family=Roboto:wght@300&display=swap');
 body{
 	height: 100%;
-    overflow: hidden;
-    background-image: url('../../images/main/hmm.jpg');
-    background-position: -5px -140px;
-    background-repeat : no-repeat;
-	background-size : cover;
+	background-color: #FAFAFA;
+/*     overflow: hidden; */
+/*     background-image: url('../../images/main/hmm.jpg'); */
+/*     background-position: -5px -140px; */
+/*     background-repeat : no-repeat; */
+/* 	background-size : cover; */
 }
 
 .logo {
