@@ -12,7 +12,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Code Forest</title>
 <link href="" rel="stylesheet" type="text/css">
-<link href="${pageContext.servletContext.contextPath }/assets/css/include/user-header.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.servletContext.contextPath }/assets/css/user/join.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 <script>
@@ -411,7 +410,9 @@ $(function(){
 </head>
 <body>
     <div id="container">
-        <c:import url="/WEB-INF/views/include/user-header.jsp" />
+     	<div class="logo">
+			<a href="${pageContext.servletContext.contextPath }">Code Forest</a>
+		</div> <!-- logo -->
         <div id="content">
             <div id="user">
                 <form:form
@@ -455,13 +456,11 @@ $(function(){
                        <a href="${pageContext.servletContext.contextPath }/"><input class="cancel-button" value="취소"></input></a>
                         <input type="submit" class="join-button" value="가입" >
                     </div>
-                    <hr />
-                    <div>
-                        <a href="${pageContext.request.contextPath }/user/login"><input class="login-button" value="로그인" readonly></a>
-                    </div>
                 </form:form>
-
             </div>
+            <div class="join">
+                   계정이 있으신가요? <a class="join-link" href="${pageContext.request.contextPath }/user/login">로그인</a>
+                </div>
         </div>
     </div>
 </body>

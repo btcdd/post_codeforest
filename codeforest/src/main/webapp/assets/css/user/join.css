@@ -10,6 +10,22 @@ body{
 	background-size : cover;
 }
 
+.logo {
+	margin-left: auto;
+    margin-right: auto;
+    margin-top: 230px;
+    width: 300px;
+}
+
+.logo a {
+    font-size: 3.5em;
+    color: #244C1E;
+    text-decoration: none;
+    font-family: 'Pacifico', cursive;
+    font-weight: bold;
+/*     text-shadow: 3px 2px 2px black; */
+}
+
 #user{
     height: 900px;
     background-repeat: no-repeat;
