@@ -1,6 +1,5 @@
 package com.btcdd.codeforest.controller.api;
 
-import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -52,15 +51,7 @@ public class TrainingController {
 		
 		trainingService.insertSavePath(array, saveNo, authUser.getNo(), problemNo);
 		
-//		TrainingLinux trainingLinux = new TrainingLinux();
-		
-		try {
-			Process process = Runtime.getRuntime().exec("mkdir userDirectory/user10050/prob2");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-//		trainingLinux.saveProblemAndSubProblem(authUser.getNo(), problemNo, array);
+		trainingService.saveProblemAndSubProblem(authUser.getNo(), problemNo, array);
 
 		return JsonResult.success(null);
 	}

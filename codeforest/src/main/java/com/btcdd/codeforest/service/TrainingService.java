@@ -418,4 +418,18 @@ public class TrainingService {
 			trainingRepository.updateTrainingProblem(problemVo);
 		}
 	}
+	
+	
+	public void saveProblemAndSubProblem(Long authUserNo, Long problemNo, Long[] subProblemArray) {
+		try {
+			Process process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo);
+			
+			for(int i = 0; i < subProblemArray.length; i++) {
+				process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemArray[i]);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
