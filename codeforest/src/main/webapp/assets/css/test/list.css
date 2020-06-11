@@ -3,11 +3,6 @@ body {
     padding: 0;
 }
 
-.header {
-	background-image: url('../../images/main/autumn.jpg');
-	background-position-y: 40%;
-}
-
 .content {
     width: 80vw;
     padding: 4% 0;

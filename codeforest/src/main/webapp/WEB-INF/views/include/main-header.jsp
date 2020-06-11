@@ -9,7 +9,7 @@
 <div class="header">
     <div class="head-navigation">
         <div class="logo">
-            <a href="${pageContext.servletContext.contextPath }/main-in">Code Forest</a>
+            <a class="title" href="${pageContext.servletContext.contextPath }/main-in">Code Forest</a>
         </div>
         <div class="menu clearfix">
             <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/info">Info</a></div>
@@ -18,8 +18,17 @@
             <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/training">Coding Training</a></div>
         </div>			
         <div class="menu-user clearfix">
-            <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/mypage/mypage">마이페이지</a></div>
-            <div class="menu-item"><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a></div>
+	        <c:choose>
+				<c:when test="${empty authUser }">
+					<div class="menu-item"><a href="${pageContext.servletContext.contextPath }/user/login">Sign In</a></div>
+					<div class="menu-item"><a href="${pageContext.servletContext.contextPath }/user/join">Sign Up</a></div>
+				</c:when>
+				<c:otherwise>
+					<div class="menu-item"><a href="${pageContext.servletContext.contextPath }/mypage/mypage">Settings</a></div>
+					<div class="menu-item"><a href="${pageContext.request.contextPath }/user/logout">Sign Out</a></div>
+				</c:otherwise>
+			</c:choose>
         </div>
+        
     </div>
 </div>
