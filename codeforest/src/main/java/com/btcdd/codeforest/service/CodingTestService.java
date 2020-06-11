@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.btcdd.codeforest.repository.CodingTestRepository;
 import com.btcdd.codeforest.vo.ProblemVo;
+import com.btcdd.codeforest.vo.SubProblemVo;
 import com.btcdd.codeforest.vo.UserVo;
 
 @Service
@@ -33,4 +34,8 @@ public class CodingTestService {
 		
 	}
 
+	public List<SubProblemVo> findSubProblemList(Long problemNo) {
+		return testRepository.findSubProblemList(problemNo);
+		
+	}
 }

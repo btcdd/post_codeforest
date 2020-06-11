@@ -84,7 +84,7 @@
                     select count(*) from user u, save s, problem p,kind k
                     where s.user_no = u.no and k.no = p.kind_no and s.problem_no = p.no 
                     and s.user_no = #{authUserNo}  and p.state ='y'                   
-                    and (p.title like '%${keyword}%' or u.nickname like '%${keyword}%' or k.name like '%${keyword}%' );				 	
+                    and (p.title like '%${keyword}%' or u.nickname like '%${keyword}%' or k.name like '%${keyword}%')			 	
 			 ]]>
 			</otherwise>			
 		</choose>
@@ -150,7 +150,7 @@
 	
 	<select id="findSubProblemList" parameterType="long" resultType="subproblemvo">
 		<![CDATA[
-			select no, title, contents, exam_input as examInput, correct_code as correctCode, exam_output as examOutput, problem_no as problemNo, state
+			select no, title, contents, exam_input as examInput,  exam_output as examOutput, problem_no as problemNo, state
 			  from sub_problem
 			 where problem_no = #{problemNo } and state = 'y'
 		]]>

@@ -34,7 +34,7 @@ public class CodeTreeController {
 	}
 	
 	@Auth
-	@RequestMapping("/codeMirror/{saveNo}")
+	@RequestMapping("/codemirror/{saveNo}")
 	public String mirror(@PathVariable("saveNo") Long saveNo, Model model, HttpSession session) {
 		SaveVo saveVo = codeTreeService.findSaveVo(saveNo);
 		List<SavePathVo> savePathList = codeTreeService.findSavePathList(saveVo.getNo());
