@@ -1,9 +1,20 @@
 package com.btcdd.codeforest.controller;
 
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+
+import com.btcdd.codeforest.service.MypageService;
+import com.btcdd.codeforest.service.TrainingService;
+import com.btcdd.codeforest.vo.SaveVo;
+import com.btcdd.codeforest.vo.UserVo;
 
 import com.btcdd.codeforest.service.CodeTreeService;
 import com.btcdd.security.Auth;
@@ -29,6 +40,22 @@ public class CodeTreeController {
 		return "codetree/codetree";
 	}
 
+	
+	@Auth
+	@RequestMapping("/{no}")
+	public String codetree(@PathVariable("no") Long no, Model model, HttpSession session) {
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		if(authUser.getNo() != no) {
+			return "redirect:/main-in";
+		}
+		
+		List<SaveVo> saveVoList = trainingService.selectSaveNoList(no);
+		model.addAttribute("saveVoList",saveVoList);
+
+
+		return "codetree/codetree";
+	}
 	
 }
 /*
