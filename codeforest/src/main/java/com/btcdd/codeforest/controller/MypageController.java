@@ -53,7 +53,7 @@ public class MypageController {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
 		Map<String,Object> map = mypageService.getContentsList(currentPage, authUser.getNo());
-		model.addAttribute("map",map);		
+		model.addAttribute("map",map);
 		
 		return "mypage/problem";
 	}

@@ -66,7 +66,7 @@ public class MypageRepository {
 
 	public int deleteSubProblem(Long no) {
 		sqlSession.update("mypage.foreignKeyChecks");
-		int result = sqlSession.delete("mypage.deleteSubProblem", no);		
+		int result = sqlSession.delete("mypage.deleteSubProblem", no);
 		
 		return result;
 	}
