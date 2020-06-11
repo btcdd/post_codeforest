@@ -94,7 +94,7 @@ public class TrainingRepository {
 	}
 
 	public int deleteSubProblem(Map<String, Object> map) {
-		return sqlSession.delete("training.deleteSubProblem", map);
+		return sqlSession.update("training.deleteSubProblem", map);
 	}
 
 	public int getLevelListCount(String keyword, int size, String[] checkValues) {

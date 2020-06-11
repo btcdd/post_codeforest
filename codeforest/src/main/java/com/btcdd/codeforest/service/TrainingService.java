@@ -67,9 +67,6 @@ public class TrainingService {
 			if(list.get(i).getExamInput() == "") {
 				list.get(i).setExamInput("null");
 			}
-			if(list.get(i).getCorrectCode() == "") {
-				list.get(i).setCorrectCode("null");
-			}
 		}
 		
 		map.put("subProblemList", list);
@@ -155,9 +152,6 @@ public class TrainingService {
 		for(int i = 0; i < list.size(); i++) {
 			if(list.get(i).getExamInput() == "") {
 				list.get(i).setExamInput("null");
-			}
-			if(list.get(i).getCorrectCode() == "") {
-				list.get(i).setCorrectCode("null");
 			}
 		}
 		

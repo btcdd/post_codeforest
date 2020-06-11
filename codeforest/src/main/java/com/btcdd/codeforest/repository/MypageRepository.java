@@ -65,8 +65,7 @@ public class MypageRepository {
 	}
 
 	public int deleteSubProblem(Long no) {
-		sqlSession.update("mypage.foreignKeyChecks");
-		int result = sqlSession.delete("mypage.deleteSubProblem", no);		
+		int result = sqlSession.update("mypage.deleteSubProblem", no);
 		
 		return result;
 	}
@@ -82,6 +81,4 @@ public class MypageRepository {
 	public void privacyChange(Map<String, Object> map) {
 		sqlSession.update("mypage.privacyChange", map);
 	}
-
-	
 }

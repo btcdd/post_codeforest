@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bigshot+One&family=Noto+Sans+KR:wght@900&family=Pacifico&family=Roboto:wght@300&display=swap');
 body{
 	height: 100%;
-	background-color: #FAFAFA;
+	background-color: #F5F1DE;
 }
 
 .logo {
@@ -46,6 +46,10 @@ body{
     padding: 20px 0 9px;
 }
 
+#email:focus {
+	outline: none;
+}
+
 .input-email-pattern {
 	position: fixed;
     width: 150px;
@@ -84,6 +88,10 @@ body{
     padding: 20px 0 9px;
 }
 
+#password:focus {
+	outline: none;
+}
+
 .input-password-pattern {
 	position: fixed;
     width: 166px;
@@ -115,9 +123,9 @@ body{
     margin-top: 20px;
     width:300px;
     height: 40px;
-    background-color: #E9E4CF;
+    background-color: #8F784B;
     border:none;
-    color:#494949;
+    color:#fff;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -125,6 +133,10 @@ body{
     display: block;
     font-size: 16px;
     padding: 10px 0 16px;
+}
+
+.login-button:focus {
+	outline: none;
 }
 
 .join {

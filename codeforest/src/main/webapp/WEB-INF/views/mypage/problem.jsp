@@ -104,7 +104,6 @@ $(function() {
 			dataType: 'json',
 			data: '',
 			success: function(response) {
-				console.log(response.data);
 				var table = "";
 				for(var i in response.data) {
 					table += "<tbody id='tbody'>" +
@@ -128,7 +127,6 @@ $(function() {
 	$(document).ready(function(){
 	    $(".check-box input").on('click', function(){
 	    	var value = $(this).val();
-	    	console.log(value);
 	        if($(this).prop("checked")){
 	        	$(".problem-list-table > #tbody > tr > td#".concat(value)).show();
 	        	$(".problem-list-table > #tbody > tr > td#".concat(value)).removeClass();
@@ -145,7 +143,6 @@ $(function() {
 	
 	// ------------------------------------------- 서브 문제 출력 -------------------------------------------------------
 	$(".problem-title").on('click', function() { 
-        console.log($(this).data('no'));        
     	var no = $(this).data('no');
     	
     	if($("." + no).css('display') == 'none') {
@@ -162,7 +159,6 @@ $(function() {
 				if(response.data.length == 0) {
 					return;
 				}
-				console.log(response.data);
 				var tr = "";				
 				for(var i in response.data) {
 					tr += '<tr id="sub-problem' + response.data[i].no + '"><td class="sub-problem-padding1">' + response.data[i].no +'</td>' + 
@@ -197,7 +193,6 @@ $(function() {
 					dataType: 'json',
 					data: '',
 					success: function(response) {		
-						console.log("tableClass="+tableClass);						
 						dialogSpDelete.dialog('close');						
 						$('#sub-problem'+no).remove();
 					},
