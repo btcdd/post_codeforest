@@ -9,7 +9,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
     
-<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/main/main-out.css">
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/main/main.css">
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
@@ -133,29 +133,6 @@ $(function() {
 <body>
 	<c:import url="/WEB-INF/views/include/main-header.jsp" />
 	<div class="head-image">
-<!-- 		<div class="user"> -->
-<!-- 			<ul> -->
-<%-- 				<c:choose> --%>
-<%-- 					<c:when test="${empty authUser }"> --%>
-<%-- 						<li><a href="${pageContext.request.contextPath }/user/login">LOGIN</a><li> --%>
-<%-- 						<li><a href="${pageContext.request.contextPath }/user/join">JOIN</a><li> --%>
-<%-- 					</c:when> --%>
-<%-- 					<c:otherwise> --%>
-<%-- 						<li><a href="${pageContext.request.contextPath }/mypage/mypage">회원정보수정</a><li> --%>
-<%-- 						<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a><li> --%>
-<%-- 					</c:otherwise> --%>
-<%-- 				</c:choose> --%>
-<!-- 			</ul> -->
-<!-- 		</div> -->
-<!-- 		<div class="navigator"> -->
-<!-- 			<nav> -->
-<!-- 				<ul> -->
-<!-- 					<li><hr class="bar"/></li> -->
-<!-- 					<li class="title"><a>Code Forest</a></li> -->
-<!-- 					<li><hr class="bar"/></li> -->
-<!-- 				</ul> -->
-<!-- 			</nav> -->
-<!-- 		</div> -->
 		<div class="intro">
 			<p>온라인에서</p>
 			<p>쉽고 간단하게</p>

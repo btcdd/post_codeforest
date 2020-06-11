@@ -161,14 +161,22 @@ body {
 	display: inline-block;
 }
 
+
+#footer {
+	float: left;
+	width: 100%;
+	margin-top : 30px;
+}
+
 .footer {
-	float:left;
+	margin: auto;
 	padding: 60px 0;
-	margin: 160px 0 0 0;
 	left: 0;
 	bottom: 0;
-	width: 100%;
-	background-color: #454545;
-	color: #fff;
+	width: 74%;
+	background-color: #fff;
+	color: #3C3C3C;
 	text-align: center;
+	border-top: 1px solid #BFBFBf
 }
+
