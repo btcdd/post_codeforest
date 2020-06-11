@@ -1,5 +1,6 @@
 package com.btcdd.codeforest.repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.btcdd.codeforest.vo.CodeVo;
+import com.btcdd.codeforest.vo.SaveVo;
 import com.btcdd.codeforest.vo.SubProblemVo;
 
 @Repository
@@ -44,4 +46,25 @@ public class CodeTreeRepository {
 	public void insertSavePath(Long saveNo, List<SubProblemVo> subProblemList) {
 		sqlSession.insert("codetree.insertSavePath");
 	}
+
+	public int getTotalCount(String keyword,Long authUserNo) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("authUserNo", authUserNo);
+		return sqlSession.selectOne("codetree.totalCount",map);
+	}
+
+	public List<SaveVo> selectSaveNoList(int displayPost, int postNum,String keyword,Long authUserNo) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("displayPost",displayPost);
+		map.put("postNum",postNum);
+		map.put("keyword", keyword);
+		map.put("authUserNo", authUserNo);
+		return sqlSession.selectList("codetree.selectSaveNoList", map);
+	}
+
+
+//	public int getTotalCount(String keyword) {
+//		return sqlSession.selectOne("codetree.totalCount",keyword);
+//	}
 }
