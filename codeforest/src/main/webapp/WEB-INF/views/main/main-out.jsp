@@ -147,11 +147,7 @@ $(function() {
 		<div class="navigator">
 			<nav>
 				<ul>
-					<li class="menu"><a href="#">Info</a></li>
-					<li class="menu"><a href="#">Code Tree</a></li>
 					<li class="title"><a>Code Forest</a></li>
-					<li class="menu"><a href="#">Coding Test</a></li>
-					<li class="menu"><a href="#">Training</a></li>
 				</ul>
 			</nav>
 		</div>

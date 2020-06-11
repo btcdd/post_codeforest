@@ -12,7 +12,6 @@
             <a href="${pageContext.servletContext.contextPath }/main-in">Code Forest</a>
         </div>
         <div class="menu clearfix">
-            <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/info">Info</a></div>
             <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/codetree/list">Code Tree</a></div>
             <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/codingtest">Coding Test</a></div>
             <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/training">Coding Training</a></div>
