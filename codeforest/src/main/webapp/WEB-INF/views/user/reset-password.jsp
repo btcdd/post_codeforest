@@ -129,7 +129,7 @@ $(function(){
                         <label for="password"></label>
                         <input id="password" name="password" type="password" placeholder="새로운 비밀번호를 입력해주세요.">
                     </div>
-                    <div class="error-password-pattern">
+                    <div class="error-password-pattern" style="display:none">
                    		8~20자 영문 대 소문자, 숫자, 특수문자를 사용하세요.
                    	</div>
                     <div>
