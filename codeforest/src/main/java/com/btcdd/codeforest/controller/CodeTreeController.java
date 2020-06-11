@@ -22,7 +22,7 @@ public class CodeTreeController {
 		return "codetree/list";
 	}
 	@Auth
-	@RequestMapping("/codeMirror/{saveNo}")
+	@RequestMapping("/codemirror/{saveNo}")
 	public String mirror(@PathVariable("saveNo") Long saveNo) {
 		System.out.println("saveNo>>"+saveNo);
 		

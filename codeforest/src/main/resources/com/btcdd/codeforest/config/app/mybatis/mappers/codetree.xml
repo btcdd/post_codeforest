@@ -76,14 +76,14 @@
 			<when test="keyword == null or keyword == ''">
 				<![CDATA[
                     select count(*) from user u, save s, problem p
-                    where s.user_no = u.no and s.problem_no = p.no and s.user_no = #{authUserNo} 				
+                    where s.user_no = u.no and s.problem_no = p.no and s.user_no = #{authUserNo} and p.state ='y'				
 				]]>
 			</when>
 			<otherwise>
 			 <![CDATA[				 	
                     select count(*) from user u, save s, problem p,kind k
                     where s.user_no = u.no and k.no = p.kind_no and s.problem_no = p.no 
-                    and s.user_no = #{authUserNo}                     
+                    and s.user_no = #{authUserNo}  and p.state ='y'                   
                     and (p.title like '%${keyword}%' or u.nickname like '%${keyword}%' or k.name like '%${keyword}%' );				 	
 			 ]]>
 			</otherwise>			
@@ -101,6 +101,7 @@
 				 and s.user_no = u.no
 				 and s.problem_no = p.no
 				 and p.kind_no = k.no
+				 and p.state ='y'
 				 order by s.no desc
 				 limit #{displayPost}, #{postNum}			
 				]]>
@@ -112,7 +113,8 @@
 			   where s.user_no = #{authUserNo }
 				 and s.user_no = u.no
 				 and s.problem_no = p.no
-				 and p.kind_no = k.no                     
+				 and p.kind_no = k.no 
+				 and p.state ='y'                    
                 and (p.title like '%${keyword}%' or u.nickname like '%${keyword}%' or k.name like '%${keyword}%' )
                 order by s.no desc
                limit #{displayPost}, #{postNum}			 	
@@ -121,5 +123,6 @@
 		</choose>		
 	</select>
 	
+		
 	
 </mapper>

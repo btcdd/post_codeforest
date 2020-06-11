@@ -42,5 +42,39 @@
 			 where email = #{email }
 		]]>
 	</select>	
+ 	<update id="updateHit" parameterType="long">
+		<![CDATA[
+			update problem
+			   set hit = hit + 1
+			 where no = #{problemNo }
+		]]>	
+	</update>
 	
+	<select id="selectProblemOne" parameterType="long" resultType="problemvo">
+		<![CDATA[
+			  select
+			  	no,
+			   	title,
+			   	hit,
+			   	recommend,
+			   	date_format(start_time,'%Y-%m-%d %H:%i:%s') as startTime,
+			   	date_format(end_time,'%Y-%m-%d %H:%i:%s') as endTime,
+			   	user_no as userNo , 
+			   	kind_no as kindNo ,
+			   	date_format(reg_date,'%Y-%m-%d %H:%i:%s') as regDate,
+			   	password,
+			   	state,
+			   	privacy
+			    from problem
+			   where no = #{problemNo }
+		]]>
+	</select>		
+
+	<insert id="insertInputValueByAuthUserNo" parameterType="map">
+		<![CDATA[
+			update user
+				set name = #{name}, birth = #{birth}
+			where no = #{authUserNo}
+		]]>
+	</insert>	
 </mapper>
