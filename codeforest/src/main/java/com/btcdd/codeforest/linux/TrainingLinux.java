@@ -6,7 +6,6 @@ public class TrainingLinux {
 	
 	public void saveProblemAndSubProblem(Long authUserNo, Long problemNo, Long[] subProblemArray) {
 		try {
-			process = Runtime.getRuntime().exec("mkdir hihihihihihihihihihihihihihi");
 			process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo);
 			
 			for(int i = 0; i < subProblemArray.length; i++) {
