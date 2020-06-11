@@ -29,7 +29,7 @@ public class UserService {
 		Long no = userRepository.findByEmail(vo.getEmail());
 		
 		try {
-			process = Runtime.getRuntime().exec("mkdir userDirectory/user" + no + "\n");
+			process = Runtime.getRuntime().exec("mkdir userDirectory/user" + no);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
