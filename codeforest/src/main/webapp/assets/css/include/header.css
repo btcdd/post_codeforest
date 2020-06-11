@@ -30,7 +30,7 @@ body { margin: 0; padding: 0; background-color: #FFF;}
 
 .menu { float: left; font-size: 1.05em; font-family: 'Roboto', sans-serif;}
 
-.menu-user { float: right; font-size: 0.8em; margin-top:2px; margin-right: 20px}
+.menu-user { float: right; font-size: 1em; margin-top:2px; margin-right: 20px}
 
 .menu-item { float: left; margin: 3px 10px 0 0; padding: 8px 10px }
 
