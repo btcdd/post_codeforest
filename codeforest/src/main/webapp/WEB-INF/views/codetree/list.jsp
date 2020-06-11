@@ -133,8 +133,26 @@ $(function() {
 	});	
 	
 	$(document).on("click",".problem-box",function(){
+/* 		var codetreeURL = '${pageContext.request.contextPath }/codetree/codemirror' 
+		window.open(codetreeURL,'_blank'); */
+		
+		
 		var saveNo = $(this).data('no');
-  		console.log("saveNo>>",saveNo);
+		$.ajax({
+	          url:'${pageContext.request.contextPath }/api/codetree/codemirror/',
+	          async:false,
+	          type:'post',
+	          dataType:'json',
+	          data : {'saveNo':saveNo},
+	          success:function(response){
+ 				 var codetreeURL = '${pageContext.request.contextPath }/codetree/codeMirror/' + response.data.saveNo
+			     window.open(codetreeURL,'_blank');  
+	          },
+	          error: function(xhr, status, e) {
+	             console.error(status + ":" + e);
+	          }
+	       }); 
+		
 	});
  		
 /*  	      $.ajax({
@@ -171,11 +189,11 @@ var codetreeURL = '${pageContext.request.contextPath }/codetree/list/' + respons
 		</div>
 	<!-- <div id="code-tree" class="menu-item"><a>Code Tree</a></div> -->
 			<div class="content">
+		        <div class="search">
+		            <input type="text" id="kwd" name="kwd" placeholder="Search.." onKeyDown="onKeyDown();">
+		            <input type="button" id="search" value="검색" >
+		        </div>
 		        <div class="list">
-		            <div class="search">
-		                <input type="text" id="kwd" name="kwd" placeholder="Search.." onKeyDown="onKeyDown();">
-		                <input type="button" id="search" value="검색" >
-		            </div>
 		            <div class="problems">
 		            </div>
 		        </div>			
