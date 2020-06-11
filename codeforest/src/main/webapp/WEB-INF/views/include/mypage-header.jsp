@@ -7,7 +7,7 @@
 	<div class="head">
 		<div class="container-left clearfix">
 			<div class="logo">
-				<a href="${pageContext.servletContext.contextPath }/main-in">Code Forest</a>
+				<a href="${pageContext.servletContext.contextPath }">Code Forest</a>
             </div>
             <div class="menu-user clearfix">
             	<div class="menu-item">${authUser.nickname }님</div>
