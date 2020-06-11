@@ -5,11 +5,17 @@ body {
 }
 
 .head-image {
-	background-image: url('../../images/main/hmm.jpg');
-	background-repeat: no-repeat;
-	background-position-y: 50%;
-	background-size: cover;
-	height: 100vh
+	background-image: url(../../images/main/hmm.jpg);
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+    background-size: cover;
+    height: 97vh;
+    width: 95vw;
+    margin: auto;
+}
+
+.head-navigation {
+	border-bottom: 1px solid #fff;
 }
 
 .navigator {
