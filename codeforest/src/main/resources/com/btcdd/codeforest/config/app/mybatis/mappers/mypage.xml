@@ -44,7 +44,9 @@
 		<![CDATA[
 			select p.no as no, p.title as title, p.hit as hit, p.recommend as recommend
 			  from problem p, user u
-			 where u.no = #{userNo } and p.user_no = u.no and p.state = 'y'
+			 where u.no = #{userNo } 
+			   and p.user_no = u.no 
+			   and p.state = 'y'
 			   limit #{displayPost}, #{postNum}
 		]]>
 	</select>
@@ -69,14 +71,13 @@
 
 	<select id="totalCount" parameterType="long" resultType="integer">
 		<![CDATA[
-			select
-				count(*) 
-			from 
-				problem p, user u 
-			where 
-				p.user_no = u.no and u.no = #{userNo }
+			select count(*) 
+			  from problem p, user u 
+			 where p.user_no = u.no 
+			   and u.no = #{userNo }
+			   and p.state = 'y'
 		]]>
-	</select>	
+	</select>
 	
 	<select id="findSubProblem" parameterType="long"  resultType="subproblemvo">
 		<![CDATA[
