@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&family=Russo+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bigshot+One&family=Noto+Sans+KR:wght@900&family=Pacifico&family=Roboto:wght@300&display=swap');
 
 body{
 	height: 100%;
-	background-color: #FAFAFA;
+	background-color: #F5F1DE;
 }
 
 
@@ -24,18 +23,18 @@ body{
 }
 
 #user{
-    height: 900px;
+/*     height: 900px; */
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 #join-form{
-    height: 335px;
+    height: 265px;
     width:350px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 35px;
-    border: 1px solid gray;
+    border: 1px solid #E3E3E3;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 90%);
 }
@@ -187,9 +186,9 @@ label {
 	margin-left: 23px;
     width:143px;
     height: 40px;
-    background-color: #A5A5A5;
+    background-color: #E5E5E5;
     border:none;
-    color:#fff;
+    color:#494949;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -199,19 +198,19 @@ label {
 }
 
 .join-button {
-	margin-top: 5px;
-	margin-left: 12px;
-    width:143px;
+    margin-top: 5px;
+    margin-left: 12px;
+    width: 143px;
     height: 40px;
-    background-color: #AD9885;
-    border:none;
-    color:#fff;
+    background-color: #8F784B;
+    border: none;
+    color: #fff;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
     cursor: pointer;
-    border-radius:10px;
+    border-radius: 10px;
 }
 
 hr {
@@ -224,20 +223,21 @@ hr {
 	margin: 0 0 0 25px
 }
 
-.login-button{
-    margin-left: 23px;
-    margin-top: 13px;
-    width:300px;
-    height: 40px;
-    background-color: #7A8B9B;
-    border:none;
-    color:#fff;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius:10px;
-    display: block;
-    font-size: 16px;
+.login {
+	width:350px;
+	margin: auto;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.login-link {
+	margin: 0 5px;
+	text-decoration: none;
+	color:#494949;
+}
+
+.login-link:visited {
+	color:#494949;
 }
 
 a {

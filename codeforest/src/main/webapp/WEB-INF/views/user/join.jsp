@@ -458,9 +458,9 @@ $(function(){
                     </div>
                 </form:form>
             </div>
-            <div class="join">
-                   계정이 있으신가요? <a class="join-link" href="${pageContext.request.contextPath }/user/login">로그인</a>
-                </div>
+            <div class="login">
+                   계정이 있으신가요? <a class="login-link" href="${pageContext.request.contextPath }/user/login">로그인</a>
+            </div>
         </div>
     </div>
 </body>
