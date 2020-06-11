@@ -10,12 +10,10 @@ body {
 .content {
     width: 80vw;
     margin: auto;
-    margin-top: -3%
 }
 
 .menu-bar {
     float: left;
-    margin-top: 7%;
 }
 
 .algo {
@@ -101,8 +99,9 @@ input[type=text] {
 
 .list {
     width: 90%;
-    float: left;
-    margin: 8% 0 0% 4%;
+    margin: 10% auto 7% auto;
+    padding-left: 130px;
+    height: 700px;
 }
 
 .problem-box {
@@ -230,16 +229,18 @@ input[type=text] {
 #footer {
 	float: left;
 	width: 100%;
-	margin-top : 170px;
+	margin-top : 30px;
 }
 
 .footer {
+    display: flow-root;
+	margin: auto;
 	padding: 60px 0;
-	margin: 0;
 	left: 0;
 	bottom: 0;
-	width: 100%;
-	background-color: #454545;
-	color: #fff;
+	width: 74%;
+	background-color: #fff;
+	color: #3C3C3C;
 	text-align: center;
+	border-top: 1px solid #BFBFBf
 }

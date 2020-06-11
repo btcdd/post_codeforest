@@ -18,7 +18,7 @@ body { margin: 0; padding: 0; background-color: #FFF;}
 
 .logo { float: left; margin-right: 40px; margin-top: 4px;}
 
-.logo a { text-decoration: none; color:#ffffff; font-family: 'Teko', sans-serif; font-size: 1.7em; margin-left: 20px; margin-top: 4px; }
+.logo a { text-decoration: none; color:#ffffff; font-family: 'Teko', sans-serif; font-size: 1.7em; margin-left: 20px;}
 .logo a:visited { color: #ffffff; }
 .logo a:hover { text-decoration:none; color: #ffffff; }
 

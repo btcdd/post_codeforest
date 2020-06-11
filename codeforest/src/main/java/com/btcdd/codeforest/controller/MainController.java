@@ -9,14 +9,10 @@ import com.btcdd.security.Auth;
 @Controller
 public class MainController {
 	
+//	@Auth
 	@RequestMapping({"", "/main"})
 	public String index(Model model) {
-		return "main/main-out";
-	}
-	
-	@Auth
-	@RequestMapping("/main-in")
-	public String indexA(Model model) {
 		return "main/main";
 	}
+	
 }

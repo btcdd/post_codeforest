@@ -7,6 +7,7 @@ body {
     width: 80vw;
     padding: 4% 0;
     margin: auto;
+    margin-top: 3%
 }
 
 .search {
@@ -46,6 +47,7 @@ body {
 	width: 33.333%;
 	overflow-y: scroll;
 	height: 600px;
+	margin-bottom: 100px;
 }
 .proceeding-box {
 	float: left;
@@ -96,7 +98,7 @@ body {
 .test-mid {
 	height: 30%;
 }
-.title {
+.probtitle {
 	float: left;
 	width: 77%;
     margin-left: 3%;
@@ -161,14 +163,22 @@ body {
 	display: inline-block;
 }
 
+
+#footer {
+	float: left;
+	width: 100%;
+	margin-top : 30px;
+}
+
 .footer {
-	float:left;
+	margin: auto;
 	padding: 60px 0;
-	margin: 160px 0 0 0;
 	left: 0;
 	bottom: 0;
-	width: 100%;
-	background-color: #454545;
-	color: #fff;
+	width: 74%;
+	background-color: #fff;
+	color: #3C3C3C;
 	text-align: center;
+	border-top: 1px solid #BFBFBf
 }
+
