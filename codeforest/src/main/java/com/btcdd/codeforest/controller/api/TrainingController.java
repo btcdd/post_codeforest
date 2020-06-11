@@ -48,9 +48,9 @@ public class TrainingController {
 
 		trainingService.insertSaveProblemNo(authUser.getNo(), problemNo);
 		Long saveNo = trainingService.findSaveNo(problemNo);
-
+		
 		trainingService.insertSavePath(array, saveNo, authUser.getNo(), problemNo);
-
+		
 		TrainingLinux trainingLinux = new TrainingLinux();
 		trainingLinux.saveProblemAndSubProblem(authUser.getNo(), problemNo, array);
 

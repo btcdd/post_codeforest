@@ -15,6 +15,7 @@ public class RunJava {
 	
 	private StringBuffer buffer;
 	private Process process;
+	private Process process2;
 	private BufferedReader bufferedReader;
 	private BufferedReader bufferedReader2;
 	private StringBuffer readBuffer;
@@ -68,7 +69,7 @@ public class RunJava {
 	
 	public String execCompile() {
 		try {
-			process = Runtime.getRuntime().exec("javac -d . Test.java");
+			process = Runtime.getRuntime().exec("javac -d . Test2.java");
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 			String line = null;
@@ -90,6 +91,8 @@ public class RunJava {
 		
 		try {
 			process = Runtime.getRuntime().exec(runClass());
+			process2 = Runtime.getRuntime().exec("1");
+			process2 = Runtime.getRuntime().exec("2");
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			bufferedReader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
@@ -116,7 +119,7 @@ public class RunJava {
 	private String runClass() {
 		buffer = new StringBuffer();
 		
-		buffer.append("timeout 2s java -cp . Test");
+		buffer.append("timeout 2s java -cp . Test2");
 		
 		return buffer.toString();
 	}

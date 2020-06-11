@@ -6,10 +6,10 @@ public class TrainingLinux {
 	
 	public void saveProblemAndSubProblem(Long authUserNo, Long problemNo, Long[] subProblemArray) {
 		try {
-			process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "\n");
+			process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo);
 			
 			for(int i = 0; i < subProblemArray.length; i++) {
-				process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemArray[i] + "\n");
+				process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemArray[i]);
 			}
 			
 		} catch(Exception e) {
