@@ -20,7 +20,8 @@
 <body>
 	<div id="container">
 		<div id="content">
-			<p>코딩테스트 입장</p>
+			<p>${problemVo}</p>
+			<p>${subProblemList}</p>
 		</div>
 	</div>
 </body>

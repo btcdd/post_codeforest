@@ -84,7 +84,7 @@
                     select count(*) from user u, save s, problem p,kind k
                     where s.user_no = u.no and k.no = p.kind_no and s.problem_no = p.no 
                     and s.user_no = #{authUserNo}  and p.state ='y'                   
-                    and (p.title like '%${keyword}%' or u.nickname like '%${keyword}%' or k.name like '%${keyword}%' );				 	
+                    and (p.title like '%${keyword}%' or u.nickname like '%${keyword}%' or k.name like '%${keyword}%')			 	
 			 ]]>
 			</otherwise>			
 		</choose>

@@ -76,5 +76,15 @@
 				set name = #{name}, birth = #{birth}
 			where no = #{authUserNo}
 		]]>
-	</insert>	
+	</insert>
+	
+	
+	<select id="findSubProblemList" parameterType="long" resultType="subproblemvo">
+		<![CDATA[
+			select no, title, contents, exam_input as examInput, exam_output as examOutput, problem_no as problemNo, state
+			  from sub_problem
+			 where problem_no = #{problemNo } and state = 'y'
+		]]>
+	</select>	
+		
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.btcdd.codeforest.vo.ProblemVo;
+import com.btcdd.codeforest.vo.SubProblemVo;
 import com.btcdd.codeforest.vo.UserVo;
 
 @Repository
@@ -40,6 +41,10 @@ public class CodingTestRepository {
 		
 	}
 
-	
+	public List<SubProblemVo> findSubProblemList(Long problemNo) {
+		return sqlSession.selectList("codingtest.findSubProblemList", problemNo);
+	}
+
+
 	
 }

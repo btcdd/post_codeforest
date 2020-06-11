@@ -18,6 +18,7 @@
 	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 </head>
 <script>
+var tempKey = ${tempKey};
 $(function(){
 	$("#auth-form").submit(function(e){
 		e.preventDefault();
@@ -36,7 +37,12 @@ $(function(){
 			alert('인증번호가 비었습니다');
 			$("#tempKey").focus();
 			return;
-		}		
+		}
+		if($("#tempKey").val() != tempKey){
+			alert('인증번호가 틀렸습니다');
+			$("#tempKey").focus();			
+			return;
+		}
 		this.submit();
 	});	
 });
@@ -51,6 +57,7 @@ $(function(){
 					인증번호:<input type="text" id="tempKey" name="tempKey" value=""/>
 					<input type="submit" value="테스트 시작"/>
 				</form>
+
 			</div>
 		</div>
 	</div>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.btcdd.codeforest.service.CodeTreeService;
 import com.btcdd.codeforest.service.CodingTestService;
 import com.btcdd.codeforest.vo.ProblemVo;
+import com.btcdd.codeforest.vo.SubProblemVo;
 import com.btcdd.codeforest.vo.UserVo;
 import com.btcdd.security.Auth;
 
@@ -100,6 +102,9 @@ public class CodingTestController {
 	@RequestMapping(value="/auth/{problemNo}", method=RequestMethod.GET)
 	public String Auth(@PathVariable("problemNo") Long problemNo,Model model) {
 		model.addAttribute("problemNo",problemNo);
+		ProblemVo problemVo = testService.selectProblemOne(problemNo);
+		
+		model.addAttribute("tempKey",problemVo.getPassword());
 		return "codingtest/auth";
 	}
 	@Auth
@@ -108,24 +113,21 @@ public class CodingTestController {
 			@RequestParam("name") String name,
 			@RequestParam("birth") String birth,
 			@RequestParam("tempKey") String tempKey,
-			HttpSession session) {
+			HttpSession session,
+			Model model) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		System.out.println("name>>"+name);
-		System.out.println("birth>>"+birth);
-		System.out.println("tempKey>>"+tempKey);
+
 		ProblemVo problemVo = testService.selectProblemOne(problemNo);
-		if(problemVo.getState().equals("n")) {
-			System.out.println("삭제된 문제입니다");
-		}
-		if(!problemVo.getPassword().equals(tempKey)) {
-			System.out.println("인증번호가 틀렸습니다");
-		}
+
 		if(problemVo.getState().equals("y") && problemVo.getPassword().equals(tempKey)) {
 			testService.insertUserInfo(name,birth,authUser.getNo());
-//			codeTreeService.saveUserCodeAndProblems(authUser.getNo(), problemNo);			
+			List<SubProblemVo> subProblemList = testService.findSubProblemList(problemNo);
+			model.addAttribute("problemVo",problemVo);
+			model.addAttribute("subProblemList",subProblemList);
+			System.out.println("subProblemList>>>"+subProblemList);
+			
 			return "codingtest/code-mirror"; //이동
 		}
-
 		return "codingtest/auth";
 	}	
 //	@PostMapping("/auth/{userEmail}/{problemNo}")
