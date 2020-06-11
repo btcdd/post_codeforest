@@ -8,6 +8,7 @@ public class SubProblemVo {
 	private String correctCode;
 	private String examOutput;
 	private Long problemNo;
+	private String state;
 	
 	public Long getNo() {
 		return no;
@@ -50,11 +51,17 @@ public class SubProblemVo {
 	}
 	public void setProblemNo(Long problemNo) {
 		this.problemNo = problemNo;
+	}	
+	public String getState() {
+		return state;
 	}
-	
+	public void setState(String state) {
+		this.state = state;
+	}
 	@Override
 	public String toString() {
 		return "SubProblemVo [no=" + no + ", title=" + title + ", contents=" + contents + ", examInput=" + examInput
-				+ ", correctCode=" + correctCode + ", examOutput=" + examOutput + ", problemNo=" + problemNo + "]";
+				+ ", correctCode=" + correctCode + ", examOutput=" + examOutput + ", problemNo=" + problemNo
+				+ ", state=" + state + "]";
 	}
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.btcdd.codeforest.vo.CodeVo;
+import com.btcdd.codeforest.vo.SavePathVo;
 import com.btcdd.codeforest.vo.SaveVo;
 import com.btcdd.codeforest.vo.SubProblemVo;
 
@@ -62,5 +63,27 @@ public class CodeTreeRepository {
 		map.put("authUserNo", authUserNo);
 		return sqlSession.selectList("codetree.selectSaveNoList", map);
 	}
+
+
+	public SaveVo findSaveVo(Long saveNo) {
+		return sqlSession.selectOne("codetree.findSaveVo",saveNo);
+	}
+
+	public List<SavePathVo> findSavePathList(Long saveNo) {
+		return sqlSession.selectList("codetree.findSavePathList", saveNo);
+	}
+
+	public List<CodeVo> findCodeList(Long savePathNo) {
+		return sqlSession.selectList("codetree.findCodeList", savePathNo);
+	}
+
+	public List<SubProblemVo> findSubProblemList(Long problemNo) {
+		return sqlSession.selectList("codetree.findSubProblemList", problemNo);
+	}
+
+
+//	public int getTotalCount(String keyword) {
+//		return sqlSession.selectOne("codetree.totalCount",keyword);
+//	}
 
 }
