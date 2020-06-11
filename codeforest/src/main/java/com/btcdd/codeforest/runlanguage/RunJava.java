@@ -9,13 +9,8 @@ import java.io.InputStreamReader;
 
 public class RunJava {
 	
-	private Long authUserNo = 1L;
-	private Long problemNo = 2L;
-	private Long subProblemNo = 4L;
-	
 	private StringBuffer buffer;
 	private Process process;
-	private Process process2;
 	private BufferedReader bufferedReader;
 	private BufferedReader bufferedReader2;
 	private StringBuffer readBuffer;
@@ -69,7 +64,7 @@ public class RunJava {
 	
 	public String execCompile() {
 		try {
-			process = Runtime.getRuntime().exec("javac -d . Test2.java");
+			process = Runtime.getRuntime().exec("javac -d . Test.java");
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 			String line = null;
@@ -91,8 +86,6 @@ public class RunJava {
 		
 		try {
 			process = Runtime.getRuntime().exec(runClass());
-			process2 = Runtime.getRuntime().exec("1");
-			process2 = Runtime.getRuntime().exec("2");
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			bufferedReader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
@@ -119,27 +112,8 @@ public class RunJava {
 	private String runClass() {
 		buffer = new StringBuffer();
 		
-		buffer.append("timeout 2s java -cp . Test2");
+		buffer.append("timeout 2s java -cp . Test");
 		
 		return buffer.toString();
-	}
-	
-	public String execSave(String cmd) {
-		try {
-			process = Runtime.getRuntime().exec(cmd);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public String shutdown() {
-		try {
-			process = Runtime.getRuntime().exec("^C");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
 	}
 }
