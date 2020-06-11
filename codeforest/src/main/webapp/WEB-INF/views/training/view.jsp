@@ -35,6 +35,7 @@ var saveProblem = function() {
 				console.error(response.message);
 				return;
 			}
+			$('#save').text('저장 해제');
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
@@ -67,7 +68,63 @@ var recommendCheck = function() {
 	});
 };
 
+var savePandan = function() {
+	$.ajax({
+		url: '${pageContext.servletContext.contextPath }/api/training/savepandan',
+		async: false,
+		type: 'post',
+		dataType: 'json',
+		traditional: true,
+		data: {
+			'problemNo': problemNo,
+		},
+		success: function(response){
+			if(response.result != "success"){
+				console.error(response.message);
+				return;
+			}
+			if(response.data == null) {
+				$('#save').text('저장');
+			} else {
+				$('#save').text('저장 해제');
+			}
+		},
+		error: function(xhr, status, e){
+			console.error(status + ":" + e);
+		}
+	});
+};
+
+var deleteProblem = function() {
+	$.ajax({
+		url: '${pageContext.servletContext.contextPath }/api/training/delete',
+		async: false,
+		type: 'post',
+		dataType: 'json',
+		traditional: true,
+		data: {
+			'problemNo': problemNo,
+		},
+		success: function(response){
+			if(response.result != "success"){
+				console.error(response.message);
+				return;
+			}
+			if(response.data == null) {
+				$('#save').text('저장');
+			} else {
+				$('#save').text('저장 해제');
+			}
+		},
+		error: function(xhr, status, e){
+			console.error(status + ":" + e);
+		}
+	});
+};
+
 $(function() {
+	
+	savePandan();
 	
 	var no;
 	
@@ -78,8 +135,6 @@ $(function() {
 	});
   
 	$(document).on("click","#code-tree", function() {
-		console.log("click!!");
-		
       $.ajax({
          url:'${pageContext.request.contextPath }/api/codetraining/mylist/'+problemNo,
          async:false,
@@ -99,7 +154,11 @@ $(function() {
 	
 	
 	$('#save').click(function() {
-		saveProblem();
+		if($(this).text() == '저장') {
+			saveProblem();
+		} else {
+			deleteProblem();
+		}
 	});
 	
 	for(var i = 0; i < ${listSize }; i++) {
@@ -121,7 +180,7 @@ $(function() {
             <p class="division">${problemVo.no }</p>
             <p>${problemVo.title }</p>
 			<p>조회수</p><p>${problemVo.hit + 1}</p>
-            <button id="save">저장</button>
+            <button id="save"></button>
             <button id="code-tree">코드 트리로 가져오기</button>
             <a href="${pageContext.servletContext.contextPath }/training/statistics/${problemVo.no }"><button>통계</button></a>
             <button id="recommend">추천 ${problemVo.recommend }</button>
