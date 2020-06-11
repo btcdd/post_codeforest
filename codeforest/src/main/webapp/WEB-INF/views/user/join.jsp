@@ -59,7 +59,7 @@ var authCheck = function AuthCheck() {
 	if (nickname_pandan && email_pandan && password_pandan && passwordcheck_pandan) {
 		if ($('#auth').length == 0) {
 			$('.auth-before').after(auth_str);
-			$('#join-form').css('height', '385px');
+			$('#join-form').css('height', '310px');
 		}
 		return true;
 	} else {
@@ -154,7 +154,7 @@ $(function(){
 		if(nickname == '') {
 			$('#nickname').css('background-image', 'none');
 			$('#auth').remove();
-			$('#join-form').css('height', '335px');
+			$('#join-form').css('height', '265px');
 			nickname_pandan = false;
 			return;
 		}
@@ -170,7 +170,7 @@ $(function(){
 					return;
 				}	
 				if(response.data == true){					
-					$('#join-form').css('height', '335px');
+					$('#join-form').css('height', '265px');
 					$('#nickname').css('background-image', 'url("${pageContext.request.contextPath }/assets/images/user/cross.png")');
 					$('#nickname').css('background-position', '275px');
 					$('#nickname').css('background-repeat', 'no-repeat');
@@ -191,7 +191,7 @@ $(function(){
 		if(authCheck() == true) {
 			if ($('#auth').length == 0) {
 				$('.auth-before').after(auth_str);
-				$('#join-form').css('height', '385px');
+				$('#join-form').css('height', '310px');
 			}
 		}
 	});
@@ -205,7 +205,7 @@ $(function(){
 			$('#email').css('background-position', '275px');
 			$('#email').css('background-repeat', 'no-repeat');
 			$('#auth').remove();
-			$('#join-form').css('height', '335px');
+			$('#join-form').css('height', '265px');
 			$("#email").focus();
 			email_pandan = false;
 		} else {
@@ -236,7 +236,7 @@ $(function(){
 						$('#email').css('background-position', '275px');
 						$('#email').css('background-repeat', 'no-repeat');
 						$('#auth').remove();
-						$('#join-form').css('height', '335px');
+						$('#join-form').css('height', '265px');
 						$("#email").focus();
 						email_pandan = false;
 					}  else {
@@ -256,7 +256,7 @@ $(function(){
 		if(authCheck() == true) {
 			if ($('#auth').length == 0) {
 				$('.auth-before').after(auth_str);
-				$('#join-form').css('height', '385px');
+				$('#join-form').css('height', '310px');
 			}
 		}
 		
@@ -269,20 +269,20 @@ $(function(){
 			$('.error-password-pattern').hide();
 			$('#password').css('background-image', 'none');
 			$('#password-warning').hide();
-			password_pandan = false;			
+			password_pandan = false;
 		} else {
 			$('#passwordcheck').attr("disabled", true);
 			if($('#password').val() != $('#passwordcheck').val()) {
 				$('#passwordcheck').css('background-image', 'none');
 				$('#passwordcheck').val('');
-				$('#join-form').css('height', '335px');
+				$('#join-form').css('height', '265px');
 			}
 			if(checkPasswordPattern(password) == false) {
 				$('.error-password-pattern').show();
 				$('#password').css('background-image', 'url("${pageContext.request.contextPath }/assets/images/user/cross.png")');
 				$('#password').css('background-position', '275px');
 				$('#password').css('background-repeat', 'no-repeat');
-				$('#join-form').css('height', '335px');
+				$('#join-form').css('height', '265px');
 				
 				password_pandan = false;
 			}
@@ -301,15 +301,15 @@ $(function(){
 			}
 			
 			if((checkPasswordPattern(password) == false) && ($('#password').val() != $('#passwordcheck').val()) && ($('#passwordcheck').val() != '')) {
-				$('#join-form').css('height', '365px');	
+				$('#join-form').css('height', '265px');	
 			}
 		}
 		if(authCheck() == true) {
 			if ($('#auth').length == 0) {
 				$('.auth-before').after(auth_str);
-				$('#join-form').css('height', '385px');
+				$('#join-form').css('height', '310px');
 			} else {
-				$('#join-form').css('height', '385px');
+				$('#join-form').css('height', '310px');
 			}
 		}
 	});
@@ -318,7 +318,7 @@ $(function(){
 		if($('#passwordcheck').val().length == 0) {
 			$('#password-warning').hide();
 			$('#passwordcheck').css('background-image', 'none');
-			$('#join-form').css('height', '335px');
+			$('#join-form').css('height', '265px');
 			$("#passwordcheck").focus();	
 			passwordcheck_pandan = false;
 		} else {
@@ -338,21 +338,18 @@ $(function(){
 				$('#password-warning').text('비밀번호가 일치하지 않습니다.');
 				$('#password-warning').css('color', '#bf0000');
 				$('#password-warning').css('margin', '5px 0 0 22px');
-				$('#join-form').css('height', '365px');	
+				$('#join-form').css('height', '285px');	
 				
 				passwordcheck_pandan = false;
 			} else {
+				console.log('gdgd');
 				$('#passwordcheck').css('background-image', 'url("${pageContext.request.contextPath }/assets/images/user/check.png")');
 				$('#passwordcheck').css('background-position', '275px');
 				$('#passwordcheck').css('background-repeat', 'no-repeat');
 				$('#password-warning').hide();
-				// 관우가 주석 달았음 ^^*
-				// $('#join-form').css('height', '385px');
-				// 관우가 작성한 코드 ^^*
 				if($('#nickname').val().length == 0 || $('#email').val().length == 0) {
 					$('#join-form').css('height', '335px');
 				}
-				//////////////////
 				passwordcheck_pandan = true;
 			}
 		}
@@ -360,7 +357,7 @@ $(function(){
 		if(authCheck() == true) {
 			if ($('#auth').length == 0) {
 				$('.auth-before').after(auth_str);
-				$('#join-form').css('height', '385px');
+				$('#join-form').css('height', '310px');
 			}
 		}
 	});
