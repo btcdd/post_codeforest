@@ -58,7 +58,6 @@ var passwordcheck_pandan = false;
 
 var authCheck = function AuthCheck() {
 	if (nickname_pandan && email_pandan && password_pandan && passwordcheck_pandan) {
-		console.log('authCheck true 들어오나');
 		if ($('#auth').length == 0) {
 			$('.auth-before').after(auth_str);
 			$('#join-form').css('height', '385px');
@@ -66,7 +65,6 @@ var authCheck = function AuthCheck() {
 		return true;
 	} else {
 		$('#auth').remove();
-		console.log('authCheck false [nickname:' + nickname_pandan + ' / email:' + email_pandan + ' / password : ' + password_pandan + ' / passwordcheck : ' + passwordcheck_pandan);
 		return false;
 	}
 }
@@ -144,9 +142,7 @@ $(function(){
 		if(!authCheck) {
 			return;
 		}
-		console.log("nickname: " + $('#nickname').val() + "/email:" + $('#email').val() + "/password:" + $('#password').val());
 		this.submit();
-		console.log("submit 클릭 확인");
 		
 	});	
 	
@@ -283,7 +279,6 @@ $(function(){
 				$('#join-form').css('height', '335px');
 			}
 			if(checkPasswordPattern(password) == false) {
-				console.log("들어가닝?");
 				$('.error-password-pattern').show();
 				$('#password').css('background-image', 'url("${pageContext.request.contextPath }/assets/images/user/cross.png")');
 				$('#password').css('background-position', '275px');
@@ -307,7 +302,6 @@ $(function(){
 			}
 			
 			if((checkPasswordPattern(password) == false) && ($('#password').val() != $('#passwordcheck').val()) && ($('#passwordcheck').val() != '')) {
-				console.log("passwordcheck" + $('#passwordcheck').val());
 				$('#join-form').css('height', '365px');	
 			}
 		}
@@ -357,7 +351,6 @@ $(function(){
 				// $('#join-form').css('height', '385px');
 				// 관우가 작성한 코드 ^^*
 				if($('#nickname').val().length == 0 || $('#email').val().length == 0) {
-					console.log('여기 옴?');
 					$('#join-form').css('height', '335px');
 				}
 				//////////////////
