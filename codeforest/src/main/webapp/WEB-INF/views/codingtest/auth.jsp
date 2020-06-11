@@ -18,7 +18,28 @@
 	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 </head>
 <script>
-
+$(function(){
+	$("#auth-form").submit(function(e){
+		e.preventDefault();
+	
+		if($("#name").val() ==''){
+			alert('이름이 비었습니다');
+			$("#name").focus();
+			return;
+		}	
+		if($("#birth").val() ==''){
+			alert('생일이 비었습니다');
+			$("#birth").focus();
+			return;
+		}
+		if($("#tempKey").val() ==''){
+			alert('인증번호가 비었습니다');
+			$("#tempKey").focus();
+			return;
+		}		
+		this.submit();
+	});	
+});
 </script>
 <body>
 	<div id="container">
