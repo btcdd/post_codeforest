@@ -7,6 +7,8 @@
 <head>
 <title>Code Forest</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
+    
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/main/main-out.css">
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -68,7 +70,7 @@ $(function() {
    var editor = CodeMirror.fromTextArea(code, {
    		lineNumbers: true,
    		mode: 'text/x-java',
-   		theme: 'panda-syntax',
+   		theme: 'duotone-light',
    		matchBrackets: true
    });
    
@@ -129,28 +131,31 @@ $(function() {
 </script>
 </head>
 <body>
+	<c:import url="/WEB-INF/views/include/main-header.jsp" />
 	<div class="head-image">
-		<div class="user">
-			<ul>
-				<c:choose>
-					<c:when test="${empty authUser }">
-						<li><a href="${pageContext.request.contextPath }/user/login">LOGIN</a><li>
-						<li><a href="${pageContext.request.contextPath }/user/join">JOIN</a><li>
-					</c:when>
-					<c:otherwise>
-						<li><a href="${pageContext.request.contextPath }/mypage/mypage">회원정보수정</a><li>
-						<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a><li>
-					</c:otherwise>
-				</c:choose>
-			</ul>
-		</div>
-		<div class="navigator">
-			<nav>
-				<ul>
-					<li class="title"><a>Code Forest</a></li>
-				</ul>
-			</nav>
-		</div>
+<!-- 		<div class="user"> -->
+<!-- 			<ul> -->
+<%-- 				<c:choose> --%>
+<%-- 					<c:when test="${empty authUser }"> --%>
+<%-- 						<li><a href="${pageContext.request.contextPath }/user/login">LOGIN</a><li> --%>
+<%-- 						<li><a href="${pageContext.request.contextPath }/user/join">JOIN</a><li> --%>
+<%-- 					</c:when> --%>
+<%-- 					<c:otherwise> --%>
+<%-- 						<li><a href="${pageContext.request.contextPath }/mypage/mypage">회원정보수정</a><li> --%>
+<%-- 						<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a><li> --%>
+<%-- 					</c:otherwise> --%>
+<%-- 				</c:choose> --%>
+<!-- 			</ul> -->
+<!-- 		</div> -->
+<!-- 		<div class="navigator"> -->
+<!-- 			<nav> -->
+<!-- 				<ul> -->
+<!-- 					<li><hr class="bar"/></li> -->
+<!-- 					<li class="title"><a>Code Forest</a></li> -->
+<!-- 					<li><hr class="bar"/></li> -->
+<!-- 				</ul> -->
+<!-- 			</nav> -->
+<!-- 		</div> -->
 		<div class="intro">
 			<p>온라인에서</p>
 			<p>쉽고 간단하게</p>
@@ -179,10 +184,10 @@ $(function() {
 	                      <option value="blackboard">blackboard</option>
 	                      <option value="dracula">dracula</option>
 	                      <option value="moxer">moxer</option>
-	                      <option value="panda-syntax" selected="selected">panda-syntax</option>
+	                      <option value="panda-syntax">panda-syntax</option>
 	                    </optgroup>
 	                    <optgroup label="white">
-	                      <option value="duotone-light">duotone-light</option>
+	                      <option value="duotone-light" selected="selected">duotone-light</option>
 	                      <option value="eclipse">eclipse</option>
 	                      <option value="neat">neat</option>
 	                      <option value="ttcn">ttcn</option>
@@ -216,8 +221,6 @@ public class Test{
             </table>
          </form>
     </div>
-    <div id="footer">
-	    <c:import url="/WEB-INF/views/include/footer.jsp" />
-    </div>
+    <c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>
