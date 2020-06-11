@@ -31,7 +31,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String join(@ModelAttribute UserVo vo,BindingResult result,Model model) throws IOException, InterruptedException {
+	public String join(@ModelAttribute UserVo vo, BindingResult result, Model model) throws IOException, InterruptedException {
 		if(result.hasErrors()) {
 			model.addAllAttributes(result.getModel());
 			return "/user/join";
@@ -44,10 +44,12 @@ public class UserController {
 	public String login() {
 		return "user/login";
 	}
+	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(@AuthUser UserVo authUser, UserVo vo) {
 		return "redirect:/";
 	}
+	
 	@RequestMapping(value="/auth", method = RequestMethod.POST)
 	public void auth() {
 	}
