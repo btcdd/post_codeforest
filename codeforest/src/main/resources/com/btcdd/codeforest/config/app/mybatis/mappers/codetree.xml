@@ -70,5 +70,56 @@
 			 where problem_no = #{problemNo }
 		]]>
 	</select>
+
+	<select id="totalCount" parameterType="hashmap" resultType="integer">
+		<choose>
+			<when test="keyword == null or keyword == ''">
+				<![CDATA[
+                    select count(*) from user u, save s, problem p
+                    where s.user_no = u.no and s.problem_no = p.no and s.user_no = #{authUserNo} 				
+				]]>
+			</when>
+			<otherwise>
+			 <![CDATA[				 	
+                    select count(*) from user u, save s, problem p,kind k
+                    where s.user_no = u.no and k.no = p.kind_no and s.problem_no = p.no 
+                    and s.user_no = #{authUserNo}                     
+                    and (p.title like '%${keyword}%' or u.nickname like '%${keyword}%' or k.name like '%${keyword}%' );				 	
+			 ]]>
+			</otherwise>			
+		</choose>
+	</select>
+
+	
+	<select id="selectSaveNoList" parameterType="hashmap" resultType="savevo">
+		<choose>
+			<when test="keyword == null or keyword == ''">
+				<![CDATA[
+			  select s.no as no, s.user_no as userNo, s.problem_no as problemNo, p.title as title, k.name as kind, u.nickname as nickname
+				from save s, problem p, kind k, user u
+			   where s.user_no = #{authUserNo }
+				 and s.user_no = u.no
+				 and s.problem_no = p.no
+				 and p.kind_no = k.no
+				 order by s.no desc
+				 limit #{displayPost}, #{postNum}			
+				]]>
+			</when>
+			<otherwise>
+			 <![CDATA[				 	
+			  select s.no as no, s.user_no as userNo, s.problem_no as problemNo, p.title as title, k.name as kind, u.nickname as nickname
+				from save s, problem p, kind k, user u
+			   where s.user_no = #{authUserNo }
+				 and s.user_no = u.no
+				 and s.problem_no = p.no
+				 and p.kind_no = k.no                     
+                and (p.title like '%${keyword}%' or u.nickname like '%${keyword}%' or k.name like '%${keyword}%' )
+                order by s.no desc
+               limit #{displayPost}, #{postNum}			 	
+			 ]]>
+			</otherwise>			
+		</choose>		
+	</select>
+	
 	
 </mapper>

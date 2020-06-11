@@ -196,7 +196,7 @@ $(function() {
                   </td>
                   <td style="margin:0">
 	                <span style="float: right;">
-	                  <input type="submit" class="btn-run" value="실행">
+	                  <input type="submit" class="btn-run" value="Run">
 	                </span>
 	              </td>
                </tr>
@@ -220,7 +220,8 @@ public class Test{
             </table>
          </form>
     </div>
-    <c:import url="/WEB-INF/views/include/footer.jsp" />
-
+    <div id="footer">
+	    <c:import url="/WEB-INF/views/include/footer.jsp" />
+    </div>
 </body>
 </html>

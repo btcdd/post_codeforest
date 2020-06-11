@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,11 +34,22 @@ public class CodeTreeController {
 	private CodingTestService testService;
 	
 	@Auth
-	@GetMapping("")// main-header에서 처음 열때
-	public JsonResult codeTree(HttpSession session) {
-		Map<String, Object> map = new HashMap<>();
+	@PostMapping(value="/list")// main-header에서 처음 열때
+	public JsonResult codeTree(String page, String kwd,HttpSession session) {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		map.put("authUser", authUser);
+		System.out.println("kwd>>>>"+kwd);
+		int p = Integer.parseInt(page);
+		System.out.println("p>>>"+p);
+		Map<String, Object> map = codetreeService.getContentsList(p,kwd,authUser.getNo());
+		map.get("list");
+		
+		return JsonResult.success(map);
+	}
+	@Auth
+	@PostMapping(value="/codemirror")// main-header에서 처음 열때
+	public JsonResult codemirror(Long saveNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("saveNo",saveNo);				
 		return JsonResult.success(map);
 	}
 	

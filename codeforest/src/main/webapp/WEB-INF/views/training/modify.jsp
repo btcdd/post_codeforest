@@ -112,7 +112,7 @@ var problemAdd = function() {
 }
 
 var fetchList = function() {
-
+	
 	if(password !== '') {
 		
 		var sd = '${problemVo.startTime}';
@@ -125,11 +125,7 @@ var fetchList = function() {
 		endDate = endDate + 'T';
 		endDate = endDate + sd.substring(11, 16);
 		
-		if('${problemVo.password}' != '') {
-			var privateStr = '<div class="private">코딩테스트 <input class="codingtest" type="checkbox" checked></div>';
-		} else {
-			var privateStr = '<div class="private">코딩테스트 <input class="codingtest" type="checkbox"></div>';
-		}
+		var privateStr = '<div class="private">코딩테스트 <input class="codingtest" type="checkbox" checked></div>';
 		
 		if('${problemVo.privacy}' == 'y') {
 			var privacyStr = '<div class="privacy-check"><p>코딩테스트가 끝난 뒤 문제를 공개하시려면 선택하세요</p> 공개여부 <input type="checkbox" name="privacy" checked></div>';
@@ -146,6 +142,9 @@ var fetchList = function() {
 		$(".privacy").append(privacyStr);
 		$(".date").append(startDateStr);
 		$(".date").append(endDateStr);
+	} else {
+		var privateStr = '<div class="private">코딩테스트 <input class="codingtest" type="checkbox"></div>';
+		$(".privateAndPassword").append(privateStr);
 	}
 	
 	

@@ -9,10 +9,6 @@ import java.io.InputStreamReader;
 
 public class RunJava {
 	
-	private Long authUserNo = 1L;
-	private Long problemNo = 2L;
-	private Long subProblemNo = 4L;
-	
 	private StringBuffer buffer;
 	private Process process;
 	private BufferedReader bufferedReader;
@@ -23,15 +19,6 @@ public class RunJava {
 	private BufferedWriter bufferWriter;
 	
 	private final String FILENAME = "Test.java";
-	
-	public String inputSource() { 
-		
-		buffer = new StringBuffer();
-		
-		buffer.append("javac -d . Test.java");
-		
-		return buffer.toString();
-	}
 	
 	public void createFileAsSource(String source) {
 		try {
@@ -77,9 +64,7 @@ public class RunJava {
 	
 	public String execCompile() {
 		try {
-//			process = Runtime.getRuntime().exec(cmd);
-//			process = Runtime.getRuntime().exec("find ./userDirectory/user1/prob2/subProb4/java -name '*.java' > /userDirectory/user1/prob2/subProb4/java/javafile.txt");
-			process = Runtime.getRuntime().exec("javac -d /userDirectory/user1/prob2/subProb4/java /userDirectory/user1/prob2/subProb4/java/*.java");
+			process = Runtime.getRuntime().exec("javac -d . Test.java");
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 			String line = null;
@@ -98,6 +83,7 @@ public class RunJava {
 	}
 	
 	public String execCommand() {
+		
 		try {
 			process = Runtime.getRuntime().exec(runClass());
 			
@@ -126,17 +112,8 @@ public class RunJava {
 	private String runClass() {
 		buffer = new StringBuffer();
 		
-		buffer.append("java -cp . Test");
+		buffer.append("timeout 2s java -cp . Test");
 		
 		return buffer.toString();
-	}
-	
-	public String execSave(String cmd) {
-		try {
-			process = Runtime.getRuntime().exec(cmd);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 }

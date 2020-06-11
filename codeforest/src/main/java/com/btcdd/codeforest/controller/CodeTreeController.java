@@ -1,19 +1,22 @@
 package com.btcdd.codeforest.controller;
 
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import com.btcdd.codeforest.service.MypageService;
 import com.btcdd.codeforest.service.TrainingService;
 import com.btcdd.codeforest.vo.SaveVo;
 import com.btcdd.codeforest.vo.UserVo;
+
+import com.btcdd.codeforest.service.CodeTreeService;
 import com.btcdd.security.Auth;
 
 @Auth
@@ -21,43 +24,22 @@ import com.btcdd.security.Auth;
 @RequestMapping("/codetree")
 public class CodeTreeController {
 	@Autowired
-	private TrainingService trainingService;
+	private CodeTreeService codeTreeService;
 	
-	@Autowired
-	private MypageService mypageService;
-	
+
 	@Auth
 	@RequestMapping("/list")
-	public String list(@PathVariable("no") Long no, Model model, HttpSession session) {
-		
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-
-		
-		List<SaveVo> saveVoList = trainingService.selectSaveNoList(no);
-		model.addAttribute("saveVoList",saveVoList);
-//		System.out.println("saveVoList>>>>"+saveVoList);
-//		List<Long> copy = new ArrayList<>();
-//		for(SaveVo vo : saveVoList) {
-//			copy.add(vo.getProblemNo());
-//		}
-//		List<Long> problemNoArray = new ArrayList<>();
-//		for(Long no2 : copy) {
-//			if(!problemNoArray.contains(no2)) {
-//				problemNoArray.add(no2);
-//			}
-//		}
-//
-//		Map<Long, Object> subProblemList = new HashMap<>();
-//		for(Long no2 : problemNoArray) {
-//			subProblemList.put(no2, mypageService.findSubProblem(no));
-//		}
-//		System.out.println(subProblemList);
-////		map.put("subProblemList", subProblemList);
-////		map.put("saveVoList", saveVoList);
-
+	public String mypage() {
 		return "codetree/list";
 	}
-	
+	@Auth
+	@RequestMapping("/codeMirror/{saveNo}")
+	public String mirror(@PathVariable("saveNo") Long saveNo) {
+		System.out.println("saveNo>>"+saveNo);
+		
+		return "codetree/codetree";
+	}
+
 	
 	@Auth
 	@RequestMapping("/{no}")
