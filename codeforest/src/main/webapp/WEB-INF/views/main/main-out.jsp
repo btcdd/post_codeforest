@@ -179,14 +179,14 @@ $(function() {
                   </td>
                   <td style="float:left">
 	                  <select class="theme" name="theme">
-	                  	<optgroup label="black">
+	                  	<optgroup label="dark">
 	                      <option value="abcdef">abcdef</option>
 	                      <option value="blackboard">blackboard</option>
 	                      <option value="dracula">dracula</option>
 	                      <option value="moxer">moxer</option>
 	                      <option value="panda-syntax">panda-syntax</option>
 	                    </optgroup>
-	                    <optgroup label="white">
+	                    <optgroup label="light">
 	                      <option value="duotone-light" selected="selected">duotone-light</option>
 	                      <option value="eclipse">eclipse</option>
 	                      <option value="neat">neat</option>
