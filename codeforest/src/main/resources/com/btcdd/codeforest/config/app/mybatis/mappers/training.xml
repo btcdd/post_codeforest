@@ -202,6 +202,7 @@
 			  select no, title, contents, exam_input as examInput, exam_output as examOutput, correct_code as correctCode, problem_no as problemNo
 				from sub_problem 
 			   where problem_no = #{no }
+			     and state = 'y'
 		]]>
 	</select>
 	
@@ -360,10 +361,10 @@
 
 	</select>	
 	
-	<delete id="deleteSubProblem" parameterType="hashmap">
+	<update id="deleteSubProblem" parameterType="hashmap">
 		<![CDATA[
-			  delete
-			    from sub_problem
+			  update sub_problem
+			     set state = 'n'
 			   where no in (
 		]]>
 		<foreach collection="deleteNoList" item="item" separator=",">
@@ -376,7 +377,7 @@
 		<![CDATA[
 			)
 		]]>
-	</delete>
+	</update>
 
 	<select id="findByUserEmail" parameterType="string" resultType="uservo">
 		<![CDATA[
