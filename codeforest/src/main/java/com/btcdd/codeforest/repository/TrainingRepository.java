@@ -121,14 +121,7 @@ public class TrainingRepository {
 		return sqlSession.selectOne("training.findByUserEmail",email);
 	}
 
-	public int insertInputValueByUserEmail(String userName, String userBirth, String userEmail) {
-		Map<String,Object> map = new HashMap<>();
-		map.put("userName",userName);
-		map.put("userBirth",userBirth);
-		map.put("userEmail",userEmail);
-		return sqlSession.update("training.insertInputValueByUserEmail", map);
-		
-	}
+
 
 	public List<StatisticsVo> selectStatistics(Map<String, Object> map) {
 		return sqlSession.selectList("training.selectStatistics", map);

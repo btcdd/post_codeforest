@@ -180,10 +180,7 @@ public class TrainingService {
 		return trainingRepository.findByUserEmail(email) != null;
 	}
 
-	public void insertUserInfo(String userName, String userBirth, String userEmail) {
-		trainingRepository.insertInputValueByUserEmail(userName,userBirth,userEmail);
-	}
-	
+
 	public Map<String, Object> selectStatistics(List<SubProblemVo> subProblemList, List<Long> subProblemNoList) {
 		Map<String, Object> map = new HashMap<>();
 		

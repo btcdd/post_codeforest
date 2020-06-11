@@ -387,13 +387,7 @@
 			 
 		]]>
 	</select>
-	<insert id="insertInputValueByUserEmail" parameterType="map">
-		<![CDATA[
-			update user
-				set name = #{userName}, birth = #{userBirth}
-			where email = #{userEmail}
-		]]>
-	</insert>		
+		
 	
 	<select id="selectStatistics" parameterType="map" resultType="statisticsvo">
 		  select lang as language, count(*) as count

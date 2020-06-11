@@ -63,8 +63,4 @@ public class CodeTreeRepository {
 		return sqlSession.selectList("codetree.selectSaveNoList", map);
 	}
 
-
-//	public int getTotalCount(String keyword) {
-//		return sqlSession.selectOne("codetree.totalCount",keyword);
-//	}
 }
