@@ -48,17 +48,6 @@ public class CodeTreeController {
 		
 		return JsonResult.success(map);
 	}
-	
-//	@PostMapping(value = "/list")
-//	public JsonResult originProblemList(String page, String kwd, String category, String[] checkValues) {
-//
-//		int p = Integer.parseInt(page);
-//		Map<String, Object> map = trainingService.getContentsList(p, kwd, category, checkValues);
-//
-//		return JsonResult.success(map);
-//	}	
-	
-
 }
 
 
