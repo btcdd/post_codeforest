@@ -3,12 +3,9 @@
 
 body{
 	height: 100%;
-    overflow: hidden;
-    background-image: url('../../images/main/hmm.jpg');
-    background-position: -5px -140px;
-    background-repeat : no-repeat;
-	background-size : cover;
+	background-color: #FAFAFA;
 }
+
 
 .logo {
 	margin-left: auto;
