@@ -81,19 +81,20 @@
 	
 	<select id="findSubProblem" parameterType="long"  resultType="subproblemvo">
 		<![CDATA[
-			select no, title, contents, exam_input as examInput, correct_code as correctCode, exam_input as examInput, problem_no as problemNo, state
-			from sub_problem sp
-			where problem_no = #{no }
+			select no, title, contents, exam_input as examInput, exam_input as examInput, problem_no as problemNo, state
+			  from sub_problem sp
+			 where problem_no = #{no }
+			   and sp.state = 'y'
 		]]>
 	</select>
 
-	<delete id="deleteSubProblem" parameterType="long">
+	<update id="deleteSubProblem" parameterType="long">
 		<![CDATA[
-			delete
-  			  from sub_problem
+			update sub_problem
+  			   set state = 'n'
  			 where no = #{no }
 		]]>
-	</delete>
+	</update>
 
 	<select id="findRrightSubmit" parameterType="long"  resultType="submitvo">
 		<![CDATA[

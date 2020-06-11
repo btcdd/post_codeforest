@@ -93,19 +93,6 @@ var problemAdd = function() {
 			+ '<textarea id="ex-output-text" name="subProblemList[' + index + '].examOutput" required></textarea>'
 			+ '</div>'
 			+ '<div class="answer-code' + index + '">'
-			+ '<div class="ex-input-title">정답 코드</div>'
-			+ '<div>'
-			+ '<select name="lang">'
-			+ '<option value="none" selected="selected">언어선택</option>'
-			+ '<option value="c">C</option>'
-			+ '<option value="cpp">C++</option>'
-			+ '<option value="cs">C#</option>'
-			+ '<option value="java">JAVA</option>'
-			+ '<option value="js">JavaScript</option>'
-			+ '<option value="py">Python</option>'
-			+ '</select>'
-			+ '</div>'
-			+ '<textarea id="code' + index + '" name="subProblemList[' + index + '].correctCode"></textarea>'
 			+ '</div></div>';
 
 	buttonStr = '<li id="' + index + '" class="tablinks">문제 ' + (index + 1) + '<span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>';
@@ -359,23 +346,6 @@ $(function() {
 							<div class="ex-output">
 								<div class="ex-output-title">예제 출력</div>
 								<textarea id="ex-output-text" name="subProblemList[${index }].examOutput" required>${item.examOutput }</textarea>
-							</div>
-	
-	
-							<div class="answer-code${index }">
-								<div class="ex-input-title">정답 코드</div>
-								<div>
-									<select name="lang">
-										<option value="none" selected="selected">언어선택</option>
-										<option value="c">C</option>
-										<option value="cpp">C++</option>
-										<option value="cs">C#</option>
-										<option value="java">JAVA</option>
-										<option value="js">JavaScript</option>
-										<option value="py">Python</option>
-									</select>
-								</div>
-								<textarea id="code${index }" name="subProblemList[${index }].correctCode">${item.correctCode }</textarea>
 							</div>
 						</div> <!--  prob0 -->
 					</c:forEach>
