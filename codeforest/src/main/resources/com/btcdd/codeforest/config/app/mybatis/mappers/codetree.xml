@@ -101,6 +101,7 @@
 				 and s.user_no = u.no
 				 and s.problem_no = p.no
 				 and p.kind_no = k.no
+				 order by s.no desc
 				 limit #{displayPost}, #{postNum}			
 				]]>
 			</when>
@@ -113,6 +114,7 @@
 				 and s.problem_no = p.no
 				 and p.kind_no = k.no                     
                 and (p.title like '%${keyword}%' or u.nickname like '%${keyword}%' or k.name like '%${keyword}%' )
+                order by s.no desc
                limit #{displayPost}, #{postNum}			 	
 			 ]]>
 			</otherwise>			

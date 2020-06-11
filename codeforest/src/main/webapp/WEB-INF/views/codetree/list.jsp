@@ -43,7 +43,8 @@ var originList = function(page, kwd) {
 			}
 			
 			map = response.data;
-			console.log("map >>",map);
+			
+			
 			fetchList();
 		},
 		error: function(xhr, status, e){
@@ -51,13 +52,16 @@ var originList = function(page, kwd) {
 		}
 	});	
 }
+
+
+
 var fetchList = function() {
 	$(".list .problem-box").remove();
 	$(".list .pager").remove();
 	var str="";
 	for(var i=0;i<map.list.length;i++){
-		str+= '<div class="problem-box">'+
-			'<div class="problem-no">'+map.list[i].no+'</div>'+
+		str+= '<div data-no="'+map.list[i].no+'" class="problem-box" >'+
+			'<div class="problem-no">'+map.list[i].problemNo+'</div>'+
 			'<div class="problem-title">'+map.list[i].title+'</div>'+
 			'<div class="problem-user">'+map.list[i].kind +" "+ map.list[i].nickname+'</div>'+
 		'</div>';
@@ -127,9 +131,14 @@ $(function() {
 		originList(page, kwd);
 		nextRemove();
 	});	
-/*  	$("#code-tree").on('click',function(){
-	      $.ajax({
-	          url:'${pageContext.request.contextPath }/api/codetree',
+	
+	$(document).on("click",".problem-box",function(){
+		var saveNo = $(this).data('no');
+  		console.log("saveNo>>",saveNo);
+	});
+ 		
+/*  	      $.ajax({
+	          url:'${pageContext.request.contextPath }/api/codetree/',
 	          async:false,
 	          type:'get',
 	          dataType:'json',
@@ -137,8 +146,10 @@ $(function() {
 	          success:function(response){
 	             console.log(response.data);
 	             console.log(response.data.authUser.email);
-	          		var codetreeURL = '${pageContext.request.contextPath }/codetree/list/' + response.data.authUser.no
-	              window.open(codetreeURL,'_blank');
+var codetreeURL = '${pageContext.request.contextPath }/codetree/list/' + response.data.authUser.no
+	          window.open('${pageContext.request.contextPath }/codetree/list/' + response.data.authUser.no,'_blank');
+	          window.open(codetreeURL,'_blank');
+	          window.open('','_blank');
 	              
 
 	              
@@ -146,8 +157,9 @@ $(function() {
 	          error: function(xhr, status, e) {
 	             console.error(status + ":" + e);
 	          }
-	       });
-	});  */
+	       });  */
+
+ 	
 });
 
 </script>   
