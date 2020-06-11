@@ -62,3 +62,42 @@ html, body{height:100%;}
 .pager b {
     color: #ca6d03;
 }
+input[type=text] {
+    width: 30%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('../../images/search.png');
+    background-size: 40px;
+    background-position: 5px 1px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 55px;
+    color: #999999;
+}
+.search {
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+#search {
+    background-color: #FFF1D6;
+    border: none;
+    color: #6e6e6e;
+    padding: 10px 10px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    border: 1.5px #FFF1D6 solid;
+    cursor: pointer;
+}
+
+#search:hover {
+    background-color: #BFB5A0;
+    color: #fff;
+    border: 1.5px #BFB5A0 solid;
+}
