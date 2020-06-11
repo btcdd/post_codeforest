@@ -1,18 +1,17 @@
 package com.btcdd.codeforest.controller;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.btcdd.codeforest.service.MypageService;
-import com.btcdd.codeforest.service.TrainingService;
-import com.btcdd.codeforest.vo.SaveVo;
+import com.btcdd.codeforest.service.CodeTreeService;
+import com.btcdd.codeforest.vo.UserVo;
 import com.btcdd.security.Auth;
 
 @Auth
@@ -20,37 +19,12 @@ import com.btcdd.security.Auth;
 @RequestMapping("/codetree")
 public class CodeTreeController {
 	@Autowired
-	private TrainingService trainingService;
+	private CodeTreeService codeTreeService;
 	
-	@Autowired
-	private MypageService mypageService;
-	
-	@RequestMapping("/list/{no}")
-	public String mypage(@PathVariable("no") Long no,Model model) {
-		Map<String, Object> map = new HashMap<>();
-		
-		List<SaveVo> saveVoList = trainingService.selectSaveNoList(no);
-		model.addAttribute("saveVoList",saveVoList);
-//		System.out.println("saveVoList>>>>"+saveVoList);
-//		List<Long> copy = new ArrayList<>();
-//		for(SaveVo vo : saveVoList) {
-//			copy.add(vo.getProblemNo());
-//		}
-//		List<Long> problemNoArray = new ArrayList<>();
-//		for(Long no2 : copy) {
-//			if(!problemNoArray.contains(no2)) {
-//				problemNoArray.add(no2);
-//			}
-//		}
-//
-//		Map<Long, Object> subProblemList = new HashMap<>();
-//		for(Long no2 : problemNoArray) {
-//			subProblemList.put(no2, mypageService.findSubProblem(no));
-//		}
-//		System.out.println(subProblemList);
-////		map.put("subProblemList", subProblemList);
-////		map.put("saveVoList", saveVoList);
 
+	@Auth
+	@RequestMapping("/list")
+	public String mypage() {
 		return "codetree/list";
 	}
 	
