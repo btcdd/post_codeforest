@@ -141,7 +141,7 @@
 		]]>
 		<foreach collection="subProblemList" item="item" separator=",">
 			<![CDATA[
-				(null, "${item.title }", "${item.contents }", "${item.examInput }", "${item.correctCode}", "${item.examOutput }", ${problemNo },'y')
+				(null, "${item.title }", "${item.contents }", "${item.examInput }", "${item.examOutput }", ${problemNo },'y')
 			]]>
 		</foreach>
 	</insert>
@@ -149,7 +149,7 @@
 	<insert id="modify" parameterType="hashmap" useGeneratedKeys="true" keyProperty="id">
 		<![CDATA[
 			insert 
-			  into sub_problem (no, title, contents, exam_input, correct_code, exam_output, problem_no, state)
+			  into sub_problem (no, title, contents, exam_input, exam_output, problem_no, state)
 			values
 		]]>
 		<foreach collection="subProblemList" item="item" separator=",">
@@ -167,11 +167,11 @@
 				]]>
 			</if>
 			<![CDATA[
-				, "${item.title }", "${item.contents }", "${item.examInput }", "${item.correctCode}", "${item.examOutput }", #{problemNo },"y")
+				, "${item.title }", "${item.contents }", "${item.examInput }", "${item.examOutput }", #{problemNo },"y")
 			]]>
 		</foreach>
 		<![CDATA[
-			on duplicate key update no = values(no), title = values(title), contents = values(contents), exam_input = values(exam_input), correct_code = values(correct_code), 
+			on duplicate key update no = values(no), title = values(title), contents = values(contents), exam_input = values(exam_input), 
 					 			exam_output = values(exam_output), problem_no = #{problemNo }, state = values(state)
 		]]>
 		
@@ -199,7 +199,7 @@
 	
 	<select id="selectSubProblem" parameterType="long" resultType="subproblemvo">
 		<![CDATA[
-			  select no, title, contents, exam_input as examInput, exam_output as examOutput, correct_code as correctCode, problem_no as problemNo
+			  select no, title, contents, exam_input as examInput, exam_output as examOutput, problem_no as problemNo
 				from sub_problem 
 			   where problem_no = #{no }
 			     and state = 'y'

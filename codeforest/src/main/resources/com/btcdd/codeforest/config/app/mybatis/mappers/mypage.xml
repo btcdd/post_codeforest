@@ -81,7 +81,7 @@
 	
 	<select id="findSubProblem" parameterType="long"  resultType="subproblemvo">
 		<![CDATA[
-			select no, title, contents, exam_input as examInput, correct_code as correctCode, exam_input as examInput, problem_no as problemNo, state
+			select no, title, contents, exam_input as examInput, exam_input as examInput, problem_no as problemNo, state
 			  from sub_problem sp
 			 where problem_no = #{no }
 			   and sp.state = 'y'
