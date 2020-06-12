@@ -15,7 +15,52 @@ public class TrainingLinux {
 	private Process process;
 	
 	public void save(Long authUserNo, Long problemNo, Long[] subProblemNoArray) {
-		
+		try {
+			process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo);
+			String[] langArray = { "c", "cpp", "cs", "java", "js", "py" };
+			
+			for(int i = 0; i < subProblemNoArray.length; i++) {
+				process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNoArray[i]);
+				for(int j = 0; j < langArray.length; j++) {
+					process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNoArray[i] + "/" + langArray[j]);
+				}
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void createFileAsSource(String source, String fileName) {
+		try {
+			file = new File(fileName);
+			bufferWriter = new BufferedWriter(new FileWriter(file, false));
+			
+			bufferWriter.write(source);
+			bufferWriter.flush();
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		} finally {
+			try {
+				bufferWriter.close();
+				file = null;
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.exit(1);
+			}
+		}
+	}
+
+	public void deleteSaveProblem(Long authUserNo, Long problemNo) {
+		try {
+			process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void linuxSaveCode(Long authUserNo, Long problemNo, Long[] subProblemNoArray) {
 		String c = "#include <stdio.h>\r\n" + 
 				"\r\n" + 
 				"int main() {\r\n" + 
@@ -58,49 +103,14 @@ public class TrainingLinux {
 		String[] faceCode = { c, cpp, cs, java, js, py };
 		
 		try {
-			process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo);
 			String[] langArray = { "c", "cpp", "cs", "java", "js", "py" };
 			
 			for(int i = 0; i < subProblemNoArray.length; i++) {
-				process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNoArray[i]);
 				for(int j = 0; j < langArray.length; j++) {
-					process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNoArray[i] + "/" + langArray[j]);
+					createFileAsSource(faceCode[j], "userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNoArray[i] + "/" + langArray[j] + "/Test." + langArray[j]);
 				}
-//				for(int j = 0; j < langArray.length; j++) {
-//					createFileAsSource(faceCode[j], "userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNoArray[i] + "/" + langArray[j] + "/Test." + langArray[j]);
-//				}
 			}
 		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void createFileAsSource(String source, String fileName) {
-		try {
-			file = new File(fileName);
-			bufferWriter = new BufferedWriter(new FileWriter(file, false));
-			
-			bufferWriter.write(source);
-			bufferWriter.flush();
-		} catch(Exception e) {
-			e.printStackTrace();
-			System.exit(1);
-		} finally {
-			try {
-				bufferWriter.close();
-				file = null;
-			} catch (IOException e) {
-				e.printStackTrace();
-				System.exit(1);
-			}
-		}
-	}
-
-	public void deleteSaveProblem(Long authUserNo, Long problemNo) {
-		try {
-			process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
