@@ -19,10 +19,10 @@
 var problemNo = '${problemVo.no}';
 var array = new Array();
 
-var saveProblem = function() {
+var linuxSaveCode = function() {
 	
 	$.ajax({
-		url: '${pageContext.request.contextPath }/api/training/save/problem',
+		url: '${pageContext.request.contextPath }/api/training/linux/savecode',
 		async: false,
 		type: 'post',
 		dataType: 'json',
@@ -36,7 +36,33 @@ var saveProblem = function() {
 				console.error(response.message);
 				return;
 			}
+		},
+		error: function(xhr, status, e){
+			console.error(status + ":" + e);
+		}
+	});
+}
+
+var saveProblem = function() {
+	
+	$.ajax({
+		url: '${pageContext.request.contextPath }/api/training/save/problem',
+		async: false,
+		type: 'post',
+		dataType: 'json',
+		traditional: true,
+		data: {
+			'problemNo': problemNo,
+			'subProblemNoArray': array
+		},	
+		success: function(response){
+			if(response.result != "success"){
+				console.error(response.message);
+				return;
+			}
 			$('#save').text('저장 해제');
+			
+			linuxSaveCode();
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
