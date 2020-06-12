@@ -32,9 +32,11 @@ public class UserController {
 
 	@ResponseBody
 	@PostMapping("emailAuth")
-	public JsonResult emailAuth(@RequestParam(value="email",required=true,defaultValue="") String email) {
+	public JsonResult emailAuth(
+			@RequestParam(value="email",required=true,defaultValue="") String email,
+			String pandan) {
 		Boolean emailCheck = userService.existUser(email);
-		if(!emailCheck) {
+		if(!emailCheck && pandan == null) {
 			return JsonResult.success(false);
 		} else {
 			int tempKey = userService.getTempKey();

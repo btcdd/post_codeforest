@@ -3,6 +3,52 @@
 body{
 	height: 100%;
 	background-color: #F5F1DE;
+	margin:0;
+}
+
+.wrong {
+    position: absolute;
+    width: 100vw;
+    background-color: #414141;
+    color: #fff;
+    height: 40px;
+    top: 0;
+}
+
+.wrong-ptag {
+	margin: 0;
+    text-align: center;
+    line-height: 40px;
+}
+
+.correct {
+    position: absolute;
+    width: 100vw;
+    background-color: #008d62;
+    color: #fff;
+    height: 40px;
+    top: 0;
+}
+
+.correct-ptag {
+	margin: 0;
+    text-align: center;
+    line-height: 40px;
+}
+
+.wrong {
+    position: absolute;
+    width: 100vw;
+    background-color: #414141;
+    color: #fff;
+    height: 40px;
+    top: 0;
+}
+
+.wrong-ptag {
+	margin: 0;
+    text-align: center;
+    line-height: 40px;
 }
 
 .logo {
@@ -50,30 +96,41 @@ body{
 	outline: none;
 }
 
-.input-email-pattern {
-	position: fixed;
-    width: 150px;
-    top: 325px;
-    left: 805px;
-    background: #18609C;
-    border-radius: .4em;
-    padding: 5px 10px;
-    color: #fff
+.input-email-pattern:after, .input-email-pattern:before {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
 }
 
 .input-email-pattern:after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 10%;
-	width: 0;
-	height: 0;
-	border: 11px solid transparent;
-	border-top-color: #18609C;
-	border-bottom: 0;
-	border-left: 0;
-	margin-left: -5.5px;
-	margin-bottom: -11px;
+	border-color: rgba(250, 227, 228, 0);
+	border-top-color: #fae3e4;
+	left: 90%;
+	border-width: 7px;
+	margin-left: -7px;
+}
+.input-email-pattern:before {
+	border-color: rgba(191, 0, 0, 0);
+	border-top-color: #cea0a5;
+	left: 90%;
+	border-width: 8px;
+	margin-left: -8px;
+}
+
+.input-email-pattern {
+	position: fixed;
+    width: 150px;
+    top: 355px;
+    left: 670px;
+    border-radius: .3em;
+    background-color: #fae3e4;
+    padding: 5px 10px;
+    border: 0.5px solid #cea0a5;
+    color: #bf0000;
 }
 
 #password {
@@ -95,27 +152,38 @@ body{
 .input-password-pattern {
 	position: fixed;
     width: 166px;
-    top: 375px;
-    left: 805px;
-    background: #18609C;
-    border-radius: .4em;
+    top: 405px;
+    left: 654px;
+    border-radius: .3em;
+    background-color: #fae3e4;
     padding: 5px 10px;
-    color: #fff
+    border: 0.5px solid #cea0a5;
+    color: #bf0000;
+}
+
+.input-password-pattern:before, .input-password-pattern:after {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
 }
 
 .input-password-pattern:after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 10%;
-	width: 0;
-	height: 0;
-	border: 11px solid transparent;
-	border-top-color: #18609C;
-	border-bottom: 0;
-	border-left: 0;
-	margin-left: -5.5px;
-	margin-bottom: -11px;
+	border-color: rgba(250, 227, 228, 0);
+	border-top-color: #fae3e4;
+	left: 90%;
+	border-width: 7px;
+	margin-left: -7px;
+}
+.input-password-pattern:before {
+	border-color: rgba(191, 0, 0, 0);
+	border-top-color: #cea0a5;
+	left: 90%;
+	border-width: 8px;
+	margin-left: -8px;
 }
 
 .login-button{
