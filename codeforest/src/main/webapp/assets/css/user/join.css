@@ -3,8 +3,38 @@
 body{
 	height: 100%;
 	background-color: #F5F1DE;
+	margin: 0;
 }
 
+.wrong {
+    position: absolute;
+    width: 100vw;
+    background-color: #414141;
+    color: #fff;
+    height: 40px;
+    top: 0;
+}
+
+.wrong-ptag {
+	margin: 0;
+    text-align: center;
+    line-height: 40px;
+}
+
+.correct {
+    position: absolute;
+    width: 100vw;
+    background-color: #008d62;
+    color: #fff;
+    height: 40px;
+    top: 0;
+}
+
+.correct-ptag {
+	margin: 0;
+    text-align: center;
+    line-height: 40px;
+}
 
 .logo {
 	margin-left: auto;

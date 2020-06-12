@@ -14,6 +14,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 
 <script>
+var slide = function Slide(str) {
+	$("#" + str).slideDown(500);
+	$("#" + str).delay(2000).slideUp(500);
+}
+
 $(function(){
 	$('#email').focusout(function() {
 		$('.input-email-pattern').hide();
@@ -59,6 +64,9 @@ $(function(){
 </script>
 </head>
 <body>
+	<div class="wrong" id="wrongwrong" style="display:none">
+		<p class="wrong-ptag">가입하지 않은 아이디이거나, 잘못된 비밀번호입니다</p>
+	</div>
    <div id="container">
         <div class="logo">
 			<a href="${pageContext.servletContext.contextPath }">Code Forest</a>
@@ -81,7 +89,9 @@ $(function(){
                         <input id="password" name="password" type="password" value="" placeholder="패스워드" >
                     </div>
                     <c:if test="${not empty userVo }">
-                        
+                    	<script>
+	                    	slide("wrongwrong");
+                    	</script>
                     </c:if>
                     <div>
                         <input class="login-button" type="submit" value="로그인">

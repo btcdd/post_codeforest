@@ -134,7 +134,7 @@ $(function(){
 		<p class="none-check-auth-ptag">인증번호 확인 후 변경이 가능합니다</p>
 	</div>
 	<div class="check-auth-num" id="check-auth-num" style="display: none">
-		<p class="check-auth-num-ptag">인증번호가 확인 되었습니다</p>
+		<p class="check-auth-num-ptag">인증번호가 확인되었습니다</p>
 	</div>
 	<div class="send-auth-num" id="send-auth-num" style="display: none">
 		<p class="send-auth-num-ptag">인증번호가 발송되었습니다</p>
