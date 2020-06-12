@@ -95,4 +95,13 @@ public class TrainingLinux {
 			}
 		}
 	}
+
+	public void deleteSaveProblem(Long authUserNo, Long problemNo) {
+		try {
+			process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

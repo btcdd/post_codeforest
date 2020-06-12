@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.btcdd.codeforest.linux.TrainingLinux;
 import com.btcdd.codeforest.repository.TrainingRepository;
 import com.btcdd.codeforest.vo.AnswerUserListVo;
 import com.btcdd.codeforest.vo.CodeVo;
@@ -423,6 +424,9 @@ public class TrainingService {
 		trainingRepository.deleteCode(map);
 		trainingRepository.deleteSavePath(saveNo);
 		trainingRepository.deleteSaveByProblemNo(map);
+		
+		TrainingLinux trainingLinux = new TrainingLinux();
+		trainingLinux.deleteSaveProblem(authUserNo, problemNo);
 	}
 
 	public void insertCode(Long saveNo) {
