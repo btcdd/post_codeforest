@@ -25,7 +25,7 @@
 			select no
 			from user
 			where email = #{email }
-			]]>	
+		]]>	
 	</select>
 	
 	<select id="findByNickname" parameterType="string" resultType="uservo">
