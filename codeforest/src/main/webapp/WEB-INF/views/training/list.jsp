@@ -26,6 +26,8 @@ var checkValues = new Array();
 var page = '1';
 var category = '';
 var kwd = '';
+var selectTag = '';
+var hashtagText = '';
 
 var originList = function(page, kwd, category) {
 	
@@ -63,14 +65,15 @@ var fetchList = function() {
 	var str = "";
 	for(var i = 0; i < map.list.length;i++){
 		str += '<div class="problem-box" onclick="location.href=' + "'" + '${pageContext.servletContext.contextPath }/training/view/' + map.list[i].no + "'" + '">' +
-		'<div class="problem-no"><a data-no=' + map.list[i].no + '>' + map.list[i].no +'</a></div>' +
+		'<div class="problem-no"><a class="problem-number" data-no=' + map.list[i].no + '>' + map.list[i].no +'</a></div>' +
         '<div class="problem-recommend"><img src="${pageContext.servletContext.contextPath }/assets/images/like.png" class="like" />' + map.list[i].recommend + '</div>' + 
 		'<div class="problem-title" id="title">' + map.list[i].title + '</div>' +
         '<div class="problem-user">' + map.list[i].nickname + '</div>' + 
         '<div class="problem-kind">' + map.list[i].kind + '</div>' + 
 	'</div>';
 	}
-	$(".problems").append(str);
+	$(".problems").append(str).hide();
+	$(".problems").fadeIn(1000);
 	
 	var str2 = "<div class='pager'>";
 	
@@ -151,8 +154,6 @@ $(function() {
 		var prevNo = parseInt(page) - 1;
 		page = String(prevNo);
 		
-		console.log(typeof(page) + " page: " + page + " / " + typeof(prevNo) + ":" + prevNo);
-		
 		levelChecked(page, kwd);
 		
 		nextRemove();
@@ -162,33 +163,57 @@ $(function() {
 		page = $('span b').parent().attr('id');
 		var prevNo = parseInt(page) + 1;
 		page = String(prevNo);
-		console.log(typeof(page) + " page: " + page + " / " + typeof(prevNo) + ":" + prevNo);
 		levelChecked(page, kwd);
 		
 		nextRemove();
 	});
 
 	$('input[name=level]').change(function() {
+		selectTag = $(this).attr('id');
+		var text = $(this).parent().text().trim();
+		var tagStr = '<div class="hashtag" name="' + selectTag + '">#' + text + ' </div>';
 		
 		if($("input[name=level]").is(":checked")) {
+			if($('#' + selectTag).is(':checked')) {
+				$('#tag-content').append(tagStr);
+			} else {
+				$('div[name=' + selectTag + ']').remove();
+			}
 			page = $('span b').parent().attr('id');
 		} else {
+			$('div[name=' + selectTag + ']').remove();
+			
 			page = '1';
 			category = '';
 		}
-		
 		levelChecked(page, kwd);
 		
-		disabled('level','organization');
+		disabled('level', 'organization');
 		nextRemove();
 	});
 	
 	$('input[name=organization]').change(function() {
-		page = $('span b').parent().attr('id');
+		selectTag = $(this).attr('id');
+		var text = $(this).parent().text().trim();
+		
+		if($("input[name=organization]").is(":checked")) {
+			if($('#' + selectTag).is(':checked')) {
+				$('#hashtag').append('#' + text + ' ');
+			} else {
+				hashtagText = $('#hashtag').text();
+				$('#hashtag').text(hashtagText.replace('#' + text, ''));
+			}
+			page = $('span b').parent().attr('id');
+		} else {
+			hashtagText = $('#hashtag').text();
+			$('#hashtag').text(hashtagText.replace('#' + text, ''));
+			
+			page = '1';
+			category = '';
+		}
 		levelChecked(page, kwd);
 		
 		disabled('organization','level');
-		
 		nextRemove();
 	});
 	
@@ -218,13 +243,14 @@ $(function() {
 </head>
 <body>
     <c:import url="/WEB-INF/views/include/main-header.jsp" />
+    <div class="tag-content" id="tag-content">
+<!--     	<div class="hashtag">#Level1 </div> -->
+    </div>
     <div class="content">
         <div class="menu-bar">
             <div class="algo">
+            	<div class="algorithm">알고리즘</div>
                 <table>
-                    <tr id="title">
-                        <th>알고리즘</th>
-                    </tr>
                     <tr id="sub">
                         <td><input type="checkbox" id="one" name="level" value="one">
                             <label for="one"><span></span>level 1</label></td>
@@ -248,11 +274,9 @@ $(function() {
                 </table>
             </div>
 
-            <div class="category">
+            <div class="category-content">
+            	<div class="category">분류</div>
                 <table>
-                    <tr id="title">
-                        <th>분류</th>
-                    </tr>
                     <tr id="sub">
                         <td><input type="checkbox" id="enterprise" name="organization" value="enterprise">
                             <label for="enterprise"><span></span>기업</label></td>
