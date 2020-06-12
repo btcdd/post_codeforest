@@ -139,7 +139,7 @@ $(function() {
  	$('#font-size').on("propertychange change keyup paste", function(){		
  		var fontSize = $(this).val() + "px";
  		console.log("font-size:"+fontSize);
- 		$("#code-font").css({'font-size':fontSize});
+ 		$(".CodeMirror").css("font-size", fontSize+"");
 	});
  	
 });
@@ -280,7 +280,7 @@ $(function() {
                     
 					<div class="codeTest">
 				       <form action="" method="post" class="code-form">
-	                      <textarea name="code" class="CodeMirror code" id="code-font">
+	                      <textarea name="code" class="CodeMirror code">
 /*
 * 기본 언어 : 'JAVA'
 * 기본 테마 : 'panda-syntax'
