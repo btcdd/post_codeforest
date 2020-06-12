@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,6 +54,13 @@ public class CodeTreeController {
 		map.put("saveNo",saveNo);				
 		return JsonResult.success(map);
 	}
+	
+	@PostMapping("/fileInsert")
+	public JsonResult fileInsert(Long savePathNo) {
+		System.out.println("패키지 번호 savePathNo"+savePathNo);
+
+		return JsonResult.success(null);
+	}	
 	
 }
 
