@@ -248,6 +248,10 @@ label {
     border-radius:10px;
 }
 
+.cancel-button:focus {
+	outline: none;
+}
+
 .join-button {
     margin-top: 5px;
     margin-left: 12px;

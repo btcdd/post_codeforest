@@ -13,6 +13,9 @@
 <link href="${pageContext.servletContext.contextPath }/assets/css/user/find-password.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 <script>
+
+var pandan = false;
+
 var loadingWithMask = function LoadingWithMask(){
 		
 	var widthWindow = window.innerWidth;
@@ -32,7 +35,6 @@ var loadingWithMask = function LoadingWithMask(){
 		'height':heightWindow,
 		'opacity':'0.3'
 	});
-			
 	$('#mask').show();
 	$('#loadingImg').show();
 }
@@ -47,42 +49,62 @@ $(function(){
 	
 	$('#btn-auth').on('click',function(){
 		
-		var email = $('#email').val();	
-		if(email == ''){
-			alert('이메일을 입력하세요.');
-			$("#email").focus();
-			return;
-		}
-		
-		loadingWithMask();
-		
-		$.ajax({
-			url:'${pageContext.request.contextPath}/api/user/emailAuth',
-			async:true,
-			type:'post',
-			dataType:'json',
-			data:'email='+ email,
-			success:function(response){	
-				alert('인증번호가 발송되었습니다.');
-				console.log(response.data);//인증키
-				tempKey = response.data;
-				closeLoadingWithMask();	
-			},
-			error: function(xhr, status, e) {
-				console.error(status + ":" + e);
+		if($(this).val() == '인증번호 전송') {
+			var email = $('#email').val();	
+			if(email == ''){
+				alert('이메일을 입력하세요.');
+				$("#email").focus();
+				return;
 			}
-		});
+			
+			loadingWithMask();
+			
+			$.ajax({
+				url:'${pageContext.request.contextPath}/api/user/emailAuth',
+				async:true,
+				type:'post',
+				dataType:'json',
+				data:'email='+ email,
+				success:function(response){	
+					
+					if(response.data == false) {
+						closeLoadingWithMask();
+						alert('등록되지 않은 이메일입니다.');
+						return;
+					}
+					
+					$('#btn-auth').val('인증번호 확인');
+					alert('인증번호가 발송되었습니다.');
+					console.log(response.data);//인증키
+					tempKey = response.data;
+					closeLoadingWithMask();
+				},
+				error: function(xhr, status, e) {
+					console.error(status + ":" + e);
+				}
+			});
+		} else {
+			if(($('#auth-check').val() == tempKey) && ($('#auth-check').val() != "")){
+				alert('인증번호가 확인되었습니다.');
+				$('#email').attr("readonly", true);
+				$('#auth-check').attr("readonly", true);
+				pandan = true;
+			} else {
+				alert('인증번호 다시 확인해주세요.');
+			}
+		}
 	});
 	
 	$('#btn-auth-check').on('click',function(){
-		if( ($('#auth-check').val() == tempKey) && ($('#auth-check').val() != "") ){			
-			console.log("인증번호 맞았음");
-			$('#find-form').submit();
-		} else{
-			alert('인증번호 다시 확인해주세요.');
+		if(!pandan) {
+			alert('인증번호 확인 후 진행 가능합니다.');
+			return;
 		}
-	});	
-	
+		
+		if(($('#auth-check').val() == tempKey) && ($('#auth-check').val() != "")){
+			$('#find-form').submit();
+		}
+	});
 });
 </script>
 </head>
