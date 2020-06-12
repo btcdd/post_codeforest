@@ -75,8 +75,21 @@ $(function() {
    
    $('.theme').click(function() {
 	   var theme = $(".theme option:selected").val();
-	   
 	   editor.setOption("theme", theme);
+	   
+	   // 터미널 색 변경
+	   $(".window .terminal").css('background-color', $(".cm-s-" + theme).css("background-color"));
+	   if($('.theme option:selected').parent().attr('label') == "white") {
+		   $(".window .terminal").css('color', "#000000");
+		   $(".window .terminal .prompt").css('color', "#004000");
+		   $(".window .terminal .path").css('color', "#1f0d98");
+	   }
+	   else {
+		   $(".window .terminal").css('color', "#FFFFFF");
+		   $(".window .terminal .prompt").css('color', "#bde371");
+		   $(".window .terminal .path").css('color', "#5ed7ff");
+	   }
+
    });
    
    $('.lang').change(function() {
@@ -139,7 +152,7 @@ $(function() {
  	$('#font-size').on("propertychange change keyup paste", function(){		
  		var fontSize = $(this).val() + "px";
  		console.log("font-size:"+fontSize);
- 		$("#code-font").css({'font-size':fontSize});
+ 		$(".CodeMirror").css("font-size", fontSize+"");
 	});
  	
 });
@@ -280,7 +293,7 @@ $(function() {
                     
 					<div class="codeTest">
 				       <form action="" method="post" class="code-form">
-	                      <textarea name="code" class="CodeMirror code" id="code-font">
+	                      <textarea name="code" class="CodeMirror code">
 /*
 * 기본 언어 : 'JAVA'
 * 기본 테마 : 'panda-syntax'

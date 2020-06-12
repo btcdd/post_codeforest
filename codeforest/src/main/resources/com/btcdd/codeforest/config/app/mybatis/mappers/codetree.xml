@@ -142,7 +142,7 @@
 
 	<select id="findCodeList" parameterType="long" resultType="codevo">
 		<![CDATA[
-			select c.no as no, c.save_path_no as savePathNo, c.language as language, c.code as code, c.file_name as fileName, sp.sub_problem_no as subProblemNo
+			select c.no as no, c.save_path_no as savePathNo, c.language as language, c.file_name as fileName, sp.sub_problem_no as subProblemNo
 			  from code c, save_path sp
 			 where c.save_path_no = #{savePathNo } and c.save_path_no = sp.no
 		]]>
