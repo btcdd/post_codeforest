@@ -25,7 +25,7 @@ import com.btcdd.codeforest.vo.UserVo;
 @Service
 public class TrainingService {
 
-	private static final int postNum = 15; //한 페이지에 출력할 게시물 갯수
+	private static final int postNum = 12; //한 페이지에 출력할 게시물 갯수
 	private static final int pageNum_cnt = 5; 		//한번에 표시할 페이징 번호의 갯수
 	
 	@Autowired
