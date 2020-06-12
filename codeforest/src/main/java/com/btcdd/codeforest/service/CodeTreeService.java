@@ -55,9 +55,9 @@ public class CodeTreeService {
 			
 			RunJavaCodeTree rjct = new RunJavaCodeTree(authUserNo, problemNo, subProblemNo);
 			
-			for(int i = 0; i < codeVoListTrue.size(); i++) {
-				rjct.createFileAsSource(codeVoListTrue.get(i).getCode(), codeVoListTrue.get(i).getFileName());
-			}
+//			for(int i = 0; i < codeVoListTrue.size(); i++) {
+//				rjct.createFileAsSource(codeVoListTrue.get(i).getCode(), codeVoListTrue.get(i).getFileName());
+//			}
 			
 			rjct.execCompile(codeVoListTrue);
 //			String result = rjct.execCommand();
