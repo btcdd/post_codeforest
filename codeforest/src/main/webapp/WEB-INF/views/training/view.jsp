@@ -54,7 +54,7 @@ var saveProblem = function() {
 		data: {
 			'problemNo': problemNo,
 			'subProblemNoArray': array
-		},
+		},	
 		success: function(response){
 			if(response.result != "success"){
 				console.error(response.message);
