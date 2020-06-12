@@ -53,17 +53,19 @@ public class TrainingController {
 	}
 	
 	@PostMapping("/save/problem")
-	public JsonResult saveProblem(Long problemNo, HttpSession session, Long[] array) {
+	public JsonResult saveProblem(Long problemNo, HttpSession session, Long[] subProblemNoArray) {
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		trainingService.insertSaveProblemNo(authUser.getNo(), problemNo);
 		Long saveNo = trainingService.findSaveNo(authUser.getNo(), problemNo);
 		
-		trainingService.insertSavePath(array, saveNo, authUser.getNo(), problemNo);
+		trainingService.insertSavePath(subProblemNoArray, saveNo, authUser.getNo(), problemNo);
 		
-		TrainingLinux trainingLinux = new TrainingLinux();
-		trainingLinux.saveProblemAndSubProblem(authUser.getNo(), problemNo, array);
+		trainingService.insertCode(saveNo);
+		
+//		TrainingLinux trainingLinux = new TrainingLinux();
+//		trainingLinux.saveProblemAndSubProblem(authUser.getNo(), problemNo, subProblemNoArray);
 
 		return JsonResult.success(null);
 	}

@@ -28,7 +28,7 @@ var saveProblem = function() {
 		traditional: true,
 		data: {
 			'problemNo': problemNo,
-			'array': array
+			'subProblemNoArray': array
 		},
 		success: function(response){
 			if(response.result != "success"){
