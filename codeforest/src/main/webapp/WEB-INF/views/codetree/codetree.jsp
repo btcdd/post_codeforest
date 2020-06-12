@@ -86,8 +86,8 @@ $(function() {
 	   }
 	   else {
 		   $(".window .terminal").css('color', "#FFFFFF");
-		   $(".window .terminal .prompt").css('color', "#bde371");
-		   $(".window .terminal .path").css('color', "#5ed7ff");
+		   $(".prompt").css('color', "#bde371");
+		   $(".path").css('color', "#5ed7ff");
 	   }
 
    });
@@ -200,7 +200,7 @@ $(function() {
                 <c:forEach items='${subProblemList }' var='subproblemvo' varStatus='status'>
 	                <div class='problem'>                    
 		                <div class='sub-problem-title' data-no='${subproblemvo.no }'>
-		                    <p class='problem-index'>문제 1</p>
+		                    <p class='problem-index'>문제 ${status.index + 1}</p>
 		                    <p class='subtitle'>${subproblemvo.title }</p>
 		                </div>
 		                <div class='problem-open' style='display:none;' id='subproblem-${subproblemvo.no }'>
