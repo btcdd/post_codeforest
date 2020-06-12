@@ -69,7 +69,8 @@ $(function(){
 					
 					if(response.data == false) {
 						closeLoadingWithMask();
-						alert('등록되지 않은 이메일입니다.');
+						$("#none-email").slideDown(500);
+						$("#none-email").delay(2000).slideUp(500);
 						return;
 					}
 					
@@ -109,6 +110,9 @@ $(function(){
 </script>
 </head>
 <body>
+	<div class="none-email" id="none-email" style="display: none">
+		<p class="none-email-ptag">사용자를 찾을 수 없습니다</p>
+	</div>
     <div id="container">
     	<div class="logo">
 			<a href="${pageContext.servletContext.contextPath }">Code Forest</a>
