@@ -16,6 +16,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 <script>
 
+var slide = function Slide(str) {
+	$("#" + str).slideDown(500);
+	$("#" + str).delay(2000).slideUp(500);
+}
+
 var loadingWithMask = function LoadingWithMask(){
 		
  	var widthWindow = window.innerWidth;
@@ -112,28 +117,28 @@ $(function(){
 		e.preventDefault();
 
 		if($("#nickname").val() ==''){
-			alert('닉네임이 비어있습니다.');
+			slide("empty-nickname");
 			$("#nickname").focus();
 			return;
 		}	
 		if($("#email").val() ==''){
-			alert('이메일이 비어있습니다.');
+			slide("empty-email");
 			$("#email").focus();
 			return;
 		}	
 		if($("#password").val() ==''){
-			alert('비밀번호가 비어있습니다.');
+			slide("empty-password");
 			$("#password").focus();
 			return;
 		}	
 		if($("#passwordcheck").val() ==''){
-			alert('비밀번호 확인이 비어있습니다.');
+			slide("empty-password-check");
 			$("#passwordcheck").focus();
 			return;
 		}	
 
 		if( ($("#auth-check").val() =='') || (tempKey != $("#auth-check").val())) {
-			alert('인증번호가 일치하지 않습니다.');
+			slide("empty-auth-check");
 			$("#auth-check").focus();
 			return;
 		}
@@ -214,7 +219,7 @@ $(function(){
 		if(email == '') {
 			$('.error-email-pattern').hide();
 			$('#auth').remove();
-			$('#join-form').css('height', '335px');
+			$('#join-form').css('height', '265px');
 			$('#email').css('background-image', 'none');
 			$("#email").focus();
 			email_pandan = false;
@@ -342,7 +347,6 @@ $(function(){
 				
 				passwordcheck_pandan = false;
 			} else {
-				console.log('gdgd');
 				$('#passwordcheck').css('background-image', 'url("${pageContext.request.contextPath }/assets/images/user/check.png")');
 				$('#passwordcheck').css('background-position', '275px');
 				$('#passwordcheck').css('background-repeat', 'no-repeat');
@@ -373,9 +377,10 @@ $(function(){
 			async:true,
 			type:'post',
 			dataType:'json',
-			data:'email='+ email,
+			data:{'email': email,
+					'pandan': "join"},
 			success:function(response){	
-				alert('인증번호가 발송되었습니다.');
+				slide("send-auth-num");
 				
 				console.log(response.data);//인증키
 				tempKey = response.data;
@@ -389,7 +394,7 @@ $(function(){
 	
 	$(document).on("click", "#btn-auth-check", function() {
 		if( $('#auth-check').val() == tempKey) {
-			alert("인증번호가 확인되었습니다");
+			slide("check-auth-num");
 			// 관우가 작성한 코드 ^^*
 			$('#nickname').attr("readonly", true);
 			$('#email').attr("readonly", true);
@@ -397,7 +402,7 @@ $(function(){
 			$('#passwordcheck').attr("readonly", true);
 			//////////////////////
 		} else {
-			alert("인증번호가 맞지 않습니다");
+			slide("disagree-auth");
 			$("#auth-check").attr("readonly", false);
 		}
 	});
@@ -406,6 +411,30 @@ $(function(){
 </script>
 </head>
 <body>
+	<div class="wrong" id="disagree-auth" style="display: none">
+		<p class="wrong-ptag">인증번호가 일치하지 않습니다</p>
+	</div>
+	<div class="correct" id="check-auth-num" style="display: none">
+		<p class="correct-ptag">인증번호가 확인되었습니다</p>
+	</div>
+	<div class="correct" id="send-auth-num" style="display: none">
+		<p class="correct-ptag">인증번호가 발송되었습니다</p>
+	</div>
+	<div class="wrong" id="empty-nickname" style="display: none">
+		<p class="wrong-ptag">닉네임이 비어있습니다</p>
+	</div>
+	<div class="wrong" id="empty-email" style="display: none">
+		<p class="wrong-ptag">이메일이 비어있습니다</p>
+	</div>
+	<div class="wrong" id="empty-password" style="display: none">
+		<p class="wrong-ptag">비밀번호가 비어있습니다</p>
+	</div>
+	<div class="wrong" id="empty-password-check" style="display: none">
+		<p class="wrong-ptag">비밀번호 확인이 비어있습니다</p>
+	</div>
+	<div class="wrong" id="empty-auth-check" style="display: none">
+		<p class="wrong-ptag">인증번호가 비어있습니다</p>
+	</div>
     <div id="container">
      	<div class="logo">
 			<a href="${pageContext.servletContext.contextPath }">Code Forest</a>
@@ -450,7 +479,7 @@ $(function(){
                         </p>                        
                     </div>
                     <div>
-                       <a href="${pageContext.servletContext.contextPath }/"><input class="cancel-button" value="취소"></input></a>
+                       <a href="${pageContext.servletContext.contextPath }/"><input class="cancel-button" value="취소" readonly></input></a>
                         <input type="submit" class="join-button" value="가입" >
                     </div>
                 </form:form>

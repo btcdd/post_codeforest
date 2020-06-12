@@ -171,19 +171,12 @@ public class TrainingRepository {
 		return sqlSession.selectOne("training.findSaveNo", map);
 	}
 
-	public void insertSavePath(Long[] array, Long saveNo, Long authUserNo, Long problemNo) {
+	public void insertSavePath(Long[] subProblemNoArray, Long saveNo, Long authUserNo, Long problemNo) {
 		Map<String, Object> map = new HashMap<>();
-		map.put("array", array);
+		map.put("subProblemNoArray", subProblemNoArray);
 		map.put("saveNo", saveNo);
 		map.put("authUserNo", authUserNo);
 		map.put("problemNo", problemNo);
-		
-		String[] packagePathArray = new String[array.length];
-		for(int i = 0; i < array.length; i++) {
-			packagePathArray[i] = "/userDirectory/user" + authUserNo + "/prob" + problemNo + "/subprob" + array[i];
-		}
-		
-		map.put("packagePathArray", packagePathArray);
 		
 		sqlSession.insert("training.insertSavePath", map);
 	}
@@ -258,5 +251,9 @@ public class TrainingRepository {
 
 	public void deleteSaveByProblemNo(Map<String, Object> map) {
 		sqlSession.delete("training.deleteSaveByProblemNo", map);
+	}
+
+	public void insertSubProblemFaceCode(Map<String, Object> map) {
+		sqlSession.insert("training.insertSubProblemFaceCode", map);
 	}
 }

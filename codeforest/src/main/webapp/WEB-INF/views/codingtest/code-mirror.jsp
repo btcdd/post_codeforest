@@ -18,58 +18,65 @@
 	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 </head>
 <script>
-var startTime = "${problemVo.startTime}";
 var endTime = "${problemVo.endTime}";
+var years=0;
+var days=0;
+var hours=0;
+var min=0;
+var sec=0;
 $(function() {
-	
-	console.log("startTime",startTime);
 	console.log("endTime",endTime);
+
+	var timer = setInterval(function(){
+		var diff = (Date.parse(new Date(endTime)) - Date.parse(new Date())) / 1000; 
+		if(diff <0){
+			alert("시험 종료");
+			clearInterval(timer);
+			return;
+		}
+		
+	 	if (diff >= (365.25 * 86400)) { // 365.25 * 24 * 60 * 60
+	     	years = Math.floor(diff / (365.25 * 86400));
+	     	diff -= years * 365.25 * 86400;
+	  	}
+		console.log("years>>",years);
+		
+	   	if (diff >= 86400) { // 24 * 60 * 60
+	   		days = Math.floor(diff / 86400);
+	   		diff -= days * 86400;	
+	   	}
+	   	console.log("days>>",days);
+	   	if (diff >= 3600) { // 60 * 60   
+	     	hours = Math.floor(diff / 3600);
+	     	diff -= hours * 3600;
+	   	}
+	   	console.log("hours>>",hours);
+	   	if (diff >= 60) {
+	    	min = Math.floor(diff / 60);
+	     	diff -= min * 60;
+	   	}
+	   	console.log("min>>",min);
+	   	var sec = diff;
+	   	console.log("sec>>",sec);
+    	$("#content table td:first").text(hours+"시");
+		$("#content table td+td").text(min+"분");
+		$("#content table td:last").text(sec+"초"); 
+
+	},1000);
 	
-	CountDownTimer(endTime);
 });
-function CountDownTimer(endTime){
-	var diff = (Date.parse(new Date(endTime)) - Date.parse(new Date())) / 1000;
-	
- 	if (diff >= (365.25 * 86400)) { // 365.25 * 24 * 60 * 60
-     	years = Math.floor(diff / (365.25 * 86400));
-     	diff -= years * 365.25 * 86400;
-  	}
-   	if (diff >= 86400) { // 24 * 60 * 60
-   		days = Math.floor(diff / 86400);
-   		diff -= days * 86400;
-   	}
-   	if (diff >= 3600) { // 60 * 60
-     	hours = Math.floor(diff / 3600);
-     	diff -= hours * 3600;
-   	}
-   	if (diff >= 60) {
-    	 min = Math.floor(diff / 60);
-     	diff -= min * 60;
-   	}
-   	sec = diff;
-   	console.log("years",years);
-   	console.log("days",days);
-   	console.log("hours",hours);
-   	console.log("min",min);
-   	console.log("sec",sec);
-
-   	
-	
-	
-	
-
-	
-}
-
 
 </script>
 <body>
 	<div id="container">
 		<div id="content">
-			<p>${problemVo}</p>
-			<p>${subProblemList}</p>
-			<div id="countdown">111</div>
-			<div id="newcountdown"></div>
+			<table>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>						
 		</div>
 	</div>
 </body>

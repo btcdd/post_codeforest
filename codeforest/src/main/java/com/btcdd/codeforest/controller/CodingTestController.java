@@ -103,7 +103,7 @@ public class CodingTestController {
 	public String Auth(@PathVariable("problemNo") Long problemNo,Model model) {
 		model.addAttribute("problemNo",problemNo);
 		ProblemVo problemVo = testService.selectProblemOne(problemNo);
-		
+		model.addAttribute("problemVo",problemVo);
 		model.addAttribute("tempKey",problemVo.getPassword());
 		return "codingtest/auth";
 	}

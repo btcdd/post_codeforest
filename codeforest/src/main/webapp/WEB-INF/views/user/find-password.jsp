@@ -13,6 +13,9 @@
 <link href="${pageContext.servletContext.contextPath }/assets/css/user/find-password.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 <script>
+
+var pandan = false;
+
 var loadingWithMask = function LoadingWithMask(){
 		
 	var widthWindow = window.innerWidth;
@@ -32,7 +35,6 @@ var loadingWithMask = function LoadingWithMask(){
 		'height':heightWindow,
 		'opacity':'0.3'
 	});
-			
 	$('#mask').show();
 	$('#loadingImg').show();
 }
@@ -42,51 +44,101 @@ var closeLoadingWithMask = function CloseLoadingWithMask(){
 	$('#mask, #loadingImg').empty();
 }
 
+var slide = function Slide(str) {
+	$("#" + str).slideDown(500);
+	$("#" + str).delay(2000).slideUp(500);
+}
+
 $(function(){
 	var tempKey = null;
 	
-	$('#btn-auth').on('click',function(){
-		
+	var email = $('#email').val();	
+	if(email == ''){
+		$('#btn-auth').attr("disabled",true);
+		$('#btn-auth').css('color', '#8E8E8E');
+	}
+	
+	$('#email').on("propertychange change keyup paste input", function() {
 		var email = $('#email').val();	
-		if(email == ''){
-			alert('이메일을 입력하세요.');
-			$("#email").focus();
-			return;
+		if(email != ''){
+			$('#btn-auth').attr("disabled",false);
+			$('#btn-auth').css('color', '#0C0C0C');
+		} else {
+			$('#btn-auth').attr("disabled",true);
+			$('#btn-auth').css('color', '#8E8E8E');
 		}
-		
-		loadingWithMask();
-		
-		$.ajax({
-			url:'${pageContext.request.contextPath}/api/user/emailAuth',
-			async:true,
-			type:'post',
-			dataType:'json',
-			data:'email='+ email,
-			success:function(response){	
-				alert('인증번호가 발송되었습니다.');
-				console.log(response.data);//인증키
-				tempKey = response.data;
-				closeLoadingWithMask();	
-			},
-			error: function(xhr, status, e) {
-				console.error(status + ":" + e);
+	});
+	
+	$('#btn-auth').on('click',function(){
+		var email = $('#email').val();	
+		if($(this).val() == '인증번호 전송') {
+			
+			loadingWithMask();
+			
+			$.ajax({
+				url:'${pageContext.request.contextPath}/api/user/emailAuth',
+				async:true,
+				type:'post',
+				dataType:'json',
+				data:'email='+ email,
+				success:function(response){	
+					
+					if(response.data == false) {
+						closeLoadingWithMask();
+						slide("none-email");
+						return;
+					}
+					
+					$('#btn-auth').val('인증번호 확인');
+					slide("send-auth-num");
+					console.log(response.data);//인증키
+					tempKey = response.data;
+					closeLoadingWithMask();
+				},
+				error: function(xhr, status, e) {
+					console.error(status + ":" + e);
+				}
+			});
+		} else {
+			if(($('#auth-check').val() == tempKey) && ($('#auth-check').val() != "")){
+				slide("check-auth-num");
+				$('#email').attr("readonly", true);
+				$('#auth-check').attr("readonly", true);
+				pandan = true;
+			} else {
+				slide("disagree-auth");
 			}
-		});
+		}
 	});
 	
 	$('#btn-auth-check').on('click',function(){
-		if( ($('#auth-check').val() == tempKey) && ($('#auth-check').val() != "") ){			
-			console.log("인증번호 맞았음");
-			$('#find-form').submit();
-		} else{
-			alert('인증번호 다시 확인해주세요.');
+		if(!pandan) {
+			slide("none-check-auth");
+			return;
 		}
-	});	
-	
+		if(($('#auth-check').val() == tempKey) && ($('#auth-check').val() != "")){
+			$('#find-form').submit();
+		}
+	});
 });
 </script>
 </head>
 <body>
+	<div class="none-email" id="none-email" style="display: none">
+		<p class="none-email-ptag">사용자를 찾을 수 없습니다</p>
+	</div>
+	<div class="disagree-auth" id="disagree-auth" style="display: none">
+		<p class="disagree-auth-ptag">인증번호가 일치하지 않습니다</p>
+	</div>
+	<div class="none-check-auth" id="none-check-auth" style="display: none">
+		<p class="none-check-auth-ptag">인증번호 확인 후 변경이 가능합니다</p>
+	</div>
+	<div class="check-auth-num" id="check-auth-num" style="display: none">
+		<p class="check-auth-num-ptag">인증번호가 확인되었습니다</p>
+	</div>
+	<div class="send-auth-num" id="send-auth-num" style="display: none">
+		<p class="send-auth-num-ptag">인증번호가 발송되었습니다</p>
+	</div>
     <div id="container">
     	<div class="logo">
 			<a href="${pageContext.servletContext.contextPath }">Code Forest</a>
