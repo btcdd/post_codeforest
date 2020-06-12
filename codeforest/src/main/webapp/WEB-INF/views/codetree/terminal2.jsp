@@ -154,6 +154,14 @@ $(document).keypress(function(e) {
 								terminal.append("\n");
 								processCommand();
 								displayPrompt();
+								if($('.theme option:selected').parent().attr('label') == "white") {
+									   $(".window .terminal .prompt").css('color', "#004000");
+									   $(".window .terminal .path").css('color', "#1f0d98");
+								   }
+								   else {
+									   $(".prompt").css('color', "#bde371");
+									   $(".path").css('color', "#5ed7ff");
+								   }
 								break;
 						}
 				default:
