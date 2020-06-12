@@ -57,6 +57,7 @@ public class CodeTreeController {
 		System.out.println("saveVo : " + saveVo);
 		System.out.println("savePathList : " + savePathList);
 		System.out.println("codeList : " + codeList);
+		System.out.println("subProblemList : " + subProblemList);
 		
 		return "codetree/codetree";
 	}
