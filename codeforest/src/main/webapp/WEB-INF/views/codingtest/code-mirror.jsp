@@ -58,7 +58,7 @@ $(function() {
 	   	console.log("min>>",min);
 	   	var sec = diff;
 	   	console.log("sec>>",sec);
-    		$("#content table td:first").text(hours+"시");
+    	$("#content table td:first").text(hours+"시");
 		$("#content table td+td").text(min+"분");
 		$("#content table td:last").text(sec+"초"); 
 
