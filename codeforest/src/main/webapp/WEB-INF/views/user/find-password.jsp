@@ -15,6 +15,7 @@
 <script>
 
 var pandan = false;
+var inputEmail = '';
 
 var loadingWithMask = function LoadingWithMask(){
 		
@@ -59,7 +60,8 @@ $(function(){
 	}
 	
 	$('#email').on("propertychange change keyup paste input", function() {
-		var email = $('#email').val();	
+		var email = $('#email').val();
+		
 		if(email != ''){
 			$('#btn-auth').attr("disabled",false);
 			$('#btn-auth').css('color', '#0C0C0C');
@@ -67,9 +69,14 @@ $(function(){
 			$('#btn-auth').attr("disabled",true);
 			$('#btn-auth').css('color', '#8E8E8E');
 		}
+		if(email != inputEmail) {
+			$('#btn-auth').val('인증번호 전송');
+			inputEmail = '';
+			$('#auth-check').val('');
+		}
 	});
 	
-	$('#btn-auth').on('click',function(){
+	$('#btn-auth').on('click', function(){
 		var email = $('#email').val();	
 		if($(this).val() == '인증번호 전송') {
 			
@@ -94,6 +101,8 @@ $(function(){
 					console.log(response.data);//인증키
 					tempKey = response.data;
 					closeLoadingWithMask();
+					
+					inputEmail = $('#email').val();
 				},
 				error: function(xhr, status, e) {
 					console.error(status + ":" + e);
