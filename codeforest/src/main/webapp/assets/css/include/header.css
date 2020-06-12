@@ -1,48 +1,116 @@
-@import url('https://fonts.googleapis.com/css2?family=Bigshot+One&family=Pacifico&family=Roboto:wght@300&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Bigshot+One&family=Pacifico&family=Roboto:wght@300&display=swap')
+	;
 
+body {
+	margin: 0;
+	padding: 0;
+}
 
-body { margin: 0; padding: 0; background-color: #FFF;}
-
-.header { 
+.header {
 	position: fixed;
-  	top: 0;
-/*     position: relative; */
-    background-repeat : no-repeat;
-    background-size : 100vw;
-    height: 49px;
-    width: 100vw;
+	top: 0;
+	/*     position: relative; */
+	background-repeat: no-repeat;
+	background-size: 100vw;
+	height: 49px;
+	width: 100vw;
 }
 
 .head-navigation {
-    padding: 10px 0;
-    position: absolute;
-    top: 0;
-    background-color: #fff;
-    width: 100%;
-    border-bottom: 1px solid #D7D7D7;
+	padding: 10px 0;
+	position: absolute;
+	top: 0;
+	background-color: #fff;
+	width: 100%;
+	border-bottom: 1px solid #D7D7D7;
 }
 
-.logo { float: left; margin-right: 40px; margin-left: 10px; margin-top: 4px;}
+.logo {
+	float: left;
+	margin-right: 40px;
+	margin-left: 10px;
+	margin-top: 4px;
+}
 
-.logo a { text-decoration: none; color:#244C1E; font-family: 'Pacifico', cursive; font-size: 1.7em; margin-left: 20px; line-height: 40.8px;}
-.logo a:visited { color: #244C1E; }
-.logo a:hover { text-decoration:none; color: #244C1E; }
+.logo a {
+	text-decoration: none;
+	color: #244C1E;
+	font-family: 'Pacifico', cursive;
+	font-size: 1.7em;
+	margin-left: 20px;
+	line-height: 40.8px;
+}
 
-.menu { float: left; font-size: 1.05em; font-family: 'Roboto', sans-serif;}
+.logo a:visited {
+	color: #244C1E;
+}
 
-.menu-user { float: right; font-size: 1em; margin-top:2px; margin-right: 20px}
+.logo a:hover {
+	text-decoration: none;
+	color: #244C1E;
+}
 
-.menu-item { float: left; margin: 3px 10px 0 0; padding: 8px 10px; line-height: 25.2px; }
+.menu {
+	float: left;
+	font-size: 1.05em;
+	font-family: 'Roboto', sans-serif;
+}
 
-.menu a { text-decoration: none; color: #3C3C3C; }
-.menu a:visited { color: #3C3C3C; }
-.menu a:hover { text-decoration: none; color:#3C3C3C}
+.menu-user {
+	float: right;
+	font-size: 1em;
+	margin-top: 2px;
+	margin-right: 20px
+}
 
-.menu-user a { text-decoration: none; color: #3C3C3C; }
-.menu-user a:visited { color: #3C3C3C; }
-.menu-user a:hover { text-decoration: none; color:#3C3C3C}  
+.menu-item {
+	float: left;
+	margin: 3px 10px 0 0;
+	padding: 8px 10px;
+	line-height: 25.2px;
+}
 
-#code-tree a { text-decoration: none; color: #3C3C3C; cursor:pointer; }
-#code-tree a:visited { color: #3C3C3C; }
-#code-tree a:hover { text-decoration: none; color:#3C3C3C}
-#code-tree 
+.menu a {
+	text-decoration: none;
+	color: #3C3C3C;
+}
+
+.menu a:visited {
+	color: #3C3C3C;
+}
+
+.menu a:hover {
+	text-decoration: none;
+	color: #3C3C3C
+}
+
+.menu-user a {
+	text-decoration: none;
+	color: #3C3C3C;
+}
+
+.menu-user a:visited {
+	color: #3C3C3C;
+}
+
+.menu-user a:hover {
+	text-decoration: none;
+	color: #3C3C3C
+}
+
+#code-tree a {
+	text-decoration: none;
+	color: #3C3C3C;
+	cursor: pointer;
+}
+
+#code-tree a:visited {
+	color: #3C3C3C;
+}
+
+#code-tree a:hover {
+	text-decoration: none;
+	color: #3C3C3C
+}
+#code-tree
