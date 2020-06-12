@@ -1,6 +1,5 @@
 package com.btcdd.codeforest.controller.api;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.btcdd.codeforest.dto.JsonResult;
 import com.btcdd.codeforest.linux.TrainingLinux;
 import com.btcdd.codeforest.service.TrainingService;
-import com.btcdd.codeforest.vo.SavePathVo;
 import com.btcdd.codeforest.vo.UserVo;
 
 @RestController("TrainingController")
@@ -64,8 +62,8 @@ public class TrainingController {
 		
 		trainingService.insertCode(saveNo);
 		
-//		TrainingLinux trainingLinux = new TrainingLinux();
-//		trainingLinux.saveProblemAndSubProblem(authUser.getNo(), problemNo, subProblemNoArray);
+		TrainingLinux trainingLinux = new TrainingLinux();
+		trainingLinux.save(authUser.getNo(), problemNo, subProblemNoArray);
 
 		return JsonResult.success(null);
 	}
