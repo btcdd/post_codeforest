@@ -155,6 +155,27 @@ $(function() {
  		$(".CodeMirror").css("font-size", fontSize+"");
 	});
  	
+ 	
+ 	$(document).on('contextmenu', function() {
+ 		  return false;
+ 	});
+ 	
+ 	$(document).on('mousedown','.problem-packageList', function() {
+ 		console.log("click!!!");  
+	});
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
 });
 
 </script>
@@ -269,11 +290,20 @@ $(function() {
                         <hr />
                         <nav>
                             <ul class='problem-name'>
-                                
-                                    <li>
-	                                    <div class='problem-packageList'>
-	                                        <img class="file-img" src="" />문제 1
+	
+	<%-- <c:set var ="cnt" value='${fn:length(subProblemList) }'/> --%>
+				
+    					<c:forEach items='${savePathList }' var='vo' varStatus='status'>
+								<li id="problem-packageList" class="problem-packageList" data-no="${vo.no}" ><img src="${pageContext.servletContext.contextPath }/assets/images/package.png"/>${saveVo.title}/${status.index+1}</li>
+						</c:forEach>							
+						
+												
+	
+	
 	                                
+<!--                                     <li>
+	                                    <div class='problem-packageList'>
+	                                        <img class="file-img" src="" />문제 1	                                
 	                                        <div class='problem-file'>
 	                                            <ul>
 	                                               <li><img src=""/>파일 이름</li>
@@ -286,7 +316,7 @@ $(function() {
                                 <div class='open'>
                                     
                                 </div>
-                                <button>+</button>
+                                <button>+</button> -->
                             </ul>
                         </nav>
                     </div> 
