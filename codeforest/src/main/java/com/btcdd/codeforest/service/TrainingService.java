@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.btcdd.codeforest.repository.TrainingRepository;
 import com.btcdd.codeforest.vo.AnswerUserListVo;
 import com.btcdd.codeforest.vo.CodeVo;
+import com.btcdd.codeforest.vo.FaceCodeVo;
 import com.btcdd.codeforest.vo.ProblemVo;
 import com.btcdd.codeforest.vo.SavePathVo;
 import com.btcdd.codeforest.vo.SaveVo;
@@ -349,9 +350,9 @@ public class TrainingService {
 		return trainingRepository.findSaveNo(map);
 	}
 
-	public void insertSavePath(Long[] array, Long saveNo, Long authUserNo, Long problemNo) {
+	public void insertSavePath(Long[] subProblemNoArray, Long saveNo, Long authUserNo, Long problemNo) {
 		
-		trainingRepository.insertSavePath(array, saveNo, authUserNo, problemNo);
+		trainingRepository.insertSavePath(subProblemNoArray, saveNo, authUserNo, problemNo);
 	}
 	
 	// 회원이 이전에 저장했던 문제 모음을 가져올 때
@@ -422,6 +423,18 @@ public class TrainingService {
 		trainingRepository.deleteCode(map);
 		trainingRepository.deleteSavePath(saveNo);
 		trainingRepository.deleteSaveByProblemNo(map);
+	}
+
+	public void insertCode(Long saveNo) {
+		List<SavePathVo> savePathVoList = trainingRepository.findSavePathNo(saveNo);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("savePathVoList", savePathVoList);
+		
+		String[] langArray = { "c", "cpp", "cs", "java", "js", "py" };
+		map.put("langArray", langArray);
+		
+		trainingRepository.insertSubProblemFaceCode(map);
 	}
 
 }
