@@ -68,15 +68,15 @@ public class TrainingController {
 		return JsonResult.success(null);
 	}
 	
-	@PostMapping("/delete")
-	public JsonResult delete(Long problemNo, HttpSession session, Long[] array) {
-
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		
-		trainingService.findAndDelete(authUser.getNo(), problemNo);
-
-		return JsonResult.success(null);
-	}
+//	@PostMapping("/delete")
+//	public JsonResult delete(Long problemNo, HttpSession session, Long[] array) {
+//
+//		UserVo authUser = (UserVo) session.getAttribute("authUser");
+//		
+//		trainingService.findAndDelete(authUser.getNo(), problemNo);
+//
+//		return JsonResult.success(null);
+//	}
 
 	@PostMapping("/recommend")
 	public JsonResult recommend(Long problemNo, HttpSession session) {
