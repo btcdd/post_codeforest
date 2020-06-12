@@ -29,6 +29,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/codemirror/js/codemirror.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/codemirror/mode/clike.js"></script>
 
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+
 <script>
 $(function() {
 ////////////////// code-mirror /////////////////////////////
@@ -155,20 +158,87 @@ $(function() {
  		$(".CodeMirror").css("font-size", fontSize+"");
 	});
  	
+var packagePath = null;
+var str='<div id="fileInsert"><li>파일 추가</li></div>';
+$(".contextmenu").append(str);
+	
+	$(document).on('mouseenter','.file',function(){
+		console.log("hi");
+		$(document).on('click','.problem-packageList',function(e){
+ 			console.log("click!!",$(this).data("no"));
+ 			packagePath = $(this).data("no");
+ 			/* $(".contextmenu li a").attr('href','${pageContext.request.contextPath }'+packagePath); */
+ 		    //Get window size:
+ 		    var winWidth = $(document).width();
+ 		    var winHeight = $(document).height();
+ 		    //Get pointer position:
+ 		    var posX = e.pageX;
+ 		    var posY = e.pageY;
+ 		    //Get contextmenu size:
+ 		    var menuWidth = $(".contextmenu").width();
+ 		    var menuHeight = $(".contextmenu").height();
+ 		    //Security margin:
+ 		    var secMargin = 10;
+ 		    //Prevent page overflow:
+ 		    if(posX + menuWidth + secMargin >= winWidth
+ 		    && posY + menuHeight + secMargin >= winHeight){
+ 		      //Case 1: right-bottom overflow:
+ 		      posLeft = posX - menuWidth - secMargin + "px";
+ 		      posTop = posY - menuHeight - secMargin + "px";
+ 		    }
+ 		    else if(posX + menuWidth + secMargin >= winWidth){
+ 		      //Case 2: right overflow:
+ 		      posLeft = posX - menuWidth - secMargin + "px";
+ 		      posTop = posY + secMargin + "px";
+ 		    }
+ 		    else if(posY + menuHeight + secMargin >= winHeight){
+ 		      //Case 3: bottom overflow:
+ 		      posLeft = posX + secMargin + "px";
+ 		      posTop = posY - menuHeight - secMargin + "px";
+ 		    }
+ 		    else {
+ 		      //Case 4: default values:
+ 		      posLeft = posX + secMargin + "px";
+ 		      posTop = posY + secMargin + "px";
+ 		    };
+ 		    //Display contextmenu:
+ 		    $(".contextmenu").css({
+ 		      "left": posLeft,
+ 		      "top": posTop
+ 		    }).show();
+ 		    //Prevent browser default contextmenu.
+ 		    return false;			
+		});
+	}).on('mouseleave','.file',function(){
+		console.log("bye");
+	}).on('contextmenu','.file',function(){
+		return false;
+	});
+	
  	
- 	$(document).on('contextmenu', function() {
- 		  return false;
+ 	//Hide contextmenu:
+ 	$(document).click(function(){
+ 	   $(".contextmenu").hide();
  	});
  	
- 	$(document).on('mousedown','.problem-packageList', function() {
- 		console.log("click!!!");  
-	});
  	
- 	
- 	
- 	
- 	
- 	
+ 	$(document).on('click','#fileInsert',function(){
+ 		console.log("fileInsert!!!"+packagePath);
+		$.ajax({
+			url: '${pageContext.servletContext.contextPath }/api/codetree/fileInsert',
+			async: true,
+			type: 'post',
+			dataType: 'json',
+			data: 'savePathNo='+packagePath,
+			success: function(response) {
+				console.log("응답");				
+			
+			},
+			error: function(xhr, status, e) {
+				console.error(status + ":" + e);
+			}
+		}); 		
+ 	});
  	
  	
  	
@@ -178,9 +248,13 @@ $(function() {
  	
 });
 
+
 </script>
 </head>
 <body>
+
+
+
 
     <div class="header">
         <div class='logo'>
@@ -286,18 +360,16 @@ $(function() {
                 <div class='cover'>
                     <div class='file'>
                         <div class='problem-explorer'>PROBLEM EXPLORER</div>
-                        
                         <hr />
                         <nav>
                             <ul class='problem-name'>
-	
-	<%-- <c:set var ="cnt" value='${fn:length(subProblemList) }'/> --%>
-				
     					<c:forEach items='${savePathList }' var='vo' varStatus='status'>
 								<li id="problem-packageList" class="problem-packageList" data-no="${vo.no}" ><img src="${pageContext.servletContext.contextPath }/assets/images/package.png"/>${saveVo.title}/${status.index+1}</li>
+								<ul class="contextmenu">
+								</ul>
 						</c:forEach>							
 						
-												
+		
 	
 	
 	                                
@@ -339,6 +411,9 @@ public class Test{
 
                        
                 </div>
+                
+
+					
                 <div class="terminal-cover">
                 	<c:import url="/WEB-INF/views/codetree/terminal2.jsp"></c:import>
                 </div>
