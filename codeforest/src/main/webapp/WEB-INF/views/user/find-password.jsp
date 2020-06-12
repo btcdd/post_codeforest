@@ -44,18 +44,34 @@ var closeLoadingWithMask = function CloseLoadingWithMask(){
 	$('#mask, #loadingImg').empty();
 }
 
+var slide = function Slide(str) {
+	$("#" + str).slideDown(500);
+	$("#" + str).delay(2000).slideUp(500);
+}
+
 $(function(){
 	var tempKey = null;
 	
+	var email = $('#email').val();	
+	if(email == ''){
+		$('#btn-auth').attr("disabled",true);
+		$('#btn-auth').css('color', '#8E8E8E');
+	}
+	
+	$('#email').on("propertychange change keyup paste input", function() {
+		var email = $('#email').val();	
+		if(email != ''){
+			$('#btn-auth').attr("disabled",false);
+			$('#btn-auth').css('color', '#0C0C0C');
+		} else {
+			$('#btn-auth').attr("disabled",true);
+			$('#btn-auth').css('color', '#8E8E8E');
+		}
+	});
+	
 	$('#btn-auth').on('click',function(){
-		
+		var email = $('#email').val();	
 		if($(this).val() == '인증번호 전송') {
-			var email = $('#email').val();	
-			if(email == ''){
-				alert('이메일을 입력하세요.');
-				$("#email").focus();
-				return;
-			}
 			
 			loadingWithMask();
 			
@@ -69,13 +85,12 @@ $(function(){
 					
 					if(response.data == false) {
 						closeLoadingWithMask();
-						$("#none-email").slideDown(500);
-						$("#none-email").delay(2000).slideUp(500);
+						slide("none-email");
 						return;
 					}
 					
 					$('#btn-auth').val('인증번호 확인');
-					alert('인증번호가 발송되었습니다.');
+					slide("send-auth-num");
 					console.log(response.data);//인증키
 					tempKey = response.data;
 					closeLoadingWithMask();
@@ -86,22 +101,21 @@ $(function(){
 			});
 		} else {
 			if(($('#auth-check').val() == tempKey) && ($('#auth-check').val() != "")){
-				alert('인증번호가 확인되었습니다.');
+				slide("check-auth-num");
 				$('#email').attr("readonly", true);
 				$('#auth-check').attr("readonly", true);
 				pandan = true;
 			} else {
-				alert('인증번호 다시 확인해주세요.');
+				slide("disagree-auth");
 			}
 		}
 	});
 	
 	$('#btn-auth-check').on('click',function(){
 		if(!pandan) {
-			alert('인증번호 확인 후 진행 가능합니다.');
+			slide("none-check-auth");
 			return;
 		}
-		
 		if(($('#auth-check').val() == tempKey) && ($('#auth-check').val() != "")){
 			$('#find-form').submit();
 		}
@@ -112,6 +126,18 @@ $(function(){
 <body>
 	<div class="none-email" id="none-email" style="display: none">
 		<p class="none-email-ptag">사용자를 찾을 수 없습니다</p>
+	</div>
+	<div class="disagree-auth" id="disagree-auth" style="display: none">
+		<p class="disagree-auth-ptag">인증번호가 일치하지 않습니다</p>
+	</div>
+	<div class="none-check-auth" id="none-check-auth" style="display: none">
+		<p class="none-check-auth-ptag">인증번호 확인 후 변경이 가능합니다</p>
+	</div>
+	<div class="check-auth-num" id="check-auth-num" style="display: none">
+		<p class="check-auth-num-ptag">인증번호가 확인 되었습니다</p>
+	</div>
+	<div class="send-auth-num" id="send-auth-num" style="display: none">
+		<p class="send-auth-num-ptag">인증번호가 발송되었습니다</p>
 	</div>
     <div id="container">
     	<div class="logo">
