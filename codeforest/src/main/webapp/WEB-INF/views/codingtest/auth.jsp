@@ -17,8 +17,11 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/ejs/ejs.js"></script>
 </head>
 <script>
-var endTime = "${problemVo.endTime}";
-var endTime2 = endTime.split(" ");
+var FullendTime = "${problemVo.endTime}";
+var FullendTimeSplit = FullendTime.split(" ");
+var FullHours = FullendTimeSplit[1];
+var FullHoursSplit = FullHours.split(":");
+
 var tempKey = ${tempKey};
 var slide = function Slide(str) {
 	$("#" + str).slideDown(500);
@@ -44,7 +47,10 @@ var messageBox = function(title,message,message2,callback){
 };
 
 $(function(){
-	console.log("endTime2[1]>>>",endTime2[1]);
+	FullHours
+	console.log("FullHours",FullHours);
+	console.log("FullHoursSplit[0]",FullHoursSplit[0]);
+	console.log("FullHoursSplit[1]",FullHoursSplit[1]);
 	
 	$("#auth-form").submit(function(e){
 		e.preventDefault();
@@ -70,7 +76,7 @@ $(function(){
 			$("#tempKey").focus();			
 			return;
 		}
-		messageBox("Coding Test","코딩 테스트를 시작합니다",endTime2[1]+"에 시험이 종료됩니다. ",function(){
+		messageBox("Coding Test","코딩 테스트를 시작합니다",FullHoursSplit[0]+"시 "+FullHoursSplit[1]+"분에 시험이 종료됩니다. ",function(){
 			_this.submit();
 		});
 		
