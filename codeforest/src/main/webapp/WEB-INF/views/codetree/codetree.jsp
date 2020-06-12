@@ -133,6 +133,14 @@ $(function() {
 		var no = $(this).data("no");
 		$("#subproblem-" + no).toggle();
 	});
+ 
+ 
+ 
+ 	$('#font-size').on("propertychange change keyup paste", function(){		
+ 		var fontSize = $(this).val() + "px";
+ 		console.log("font-size:"+fontSize);
+ 		$("#code-font").css({'font-size':fontSize});
+	});
  	
 });
 
@@ -141,7 +149,7 @@ $(function() {
 <body>
 
     <div class="header">
-        <div class='logo'}>
+        <div class='logo'>
             Code Tree
         </div>
         <div class='menu'>
@@ -237,7 +245,7 @@ $(function() {
                   </select>
                 </div>
                 <div class='font-size'>
-                    <input type='text' value="" />
+                    <input type='text' id="font-size" value="" />
                 </div>
             </div>
             <div class='code-mirror'>
@@ -248,17 +256,19 @@ $(function() {
                         <hr />
                         <nav>
                             <ul class='problem-name'>
-                                <div class='problem-packageList'>
-                                    <li>
-                                        <img class="file-img" src="" />문제 1
                                 
-                                        <div class='problem-file'>
-                                            <ul>
-                                               <li><img src=""/>파일 이름</li>
-                                            </ul>
-                                        </div>
+                                    <li>
+	                                    <div class='problem-packageList'>
+	                                        <img class="file-img" src="" />문제 1
+	                                
+	                                        <div class='problem-file'>
+	                                            <ul>
+	                                               <li><img src=""/>파일 이름</li>
+	                                            </ul>
+	                                        </div>
+	                                    </div>
                                     </li>
-                                </div>
+                                
                                 
                                 <div class='open'>
                                     
@@ -270,7 +280,7 @@ $(function() {
                     
 					<div class="codeTest">
 				       <form action="" method="post" class="code-form">
-	                      <textarea name="code" class="CodeMirror code" id="code">
+	                      <textarea name="code" class="CodeMirror code" id="code-font">
 /*
 * 기본 언어 : 'JAVA'
 * 기본 테마 : 'panda-syntax'
