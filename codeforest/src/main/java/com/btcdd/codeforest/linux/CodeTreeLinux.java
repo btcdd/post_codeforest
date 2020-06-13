@@ -14,6 +14,47 @@ public class CodeTreeLinux {
 	
 	private Process process;
 	
+	String c = "#include <stdio.h>\r\n" + 
+			"\r\n" + 
+			"int main() {\r\n" + 
+			"	printf(\"Hello CodeForest!\\n\");\r\n" + 
+			"\r\n" + 
+			"	return 0;\r\n" + 
+			"}";
+	String cpp = "#include <iostream>\r\n" + 
+			"\r\n" + 
+			"using namespace std;\r\n" + 
+			"\r\n" + 
+			"int main()\r\n" + 
+			"{\r\n" + 
+			"	cout << \"Hello CodeForest!\" << endl;\r\n" + 
+			"\r\n" + 
+			"	return 0;\r\n" + 
+			"}";
+	String cs = "using System;\r\n" + 
+			"\r\n" + 
+			"class HelloWorld {\r\n" + 
+			"\r\n" + 
+			"	static void Main() {\r\n" + 
+			"		Console.WriteLine(\"Hello CodeForest\");\r\n" + 
+			"	}\r\n" + 
+			"}";
+	String java = "/*\r\n" + 
+			"* 기본 언어 : 'JAVA'\r\n" + 
+			"* 기본 테마 : 'panda-syntax'\r\n" + 
+			"*/\r\n" + 
+			"public class Test{\r\n" + 
+			"	public static void main(String[] args) {\r\n" + 
+			"		System.out.println(\"Hello CodeForest!\");\r\n" + 
+			"	}\r\n" + 
+			"}";
+	String js = "var str = \"Hello CodeForest\";\r\n" + 
+			"\r\n" + 
+			"console.log(str);";
+	String py = "print(\"Hello World\")";
+	
+	String[] faceCode = { c, cpp, cs, java, js, py };
+	
 	public void save(Long authUserNo, Long problemNo, Long[] subProblemNoArray) {
 		try {
 			process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo);
@@ -61,47 +102,6 @@ public class CodeTreeLinux {
 	}
 
 	public void linuxSaveCode(Long authUserNo, Long problemNo, Long[] subProblemNoArray) {
-		String c = "#include <stdio.h>\r\n" + 
-				"\r\n" + 
-				"int main() {\r\n" + 
-				"	printf(\"Hello CodeForest!\\n\");\r\n" + 
-				"\r\n" + 
-				"	return 0;\r\n" + 
-				"}";
-		String cpp = "#include <iostream>\r\n" + 
-				"\r\n" + 
-				"using namespace std;\r\n" + 
-				"\r\n" + 
-				"int main()\r\n" + 
-				"{\r\n" + 
-				"	cout << \"Hello CodeForest!\" << endl;\r\n" + 
-				"\r\n" + 
-				"	return 0;\r\n" + 
-				"}";
-		String cs = "using System;\r\n" + 
-				"\r\n" + 
-				"class HelloWorld {\r\n" + 
-				"\r\n" + 
-				"	static void Main() {\r\n" + 
-				"		Console.WriteLine(\"Hello CodeForest\");\r\n" + 
-				"	}\r\n" + 
-				"}";
-		String java = "/*\r\n" + 
-				"* 기본 언어 : 'JAVA'\r\n" + 
-				"* 기본 테마 : 'panda-syntax'\r\n" + 
-				"*/\r\n" + 
-				"public class Test{\r\n" + 
-				"	public static void main(String[] args) {\r\n" + 
-				"		System.out.println(\"Hello CodeForest!\");\r\n" + 
-				"	}\r\n" + 
-				"}";
-		String js = "var str = \"Hello CodeForest\";\r\n" + 
-				"\r\n" + 
-				"console.log(str);";
-		String py = "print(\"Hello World\")";
-		
-		String[] faceCode = { c, cpp, cs, java, js, py };
-		
 		try {
 			String[] langArray = { "c", "cpp", "cs", "java", "js", "py" };
 			
@@ -115,7 +115,7 @@ public class CodeTreeLinux {
 		}
 	}
 
-	public void insertCode(Long authUserNo, String language, String fileName2) {
-//		process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNoArray[i]);
+	public void insertCode(Long authUserNo, Long problemNo, Long subProblemNo, String language, String fileName) {
+		createFileAsSource(language, "userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + language + "/" + fileName);
 	}
 }

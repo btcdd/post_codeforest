@@ -152,6 +152,10 @@ public class CodeTreeService {
 		
 	}
 
+	public Long findProblemNo(Long subProblemNo) {
+		return codetreeRepository.findProblemNo(subProblemNo);
+	}
+
 	
 
 	
