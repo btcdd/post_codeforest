@@ -18,11 +18,11 @@
 
 <body>
     <c:import url="/WEB-INF/views/include/main-header.jsp" />
-	    <div class="sidemenu">
+	    <div class="side">
 	        <nav>
 	            <ul>
 	            	<c:forEach items='${subProblemList }' var='vo' step='1' varStatus='status'>
-		                <li class="menulist">문제 ${status.index + 1} - ${vo.title }</li>
+		                <li class="menulist" title="${vo.title }">문제 ${status.index + 1} - ${vo.title }</li>
 		            </c:forEach>
 	            </ul>
 	        </nav>
