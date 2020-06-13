@@ -36,11 +36,7 @@
 
 
 $(function() {
-	
-	
-	
-	
-	
+
 	
 ////////////////// code-mirror /////////////////////////////
    var save = false;
@@ -169,7 +165,7 @@ $(function() {
 	});
  	
 var packagePath = null;
-
+var subProblemNo = null;
 var str='<div id="fileInsert"><li>파일 추가</li></div>';
 $(".contextmenu").append(str);
 	
@@ -178,6 +174,7 @@ $(".contextmenu").append(str);
 		$(document).on('click','.problem-packageList',function(e){
  			console.log("click!!",$(this).data("no"));
  			packagePath = $(this).data("no");
+ 			subProblemNo = $(this).data("no2");
  		    //Get window size:
  		    var winWidth = $(document).width();
  		    var winHeight = $(document).height();
@@ -233,8 +230,8 @@ $(".contextmenu").append(str);
  	
  	
  	$(document).on('click','#fileInsert',function(){
- 		console.log("fileInsert!!!"+packagePath);
- 		
+ 		console.log("packagePath!!!"+packagePath);
+ 		console.log("subProblemNo!!!"+subProblemNo);
  		var lang = $(".lang option:selected").val();
  		var fileName = null;
  		$('<div> <input type="text" style="z-index:10000" class="fileName-input"  placeholder='+'.'+lang+' }> </div>')
@@ -258,7 +255,8 @@ $(".contextmenu").append(str);
 						data: {
 							'savePathNo' : packagePath,
 							'language' : lang,
-							'fileName' : fileName
+							'fileName' : fileName,
+							'subProblemNo':subProblemNo
 						},
 						success: function(response) {
 							console.log("응답");				
@@ -403,7 +401,7 @@ $(".contextmenu").append(str);
                         <nav>
                             <ul class='problem-name'>
     					<c:forEach items='${savePathList }' var='vo' varStatus='status'>
-								<li id="problem-packageList" class="problem-packageList" data-no="${vo.no}" ><img src="${pageContext.servletContext.contextPath }/assets/images/package.png"/>${saveVo.title}/${status.index+1}</li>
+								<li id="problem-packageList" class="problem-packageList" data-no="${vo.no}" data-no2="${vo.subProblemNo}"><img src="${pageContext.servletContext.contextPath }/assets/images/package.png"/>${saveVo.title}/${status.index+1}</li>
 								<ul class="contextmenu">
 								</ul>
 						</c:forEach>							
