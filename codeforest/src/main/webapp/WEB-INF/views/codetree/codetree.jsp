@@ -247,6 +247,7 @@ $(".contextmenu").append(str);
 						return;
 					}
 					fileName = filename2;
+					
 					$.ajax({
 						url: '${pageContext.servletContext.contextPath }/api/codetree/fileInsert',
 						async: true,
@@ -264,13 +265,14 @@ $(".contextmenu").append(str);
 								console.log("이미 파일이 존재합니다.");
 								return;
 							}
-							$(".file"+response.data.savePathNo).append("<li>"+response.data.fileName+"</li>")
-							
+							$(".file"+response.data.savePathNo).append("<img src='${pageContext.servletContext.contextPath }/assets/images/file.png'/><li>"+response.data.fileName+"</li>")
+
 						},
 						error: function(xhr, status, e) {
 							console.error(status + ":" + e);
 						}
 					});
+					$(this).dialog("close");
 				},
 				"취소":function(){
 					$(this).dialog("close");
