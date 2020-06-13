@@ -65,20 +65,22 @@ public class CodeTreeController {
 		Long problemNo = codetreeService.findProblemNo(subProblemNo);
 		boolean exist = codetreeService.existFile(fileName); //false면 존재하지 않고 true면 존재한다
 		
+		Map<String,Object> map = new HashMap<>();
+		System.out.println("savePathNo>>"+savePathNo);		
 		if(!exist) {
 			System.out.println("기존 존재하지 않는다");
 			codetreeService.insertFile(savePathNo,language,fileName);
-			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
-			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);			
+//			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
+//			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
+			map.put("fileName", fileName);
+			map.put("savePathNo", savePathNo);
+
 		}else {
 			System.out.println("기존파일이 존재한다");
+			map.put("result", "no");
 		}
-
 		
-		
-
-		
-		return JsonResult.success(null);
+		return JsonResult.success(map);
 	}	
 }
 
