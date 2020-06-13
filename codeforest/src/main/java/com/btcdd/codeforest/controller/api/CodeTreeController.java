@@ -56,9 +56,13 @@ public class CodeTreeController {
 	}
 	
 	@PostMapping("/fileInsert")
-	public JsonResult fileInsert(Long savePathNo) {
+	public JsonResult fileInsert(Long savePathNo,String language,String fileName) {
 		System.out.println("패키지 번호 savePathNo"+savePathNo);
-
+		System.out.println("언어 language"+language);
+		System.out.println("파일이름 객체"+fileName);
+		codetreeService.insertFile(savePathNo,language,fileName);
+		
+		
 		return JsonResult.success(null);
 	}	
 	

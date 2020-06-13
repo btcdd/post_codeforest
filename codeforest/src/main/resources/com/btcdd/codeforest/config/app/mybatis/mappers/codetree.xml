@@ -155,6 +155,9 @@
 			 where problem_no = #{problemNo } and state = 'y'
 		]]>
 	</select>
-
-	
+	<insert id="insertFile" parameterType="hashmap" useGeneratedKeys="true" keyProperty="id">
+		<![CDATA[
+			insert into code values(null,#{savePathNo},#{language},#{fileName});
+		]]>
+	</insert>
 </mapper>
