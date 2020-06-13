@@ -88,7 +88,15 @@ public class TrainingController {
 		return JsonResult.success(map);
 	}
 	
-	
+	@PostMapping("/recommend/origin")
+	public JsonResult recommendOrigin(Long problemNo, HttpSession session) {
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		Map<String, Object> map = trainingService.originRecommend(authUser.getNo(), problemNo);
+
+		return JsonResult.success(map);
+	}
 	
 	
 	

@@ -397,6 +397,20 @@ public class TrainingService {
 		
 		return map;
 	}
+	
+	public Map<String, Object> originRecommend(Long authUserNo, Long problemNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("authUserNo", authUserNo);
+		map.put("problemNo", problemNo);
+		
+		Long check = trainingRepository.checkUserRecommend(map);
+		Long recommend = trainingRepository.selectRecommend(problemNo);
+		
+		map.put("check", check);
+		map.put("recommend", recommend);
+		
+		return map;
+	}
 
 	public void modifyProblem(ProblemVo problemVo) {
 		if(problemVo.getPassword() != null) {
