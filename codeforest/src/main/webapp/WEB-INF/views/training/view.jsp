@@ -39,7 +39,33 @@ var array = new Array();
 
 
 var recommendCheck = function() {
-	var likeButton = document.getElementById('like-button');
+var likeButton = document.getElementById('like-button');
+var linuxSaveCode = function() {
+	
+	$.ajax({
+		url: '${pageContext.request.contextPath }/api/training/linux/savecode',
+		async: false,
+		type: 'post',
+		dataType: 'json',
+		traditional: true,
+		data: {
+			'problemNo': problemNo,
+			'subProblemNoArray': array
+		},
+		success: function(response){
+			if(response.result != "success"){
+				console.error(response.message);
+				return;
+			}
+		},
+		error: function(xhr, status, e){
+			console.error(status + ":" + e);
+		}
+	});
+}
+
+var saveProblem = function() {
+	
 	$.ajax({
 		url: '${pageContext.servletContext.contextPath }/api/training/recommend',
 		async: false,
@@ -48,7 +74,8 @@ var recommendCheck = function() {
 		traditional: true,
 		data: {
 			'problemNo': problemNo,
-		},
+			'subProblemNoArray': array
+		},	
 		success: function(response){
 			if(response.result != "success"){
 				console.error(response.message);
@@ -56,6 +83,9 @@ var recommendCheck = function() {
 			}
 			map = response.data;
 			$('#recommend-num').text(map.recommend);
+			$('#save').text('저장 해제');
+			
+			linuxSaveCode();
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);

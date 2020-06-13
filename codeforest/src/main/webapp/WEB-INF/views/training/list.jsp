@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
     <link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 <script>
 function onKeyDown() {
@@ -26,6 +27,9 @@ var checkValues = new Array();
 var page = '1';
 var category = '';
 var kwd = '';
+var selectTag = '';
+var hashtagText = '';
+var scrollPandan = false;
 
 var originList = function(page, kwd, category) {
 	
@@ -63,19 +67,20 @@ var fetchList = function() {
 	var str = "";
 	for(var i = 0; i < map.list.length;i++){
 		str += '<div class="problem-box" onclick="location.href=' + "'" + '${pageContext.servletContext.contextPath }/training/view/' + map.list[i].no + "'" + '">' +
-		'<div class="problem-no"><a data-no=' + map.list[i].no + '>' + map.list[i].no +'</a></div>' +
+		'<div class="problem-no"><a class="problem-number" data-no=' + map.list[i].no + '>' + map.list[i].no +'</a></div>' +
         '<div class="problem-recommend"><img src="${pageContext.servletContext.contextPath }/assets/images/like.png" class="like" />' + map.list[i].recommend + '</div>' + 
 		'<div class="problem-title" id="title">' + map.list[i].title + '</div>' +
         '<div class="problem-user">' + map.list[i].nickname + '</div>' + 
         '<div class="problem-kind">' + map.list[i].kind + '</div>' + 
 	'</div>';
 	}
-	$(".problems").append(str);
+	$(".problems").append(str).hide();
+	$(".problems").fadeIn(800);
 	
 	var str2 = "<div class='pager'>";
 	
 	if(page != '1'){
-		str2 += '<span class="prev">◀</span>';
+		str2 += '<span class="prev"><i class="fas fa-angle-left"></i></span>';
 	}	
 	for(var i = map.startPageNum; i < map.endPageNum; i++){
 		str2 += '<span class="page" id="' + i + '">';
@@ -88,7 +93,7 @@ var fetchList = function() {
 		str2 += '</span>';
 	}
 	if(map.next){
-		str2 += '<span class="next">▶</span>';
+		str2 += '<span class="next"><i class="fas fa-angle-right"></i></span>';
 	}	 
 	str2 += "</div>";
 		
@@ -151,8 +156,6 @@ $(function() {
 		var prevNo = parseInt(page) - 1;
 		page = String(prevNo);
 		
-		console.log(typeof(page) + " page: " + page + " / " + typeof(prevNo) + ":" + prevNo);
-		
 		levelChecked(page, kwd);
 		
 		nextRemove();
@@ -162,33 +165,79 @@ $(function() {
 		page = $('span b').parent().attr('id');
 		var prevNo = parseInt(page) + 1;
 		page = String(prevNo);
-		console.log(typeof(page) + " page: " + page + " / " + typeof(prevNo) + ":" + prevNo);
 		levelChecked(page, kwd);
 		
 		nextRemove();
 	});
 
 	$('input[name=level]').change(function() {
+		selectTag = $(this).attr('id');
+		var text = $(this).parent().text().trim();
+		var tagStr = '<div class="hashtag" name="' + selectTag + '">#' + text + ' </div>';
 		
 		if($("input[name=level]").is(":checked")) {
+			
+			$('.tag-content').css('margin-bottom', '-140px');
+			
+			if($('#' + selectTag).is(':checked')) {
+				$('#tag-content').append(tagStr);
+				$('.hashtag').hide();
+				$('.hashtag').css('background-color', '#fff');
+				$('.hashtag').css('border', '1.5px #fff solid');
+				$('.hashtag').fadeIn(500);
+				$('.hashtag').css('background-color', '#ffd178');
+				$('.hashtag').css('border', '1.5px #ffd178 solid');
+			} else {
+				$('div[name=' + selectTag + ']').remove();
+			}
 			page = $('span b').parent().attr('id');
 		} else {
+			
+			$('.tag-content').css('margin-bottom', '0');
+			
+			$('div[name=' + selectTag + ']').remove();
+			
 			page = '1';
 			category = '';
 		}
-		
 		levelChecked(page, kwd);
 		
-		disabled('level','organization');
+		disabled('level', 'organization');
 		nextRemove();
 	});
 	
 	$('input[name=organization]').change(function() {
-		page = $('span b').parent().attr('id');
+		selectTag = $(this).attr('id');
+		var text = $(this).parent().text().trim();
+		var tagStr = '<div class="hashtag" name="' + selectTag + '">#' + text + ' </div>';
+		
+		if($("input[name=organization]").is(":checked")) {
+			$('.tag-content').css('margin-bottom', '-140px');
+			
+			if($('#' + selectTag).is(':checked')) {
+				$('#tag-content').append(tagStr);
+				$('.hashtag').hide();
+				$('.hashtag').css('background-color', '#fff');
+				$('.hashtag').css('border', '1.5px #fff solid');
+				$('.hashtag').fadeIn(500);
+				$('.hashtag').css('background-color', '#ffd178');
+				$('.hashtag').css('border', '1.5px #ffd178 solid');
+			} else {
+				$('div[name=' + selectTag + ']').remove();
+			}
+			page = $('span b').parent().attr('id');
+		} else {
+			
+			$('.tag-content').css('margin-bottom', '0');
+			
+			$('div[name=' + selectTag + ']').remove();
+			
+			page = '1';
+			category = '';
+		}
 		levelChecked(page, kwd);
 		
 		disabled('organization','level');
-		
 		nextRemove();
 	});
 	
@@ -211,6 +260,17 @@ $(function() {
 		
 		originList('1', '', '');
 	});
+	
+	$(window).scroll(function() {
+		var height = $(document).scrollTop();
+		
+		if(height < 468) {
+			$('.menu-bar-change').attr('class', 'menu-bar');
+		}
+		if(height >= 468) {
+			$('.menu-bar').attr('class', 'menu-bar-change');
+		}
+	})
 });
 
 
@@ -218,13 +278,14 @@ $(function() {
 </head>
 <body>
     <c:import url="/WEB-INF/views/include/main-header.jsp" />
+    <div class="tag-content" id="tag-content">
+<!--     	<div class="hashtag">#Level1 </div> -->
+    </div>
     <div class="content">
-        <div class="menu-bar">
+        <div class="menu-bar" id="menu-bar">
             <div class="algo">
+            	<div class="algorithm">알고리즘</div>
                 <table>
-                    <tr id="title">
-                        <th>알고리즘</th>
-                    </tr>
                     <tr id="sub">
                         <td><input type="checkbox" id="one" name="level" value="one">
                             <label for="one"><span></span>level 1</label></td>
@@ -248,11 +309,9 @@ $(function() {
                 </table>
             </div>
 
-            <div class="category">
+            <div class="category-content">
+            	<div class="category">분류</div>
                 <table>
-                    <tr id="title">
-                        <th>분류</th>
-                    </tr>
                     <tr id="sub">
                         <td><input type="checkbox" id="enterprise" name="organization" value="enterprise">
                             <label for="enterprise"><span></span>기업</label></td>

@@ -20,7 +20,8 @@ public class TrainingController {
 
 	@Autowired
 	private TrainingService trainingService;  
-
+	
+	private TrainingLinux trainingLinux = new TrainingLinux();
 
 	@PostMapping(value = "/list")
 	public JsonResult originProblemList(String page, String kwd, String category, String[] checkValues) {
@@ -61,8 +62,7 @@ public class TrainingController {
 		trainingService.insertSavePath(subProblemNoArray, saveNo, authUser.getNo(), problemNo);
 		
 		trainingService.insertCode(saveNo);
-		
-		TrainingLinux trainingLinux = new TrainingLinux();
+	
 		trainingLinux.save(authUser.getNo(), problemNo, subProblemNoArray);
 
 		return JsonResult.success(null);
@@ -97,8 +97,14 @@ public class TrainingController {
 
 		return JsonResult.success(map);
 	}
-	
-	
+	@PostMapping("/linux/savecode")
+	public JsonResult linuxSaveCode(Long problemNo, HttpSession session, Long[] subProblemNoArray) {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		trainingLinux.linuxSaveCode(authUser.getNo(), problemNo, subProblemNoArray);
+
+		return JsonResult.success(null);
+	}
 	
 }
 
