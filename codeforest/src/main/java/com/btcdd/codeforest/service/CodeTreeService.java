@@ -147,6 +147,11 @@ public class CodeTreeService {
 		return codetreeRepository.findSubProblemList(problemNo);
 	}
 
+	public boolean insertFile(Long savePathNo, String language, String fileName) {
+		return codetreeRepository.insertFile(savePathNo,language,fileName) == 1;
+		
+	}
+
 	
 
 	

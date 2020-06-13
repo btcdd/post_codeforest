@@ -33,13 +33,20 @@
 <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 
 <script>
+
+
 $(function() {
+	
+	
+	
+	
+	
+	
 ////////////////// code-mirror /////////////////////////////
    var save = false;
    $(".codeTest").submit(function(event) {
       event.preventDefault();
       var lang = $("select option:selected").val();
-      
       var code = editor.getValue();
 
       $.ajax({
@@ -97,6 +104,9 @@ $(function() {
    
    $('.lang').change(function() {
 	   var lang = $(".lang option:selected").val();
+	   
+	   
+	   
 	   var face = '';
 	   
 	   if(lang === 'c') {
@@ -159,6 +169,7 @@ $(function() {
 	});
  	
 var packagePath = null;
+
 var str='<div id="fileInsert"><li>파일 추가</li></div>';
 $(".contextmenu").append(str);
 	
@@ -167,7 +178,6 @@ $(".contextmenu").append(str);
 		$(document).on('click','.problem-packageList',function(e){
  			console.log("click!!",$(this).data("no"));
  			packagePath = $(this).data("no");
- 			/* $(".contextmenu li a").attr('href','${pageContext.request.contextPath }'+packagePath); */
  		    //Get window size:
  		    var winWidth = $(document).width();
  		    var winHeight = $(document).height();
@@ -224,20 +234,52 @@ $(".contextmenu").append(str);
  	
  	$(document).on('click','#fileInsert',function(){
  		console.log("fileInsert!!!"+packagePath);
-		$.ajax({
-			url: '${pageContext.servletContext.contextPath }/api/codetree/fileInsert',
-			async: true,
-			type: 'post',
-			dataType: 'json',
-			data: 'savePathNo='+packagePath,
-			success: function(response) {
-				console.log("응답");				
-			
+ 		
+ 		var lang = $(".lang option:selected").val();
+ 		var fileName = null;
+ 		$('<div> <input type="text" style="z-index:10000" class="fileName-input"  placeholder='+'.'+lang+' }> </div>')
+ 		    .attr("title","파일 추가")
+ 			.dialog({
+ 			modal: true,
+			buttons:{
+				"추가": function(){
+					var filename = $(this).find(".fileName-input").val();
+					var filename2 =filename.replace(/(\s*)/g,""); 
+					if(filename2.split(".").length >2 || filename2.split(".")[1] !=lang || filename2.split(".")[0] ==""){
+						alert("잘못된 형식입니다");
+						return;
+					}
+					fileName = filename2;
+					$.ajax({
+						url: '${pageContext.servletContext.contextPath }/api/codetree/fileInsert',
+						async: true,
+						type: 'post',
+						dataType: 'json',
+						data: {
+							'savePathNo' : packagePath,
+							'language' : lang,
+							'fileName' : fileName
+						},
+						success: function(response) {
+							console.log("응답");				
+						
+						},
+						error: function(xhr, status, e) {
+							console.error(status + ":" + e);
+						}
+					});
+				},
+				"취소":function(){
+					$(this).dialog("close");
+				}
 			},
-			error: function(xhr, status, e) {
-				console.error(status + ":" + e);
-			}
-		}); 		
+			close:function(){}
+ 		}); 		
+ 
+
+
+ 		
+	
  	});
  	
  	
@@ -252,9 +294,6 @@ $(".contextmenu").append(str);
 </script>
 </head>
 <body>
-
-
-
 
     <div class="header">
         <div class='logo'>
@@ -323,7 +362,7 @@ $(".contextmenu").append(str);
         </div>
 
         <div class='code-window'>
-            <div class='navigator'>
+            <div class='navigator'>	            
                 <div class='language-selector'>
                   <select class="lang" name="lang">
                       <option value="c">C</option>
@@ -369,7 +408,9 @@ $(".contextmenu").append(str);
 								</ul>
 						</c:forEach>							
 						
-		
+<!-- 							<form id="fileName-form">
+								<input type="hidden" id="fileName" name="fileName" value=""  />
+							</form> -->
 	
 	
 	                                
@@ -418,6 +459,12 @@ public class Test{
                 	<c:import url="/WEB-INF/views/codetree/terminal2.jsp"></c:import>
                 </div>
             </div>
+            
+            
+			<div id="dialog-message" title="" style="display:none">
+  				<p></p>
+			</div>	            
+            
         </div>
     </div>
     

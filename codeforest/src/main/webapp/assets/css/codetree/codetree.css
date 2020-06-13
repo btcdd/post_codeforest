@@ -389,5 +389,8 @@ hr {
 .contextmenu li:hover a {
   color: #FFFFFF;
 }  
-  
-  
+.problem-packageList:hover{
+	text-decoration: underline;
+	cursor:pointer;
+}
+

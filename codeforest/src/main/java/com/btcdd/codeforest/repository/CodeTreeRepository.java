@@ -81,6 +81,14 @@ public class CodeTreeRepository {
 		return sqlSession.selectList("codetree.findSubProblemList", problemNo);
 	}
 
+	public int insertFile(Long savePathNo, String language, String fileName) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("savePathNo", savePathNo);
+		map.put("language", language);
+		map.put("fileName", fileName);
+		return sqlSession.insert("codetree.insertFile", map);
+	}
+
 
 //	public int getTotalCount(String keyword) {
 //		return sqlSession.selectOne("codetree.totalCount",keyword);
