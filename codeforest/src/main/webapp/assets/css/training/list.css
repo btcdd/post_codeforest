@@ -84,7 +84,7 @@ input[type=text] {
 }
 
 #search {
-    background-color: #FFF1D6;
+    background-color: #dfdfdf;
     border: none;
     color: #6e6e6e;
     padding: 10px 10px;
@@ -95,7 +95,7 @@ input[type=text] {
     font-size: 16px;
     margin: 4px 2px;
     transition-duration: 0.4s;
-    border: 1.5px #FFF1D6 solid;
+    border: 1.5px #dfdfdf solid;
     cursor: pointer;
 }
 
@@ -139,7 +139,7 @@ input[type=text] {
     border: 1px #7A8B9B;
     color: #FCFBF4;
     border-radius: 15px;
-    background-color: #244c1e; 
+    background-color: #2d5f25;
     padding: 2px 9px;
     margin-top: 7px;
 }
