@@ -172,7 +172,7 @@ var saveProblem = function() {
 				console.error(response.message);
 				return;
 			}
-			$('#save-button').addClass('selected');
+			$('#save-button').classList.toggle('selected');
 			linuxSaveCode();
 		},
 		error: function(xhr, status, e){
