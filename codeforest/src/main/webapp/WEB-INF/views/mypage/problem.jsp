@@ -15,7 +15,87 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/table2excel.js"></script>
 <script>
+
+var page = '1';
+
+var originList = function() {
+	$.ajax({
+		url: '${pageContext.request.contextPath }/api/mypage/problem',
+		async: false,
+		type: 'post',
+		dataType: 'json',
+		traditional: true,
+		data: {
+			'page': page,
+		},
+		success: function(response){
+			if(response.result != "success"){
+				console.error(response.message);
+				return;
+			}
+			map = response.data;
+			
+			fetchList();
+		},
+		error: function(xhr, status, e){
+			console.error(status + ":" + e);
+		}
+	});
+}
+
+var fetchList = function() {
+    $("#list-contents").remove();
+	$("#pager").remove();
+	
+	var str = "";
+	for(var i = 0; i < map.list.length; i++){
+		str += '<tr class="list-contents" id="list-contents" data-no="' + map.list[i].no + '">' + 
+	    		   '<td><a data-no="' + map.list[i].no + '">' + map.list[i].no + '</a></td>' + 
+	               '<td class="problem-title" data-no="' + map.list[i].no + '" style="text-align: left">' + map.list[i].title + '</td>' + 
+	               '<td>' + map.list[i].hit + '</td>' + 
+	               '<td>' + map.list[i].recommend + '</td>' + 
+	               '<td><a href="${pageContext.servletContext.contextPath }/training/modify/' + map.list[i].no + '"><button id="modify-btn">수정하기</button></a></td>' + 
+	          	   '<td><input data-no="' + map.list[i].no + '" data-title="' + map.list[i].title + '" type="button" alt="list" class="list" value="내보내기"></td>' + 
+	               '<td><input data-no="' + map.list[i].no + '" type="button" alt="delete" class="delete" value="삭제"></td>' + 
+    	   		'</tr>' + 
+    			'<tr class="sub-problem-contents' + map.list[i].no + '">' + 
+    				'<td></td>' + 
+        			'<td colspan="5">' + 
+            			'<table id="sub-problem-table" class="' + map.list[i].no + '" style="display: none;">' + 
+            				'<tbody class="sub-problem-tbody"></tbody>' + 
+            			'</table>' + 
+        			'</td>' + 
+       			'</tr>';
+	}
+	$("#problem-tbody").append(str);
+	
+	var str2 = '<div class="pager" id="pager">';
+	
+	if(page != '1'){
+		str2 += '<span>이전</span>';
+	}	
+	for(var i = map.startPageNum; i < map.endPageNum; i++){
+		str2 += '<span class="page" id="' + i + '">';
+		if(map.select != i ) {
+			str2 += i;
+		}
+		if(map.select == i){
+			str2 += '<b>'+i+'</b>';
+		}
+		str2 += '</span>';
+	}
+	if(map.next){
+		str2 += '<span class="next">다음</span>';
+	}	 
+	str2 += "</div>";
+		
+	$(".quiz-table").after(str2);
+}
+
 $(function() {
+	
+	originList();
+	
 	var dialogDelete = $("#dialog-delete").dialog({
 		autoOpen: false,
 		resizable: false,
@@ -221,7 +301,6 @@ $(function() {
 		$('#hidden-table-class').val(tableClass);
 		dialogSpDelete.dialog('open');
 	});
-	
 });
 </script>
     
@@ -248,58 +327,11 @@ $(function() {
 	                </tr>
                 </thead>
                 <tbody id="problem-tbody">
-	              	<c:forEach items='${map.list }' var='problemvo' varStatus='status'>
-	                	<tr class="list-contents" data-no="${problemvo.no }">
-	                		<td><a data-no="${problemvo.no }">${problemvo.no }</a></td>
-		                    <td class="problem-title" data-no="${problemvo.no }" style="text-align: left">${problemvo.title }</td>
-		                    <td>${problemvo.hit }</td>
-		                    <td>${problemvo.recommend }</td>
-		                    <td><a href="${pageContext.servletContext.contextPath }/training/modify/${problemvo.no }"><button id="modify-btn">수정하기</button></a></td>
-	                      	<td><input data-no="${problemvo.no }" data-title="${problemvo.title }" type="button" alt="list" class="list" value="내보내기"></td>
-		                    <td><input data-no="${problemvo.no }" type="button" alt="delete" class="delete" value="삭제"></td>
-	                	</tr>
-	                	
-	                	<tr class="sub-problem-contents${problemvo.no }">
-	                		<td></td>
-		                	<td colspan="5">
-			                	<table id="sub-problem-table" class="${problemvo.no }" style="display: none;">
-			                		<tbody class="sub-problem-tbody">
-			                		
-			                		</tbody>
-			                	</table>
-		                	</td>
-		               	</tr>	
-	                </c:forEach>
                 </tbody>
                 
             </table>
 				
-				
-				
-				<!-- pager 추가 -->
-				<div class="pager">
-					<c:if test="${map.prev }">
-						<span>[ <a href="${pageContext.request.contextPath }/mypage/problem?p=${map.startPageNum -1}">이전</a> ]</span>
-					</c:if>				
-					
-					<c:forEach begin="${map.startPageNum }" end="${map.endPageNum }" var="page">
-						<span>
-							<c:if test="${map.select != page }">
-								<a href="${pageContext.request.contextPath }/mypage/problem?p=${page}">${page}</a>
-							</c:if>
-							
-							<c:if test="${map.select == page }">
-								<b>${page }</b>
-							</c:if>
-						</span>
-					</c:forEach>
-						
-					<c:if test="${map.next }">
-						<span>[ <a href="${pageContext.request.contextPath }/mypage/problem?p=${map.endPageNum +1}">다음</a> ]</span>
-					</c:if>											
-				</div>
-				<!-- pager 추가 -->           
-            
+			<!-- pager 추가 -->      
             
             <br>
         </div>

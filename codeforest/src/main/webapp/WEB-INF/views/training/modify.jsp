@@ -161,7 +161,6 @@ $(function() {
 		// 추가된 문제에 CKEditor 적용
 // 		CKEDITOR.replace('prob-content-text' + index);
 
-
 		index++;
 	});
 
