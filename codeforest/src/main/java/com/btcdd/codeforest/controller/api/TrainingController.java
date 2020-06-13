@@ -88,6 +88,15 @@ public class TrainingController {
 		return JsonResult.success(map);
 	}
 	
+	@PostMapping("/recommend/origin")
+	public JsonResult recommendOrigin(Long problemNo, HttpSession session) {
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		Map<String, Object> map = trainingService.originRecommend(authUser.getNo(), problemNo);
+
+		return JsonResult.success(map);
+	}
 	@PostMapping("/linux/savecode")
 	public JsonResult linuxSaveCode(Long problemNo, HttpSession session, Long[] subProblemNoArray) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
@@ -96,10 +105,6 @@ public class TrainingController {
 
 		return JsonResult.success(null);
 	}
-	
-	
-	
-	
 	
 }
 

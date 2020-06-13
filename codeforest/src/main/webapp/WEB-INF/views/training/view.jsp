@@ -14,11 +14,32 @@
 <link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
-<%-- <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/ckeditor/contents.css"> --%>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+	  var likeButton = document.getElementById('like-button');
+	  likeButton.addEventListener('click', function() {
+	    window.lb = likeButton;
+		likeButton.classList.toggle('selected');
+	    recommendCheck();
+	  });
+}, false);
+
+document.addEventListener('DOMContentLoaded', function() {
+	  var saveButton = document.getElementById('save-button');
+	  saveButton.addEventListener('click', function() {
+	    window.lb = likeButton;
+	    saveButton.classList.toggle('selected');
+	  });
+}, false);
+
+
 var problemNo = '${problemVo.no}';
 var array = new Array();
 
+
+var recommendCheck = function() {
+var likeButton = document.getElementById('like-button');
 var linuxSaveCode = function() {
 	
 	$.ajax({
@@ -46,7 +67,7 @@ var linuxSaveCode = function() {
 var saveProblem = function() {
 	
 	$.ajax({
-		url: '${pageContext.request.contextPath }/api/training/save/problem',
+		url: '${pageContext.servletContext.contextPath }/api/training/recommend',
 		async: false,
 		type: 'post',
 		dataType: 'json',
@@ -60,6 +81,8 @@ var saveProblem = function() {
 				console.error(response.message);
 				return;
 			}
+			map = response.data;
+			$('#recommend-num').text(map.recommend);
 			$('#save').text('저장 해제');
 			
 			linuxSaveCode();
@@ -68,11 +91,12 @@ var saveProblem = function() {
 			console.error(status + ":" + e);
 		}
 	});
-}
+};
 
-var recommendCheck = function() {
+var originRecommend = function() {
+	var likeButton = document.getElementById('like-button');
 	$.ajax({
-		url: '${pageContext.servletContext.contextPath }/api/training/recommend',
+		url: '${pageContext.servletContext.contextPath }/api/training/recommend/origin',
 		async: false,
 		type: 'post',
 		dataType: 'json',
@@ -86,8 +110,10 @@ var recommendCheck = function() {
 				return;
 			}
 			map = response.data;
-			
-			$('#recommend').text('추천 ' + map.recommend);
+			if(map.check > 0) {
+				$('#like-button').addClass('selected');
+			}
+			$('#recommend-num').text(map.recommend);
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
@@ -122,6 +148,31 @@ var savePandan = function() {
 	});
 };
 
+var saveProblem = function() {
+	
+	$.ajax({
+		url: '${pageContext.request.contextPath }/api/training/save/problem',
+		async: false,
+		type: 'post',
+		dataType: 'json',
+		traditional: true,
+		data: {
+			'problemNo': problemNo,
+			'subProblemNoArray': array
+		},
+		success: function(response){
+			if(response.result != "success"){
+				console.error(response.message);
+				return;
+			}
+			$('#save').text('저장 해제');
+		},
+		error: function(xhr, status, e){
+			console.error(status + ":" + e);
+		}
+	});
+}
+
 var deleteProblem = function() {
 	$.ajax({
 		url: '${pageContext.servletContext.contextPath }/api/training/delete',
@@ -150,10 +201,13 @@ var deleteProblem = function() {
 };
 
 $(function() {
+	originRecommend();
 	
 	savePandan();
 	
 	var no;
+	
+	$(".open1").show();
 	
 	$(".problem").click(function() {
 		no = $(this).children().attr("id");
@@ -179,8 +233,7 @@ $(function() {
       });
    });
 	
-	
-	$('#save').click(function() {
+	$('#save-button').click(function() {
 		if($(this).text() == '저장') {
 			saveProblem();
 		} else {
@@ -193,9 +246,6 @@ $(function() {
 		array.push(subProblemNo);
 	}
 	
-	$('#recommend').click(function() {
-		recommendCheck();
-	});
 });
 </script>
 </head>
@@ -204,25 +254,41 @@ $(function() {
     <c:import url="/WEB-INF/views/include/main-header.jsp" />
     <div class="container">
         <div class="top">
-            <p class="division">${problemVo.no }</p>
-            <p>${problemVo.title }</p>
-			<p>조회수</p><p>${problemVo.hit + 1}</p>
-            <button id="save"></button>
-            <button id="code-tree">코드 트리로 가져오기</button>
-            <a href="${pageContext.servletContext.contextPath }/training/statistics/${problemVo.no }"><button>통계</button></a>
-            <button id="recommend">추천 ${problemVo.recommend }</button>
+            <p class="no">${problemVo.no }</p>
+            <div class="problem-title">${problemVo.title }</div>
+            <div class="save-div">
+	            <button type="button" id="save-button">
+	            <i class="fas fa-save"></i>
+				  저장
+				</button>
+            </div>
+            <div class="recommend-div">
+            <button type="button" id="like-button">
+            	<i class="fas fa-heart"></i>
+			  추천<p id="recommend-num">${problemVo.recommend }</p>
+			</button>
+            </div>
         </div>
-        
+        <div class="second-block">
+        	<div style="display: inline-block">
+	            <a href="${pageContext.servletContext.contextPath }/training/statistics/${problemVo.no }"><button>통계</button></a>
+        	</div>
+        	<div style="display: inline-block;     ">
+	        	<p class="problem-hit">조회수 ${problemVo.hit + 1}</p>
+        	</div>
+        </div>
         <div class="problem-list">
         	<c:forEach items='${list }' var='vo' step='1' varStatus='status'>
 				<div class="problem">
 					<div class="pro pro${status.index + 1}" id="${status.index + 1}">
-						<p class="division">문제 ${status.index + 1} - 고유번호 ${vo.no }</p>
-						<input class="sub${status.index }" type="hidden" value="${vo.no }" />
-						<p id="click">${vo.title }</p>
-						<a href="${pageContext.servletContext.contextPath }/training/answerlist/${status.index + 1}/${vo.no}"><button>맞은 사람</button></a>
+						<div class="top-prob">
+							<p class="division">문제 ${status.index + 1} - 고유번호 ${vo.no }</p>
+							<input class="sub${status.index }" type="hidden" value="${vo.no }" />
+							<p id="click">${vo.title }</p>
+							<a href="${pageContext.servletContext.contextPath }/training/answerlist/${status.index + 1}/${vo.no}"><button>맞은 사람</button></a>
+						</div>
 						
-						<div class="open${status.index + 1}">
+						<div class="open${status.index + 1}" style="display:none">
 							<div class="explain">
 								<p>${vo.contents }</p>
 							</div>

@@ -59,6 +59,7 @@ body{
 }
 
 #join-form{
+	font-family: Roboto,Helvetica Neue,sans-serif;
     height: 265px;
     width:350px;
     margin-left: auto;
