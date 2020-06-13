@@ -16,13 +16,14 @@ body {
 .menu-bar {
     float: left;
     position: fixed;
+    margin-top: -70px;
 }
 
 .algo {
     padding: 80px 0;
 }
 
-.category {
+.category-content {
     width: 100%;
 }
 
@@ -101,12 +102,12 @@ input[type=text] {
 
 .list {
     width: 80%;
-    margin-top: 10%;
+    margin-top: 140px;
     margin-right: auto;
     margin-bottom: 7%;
     margin-left: 4%;
     padding-left: 130px;
-    height: 1600px;
+    height: 1100px;
 }
 
 .problem-box {
@@ -133,7 +134,7 @@ input[type=text] {
     border: 1px #7A8B9B;
     color: #FCFBF4;
     border-radius: 15px;
-    background-color: #7A8B9B; 
+    background-color: #244c1e; 
     padding: 2px 9px;
     margin-top: 7px;
 }
@@ -196,7 +197,7 @@ input[type=text] {
 }
 
 .make-problem {
-    background-color: #7A8B9B;
+    background-color: #979383;
     border: none;
     color: #fff;
     padding: 10px 10px;
@@ -207,7 +208,7 @@ input[type=text] {
     font-size: 16px;
     margin: 4px 2px 4px 17.5%;
     transition-duration: 0.4s;
-    border: 1.5px #7A8B9B solid;
+    border: 1.5px #979383 solid;
     cursor: pointer;
 }
 
@@ -218,7 +219,7 @@ input[type=text] {
 }
 
 .reset {
-    background-color: #7A8B9B;
+    background-color: #979383;
     border: none;
     color: #fff;
     padding: 10px 10px;
@@ -229,7 +230,7 @@ input[type=text] {
     font-size: 16px;
     margin: 4px 2px 4px 20px;
     transition-duration: 0.4s;
-    border: 1.5px #7A8B9B solid;
+    border: 1.5px #979383 solid;
     cursor: pointer;
 }
 
@@ -249,7 +250,6 @@ input[type=text] {
 .footer {
     display: flow-root;
 	margin: auto;
-	
 	padding: 60px 0;
 	left: 0;
 	bottom: 0;
@@ -258,4 +258,26 @@ input[type=text] {
 	color: #3C3C3C;
 	text-align: center;
 	border-top: 1px solid #BFBFBf
+}
+
+.problem-number {
+	color: #fff;
+}
+
+.algorithm, .category {
+	background-color: #fff;
+    color: #777;
+    border-radius: 10px;
+    border: 1px solid #b2b2b2;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 4px 0;
+}
+
+.hashtag {
+}
+
+.tag-content {
+	margin-top: 100px;
+	margin-left: 650px;
 }
