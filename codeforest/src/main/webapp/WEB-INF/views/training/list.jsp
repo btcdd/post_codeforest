@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
     <link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 <script>
 function onKeyDown() {
@@ -28,6 +29,7 @@ var category = '';
 var kwd = '';
 var selectTag = '';
 var hashtagText = '';
+var scrollPandan = false;
 
 var originList = function(page, kwd, category) {
 	
@@ -78,7 +80,7 @@ var fetchList = function() {
 	var str2 = "<div class='pager'>";
 	
 	if(page != '1'){
-		str2 += '<span class="prev">◀</span>';
+		str2 += '<span class="prev"><i class="fas fa-angle-left"></i></span>';
 	}	
 	for(var i = map.startPageNum; i < map.endPageNum; i++){
 		str2 += '<span class="page" id="' + i + '">';
@@ -91,7 +93,7 @@ var fetchList = function() {
 		str2 += '</span>';
 	}
 	if(map.next){
-		str2 += '<span class="next">▶</span>';
+		str2 += '<span class="next"><i class="fas fa-angle-right"></i></span>';
 	}	 
 	str2 += "</div>";
 		
@@ -258,6 +260,17 @@ $(function() {
 		
 		originList('1', '', '');
 	});
+	
+	$(window).scroll(function() {
+		var height = $(document).scrollTop();
+		
+		if(height < 468) {
+			$('.menu-bar-change').attr('class', 'menu-bar');
+		}
+		if(height >= 468) {
+			$('.menu-bar').attr('class', 'menu-bar-change');
+		}
+	})
 });
 
 
@@ -269,7 +282,7 @@ $(function() {
 <!--     	<div class="hashtag">#Level1 </div> -->
     </div>
     <div class="content">
-        <div class="menu-bar">
+        <div class="menu-bar" id="menu-bar">
             <div class="algo">
             	<div class="algorithm">알고리즘</div>
                 <table>
