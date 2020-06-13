@@ -10,7 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Code Forest</title>
 <link href="${pageContext.servletContext.contextPath }/assets/css/training/statistics.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.servletContext.contextPath }/assets/css/training/header.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
+<link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 </head>
@@ -100,5 +101,6 @@
 	            </table>
 	        </div>
 	    </div>
+	    <c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>
