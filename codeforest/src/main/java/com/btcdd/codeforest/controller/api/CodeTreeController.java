@@ -58,14 +58,13 @@ public class CodeTreeController {
 	
 	@Auth
 	@PostMapping("/fileInsert")
-	public JsonResult fileInsert(Long savePathNo,String language,String fileName, HttpSession session) {
-		
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		
+	public JsonResult fileInsert(Long savePathNo,String language,String fileName,Long subProblemNo) {
 		System.out.println("패키지 번호 savePathNo"+savePathNo);
 		System.out.println("언어 language"+language);
-		System.out.println("파일이름"+fileName);
-		codetreeService.insertFile(savePathNo, language, fileName);
+		System.out.println("파일이름 "+fileName);
+		System.out.println("subProblemNo "+subProblemNo);
+		codetreeService.insertFile(savePathNo,language,fileName);
+
 		
 //		CodeTreeLinux codetreeLinux = new CodeTreeLinux();
 //		
