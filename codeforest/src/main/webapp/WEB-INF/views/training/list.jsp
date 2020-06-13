@@ -185,8 +185,8 @@ $(function() {
 				$('.hashtag').css('background-color', '#fff');
 				$('.hashtag').css('border', '1.5px #fff solid');
 				$('.hashtag').fadeIn(500);
-				$('.hashtag').css('background-color', '#ffe140');
-				$('.hashtag').css('border', '1.5px #ffe140 solid');
+				$('.hashtag').css('background-color', '#ffd178');
+				$('.hashtag').css('border', '1.5px #ffd178 solid');
 			} else {
 				$('div[name=' + selectTag + ']').remove();
 			}
@@ -220,8 +220,8 @@ $(function() {
 				$('.hashtag').css('background-color', '#fff');
 				$('.hashtag').css('border', '1.5px #fff solid');
 				$('.hashtag').fadeIn(500);
-				$('.hashtag').css('background-color', '#ffe140');
-				$('.hashtag').css('border', '1.5px #ffe140 solid');
+				$('.hashtag').css('background-color', '#ffd178');
+				$('.hashtag').css('border', '1.5px #ffd178 solid');
 			} else {
 				$('div[name=' + selectTag + ']').remove();
 			}
