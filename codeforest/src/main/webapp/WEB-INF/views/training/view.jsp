@@ -37,6 +37,29 @@ document.addEventListener('DOMContentLoaded', function() {
 var problemNo = '${problemVo.no}';
 var array = new Array();
 
+var linuxSaveCode = function() {
+	
+	$.ajax({
+		url: '${pageContext.request.contextPath }/api/training/linux/savecode',
+		async: false,
+		type: 'post',
+		dataType: 'json',
+		traditional: true,
+		data: {
+			'problemNo': problemNo,
+			'subProblemNoArray': array
+		},
+		success: function(response){
+			if(response.result != "success"){
+				console.error(response.message);
+				return;
+			}
+		},
+		error: function(xhr, status, e){
+			console.error(status + ":" + e);
+		}
+	});
+}
 
 var recommendCheck = function() {
 	var likeButton = document.getElementById('like-button');
@@ -136,6 +159,7 @@ var saveProblem = function() {
 				return;
 			}
 			$('#save').text('저장 해제');
+			linuxSaveCode();
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
