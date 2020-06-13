@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
   	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/table2excel.js"></script>
 <script>
 
@@ -72,7 +73,7 @@ var fetchList = function() {
 	var str2 = '<div class="pager" id="pager">';
 	
 	if(page != '1'){
-		str2 += '<span>이전</span>';
+		str2 += '<span class="prev"><i class="fas fa-angle-left"></i></span>';
 	}	
 	for(var i = map.startPageNum; i < map.endPageNum; i++){
 		str2 += '<span class="page" id="' + i + '">';
@@ -85,7 +86,7 @@ var fetchList = function() {
 		str2 += '</span>';
 	}
 	if(map.next){
-		str2 += '<span class="next">다음</span>';
+		str2 += '<span class="next"><i class="fas fa-angle-right"></i></span>';
 	}	 
 	str2 += "</div>";
 		
