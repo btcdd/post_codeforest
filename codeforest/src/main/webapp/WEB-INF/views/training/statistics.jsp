@@ -33,12 +33,12 @@
 	                <h4>문제 통계</h4>
 	            </div>
 	            <br />
-	            <table>
+	            <table id="statistics-table">
 	                <thead>
 	                    <tr>
 	                        <th></th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<th>문제 ${status.index+1 }</th>	                        
+								<th>문제 ${status.index+1 }</th>
 	                        </c:forEach>
 	                    </tr>
 	                </thead>
@@ -46,31 +46,31 @@
 	                    <tr>
 	                        <th>맞았습니다</th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<td>${vo.y }</td>	                        
+								<td>${vo.y }</td>
 	                        </c:forEach>
 	                    </tr>
 	                    <tr>
 	                        <th>틀렸습니다</th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<td>${vo.n }</td>	                        
+								<td>${vo.n }</td>
 	                        </c:forEach>
 	                    </tr>
 	                    <tr>
 	                        <th>C</th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<td>${vo.c }</td>	                        
+								<td>${vo.c }</td>
 	                        </c:forEach>
 	                    </tr>
 	                    <tr>
 	                        <th>C++</th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<td>${vo.cpp }</td>	                        
+								<td>${vo.cpp }</td>
 	                        </c:forEach>
 	                    </tr>
 	                    <tr>
 	                        <th>C#</th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<td>${vo.cs }</td>	                        
+								<td>${vo.cs }</td>
 	                        </c:forEach>
 	                    </tr>
 	                    <tr>
