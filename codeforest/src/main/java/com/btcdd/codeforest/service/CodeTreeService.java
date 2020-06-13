@@ -152,6 +152,10 @@ public class CodeTreeService {
 		
 	}
 
+	public boolean existFile(String fileName) {
+		return codetreeRepository.findByFileName(fileName) != null;
+	}
+
 	
 
 	

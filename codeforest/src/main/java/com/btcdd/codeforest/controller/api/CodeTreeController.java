@@ -61,7 +61,19 @@ public class CodeTreeController {
 		System.out.println("언어 language"+language);
 		System.out.println("파일이름 "+fileName);
 		System.out.println("subProblemNo "+subProblemNo);
-		codetreeService.insertFile(savePathNo,language,fileName);
+		
+		boolean exist = codetreeService.existFile(fileName); //false면 존재하지 않고 true면 존재한다
+		System.out.println("exist>>>"+exist);
+		if(!exist) {
+			System.out.println("기존 존재하지 않는다");
+			codetreeService.insertFile(savePathNo,language,fileName);
+		}else {
+			System.out.println("기존파일이 존재한다");
+		}
+		
+		
+		
+
 		
 		
 		return JsonResult.success(null);

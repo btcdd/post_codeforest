@@ -160,4 +160,17 @@
 			insert into code values(null,#{savePathNo},#{language},#{fileName});
 		]]>
 	</insert>
+	
+	<select id="findByFileName" parameterType="string" resultType="codevo">
+		<![CDATA[
+			select 
+				*
+			from code 
+			where file_name = #{fileName}
+			 
+		]]>
+	</select>	
+	
+	
+	
 </mapper>
