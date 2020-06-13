@@ -9,14 +9,19 @@ body {
 }
 
 .content {
-    width: 80vw;
     margin-left: 23%;
 }
 
 .menu-bar {
     float: left;
-    position: fixed;
     margin-top: -70px;
+    position: fixed;
+}
+
+.menu-bar-change {
+	float: left;
+    margin-top: 392px;
+    position: relative;
 }
 
 .algo {
@@ -181,7 +186,7 @@ input[type=text] {
     margin-top: 2.5%;
     margin-right: 0;
     margin-bottom: 0;
-    margin-left: 4%;
+    margin-left: 2.6%;
     text-align: center;
     cursor: pointer;
 }
@@ -292,4 +297,13 @@ input[type=text] {
 .tag-content {
 	margin-top: 120px;
 	margin-left: 650px;
+}
+
+.prev, .page, .next {
+	position: relative;
+    display: inline-block;
+    padding: .53125rem .84375rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #90929e;
 }
