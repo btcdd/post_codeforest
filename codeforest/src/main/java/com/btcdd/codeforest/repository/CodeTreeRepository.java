@@ -89,6 +89,10 @@ public class CodeTreeRepository {
 		return sqlSession.insert("codetree.insertFile", map);
 	}
 
+
+	public CodeVo findByFileName(String fileName) {
+		return sqlSession.selectOne("codetree.findByFileName",fileName);
+  }
 	public Long findProblemNo(Long subProblemNo) {
 		return sqlSession.selectOne("codetree.findProblemNo", subProblemNo);
 	}

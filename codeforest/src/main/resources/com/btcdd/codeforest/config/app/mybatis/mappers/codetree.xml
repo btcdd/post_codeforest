@@ -161,6 +161,20 @@
 		]]>
 	</insert>
 	
+
+	<select id="findByFileName" parameterType="string" resultType="codevo">
+		<![CDATA[
+			select 
+				*
+			from code 
+			where file_name = #{fileName}
+			 
+		]]>
+	</select>	
+	
+	
+	
+
 	<select id="findProblemNo" parameterType="long" resultType="long">
 		<![CDATA[
 			select problem_no
@@ -168,4 +182,5 @@
 			 where no = #{subProblemNo }
 		]]>
 	</select>
+
 </mapper>

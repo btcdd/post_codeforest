@@ -58,14 +58,23 @@ public class CodeTreeController {
 	
 	@Auth
 	@PostMapping("/fileInsert")
-	public JsonResult fileInsert(Long savePathNo, String language, String fileName, Long subProblemNo, HttpSession session) {
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
+
+	public JsonResult fileInsert(Long savePathNo,String language,String fileName,Long subProblemNo, HttpSession session) {
+    UserVo authUser = (UserVo)session.getAttribute("authUser");
+		System.out.println("패키지 번호 savePathNo"+savePathNo);
+		System.out.println("언어 language"+language);
+		System.out.println("파일이름 "+fileName);
+		System.out.println("subProblemNo "+subProblemNo);
 		
-		System.out.println("패키지 번호 savePathNo:"+savePathNo);
-		System.out.println("언어 language:"+language);
-		System.out.println("파일이름 :"+fileName);
-		System.out.println("subProblemNo:"+subProblemNo);
-		codetreeService.insertFile(savePathNo,language,fileName);
+		boolean exist = codetreeService.existFile(fileName); //false면 존재하지 않고 true면 존재한다
+		System.out.println("exist>>>"+exist);
+		if(!exist) {
+			System.out.println("기존 존재하지 않는다");
+			codetreeService.insertFile(savePathNo,language,fileName);
+		}else {
+			System.out.println("기존파일이 존재한다");
+		}
+
 		
 		Long problemNo = codetreeService.findProblemNo(subProblemNo);
 		
