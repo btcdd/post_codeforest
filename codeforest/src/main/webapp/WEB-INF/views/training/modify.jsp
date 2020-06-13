@@ -134,18 +134,6 @@ var fetchList = function() {
 		$(".privateAndPassword").append(privateStr);
 	}
 	
-	
-	for(var i = 0; i < index; i++) {
-		// 정답 코드 텍스트에 코드 미러 적용!
-		var code = $('#code' + i)[0];
-		var editor = CodeMirror.fromTextArea(code, {
-			lineNumbers : true,
-			mode : 'text/x-java',
-			theme : 'panda-syntax',
-			matchBrackets : true
-		});
-		$(".prob" + i).hide();
-	}
 	$('.prob0').show();
 	$('#0').attr('name', 'selected');
 }
@@ -156,12 +144,6 @@ $(function() {
 	
 	// 추가된 문제에 코드 미러 적용
 	var code = $('#code0')[0];
-	var editor = CodeMirror.fromTextArea(code, {
-		lineNumbers : true,
-		mode : 'text/x-java',
-		theme : 'panda-syntax',
-		matchBrackets : true
-	});
 	
 	$('#addSubProblem').click(function() {
 		event.preventDefault();
@@ -179,14 +161,6 @@ $(function() {
 		// 추가된 문제에 CKEditor 적용
 // 		CKEDITOR.replace('prob-content-text' + index);
 
-		// 추가된 문제에 코드 미러 적용
-		var code = $('#code' + index)[0];
-		var editor = CodeMirror.fromTextArea(code, {
-			lineNumbers : true,
-			mode : 'text/x-java',
-			theme : 'panda-syntax',
-			matchBrackets : true
-		});
 
 		index++;
 	});
