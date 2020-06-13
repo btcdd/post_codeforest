@@ -73,7 +73,7 @@ var fetchList = function() {
 	'</div>';
 	}
 	$(".problems").append(str).hide();
-	$(".problems").fadeIn(1000);
+	$(".problems").fadeIn(800);
 	
 	var str2 = "<div class='pager'>";
 	
@@ -174,13 +174,25 @@ $(function() {
 		var tagStr = '<div class="hashtag" name="' + selectTag + '">#' + text + ' </div>';
 		
 		if($("input[name=level]").is(":checked")) {
+			
+			$('.tag-content').css('margin-bottom', '-140px');
+			
 			if($('#' + selectTag).is(':checked')) {
 				$('#tag-content').append(tagStr);
+				$('.hashtag').hide();
+				$('.hashtag').css('background-color', '#fff');
+				$('.hashtag').css('border', '1.5px #fff solid');
+				$('.hashtag').fadeIn(500);
+				$('.hashtag').css('background-color', '#ffe140');
+				$('.hashtag').css('border', '1.5px #ffe140 solid');
 			} else {
 				$('div[name=' + selectTag + ']').remove();
 			}
 			page = $('span b').parent().attr('id');
 		} else {
+			
+			$('.tag-content').css('margin-bottom', '0');
+			
 			$('div[name=' + selectTag + ']').remove();
 			
 			page = '1';
@@ -195,18 +207,28 @@ $(function() {
 	$('input[name=organization]').change(function() {
 		selectTag = $(this).attr('id');
 		var text = $(this).parent().text().trim();
+		var tagStr = '<div class="hashtag" name="' + selectTag + '">#' + text + ' </div>';
 		
 		if($("input[name=organization]").is(":checked")) {
+			$('.tag-content').css('margin-bottom', '-140px');
+			
 			if($('#' + selectTag).is(':checked')) {
-				$('#hashtag').append('#' + text + ' ');
+				$('#tag-content').append(tagStr);
+				$('.hashtag').hide();
+				$('.hashtag').css('background-color', '#fff');
+				$('.hashtag').css('border', '1.5px #fff solid');
+				$('.hashtag').fadeIn(500);
+				$('.hashtag').css('background-color', '#ffe140');
+				$('.hashtag').css('border', '1.5px #ffe140 solid');
 			} else {
-				hashtagText = $('#hashtag').text();
-				$('#hashtag').text(hashtagText.replace('#' + text, ''));
+				$('div[name=' + selectTag + ']').remove();
 			}
 			page = $('span b').parent().attr('id');
 		} else {
-			hashtagText = $('#hashtag').text();
-			$('#hashtag').text(hashtagText.replace('#' + text, ''));
+			
+			$('.tag-content').css('margin-bottom', '0');
+			
+			$('div[name=' + selectTag + ']').remove();
 			
 			page = '1';
 			category = '';
