@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+	pageContext.setAttribute("newLine", "\n");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -264,10 +267,10 @@ $(function() {
 				</button>
             </div>
             <div class="recommend-div">
-            <button type="button" id="like-button">
-            	<i class="fas fa-heart"></i>
-			  추천<p id="recommend-num">${problemVo.recommend }</p>
-			</button>
+	            <button type="button" id="like-button">
+	            	<i class="fas fa-heart"></i>
+				  추천<p id="recommend-num">${problemVo.recommend }</p>
+				</button>
             </div>
         </div>
         <div class="second-block">
@@ -280,10 +283,15 @@ $(function() {
 				<div class="problem">
 					<div class="pro pro${status.index + 1}" id="${status.index + 1}">
 						<div class="top-prob">
-							<p class="division">문제 ${status.index + 1} - 고유번호 ${vo.no }</p>
+							<div class="subProblemIndex">${status.index + 1 }</div>
+							<div class="subProblemNo"># ${vo.no }</div>
 							<input class="sub${status.index }" type="hidden" value="${vo.no }" />
-							<p id="click">${vo.title }</p>
-							<a href="${pageContext.servletContext.contextPath }/training/answerlist/${status.index + 1}/${vo.no}"><button>맞은 사람</button></a>
+							<div class="subProblemTitle" id="click">${vo.title }</div>
+							<div class="correct-person">
+					            <button type="button" id="correct-person-button" onClick="location.href='${pageContext.servletContext.contextPath }/training/answerlist/${status.index + 1}/${vo.no}'">
+								  	맞은 사람
+								</button>
+				            </div>
 						</div>
 						
 						<div class="open${status.index + 1}" style="display:none">

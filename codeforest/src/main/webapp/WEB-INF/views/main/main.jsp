@@ -138,7 +138,14 @@ $(function() {
 			<p>쉽고 간단하게</p>
 			<p class="end">코딩을 시작해보세요</p>
 		</div>
-		<a  class="join-btn" href="${pageContext.request.contextPath }/user/login">Get Started</a>
+		<c:choose>
+			<c:when test="${empty authUser }">
+				<a  class="join-btn" href="${pageContext.request.contextPath }/user/login">Get Started</a>
+			</c:when>
+			<c:otherwise>
+				<a  class="join-btn" href="${pageContext.request.contextPath }/codetree/list">Get Started</a>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<div class="codeTest">
         <form action="" method="post">
