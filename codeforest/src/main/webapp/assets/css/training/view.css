@@ -32,12 +32,15 @@ body {
     background-color: #EDEDEE;
     border-radius: 15px;
     padding: 2px 10px;
-    margin-left: 2em;
+    margin-left: 1em;
+    text-align: center;
+    width: 3em;
+    display: inline-block;
 }
 
 .problem-title {
 	display: inline-block;
-    width: 40.5vw;
+    width: 30vw;
     margin-left: 1em;
 }
 
@@ -62,7 +65,7 @@ body {
 	margin-left: 20px;
 }
 
-.recommend-div, .save-div {
+.recommend-div, .save-div, .statistics-div {
     display: inline-block;
     border-radius: 15px;
     height: 32px;
@@ -93,13 +96,20 @@ outline: 0;
 	display: inline-block;
 }
 
-.problem-hit {
-	font-size: 0.8em;
+.problem-statistics {
+	font-size: 0.9em;
 }
 
 .second-block {
     display: block;
-    margin-left: 730px;
+    height: 2em;
+    margin: 1em 1.6em 1em 0;
+}
+
+.hit {
+	dispaly: inline-block;
+	float: right;
+	font-size: 0.9em;
 }
 
 .pro {
@@ -211,15 +221,15 @@ button#modify {
 	 margin-left: 1em;
 }
  #like-button:hover {
-	 color: #006400;
+	 color: indianred;
 }
  #like-button:active {
 	 transform: scale(0.95);
 }
  #like-button.selected {
 	 color: #fff;
-	 background-color: #006400;
-	 border-color: #006400;
+	 background-color: indianred;
+	 border-color: indianred;
 }
  #like-button .heart-icon {
 	 display: inline-block;
@@ -246,20 +256,54 @@ button#modify {
 	 cursor: pointer;
 	 transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
 	 outline: 0;
-	 margin-left:4.5em;
+	 margin-left:1em;
 }
  #save-button:hover {
-	 color: #006400;
+	 color: indianred;
 }
  #save-button:active {
 	 transform: scale(0.95);
 }
  #save-button.selected {
 	 color: #fff;
-	 background-color: #006400;
-	 border-color: #006400;
+	 background-color: indianred;
+	 border-color: indianred;
 }
  #save-button .heart-icon {
+	 display: inline-block;
+	 fill: currentColor;
+	 width: 0.8em;
+	 height: 0.8em;
+	 margin-right: 0.2em;
+}
+
+#statistics-button {
+	 color: #888;
+	 font-size: 0.9em;
+	 font-family: Roboto,Helvetica Neue,sans-serif;
+	 background-color: transparent;
+	 border: 0.1em solid;
+	 border-radius: 1em;
+	 padding: 0.333em 1em 0.25em;
+	 line-height: 1.2em;
+     box-shadow: 0 0.1em 0.8em -0.3em;
+	 cursor: pointer;
+	 transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+	 outline: 0;
+	 margin-left:10.5em;
+}
+ #statistics-button:hover {
+	 color: indianred;
+}
+ #statistics-button:active {
+	 transform: scale(0.95);
+}
+ #statistics-button.selected {
+	 color: #fff;
+	 background-color: indianred;
+	 border-color: indianred;
+}
+ #statistics-button .heart-icon {
 	 display: inline-block;
 	 fill: currentColor;
 	 width: 0.8em;

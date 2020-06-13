@@ -28,17 +28,26 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
 	  var saveButton = document.getElementById('save-button');
 	  saveButton.addEventListener('click', function() {
-	    window.lb = likeButton;
+	    window.lb = saveButton;
+	    savePandan();
+	    if(savePandanBool == true) {
+			console.log("pandan true");
+			saveProblem();
+			savePandanBool = false;
+		} else {
+			console.log("pandan false");
+			deleteProblem();
+			savePandanBool = true;
+		}
 	    saveButton.classList.toggle('selected');
 	  });
 }, false);
 
-
+var savePandanBool = false;
 var problemNo = '${problemVo.no}';
 var array = new Array();
 
 var linuxSaveCode = function() {
-	
 	$.ajax({
 		url: '${pageContext.request.contextPath }/api/training/linux/savecode',
 		async: false,
@@ -129,10 +138,16 @@ var savePandan = function() {
 				console.error(response.message);
 				return;
 			}
+			// 저장이 안되어있다면
 			if(response.data == null) {
-				$('#save').text('저장');
+				$('#save-button').removeClass('selected');
+				console.log("addclass");
+				savePandanBool = true;
+			// 저장이 되어있다면
 			} else {
-				$('#save').text('저장 해제');
+				$('#save-button').addClass('selected');
+				console.log("removeclass");
+				savePandanBool = false;
 			}
 		},
 		error: function(xhr, status, e){
@@ -142,7 +157,6 @@ var savePandan = function() {
 };
 
 var saveProblem = function() {
-	
 	$.ajax({
 		url: '${pageContext.request.contextPath }/api/training/save/problem',
 		async: false,
@@ -158,7 +172,7 @@ var saveProblem = function() {
 				console.error(response.message);
 				return;
 			}
-			$('#save').text('저장 해제');
+			$('#save-button').classList.toggle('selected');
 			linuxSaveCode();
 		},
 		error: function(xhr, status, e){
@@ -181,11 +195,6 @@ var deleteProblem = function() {
 			if(response.result != "success"){
 				console.error(response.message);
 				return;
-			}
-			if(response.data == null) {
-				$('#save').text('저장');
-			} else {
-				$('#save').text('저장 해제');
 			}
 		},
 		error: function(xhr, status, e){
@@ -227,14 +236,6 @@ $(function() {
       });
    });
 	
-	$('#save-button').click(function() {
-		if($(this).text() == '저장') {
-			saveProblem();
-		} else {
-			deleteProblem();
-		}
-	});
-	
 	for(var i = 0; i < ${listSize }; i++) {
 		var subProblemNo = $('.sub' + i).attr("value");
 		array.push(subProblemNo);
@@ -248,8 +249,14 @@ $(function() {
     <c:import url="/WEB-INF/views/include/main-header.jsp" />
     <div class="container">
         <div class="top">
-            <p class="no">${problemVo.no }</p>
+        	<div class="no">${problemVo.no }</div>
             <div class="problem-title">${problemVo.title }</div>
+            <div class="statistics-div">
+	            <button type="button" id="statistics-button" onClick="location.href='${pageContext.servletContext.contextPath }/training/statistics/${problemVo.no }'">
+	            <i class="fas fa-chart-bar"></i>
+				  통계
+				</button>
+            </div>
             <div class="save-div">
 	            <button type="button" id="save-button">
 	            <i class="fas fa-save"></i>
@@ -264,11 +271,8 @@ $(function() {
             </div>
         </div>
         <div class="second-block">
-        	<div style="display: inline-block">
-	            <a href="${pageContext.servletContext.contextPath }/training/statistics/${problemVo.no }"><button>통계</button></a>
-        	</div>
-        	<div style="display: inline-block;     ">
-	        	<p class="problem-hit">조회수 ${problemVo.hit + 1}</p>
+        	<div class="hit">
+	        	조회수  ${problemVo.hit + 1}
         	</div>
         </div>
         <div class="problem-list">
