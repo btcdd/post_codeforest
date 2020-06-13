@@ -75,11 +75,10 @@ public class CodeTreeController {
 			System.out.println("기존파일이 존재한다");
 		}
 
-		
 		Long problemNo = codetreeService.findProblemNo(subProblemNo);
 		
-		CodeTreeLinux codetreeLinux = new CodeTreeLinux();
-		codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
+//		CodeTreeLinux codetreeLinux = new CodeTreeLinux();
+//		codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
 		
 		return JsonResult.success(null);
 	}	
