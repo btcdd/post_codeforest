@@ -160,4 +160,12 @@
 			insert into code values(null,#{savePathNo},#{language},#{fileName});
 		]]>
 	</insert>
+	
+	<select id="findProblemNo" parameterType="long" resultType="long">
+		<![CDATA[
+			select problem_no
+			  from sub_problem
+			 where no = #{subProblemNo }
+		]]>
+	</select>
 </mapper>

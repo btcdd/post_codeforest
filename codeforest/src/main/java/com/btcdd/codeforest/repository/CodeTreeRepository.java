@@ -89,6 +89,10 @@ public class CodeTreeRepository {
 		return sqlSession.insert("codetree.insertFile", map);
 	}
 
+	public Long findProblemNo(Long subProblemNo) {
+		return sqlSession.selectOne("codetree.findProblemNo", subProblemNo);
+	}
+
 
 //	public int getTotalCount(String keyword) {
 //		return sqlSession.selectOne("codetree.totalCount",keyword);
