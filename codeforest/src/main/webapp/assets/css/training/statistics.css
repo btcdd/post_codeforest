@@ -13,10 +13,8 @@ body {
 
 .statistics-container {
     width: 845px;
-    margin-left: 300px;
+    margin-left: 1000px;
     margin-top: -300px;
-    border: 1px solid rgb(180, 180, 180);
-    border-radius: 1%;
 }
 
 ul {
@@ -42,8 +40,12 @@ ul {
 }
 
 .line {
-    border-bottom: 1px solid lightgray;
     margin-bottom: 10px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #167426;
+    border-bottom: 3px solid #167426;
 }
 
 table {
@@ -55,6 +57,7 @@ table {
 th, td {
     border: 0.3px solid lightgray;
     padding: 10px 35px;
+    text-align: center;
 }
 
 #footer {

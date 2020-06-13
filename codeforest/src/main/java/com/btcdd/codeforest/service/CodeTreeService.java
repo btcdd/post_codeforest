@@ -154,6 +154,9 @@ public class CodeTreeService {
 
 	public boolean existFile(String fileName) {
 		return codetreeRepository.findByFileName(fileName) != null;
+  }
+	public Long findProblemNo(Long subProblemNo) {
+		return codetreeRepository.findProblemNo(subProblemNo);
 	}
 
 	

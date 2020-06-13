@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.btcdd.codeforest.dto.JsonResult;
+import com.btcdd.codeforest.linux.CodeTreeLinux;
 import com.btcdd.codeforest.service.CodeTreeService;
 import com.btcdd.codeforest.service.CodingTestService;
 import com.btcdd.codeforest.service.MypageService;
@@ -55,8 +56,11 @@ public class CodeTreeController {
 		return JsonResult.success(map);
 	}
 	
+	@Auth
 	@PostMapping("/fileInsert")
-	public JsonResult fileInsert(Long savePathNo,String language,String fileName,Long subProblemNo) {
+
+	public JsonResult fileInsert(Long savePathNo,String language,String fileName,Long subProblemNo, HttpSession session) {
+    UserVo authUser = (UserVo)session.getAttribute("authUser");
 		System.out.println("패키지 번호 savePathNo"+savePathNo);
 		System.out.println("언어 language"+language);
 		System.out.println("파일이름 "+fileName);
@@ -70,15 +74,15 @@ public class CodeTreeController {
 		}else {
 			System.out.println("기존파일이 존재한다");
 		}
-		
-		
-		
 
 		
+		Long problemNo = codetreeService.findProblemNo(subProblemNo);
+		
+		CodeTreeLinux codetreeLinux = new CodeTreeLinux();
+		codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
 		
 		return JsonResult.success(null);
 	}	
-	
 }
 
 
