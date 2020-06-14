@@ -11,15 +11,10 @@
     <link href="${pageContext.servletContext.contextPath }/assets/css/include/mypage-header.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/mypage/problem.css">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
-
-    
-    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
      <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/table2excel.js"></script>
-    
-    
 <script>
 
 var page = '1';
@@ -113,6 +108,108 @@ var nextRemove = function() {
 	}
 }
 
+var dialogDelete = $("#dialog-delete").dialog({
+	autoOpen: false,
+	resizable: false,
+	height: "auto",
+	width: 400,
+	modal: true,
+	buttons: {
+		"삭제": function() {
+			var no = $("#hidden-no").val();
+			$.ajax({
+				url: '${pageContext.servletContext.contextPath }/api/mypage/problem/delete/' + no,
+				async: true,
+				type: 'delete',
+				dataType: 'json',
+				data: '',
+				success: function(response) {
+					dialogDelete.dialog('close');
+					// 삭제 추가해야하는 곳
+					$(".list-contents[data-no=" + no + "]").remove();
+					$(".sub-problem-contents" + no).remove();
+				},
+				error: function(xhr, status, e) {
+					console.error(status + ":" + e);
+				}
+			});
+		},
+		"취소": function() {
+			$(this).dialog('close');
+		}
+	},
+	close: function() {
+		$("#hidden-no").val('');
+		$("#dialog-delete-form p.validateTips.error").hide();
+	}
+});
+
+//------------------------------------- 문제 푼 사람 리스트 출력 --------------------------------------
+var dialogList = $(".problem-list").dialog({
+	autoOpen: false,
+	resizable: false,
+	height: "auto",
+	width: 1200,
+	modal: true,
+	buttons: {
+		"다운로드": function() {		
+			var title = $("#hidden-title").val();
+			$(".problem-list-table").table2excel({
+				exclude: ".discard",
+				filename: title.concat(".xls")
+			})
+		},
+		"취소": function() {
+			$(this).dialog('close');
+		}
+	},
+	close: function() {
+		$(".problem-list-table tr th").removeClass();
+		$(".problem-list-table tr th").show();
+		$(".box-component").each(function(){
+		       $(this).prop('checked',true);
+		});
+		$(".problem-list-table > #tbody > tr").remove();
+		$("#hidden-no").val('');
+	}
+});
+
+//----------------------------------------------- 서브 문제 삭제 ----------------------------------------
+var dialogSpDelete = $("#dialog-delete-sp").dialog({
+	autoOpen: false,
+	resizable: false,
+	height: "auto",
+	width: 400,
+	modal: true,
+	buttons: {
+		"삭제": function() {
+			var no = $("#hidden-sp-no").val();
+			var tableClass = $("#hidden-table-class").val();
+			$.ajax({
+				url: '${pageContext.servletContext.contextPath }/api/mypage/sub-problem/delete/' + no,
+				async: true,
+				type: 'delete',
+				dataType: 'json',
+				data: '',
+				success: function(response) {		
+					dialogSpDelete.dialog('close');						
+					$('#sub-problem'+no).remove();
+				},
+				error: function(xhr, status, e) {
+					console.error(status + ":" + e);
+				}
+			});
+		},
+		"취소": function() {
+			$(this).dialog('close');
+		}
+	},
+	close: function() {			
+		$("#hidden-sp-no").val('');
+		$("#hidden-table-class").val('');
+	}
+});
+
 $(function() {
 	
 	originList('1');
@@ -142,78 +239,12 @@ $(function() {
 		nextRemove();
 	});
 	
-	var dialogDelete = $("#dialog-delete").dialog({
-		autoOpen: false,
-		resizable: false,
-		height: "auto",
-		width: 400,
-		modal: true,
-		buttons: {
-			"삭제": function() {
-				var no = $("#hidden-no").val();
-				$.ajax({
-					url: '${pageContext.servletContext.contextPath }/api/mypage/problem/delete/' + no,
-					async: true,
-					type: 'delete',
-					dataType: 'json',
-					data: '',
-					success: function(response) {
-						dialogDelete.dialog('close');
-						// 삭제 추가해야하는 곳
-						$(".list-contents[data-no=" + no + "]").remove();
-						$(".sub-problem-contents" + no).remove();
-					},
-					error: function(xhr, status, e) {
-						console.error(status + ":" + e);
-					}
-				});
-			},
-			"취소": function() {
-				$(this).dialog('close');
-			}
-		},
-		close: function() {
-			$("#hidden-no").val('');
-			$("#dialog-delete-form p.validateTips.error").hide();
-		}
-	});
-	
 	$(document).on('click', '.delete', function(event) {
 		event.preventDefault();
 		
 		var no = $(this).data('no');
 		$('#hidden-no').val(no);
 		dialogDelete.dialog('open');
-	});
-	
-	// ------------------------------------- 문제 푼 사람 리스트 출력 --------------------------------------
-	var dialogList = $(".problem-list").dialog({
-		autoOpen: false,
-		resizable: false,
-		height: "auto",
-		width: 1200,
-		modal: true,
-		buttons: {
-			"다운로드": function() {		
-				var title = $("#hidden-title").val();
-				$(".problem-list-table").table2excel({
-					exclude: ".discard",
-					filename: title.concat(".xls")
-				})
-			},
-			"취소": function() {
-				$(this).dialog('close');
-			}
-		},
-		close: function() {
-			$(".problem-list-table tr th").removeClass();
-			$(".problem-list-table tr th").show();
-			$(".box-component").each(function(){
-			       $(this).prop('checked',true);
-			});
-			$(".problem-list-table > #tbody > tr").remove();
-			$("#hidden-no").val('');
-		}
 	});
 	
 	$(document).on('click', '.list', function(event) {
@@ -299,42 +330,6 @@ $(function() {
 				console.error(status + ":" + e);
 			}
 		});    
-	});
-	
-	// ----------------------------------------------- 서브 문제 삭제 ----------------------------------------
-	var dialogSpDelete = $("#dialog-delete-sp").dialog({
-		autoOpen: false,
-		resizable: false,
-		height: "auto",
-		width: 400,
-		modal: true,
-		buttons: {
-			"삭제": function() {
-				var no = $("#hidden-sp-no").val();
-				var tableClass = $("#hidden-table-class").val();
-				$.ajax({
-					url: '${pageContext.servletContext.contextPath }/api/mypage/sub-problem/delete/' + no,
-					async: true,
-					type: 'delete',
-					dataType: 'json',
-					data: '',
-					success: function(response) {		
-						dialogSpDelete.dialog('close');						
-						$('#sub-problem'+no).remove();
-					},
-					error: function(xhr, status, e) {
-						console.error(status + ":" + e);
-					}
-				});
-			},
-			"취소": function() {
-				$(this).dialog('close');
-			}
-		},
-		close: function() {			
-			$("#hidden-sp-no").val('');
-			$("#hidden-table-class").val('');
-		}
 	});
 	
 	$(document).on('click', '.sp-delete', function(event) {
