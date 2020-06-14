@@ -66,6 +66,7 @@ var linuxSaveCode = function() {
 				console.error(response.message);
 				return;
 			}
+			console.log("linucSaveCode가 안들어오닝?");
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
@@ -176,6 +177,7 @@ var saveProblem = function() {
 				return;
 			}
 			$('#save-button').classList.toggle('selected');
+			console.log("saveProblem가 안들어오닝?");
 			linuxSaveCode();
 		},
 		error: function(xhr, status, e){
