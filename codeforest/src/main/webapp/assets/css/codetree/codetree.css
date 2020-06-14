@@ -1,10 +1,12 @@
 body {
   margin : 0;
   padding : 0;
+  height: 100vh;
+  width: 100vw;
   
 }
 .container { 
-    width: 100%;
+    width: 100vw;
     height: 96vh;
     display: flex;
     flex : 1 1 auto;
@@ -33,7 +35,7 @@ body {
 /*   align-items: center; */
   overflow-x: auto;
   overflow-y: auto;
-  white-space: nowrap;
+/*   white-space: nowrap; */
 }
 
 .resizer {
@@ -41,13 +43,14 @@ body {
 }
 .resizer[data-resizer-type=H] {
   width: 3px;
-  background: linear-gradient(to right, #505050, #383838) repeat scroll 0% 0% transparent;
+  background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% transparent;
   cursor: col-resize;
   box-shadow: 1px 0px 0px #6E6E6E inset, 2px 0px 2px rgba(0, 0, 0, 0.4);
 }
 .resizer[data-resizer-type=V] {
   height: 3px;
-  background: linear-gradient(to bottom, #505050, #383838) repeat scroll 0% 0% transparent;
+/*   background: linear-gradient(to bottom, #505050, #383838) repeat scroll 0% 0% transparent; */
+background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% transparent;
   cursor: row-resize;
   box-shadow: 0px 1px 0px #6E6E6E inset, 0px 2px 2px rgba(0, 0, 0, 0.4);
 }
@@ -119,6 +122,10 @@ body {
 
 .dropdown:hover .dropbtn {background-color: rgba(248,248,248,90%);}
 
+
+/* ------------- problem-list ------------------ */
+
+
 /* ------------- navigator ------------------ */
 .navigator {
     background-color: #E8E9E7;
@@ -140,6 +147,7 @@ body {
 
 
 /* ------------------- code-mirror ----------------- */
+
 #file-codemirror-cover {
     width: 100%;
     height: 75%;
@@ -150,4 +158,68 @@ body {
 	width: 100%;
 	max-width: 100%;
 }
+
+/* ---------------------- file-list ------------------------- */
+.ui__sidebar {
+  display: block;
+/*   background: #404040; */
+  background: #0C1021;
+  color: #ccc;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+.file-tree {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 100%;
+  user-select: none;
+}
+.file-tree__item {
+  display: block;
+  padding: 0.5rem 0 0.5rem 1rem;
+}
+.file-tree__subtree {
+  display: none;
+  margin: 0.5rem 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+.file-tree__item--open .file-tree__subtree {
+  display: block;
+}
+.file-tree__subtree > li {
+  padding: 0.3333333333rem 0;
+  font-size: 0.875rem;
+}
+.file-tree__subtree > li .folder::before {
+  color: #c298cf;
+}
+.folder {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.folder::before {
+  content: "\f07b";
+  font-family: FontAwesome;
+  margin-right: 0.5rem;
+  color: #47cedf;
+}
+.folder:hover {
+  color: white;
+  cursor: pointer;
+}
+.folder:hover::before {
+  color: #5dd4e3;
+}
+.folder.folder--open {
+  color: white;
+}
+.folder.folder--open::before {
+  content: "\f07c";
+}
+
 

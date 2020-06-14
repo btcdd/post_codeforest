@@ -13,6 +13,7 @@
 <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>		
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- code mirror -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/codemirror/css/codemirror.css">
@@ -140,9 +141,30 @@ $(function() {
  	$('.CodeMirror').addClass('code');
 
  	
- 	
- 	
- 	
+///////////////////////////// problem-list //////////////////////////////////
+ 	var ui = $(".ui"),
+ 	    sidebar = $(".ui__sidebar");
+
+ 	// File Tree
+ 	$(".folder").on("click", function(e) {
+ 	    var t = $(this);
+ 	    var tree = t.closest(".file-tree__item");
+
+ 	    if (t.hasClass("folder--open")) {
+ 	        t.removeClass("folder--open");
+ 	        tree.removeClass("file-tree__item--open");
+ 	    } else {
+ 	        t.addClass("folder--open");
+ 	        tree.addClass("file-tree__item--open");
+ 	    }
+
+ 	    // Close all siblings
+ 	    tree
+ 	        .siblings()
+ 	        .removeClass("file-tree__item--open")
+ 	        .find(".folder--open")
+ 	        .removeClass("folder--open");
+ 	});	
  	
  	
  	
@@ -299,6 +321,9 @@ window.onload = function() {
     new Resizer(document.querySelector('[name=resizerH2]'), 'H');
     new Resizer(document.querySelector('[name=resizerV1]'), 'V');
   };
+  
+
+
 
 </script>
 </head>
@@ -339,7 +364,9 @@ window.onload = function() {
 
 	<div class="frame horizontal">
 	  
-	    <div id="box_1" class="box">BOX 1</div>
+	    <div id="box_1" class="box">
+	    	<c:import url="/WEB-INF/views/codetree/problem-list.jsp"></c:import>
+	    </div>
 	
 	  <div name="resizerH1"></div>
 	  
@@ -380,8 +407,121 @@ window.onload = function() {
           </div> 
 
 	    <div class="frame horizontal" id="file-codemirror-cover">	    
-	      <div id="box_2" class="box" style="display:flex;flex-direction:column">BOX 2</div>	      
-	      <div name="resizerH2"></div>	      
+	      <div id="box_2" class="box" style="display:flex;flex-direction:column">
+
+		    <div class="ui__sidebar">
+		        <ul class="file-tree">
+		            <li class="file-tree__item file-tree__item--open">
+		                <div class="folder folder--open">Project A</div>
+		
+		                <ul class="file-tree__subtree">
+		                    <li class="file-tree__item">
+		                        <div class="folder">Planfolder</div>
+		                    </li>
+		                    <li class="file-tree__item">
+		                        <div class="folder folder--open">Holiday</div>
+		                    </li>
+		                    <li class="file-tree__item">
+		                        <div class="folder">Shared</div>
+		                    </li>
+		                </ul>
+		                <!-- /.file-subtree -->
+		            </li>
+		            <li class="file-tree__item">
+		                <div class="folder">Project A</div>
+		                <ul class="file-tree__subtree">
+		                    <li class="file-tree__item">
+		                        <div class="folder">Planfolder</div>
+		                    </li>
+		                    <li class="file-tree__item">
+		                        <div class="folder folder--open">Holiday</div>
+		
+		                    </li>
+		                    <li class="file-tree__item">
+		                        <div class="folder">Shared</div>
+		
+		                    </li>
+		                </ul>
+		                <!-- /.file-subtree -->
+		            </li>
+		            <li class="file-tree__item">
+		                <div class="folder">Project XYS</div>
+		            </li>
+		            <li class="file-tree__item">
+		                <div class="folder">Project A</div>
+		            </li>
+		             <li class="file-tree__item">
+		                <div class="folder">Project A</div>
+		            </li>
+		             <li class="file-tree__item">
+		                <div class="folder">Project A</div>
+		            </li>
+		             <li class="file-tree__item">
+		                <div class="folder">Project A</div>
+		            </li>
+		            <li class="file-tree__item">
+		                <div class="folder">Project F</div>
+		                <ul class="file-tree__subtree">
+		                    <li class="file-tree__item">
+		                        <div class="folder">Planfolder</div>
+		                    </li>
+		                    <li class="file-tree__item">
+		                        <div class="folder folder--open">Holiday</div>
+		
+		                    </li>
+		                    <li class="file-tree__item">
+		                        <div class="folder">Shared</div>
+		
+		                    </li>
+		                </ul>
+		                <!-- /.file-subtree -->
+		            </li>
+		            <li class="file-tree__item">
+		                <div class="folder">Project A</div>
+		            </li>
+		            <li class="file-tree__item">
+		                <div class="folder">Project A</div>
+		            </li>
+		            <li class="file-tree__item">
+		                <div class="folder">Project C</div>
+		                <ul class="file-tree__subtree">
+		                    <li class="file-tree__item">
+		                        <div class="folder">Planfolder</div>
+		                    </li>
+		                    <li class="file-tree__item">
+		                        <div class="folder folder--open">Holiday</div>
+		                    </li>
+		                    <li class="file-tree__item">
+		                        <div class="folder">Shared</div>
+		                    </li>
+		                </ul>
+		                <!-- /.file-subtree -->
+		            </li>
+		            <li class="file-tree__item">
+		                <div class="folder">Project A</div>
+		                <ul class="file-tree__subtree">
+		                    <li class="file-tree__item">
+		                        <div class="folder">Planfolder</div>
+		                    </li>
+		                    <li class="file-tree__item">
+		                        <div class="folder folder--open">Holiday</div>
+		
+		                    </li>
+		                    <li class="file-tree__item">
+		                        <div class="folder">Shared</div>
+		                    </li>
+		                </ul>
+		                <!-- /.file-subtree -->
+		            </li>
+		        </ul>
+		        <!-- /.file-tree -->
+		    </div>
+		    <!-- /.sidebar -->
+
+	      </div>
+	      	      
+	      <div name="resizerH2"></div>	
+	            
 	      <div id="box_3" class="box">
 	      
 	      		<textarea name="code" class="CodeMirror code">
