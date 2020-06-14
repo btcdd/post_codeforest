@@ -217,8 +217,8 @@ $(function() {
 	$('.open1').parent().children().first().css("background-color", "#EBEBEB");
 // 	$('.open1').parent().children().first().children('.subProblemIndex').css("background-color", "#FAFAFA");
 	
-	$(".problem").click(function() {
-		no = $(this).children().attr("id");
+	$(".top-prob").click(function() {
+		no = $(this).parent().attr("id");
 		
 		if($(".open" + no).css("display") == "none"){
 			$(".open" + no).show("slow");
@@ -291,10 +291,10 @@ $(function() {
 				<div class="problem">
 					<div class="pro pro${status.index + 1}" id="${status.index + 1}">
 						<div class="top-prob">
-							<div class="subProblemIndex"><i class="fas fa-bookmark"></i>${status.index + 1 }</div>
+							<div class="subProblemIndex"><i class="fas fa-bookmark bookmark"></i><strong>${status.index + 1 }</strong></div>
 							<div class="subProblemNo"># ${vo.no }</div>
 							<input class="sub${status.index }" type="hidden" value="${vo.no }" />
-							<div class="subProblemTitle" id="click">${vo.title }</div>
+							<div class="subProblemTitle" id="click"><strong>${vo.title }</strong></div>
 							<div class="correct-person">
 					            <button type="button" id="correct-person-button" onClick="location.href='${pageContext.servletContext.contextPath }/training/answerlist/${status.index + 1}/${vo.no}'">
 								  	맞은 사람
