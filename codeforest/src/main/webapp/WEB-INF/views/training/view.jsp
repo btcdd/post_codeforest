@@ -177,7 +177,43 @@ var saveProblem = function() {
 				return;
 			}
 			linuxSaveCode();
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			////// 해결하세용
 			$('#save-button').classList.toggle('selected');
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			console.log("saveProblem가 안들어오닝?");
 		},
 		error: function(xhr, status, e){
