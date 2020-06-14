@@ -18,6 +18,8 @@ import com.btcdd.codeforest.service.CodeTreeService;
 import com.btcdd.codeforest.service.CodingTestService;
 import com.btcdd.codeforest.service.MypageService;
 import com.btcdd.codeforest.service.TrainingService;
+import com.btcdd.codeforest.vo.CodeVo;
+import com.btcdd.codeforest.vo.SavePathVo;
 import com.btcdd.codeforest.vo.UserVo;
 import com.btcdd.security.Auth;
 
@@ -72,8 +74,8 @@ public class CodeTreeController {
 		if(!exist) {
 			System.out.println("기존 존재하지 않는다");
 			codetreeService.insertFile(savePathNo,language,fileName);
-			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
-			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
+//			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
+//			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
 			Long codeNo = codetreeService.findCodeNo(savePathNo,fileName);
 			System.out.println("codeNo>>"+codeNo);
 			map.put("fileName", fileName);
@@ -89,12 +91,20 @@ public class CodeTreeController {
 	
 	@DeleteMapping("/fileDelete/{codeNo}")
 	public JsonResult deleteFile(@PathVariable("codeNo") Long codeNo) {
+		CodeVo codeVo = codetreeService.findSavePathNoAndFileName(codeNo);
 		boolean result = codetreeService.deleteFile(codeNo);
+		
+		SavePathVo savePathVo = codetreeService.findSavePathVo(codeVo.getSavePathNo());
+//		String[] tmp = savePathVo.getPackagePath().split("/");
+//		String probNoTmp = tmp[3].replace("prob", "");
+//		Long problemNo = Long.parseLong(probNoTmp);
+		System.out.println(savePathVo);
+		
+		CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
+		codeTreeLinux.deleteCode(savePathVo.getPackagePath(), codeVo.getLanguage(), codeVo.getFileName());
+		
 		return JsonResult.success(result ? codeNo : -1);
-
 	}	
-	
-	
 }
 
 
