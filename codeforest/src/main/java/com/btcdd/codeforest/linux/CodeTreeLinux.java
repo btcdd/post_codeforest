@@ -126,4 +126,8 @@ public class CodeTreeLinux {
 		
 		createFileAsSource(faceCode, "userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + language + "/" + fileName);
 	}
+
+	public void deleteCode(String packagePath, String language, String fileName) throws IOException {
+		process = Runtime.getRuntime().exec("rm -rf " + packagePath + "/" + language + "/" + fileName);
+	}
 }

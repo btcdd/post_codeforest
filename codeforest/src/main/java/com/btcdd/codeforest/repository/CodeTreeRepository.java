@@ -105,7 +105,15 @@ public class CodeTreeRepository {
 	}
 
 	public int delete(Long codeNo) {
-		return sqlSession.delete("codetree.delete",codeNo);
+		return sqlSession.delete("codetree.delete", codeNo);
+	}
+
+	public CodeVo findSavePathNoAndFileName(Long codeNo) {
+		return sqlSession.selectOne("codetree.findSavePathNoAndFileName", codeNo);
+	}
+
+	public SavePathVo findSavePathVo(Long savePathNo) {
+		return sqlSession.selectOne("codetree.findSavePathVo", savePathNo);
 	}
 
 

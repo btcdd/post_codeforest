@@ -168,6 +168,14 @@ public class CodeTreeService {
 		return count == 1;
 	}
 
+	public CodeVo findSavePathNoAndFileName(Long codeNo) {
+		return codetreeRepository.findSavePathNoAndFileName(codeNo);
+	}
+
+	public SavePathVo findSavePathVo(Long savePathNo) {
+		return codetreeRepository.findSavePathVo(savePathNo);
+	}
+
 
 
 	
