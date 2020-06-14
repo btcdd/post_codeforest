@@ -122,9 +122,11 @@ outline: 0;
     padding-top: 7px;	
 }
 
+
+
 .subProblemIndex {
     display: inline-block;
-    border: 0.5px solid indianred;
+/*     border: 0.5px solid indianred; */
     padding: 0.5em 0.8em;
     margin-left: 1em;
 }
@@ -347,6 +349,7 @@ button#modify {
 }
  #correct-person-button:hover {
 	 color: indianred;
+     background-color: #fff;
 }
  #correct-person-button:active {
 	 transform: scale(0.95);

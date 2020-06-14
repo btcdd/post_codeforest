@@ -215,12 +215,18 @@ $(function() {
 	
 	$(".open1").show();
 	$('.open1').parent().children().first().css("background-color", "#EBEBEB");
+// 	$('.open1').parent().children().first().children('.subProblemIndex').css("background-color", "#FAFAFA");
 	
 	$(".problem").click(function() {
 		no = $(this).children().attr("id");
 		
-		$(".open" + no).show("slow");
-		$(".open" + no).parent().children().first().css("background-color", "#EBEBEB");
+		if($(".open" + no).css("display") == "none"){
+			$(".open" + no).show("slow");
+			$(".open" + no).parent().children().first().css("background-color", "#EBEBEB");
+		} else {
+			$(".open" + no).hide("slow");
+			$(".open" + no).parent().children().first().css("background-color", "#fff");
+		}
 	});
   
 	$(document).on("click","#code-tree", function() {
@@ -285,7 +291,7 @@ $(function() {
 				<div class="problem">
 					<div class="pro pro${status.index + 1}" id="${status.index + 1}">
 						<div class="top-prob">
-							<div class="subProblemIndex">${status.index + 1 }</div>
+							<div class="subProblemIndex"><i class="fas fa-bookmark"></i>${status.index + 1 }</div>
 							<div class="subProblemNo"># ${vo.no }</div>
 							<input class="sub${status.index }" type="hidden" value="${vo.no }" />
 							<div class="subProblemTitle" id="click">${vo.title }</div>
