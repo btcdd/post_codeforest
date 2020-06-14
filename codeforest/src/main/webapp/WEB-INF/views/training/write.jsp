@@ -104,15 +104,6 @@ $(function() {
 		// 추가된 문제에 CKEditor 적용
 // 		CKEDITOR.replace('prob-content-text' + index);
 
-		// 추가된 문제에 코드 미러 적용
-		var code = $('#code' + index)[0];
-		var editor = CodeMirror.fromTextArea(code, {
-			lineNumbers : true,
-			mode : 'text/x-java',
-			theme : 'panda-syntax',
-			matchBrackets : true
-		});
-
 		index++;
 	});
 
@@ -150,15 +141,6 @@ $(function() {
 		}
 	});
 
-	// 정답 코드 텍스트에 코드 미러 적용!
-	var code = $('#code0')[0];
-	var editor = CodeMirror.fromTextArea(code, {
-		lineNumbers : true,
-		mode : 'text/x-java',
-		theme : 'panda-syntax',
-		matchBrackets : true
-	});
-	
 	$(document).on("click", ".delete", function() {
 		if(index == 1) {
 			alert('최소 1문제는 등록하셔야 합니다.');

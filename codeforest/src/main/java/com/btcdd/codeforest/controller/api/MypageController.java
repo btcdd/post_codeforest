@@ -104,7 +104,7 @@ public class MypageController {
 
 		int currentPage = Integer.parseInt(page);
 		Map<String, Object> map = mypageService.getContentsList(currentPage, authUser.getNo());
-
+	
 		return JsonResult.success(map);
 	}
 }

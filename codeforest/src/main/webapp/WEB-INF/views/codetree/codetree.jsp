@@ -247,6 +247,7 @@ $(".contextmenu").append(str);
 						return;
 					}
 					fileName = filename2;
+					
 					$.ajax({
 						url: '${pageContext.servletContext.contextPath }/api/codetree/fileInsert',
 						async: true,
@@ -259,13 +260,19 @@ $(".contextmenu").append(str);
 							'subProblemNo':subProblemNo
 						},
 						success: function(response) {
-							console.log("응답");				
-						
+										
+							if(response.data.result == 'no'){
+								console.log("이미 파일이 존재합니다.");//메시지 처리 필요
+								return;
+							}
+							$("#file"+response.data.savePathNo).append("<li><img src='${pageContext.servletContext.contextPath }/assets/images/file.png'/>"+response.data.fileName+"</li>")
+
 						},
 						error: function(xhr, status, e) {
 							console.error(status + ":" + e);
 						}
 					});
+					$(this).dialog("close");
 				},
 				"취소":function(){
 					$(this).dialog("close");
@@ -402,10 +409,14 @@ $(".contextmenu").append(str);
                             <ul class='problem-name'>
     					<c:forEach items='${savePathList }' var='vo' varStatus='status'>
 								<li id="problem-packageList" class="problem-packageList" data-no="${vo.no}" data-no2="${vo.subProblemNo}"><img src="${pageContext.servletContext.contextPath }/assets/images/package.png"/>${saveVo.title}/${status.index+1}</li>
+									<ol id="file${vo.no}">
+<%-- 										<c:forEach items='${savePathList }' var='vo' varStatus='status'>
+										</c:forEach> --%>
+									</ol>								
 								<ul class="contextmenu">
 								</ul>
 						</c:forEach>							
-						
+
 <!-- 							<form id="fileName-form">
 								<input type="hidden" id="fileName" name="fileName" value=""  />
 							</form> -->
