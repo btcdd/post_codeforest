@@ -42,6 +42,7 @@ body {
 	display: inline-block;
     width: 30vw;
     margin-left: 1em;
+    font-weight: bold;
 }
 
 .top button {
@@ -59,6 +60,14 @@ body {
 	padding: 15px 0;
 /*     border-bottom: 1px solid #b2b2b2; */
     background-color: #fff;
+}
+
+.top-prob:hover{
+	background-color: #EBEBEB;
+}
+
+.top-prob:selected {
+	background-color: #EBEBEB;
 }
 
 .division {
@@ -110,6 +119,25 @@ outline: 0;
 	dispaly: inline-block;
 	float: right;
 	font-size: 0.9em;
+    padding-top: 7px;	
+}
+
+.subProblemIndex {
+    display: inline-block;
+    border: 0.5px solid indianred;
+    padding: 0.5em 0.8em;
+    margin-left: 1em;
+}
+
+.subProblemNo {
+	display: inline-block;
+	margin-left: 1em;
+}
+
+.subProblemTitle {
+	display: inline-block;
+	margin-left: 1em;
+	width: 67%;
 }
 
 .pro {
@@ -123,10 +151,10 @@ outline: 0;
 
 .explain {
 	word-break: break-all;
-	line-height: 200%;
-	word-spacing: 200%;
-	margin: 10px;
-	color: blue;
+    line-height: 200%;
+    word-spacing: 200%;
+    margin: 1.5em 3em;
+    color: #454545;
 }
 
 .pro button {
@@ -143,7 +171,7 @@ outline: 0;
 .input {
 	float: left;
 	width: 45%;
-	padding: 0 20px;
+	padding: 0 20px 2em;
 }
 
 fieldset {
@@ -161,7 +189,7 @@ fieldset {
 .result {
 	float: left;
 	width: 45%;
-	padding: 0 20px;
+	padding: 0 20px 2em;
 }
 
 .input-content, .result-content {
@@ -183,11 +211,10 @@ button#modify {
 .footer {
     display: flow-root;
 	margin: auto;
-	
 	padding: 60px 0;
 	left: 0;
 	bottom: 0;
-	width: 60%;
+	width: 61%;
     background-color: #fAFAFA;
 	color: #3C3C3C;
 	text-align: center;
@@ -298,15 +325,29 @@ button#modify {
  #statistics-button:active {
 	 transform: scale(0.95);
 }
- #statistics-button.selected {
-	 color: #fff;
-	 background-color: indianred;
-	 border-color: indianred;
+
+.correct-person {
+	display: inline-block;
 }
- #statistics-button .heart-icon {
-	 display: inline-block;
-	 fill: currentColor;
-	 width: 0.8em;
-	 height: 0.8em;
-	 margin-right: 0.2em;
+
+#correct-person-button {
+	 color: #888;
+	 font-size: 0.9em;
+	 font-family: Roboto,Helvetica Neue,sans-serif;
+	 background-color: transparent;
+	 border: 0.1em solid;
+	 border-radius: 1em;
+	 padding: 0.333em 1em 0.25em;
+	 line-height: 1.2em;
+     box-shadow: 0 0.1em 0.8em -0.3em;
+	 cursor: pointer;
+	 transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+	 outline: 0;
+	 margin-left:9em;
+}
+ #correct-person-button:hover {
+	 color: indianred;
+}
+ #correct-person-button:active {
+	 transform: scale(0.95);
 }
