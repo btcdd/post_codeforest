@@ -63,11 +63,11 @@ body {
 }
 
 .top-prob:hover{
-	background-color: #E3E3E3;
+	background-color: #EBEBEB;
 }
 
-.top-prob .selected {
-	background-color: #E3E3E3;
+.top-prob:selected {
+	background-color: #EBEBEB;
 }
 
 .division {
@@ -343,7 +343,7 @@ button#modify {
 	 cursor: pointer;
 	 transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
 	 outline: 0;
-	 margin-left:10.5em;
+	 margin-left:9em;
 }
  #correct-person-button:hover {
 	 color: indianred;

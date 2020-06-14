@@ -214,11 +214,13 @@ $(function() {
 	var no;
 	
 	$(".open1").show();
+	$('.open1').parent().children().first().css("background-color", "#EBEBEB");
 	
 	$(".problem").click(function() {
 		no = $(this).children().attr("id");
 		
-		$(".open" + no).toggle("slow");
+		$(".open" + no).show("slow");
+		$(".open" + no).parent().children().first().css("background-color", "#EBEBEB");
 	});
   
 	$(document).on("click","#code-tree", function() {
