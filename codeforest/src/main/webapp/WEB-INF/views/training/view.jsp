@@ -176,9 +176,9 @@ var saveProblem = function() {
 				console.error(response.message);
 				return;
 			}
+			linuxSaveCode();
 			$('#save-button').classList.toggle('selected');
 			console.log("saveProblem가 안들어오닝?");
-			linuxSaveCode();
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
