@@ -1,6 +1,7 @@
 package com.btcdd.codeforest.controller.api;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -94,5 +95,16 @@ public class MypageController {
 		mypageService.privacyChange(authUser.getNo(), privacy);
 
 		return JsonResult.success(null);
+	}
+	
+	@Auth
+	@PostMapping(value="/problem")
+	public JsonResult findProblem(String page, HttpSession session) {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		
+		int currentPage = Integer.parseInt(page);
+		Map<String,Object> map = mypageService.getContentsList(currentPage, authUser.getNo());
+		
+		return JsonResult.success(map);
 	}
 }
