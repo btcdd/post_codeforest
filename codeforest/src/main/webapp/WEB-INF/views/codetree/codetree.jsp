@@ -166,13 +166,15 @@ $(function() {
  	
 var packagePath = null;
 var subProblemNo = null;
-var str='<div id="fileInsert"><li>파일 추가</li></div>';
+var codeNo = null;
+var str='<div id="file-insert"><li>파일 추가</li></div>';
 $(".contextmenu").append(str);
-	
+var str2='<div id="userfile-delete"><li>파일 삭제</li></div>';
+$(".userfile-menu").append(str2);
 	$(document).on('mouseenter','.file',function(){
 		console.log("hi");
 		$(document).on('click','.problem-packageList',function(e){
- 			console.log("click!!",$(this).data("no"));
+			$(".userfile-menu").hide();
  			packagePath = $(this).data("no");
  			subProblemNo = $(this).data("no2");
  		    //Get window size:
@@ -216,9 +218,59 @@ $(".contextmenu").append(str);
  		    //Prevent browser default contextmenu.
  		    return false;			
 		});
+
+		
+		$(document).on('click','.userFile',function(e){
+			$(".contextmenu").hide();
+			codeNo = $(this).data("no");
+ 		    //Get window size:
+ 		    var winWidth = $(document).width();
+ 		    var winHeight = $(document).height();
+ 		    //Get pointer position:
+ 		    var posX = e.pageX;
+ 		    var posY = e.pageY;
+ 		    //Get contextmenu size:
+ 		    var menuWidth = $(".userfile-menu").width();
+ 		    var menuHeight = $(".userfile-menu").height();
+ 		    //Security margin:
+ 		    var secMargin = 10;
+ 		    //Prevent page overflow:
+ 		    if(posX + menuWidth + secMargin >= winWidth
+ 		    && posY + menuHeight + secMargin >= winHeight){
+ 		      //Case 1: right-bottom overflow:
+ 		      posLeft = posX - menuWidth - secMargin + "px";
+ 		      posTop = posY - menuHeight - secMargin + "px";
+ 		    }
+ 		    else if(posX + menuWidth + secMargin >= winWidth){
+ 		      //Case 2: right overflow:
+ 		      posLeft = posX - menuWidth - secMargin + "px";
+ 		      posTop = posY + secMargin + "px";
+ 		    }
+ 		    else if(posY + menuHeight + secMargin >= winHeight){
+ 		      //Case 3: bottom overflow:
+ 		      posLeft = posX + secMargin + "px";
+ 		      posTop = posY - menuHeight - secMargin + "px";
+ 		    }
+ 		    else {
+ 		      //Case 4: default values:
+ 		      posLeft = posX + secMargin + "px";
+ 		      posTop = posY + secMargin + "px";
+ 		    };
+ 		    //Display contextmenu:
+ 		    $(".userfile-menu").css({
+ 		      "left": posLeft,
+ 		      "top": posTop
+ 		    }).show();
+ 		    //Prevent browser default contextmenu.
+ 		    return false;			
+			
+		});
+		
 	}).on('mouseleave','.file',function(){
 		console.log("bye");
 	}).on('contextmenu','.file',function(){
+		return false;
+	}).on('userfile-menu','.file',function(){
 		return false;
 	});
 	
@@ -227,9 +279,13 @@ $(".contextmenu").append(str);
  	$(document).click(function(){
  	   $(".contextmenu").hide();
  	});
+ 
+ 	//Hide contextmenu:
+ 	$(document).click(function(){
+ 	   $(".userfile-menu").hide();
+ 	});	
  	
- 	
- 	$(document).on('click','#fileInsert',function(){
+ 	$(document).on('click','#file-insert',function(){
  		console.log("packagePath!!!"+packagePath);
  		console.log("subProblemNo!!!"+subProblemNo);
  		var lang = $(".lang option:selected").val();
@@ -262,10 +318,10 @@ $(".contextmenu").append(str);
 						success: function(response) {
 										
 							if(response.data.result == 'no'){
-								console.log("이미 파일이 존재합니다.");//메시지 처리 필요
+								alert("이미 파일이 존재합니다.");//메시지 처리 필요
 								return;
 							}
-							$("#file"+response.data.savePathNo).append("<li><img src='${pageContext.servletContext.contextPath }/assets/images/file.png'/>"+response.data.fileName+"</li>")
+							$("#file"+response.data.savePathNo).append("<li class='userFile' data-no="+response.data.codeNo+"><img src='${pageContext.servletContext.contextPath }/assets/images/file.png'/>"+response.data.fileName+"</li>")
 
 						},
 						error: function(xhr, status, e) {
@@ -280,16 +336,56 @@ $(".contextmenu").append(str);
 			},
 			close:function(){}
  		}); 		
- 
-
-
- 		
-	
  	});
  	
  	
+ 	$(document).on('click','#userfile-delete',function(){
+ 		console.log("userfile-delete   >>codeNo",codeNo);
+ 		$(".validateTips").css("color","black").html("<p>정말로 삭제하시겠습니까?</p>");
+ 		dialogDelete.dialog("open");
+ 	});
  	
  	
+ 	var dialogDelete = $("#dialog-delete-form").dialog({
+			autoOpen: false,
+			width:300,
+			height:220,
+			modal:true,
+			buttons:{
+				"삭제":function(){
+					$.ajax({
+						url: '${pageContext.servletContext.contextPath }/api/codetree/fileDelete/'+codeNo,
+						async: true,
+						type: 'delete',
+						dataType:'json',
+						data:'',
+						success: function(response) {
+							
+							if(response.result != "success"){
+								console.error(response.message);
+								return;
+							}
+							
+							if(response.data != -1){
+								 
+								$(".userFile[data-no="+response.data+"]").remove();
+								dialogDelete.dialog('close');
+								return;
+							}							
+							
+							$(".validateTips").css("color","red").html("<p>삭제실패</p>");
+						},
+						error: function(xhr, status, e) {
+							console.error(status + ":" + e);
+						}							
+					});
+				},
+				"취소":function(){
+					$(this).dialog("close");
+				}
+			},
+			close:function(){}
+ 	});
  	
  	
  	
@@ -410,35 +506,10 @@ $(".contextmenu").append(str);
     					<c:forEach items='${savePathList }' var='vo' varStatus='status'>
 								<li id="problem-packageList" class="problem-packageList" data-no="${vo.no}" data-no2="${vo.subProblemNo}"><img src="${pageContext.servletContext.contextPath }/assets/images/package.png"/>${saveVo.title}/${status.index+1}</li>
 									<ol id="file${vo.no}">
-<%-- 										<c:forEach items='${savePathList }' var='vo' varStatus='status'>
-										</c:forEach> --%>
 									</ol>								
-								<ul class="contextmenu">
-								</ul>
 						</c:forEach>							
 
-<!-- 							<form id="fileName-form">
-								<input type="hidden" id="fileName" name="fileName" value=""  />
-							</form> -->
-	
-	
-	                                
-<!--                                     <li>
-	                                    <div class='problem-packageList'>
-	                                        <img class="file-img" src="" />문제 1	                                
-	                                        <div class='problem-file'>
-	                                            <ul>
-	                                               <li><img src=""/>파일 이름</li>
-	                                            </ul>
-	                                        </div>
-	                                    </div>
-                                    </li>
-                                
-                                
-                                <div class='open'>
-                                    
-                                </div>
-                                <button>+</button> -->
+
                             </ul>
                         </nav>
                     </div> 
@@ -469,11 +540,16 @@ public class Test{
                 </div>
             </div>
             
-            
-			<div id="dialog-message" title="" style="display:none">
-  				<p></p>
-			</div>	            
-            
+			<div id="dialog-delete-form" class="delete-form" title="메세지 삭제" style="display:none">
+				<p class="validateTips"></p>  
+			</div>
+				            
+            <div>
+				<ul class="contextmenu">
+				</ul>
+				<ul class="userfile-menu">
+				</ul>            
+            </div>
         </div>
     </div>
     

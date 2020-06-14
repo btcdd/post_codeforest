@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,23 +59,26 @@ public class CodeTreeController {
 	
 	@Auth
 	@PostMapping("/fileInsert")
-
 	public JsonResult fileInsert(Long savePathNo,String language,String fileName,Long subProblemNo, HttpSession session) {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 
 		Long problemNo = codetreeService.findProblemNo(subProblemNo);
 		boolean exist = codetreeService.existFile(fileName); //false면 존재하지 않고 true면 존재한다
 		
+		
+		
 		Map<String,Object> map = new HashMap<>();
-		System.out.println("savePathNo>>"+savePathNo);		
+				
 		if(!exist) {
 			System.out.println("기존 존재하지 않는다");
 			codetreeService.insertFile(savePathNo,language,fileName);
-//			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
-//			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
+			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
+			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
+			Long codeNo = codetreeService.findCodeNo(savePathNo,fileName);
+			System.out.println("codeNo>>"+codeNo);
 			map.put("fileName", fileName);
 			map.put("savePathNo", savePathNo);
-
+			map.put("codeNo",codeNo);
 		}else {
 			System.out.println("기존파일이 존재한다");
 			map.put("result", "no");
@@ -82,6 +86,15 @@ public class CodeTreeController {
 		
 		return JsonResult.success(map);
 	}	
+	
+	@DeleteMapping("/fileDelete/{codeNo}")
+	public JsonResult deleteFile(@PathVariable("codeNo") Long codeNo) {
+		boolean result = codetreeService.deleteFile(codeNo);
+		return JsonResult.success(result ? codeNo : -1);
+
+	}	
+	
+	
 }
 
 

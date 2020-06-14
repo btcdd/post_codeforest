@@ -183,4 +183,22 @@
 		]]>
 	</select>
 
+
+	<select id="findCodeNo" parameterType="hashmap" resultType="long">
+		<![CDATA[
+			select no
+			  from code
+			 where save_path_no = #{savePathNo} and file_name like #{fileName}
+		]]>
+	</select>
+	
+	
+	
+	
+	<delete id="delete" parameterType="long">
+		<![CDATA[
+			delete 
+			from code where no=#{no};		
+		]]>
+	</delete>	
 </mapper>
