@@ -9,14 +9,134 @@
 <head>
     <meta charset="UTF-8">
     <title>Code Forest</title>
-
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/mypage-header.css">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/mypage/problem.css">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/table2excel.js"></script>
+  	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script>
+var page = '1';
+
+var originList = function(page) {
+   $.ajax({
+      url: '${pageContext.request.contextPath }/api/mypage/problem',
+      async: false,
+      type: 'post',
+      dataType: 'json',
+      traditional: true,
+      data: {
+         'page': page,
+      },
+      success: function(response){
+         if(response.result != "success"){
+            console.error(response.message);
+            return;
+         }
+         map = response.data;
+         
+         fetchList();
+      },
+      error: function(xhr, status, e){
+         console.error(status + ":" + e);
+      }
+   });
+}
+
+var fetchList = function() {
+    $("#problem-tbody").remove();
+   $("#pager").remove();
+   
+   var str = "";
+   str += '<tbody id="problem-tbody">';
+   for(var i = 0; i < map.list.length; i++){
+      str += '<tr class="list-contents" id="list-contents" data-no="' + map.list[i].no + '">' + 
+                '<td><a data-no="' + map.list[i].no + '">' + map.list[i].no + '</a></td>' + 
+                  '<td class="problem-title" data-no="' + map.list[i].no + '" style="text-align: left">' + map.list[i].title + '</td>' + 
+                  '<td>' + map.list[i].hit + '</td>' + 
+                  '<td>' + map.list[i].recommend + '</td>' + 
+                  '<td><a href="${pageContext.servletContext.contextPath }/training/modify/' + map.list[i].no + '"><button id="modify-btn">수정하기</button></a></td>' + 
+                   '<td><input data-no="' + map.list[i].no + '" data-title="' + map.list[i].title + '" type="button" alt="list" class="list" value="내보내기"></td>' + 
+                  '<td><input data-no="' + map.list[i].no + '" type="button" alt="delete" class="delete" value="삭제"></td>' + 
+                '</tr>' + 
+             '<tr class="sub-problem-contents' + map.list[i].no + '">' + 
+                '<td></td>' + 
+                 '<td colspan="5">' + 
+                     '<table id="sub-problem-table" class="' + map.list[i].no + '" style="display: none;">' + 
+                        '<tbody class="sub-problem-tbody"></tbody>' + 
+                     '</table>' + 
+                 '</td>' + 
+                '</tr>';
+   }
+   str += '</tbody>';
+   $(".quiz-table").append(str);
+   
+   var str2 = '<div class="pager" id="pager">';
+   
+   if(page != '1'){
+      str2 += '<span class="prev"><i class="fas fa-angle-left"></i></span>';
+   }   
+   for(var i = map.startPageNum; i < map.endPageNum + 1; i++){
+      str2 += '<span class="page" id="' + i + '">';
+      if(map.select != i ) {
+         str2 += i;
+      }
+      if(map.select == i){
+         str2 += '<b>'+i+'</b>';
+      }
+      str2 += '</span>';
+   }
+   if(map.endPageNum != page){
+      str2 += '<span class="next"><i class="fas fa-angle-right"></i></span>';
+   }    
+   str2 += "</div>";
+      
+   $(".quiz-table").after(str2);
+}
+
+var nextRemove = function() {
+   var endPage = map.endPageNum;
+   var nextPandan = true;
+   
+   if(page == endPage) {
+      $('.next').remove();
+      nextPandan = false;
+   } else if(nextPandan == false){
+      $('.pager').append('<span class="next">▶</span>');
+      nextPandan = true;
+   }
+}
+
 $(function() {
+	originList('1');
+	
+	$(document).on("click", ".page", function() {
+	      page = $(this).attr('id');
+	      
+	      originList(page);
+	      nextRemove();
+	   });
+	   
+	   $(document).on("click", ".prev", function() {
+	      page = $('span b').parent().attr('id');
+	      var prevNo = parseInt(page) - 1;
+	      page = String(prevNo);
+	      
+	      originList(page);
+	      nextRemove();
+	   });
+	   
+	   $(document).on("click", ".next", function() {
+	      page = $('span b').parent().attr('id');
+	      var prevNo = parseInt(page) + 1;
+	      page = String(prevNo);
+	      
+	      originList(page);
+	      nextRemove();
+	   });
+	
 	var dialogDelete = $("#dialog-delete").dialog({
 		autoOpen: false,
 		resizable: false,
@@ -227,7 +347,6 @@ $(function() {
 </script>
     
 </head>
-
 <body>
     <c:import url="/WEB-INF/views/include/mypage-header.jsp" />
     <div class="container">
@@ -237,70 +356,18 @@ $(function() {
             </div>
             <br>
             <table class="quiz-table">
-            	<thead>
-	                <tr>
-	                    <th width="9%">번호</th>
-	                    <th width="47%">제목</th>
-	                    <th width="10%">조회수</th>
-	                    <th width="10%">추천수</th>
-	                    <th width="10%">수정</th>
-	                    <th width="10%">목록</th>
-	                    <th width="10%">삭제</th>
-	                </tr>
+               <thead>
+                   <tr>
+                       <th width="9%">번호</th>
+                       <th width="47%">제목</th>
+                       <th width="10%">조회수</th>
+                       <th width="10%">추천수</th>
+                       <th width="10%">수정</th>
+                       <th width="10%">목록</th>
+                       <th width="10%">삭제</th>
+                   </tr>
                 </thead>
-                <tbody id="problem-tbody">
-	              	<c:forEach items='${map.list }' var='problemvo' varStatus='status'>
-	                	<tr class="list-contents" data-no="${problemvo.no }">
-	                		<td><a data-no="${problemvo.no }">${problemvo.no }</a></td>
-		                    <td class="problem-title" data-no="${problemvo.no }" style="text-align: left">${problemvo.title }</td>
-		                    <td>${problemvo.hit }</td>
-		                    <td>${problemvo.recommend }</td>
-		                    <td><a href="${pageContext.servletContext.contextPath }/training/modify/${problemvo.no }"><button id="modify-btn">수정하기</button></a></td>
-	                      	<td><input data-no="${problemvo.no }" data-title="${problemvo.title }" type="button" alt="list" class="list" value="내보내기"></td>
-		                    <td><input data-no="${problemvo.no }" type="button" alt="delete" class="delete" value="삭제"></td>
-	                	</tr>
-	                	
-	                	<tr class="sub-problem-contents${problemvo.no }">
-	                		<td></td>
-		                	<td colspan="5">
-			                	<table id="sub-problem-table" class="${problemvo.no }" style="display: none;">
-			                		<tbody class="sub-problem-tbody">
-			                		
-			                		</tbody>
-			                	</table>
-		                	</td>
-		               	</tr>	
-	                </c:forEach>
-                </tbody>
-                
             </table>
-				
-				
-				
-				<!-- pager 추가 -->
-				<div class="pager">
-					<c:if test="${map.prev }">
-						<span>[ <a href="${pageContext.request.contextPath }/mypage/problem?p=${map.startPageNum -1}">이전</a> ]</span>
-					</c:if>				
-					
-					<c:forEach begin="${map.startPageNum }" end="${map.endPageNum }" var="page">
-						<span>
-							<c:if test="${map.select != page }">
-								<a href="${pageContext.request.contextPath }/mypage/problem?p=${page}">${page}</a>
-							</c:if>
-							
-							<c:if test="${map.select == page }">
-								<b>${page }</b>
-							</c:if>
-						</span>
-					</c:forEach>
-						
-					<c:if test="${map.next }">
-						<span>[ <a href="${pageContext.request.contextPath }/mypage/problem?p=${map.endPageNum +1}">다음</a> ]</span>
-					</c:if>											
-				</div>
-				<!-- pager 추가 -->           
-            
             
             <br>
         </div>
@@ -308,53 +375,52 @@ $(function() {
     </div>
     
     <div id="dialog-delete" title="문제 모음 삭제" style="display: none">
-    	<p>
-    		<span class="ui-icon ui-icon-alert" style="float: left; margin: 12px 12px 20px 0;">	
-    		</span>
-    		해당 문제 모음을 삭제하시겠습니까?
-    	</p>
-    	<form>
-    		<input type="hidden" id="hidden-no" value="">
-    		<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-    	</form>
+       <p>
+          <span class="ui-icon ui-icon-alert" style="float: left; margin: 12px 12px 20px 0;">   
+          </span>
+          해당 문제 모음을 삭제하시겠습니까?
+       </p>
+       <form>
+          <input type="hidden" id="hidden-no" value="">
+          <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+       </form>
     </div>
     
     <div id="dialog-delete-sp" title="서브 문제 삭제" style="display: none">
-    	<p>
-    		<span class="ui-icon ui-icon-alert" style="float: left; margin: 12px 12px 20px 0;">	
-    		</span>
-    		해당 서브 문제를 삭제하시겠습니까?
-    	</p>
-    	<form>
-    		<input type="hidden" id="hidden-sp-no" value="">
-    		<input type="hidden" id="hidden-table-class" value="">
-    		<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-    	</form>
+       <p>
+          <span class="ui-icon ui-icon-alert" style="float: left; margin: 12px 12px 20px 0;">   
+          </span>
+          해당 서브 문제를 삭제하시겠습니까?
+       </p>
+       <form>
+          <input type="hidden" id="hidden-sp-no" value="">
+          <input type="hidden" id="hidden-table-class" value="">
+          <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+       </form>
     </div>
     
     <div class="problem-list" title="문제 푼 사람 리스트" style="display: none">
-    	<input type="hidden" id="hidden-title" value="">
-    	<div class="check-box">
-	    	<label><input class="box-component" type="checkbox" name="problem-list-table" value="name" checked>이름</label>
-	    	<label><input class="box-component" type="checkbox" name="problem-list-table" value="email" checked>이메일</label>
-	    	<label><input class="box-component" type="checkbox" name="problem-list-table" value="nickname" checked>닉네임</label>
-	    	<label><input class="box-component" type="checkbox" name="problem-list-table" value="try-count" checked>시도횟수</label>
-	    	<label><input class="box-component" type="checkbox" name="problem-list-table" value="lang" checked>언어</label>
-	    	<label><input class="box-component" type="checkbox" name="problem-list-table" value="solve-time" checked>해결시간</label>
-    	</div>
-    	<table class="problem-list-table">
-    		<tr>
-            	<th id="name">이름</th>
+       <input type="hidden" id="hidden-title" value="">
+       <div class="check-box">
+          <label><input class="box-component" type="checkbox" name="problem-list-table" value="name" checked>이름</label>
+          <label><input class="box-component" type="checkbox" name="problem-list-table" value="email" checked>이메일</label>
+          <label><input class="box-component" type="checkbox" name="problem-list-table" value="nickname" checked>닉네임</label>
+          <label><input class="box-component" type="checkbox" name="problem-list-table" value="try-count" checked>시도횟수</label>
+          <label><input class="box-component" type="checkbox" name="problem-list-table" value="lang" checked>언어</label>
+          <label><input class="box-component" type="checkbox" name="problem-list-table" value="solve-time" checked>해결시간</label>
+       </div>
+       <table class="problem-list-table">
+          <tr>
+               <th id="name">이름</th>
                 <th id="email">이메일</th>
                 <th id="nickname">닉네임</th>
                 <th id="try-count">시도횟수</th>
                 <th id="lang">언어</th>
                 <th id="solve-time">해결시간</th>
             </tr>           
-    	</table>
-
+       </table>
     </div>
-    
+    <c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 
 </html>
