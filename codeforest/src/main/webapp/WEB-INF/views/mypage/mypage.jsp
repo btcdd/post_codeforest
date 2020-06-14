@@ -9,7 +9,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Code Forest</title>
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/mypage-header.css">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/mypage/mypage.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -42,7 +45,7 @@
             </div>
         </div>
     </div>
-
+	<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 
 </html>
