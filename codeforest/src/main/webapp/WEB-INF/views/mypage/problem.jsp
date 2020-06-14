@@ -1,25 +1,30 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
     <title>Code Forest</title>
+    <link href="${pageContext.servletContext.contextPath }/assets/css/include/mypage-header.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/mypage/problem.css">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
+
+    
+    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-  	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/table2excel.js"></script>
+     <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/table2excel.js"></script>
+    
+    
 <script>
 
 var page = '1';
 
-var originList = function() {
+var originList = function(page) {
 	$.ajax({
 		url: '${pageContext.request.contextPath }/api/mypage/problem',
 		async: false,
@@ -45,10 +50,11 @@ var originList = function() {
 }
 
 var fetchList = function() {
-    $("#list-contents").remove();
+    $("#problem-tbody").remove();
 	$("#pager").remove();
 	
 	var str = "";
+	str += '<tbody id="problem-tbody">';
 	for(var i = 0; i < map.list.length; i++){
 		str += '<tr class="list-contents" id="list-contents" data-no="' + map.list[i].no + '">' + 
 	    		   '<td><a data-no="' + map.list[i].no + '">' + map.list[i].no + '</a></td>' + 
@@ -68,7 +74,8 @@ var fetchList = function() {
         			'</td>' + 
        			'</tr>';
 	}
-	$("#problem-tbody").append(str);
+	str += '</tbody>';
+	$(".quiz-table").append(str);
 	
 	var str2 = '<div class="pager" id="pager">';
 	
@@ -85,7 +92,7 @@ var fetchList = function() {
 		}
 		str2 += '</span>';
 	}
-	if(map.next){
+	if(map.endPageNum != page){
 		str2 += '<span class="next"><i class="fas fa-angle-right"></i></span>';
 	}	 
 	str2 += "</div>";
@@ -93,9 +100,47 @@ var fetchList = function() {
 	$(".quiz-table").after(str2);
 }
 
+var nextRemove = function() {
+	var endPage = map.endPageNum - 1;
+	var nextPandan = true;
+	
+	if(page == endPage) {
+		$('.next').remove();
+		nextPandan = false;
+	} else if(nextPandan == false){
+		$('.pager').append('<span class="next">▶</span>');
+		nextPandan = true;
+	}
+}
+
 $(function() {
 	
-	originList();
+	originList('1');
+	
+	$(document).on("click", ".page", function() {
+		page = $(this).attr('id');
+		
+		originList(page);
+		nextRemove();
+	});
+	
+	$(document).on("click", ".prev", function() {
+		page = $('span b').parent().attr('id');
+		var prevNo = parseInt(page) - 1;
+		page = String(prevNo);
+		
+		originList(page);
+		nextRemove();
+	});
+	
+	$(document).on("click", ".next", function() {
+		page = $('span b').parent().attr('id');
+		var prevNo = parseInt(page) + 1;
+		page = String(prevNo);
+		
+		originList(page);
+		nextRemove();
+	});
 	
 	var dialogDelete = $("#dialog-delete").dialog({
 		autoOpen: false,
@@ -309,6 +354,15 @@ $(function() {
 
 <body>
     <c:import url="/WEB-INF/views/include/mypage-header.jsp" />
+    <div class="sidemenu">
+	    <nav>
+	        <ul>
+	            <li class="menulist"><a href="${pageContext.servletContext.contextPath }/mypage/mypage">마이페이지</a></li>
+	            <li class="menulist"><a href="${pageContext.servletContext.contextPath }/mypage/account">계정 관리</a></li>
+	            <li class="menulist"><a href="${pageContext.servletContext.contextPath }/mypage/problem">문제 관리</a></li>
+	        </ul>
+	    </nav>
+	</div>
     <div class="container">
         <div class="quizlist">
             <div class="line">
@@ -327,13 +381,8 @@ $(function() {
 	                    <th width="10%">삭제</th>
 	                </tr>
                 </thead>
-                <tbody id="problem-tbody">
-                </tbody>
-                
             </table>
 				
-			<!-- pager 추가 -->      
-            
             <br>
         </div>
 
@@ -384,9 +433,8 @@ $(function() {
                 <th id="solve-time">해결시간</th>
             </tr>           
     	</table>
-
     </div>
-    
+    <c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 
 </html>
