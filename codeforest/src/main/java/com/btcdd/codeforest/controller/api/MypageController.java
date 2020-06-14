@@ -28,17 +28,17 @@ public class MypageController {
 	private MypageService mypageService;
 
 	@Auth
-	@PostMapping(value="/account/nickname")
+	@PostMapping(value = "/account/nickname")
 	public JsonResult changeNickname(@ModelAttribute UserVo vo, HttpSession session) {
 		int result = mypageService.changeNickname(vo);
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		authUser.setNickname(vo.getNickname());
 		session.setAttribute("authUser", authUser);
 		return JsonResult.success(result);
 	}
 
 	@Auth
-	@PostMapping(value="/account/password")
+	@PostMapping(value = "/account/password")
 	public JsonResult changePassword(@ModelAttribute UserVo vo) {
 		int result = mypageService.changePassword(vo);
 
@@ -46,16 +46,16 @@ public class MypageController {
 	}
 
 	@Auth
-	@PostMapping(value="/account/delete")
+	@PostMapping(value = "/account/delete")
 	public JsonResult deleteUser(@ModelAttribute UserVo vo, HttpSession session) {
 		int result = mypageService.deleteUser(vo);
 		session.setAttribute("authUser", null);
-		
+
 		return JsonResult.success(result);
 	}
 
 	@Auth
-	@DeleteMapping(value="/problem/delete/{no}")
+	@DeleteMapping(value = "/problem/delete/{no}")
 	public JsonResult deleteProblem(@PathVariable("no") Long no) {
 		int result = mypageService.deleteProblem(no);
 
@@ -63,7 +63,7 @@ public class MypageController {
 	}
 
 	@Auth
-	@DeleteMapping(value="/sub-problem/delete/{no}")
+	@DeleteMapping(value = "/sub-problem/delete/{no}")
 	public JsonResult deleteSubProblem(@PathVariable("no") Long no) {
 		int result = mypageService.deleteSubProblem(no);
 
@@ -72,7 +72,7 @@ public class MypageController {
 
 	// 문제 푼 사람 리스트
 	@Auth
-	@PostMapping(value="/problem/list/{no}")
+	@PostMapping(value = "/problem/list/{no}")
 	public JsonResult listProblem(@PathVariable("no") Long no) {
 		List<SubmitVo> result = mypageService.problemSolveList(no);
 
@@ -80,7 +80,7 @@ public class MypageController {
 	}
 
 	@Auth
-	@PostMapping(value="/sub-problem/{no}")
+	@PostMapping(value = "/sub-problem/{no}")
 	public JsonResult subProblem(@PathVariable("no") Long no) {
 		List<SubProblemVo> result = mypageService.findSubProblem(no);
 
@@ -88,23 +88,23 @@ public class MypageController {
 	}
 
 	@Auth
-	@PostMapping(value="/account/privacy")
+	@PostMapping(value = "/account/privacy")
 	public JsonResult privacyChange(String privacy, HttpSession session) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		
+
 		mypageService.privacyChange(authUser.getNo(), privacy);
 
 		return JsonResult.success(null);
 	}
-	
+
 	@Auth
-	@PostMapping(value="/problem")
+	@PostMapping(value = "/problem")
 	public JsonResult findProblem(String page, HttpSession session) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		
+
 		int currentPage = Integer.parseInt(page);
-		Map<String,Object> map = mypageService.getContentsList(currentPage, authUser.getNo());
-		
+		Map<String, Object> map = mypageService.getContentsList(currentPage, authUser.getNo());
+	
 		return JsonResult.success(map);
 	}
 }
