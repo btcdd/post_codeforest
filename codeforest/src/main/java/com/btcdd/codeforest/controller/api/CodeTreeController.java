@@ -74,8 +74,8 @@ public class CodeTreeController {
 		if(!exist) {
 			System.out.println("기존 존재하지 않는다");
 			codetreeService.insertFile(savePathNo,language,fileName);
-//			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
-//			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
+			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
+			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
 			Long codeNo = codetreeService.findCodeNo(savePathNo,fileName);
 			System.out.println("codeNo>>"+codeNo);
 			map.put("fileName", fileName);
