@@ -5,50 +5,15 @@
 body {
 	margin: 0;
 	padding: 0;
+	background-color: #fAFAFA;
 }
 
 .container {
 	width: 980px;
 	margin: auto;
-	margin-top: 20px;
+	margin-top: 8em;
 	padding: 10px 30px;
-	border: 1px solid rgb(180, 180, 180);
-	border-radius: 10px;
-}
-
-.header {
-	background-color: #283d39;
-	color: white
-}
-
-.head {
-	width: 1320px;
-	margin: auto;
-	padding: 0 0 5px 0;
-}
-
-.logo {
-	float: left;
-	margin-right: 40px;
-	margin-top: 4px;
-}
-
-.logo a {
-	text-decoration: none;
-	color: #fff;
-	font-family: 'Teko', sans-serif;
-	font-size: 1.7em;
-	margin-left: 20px;
-	margin-top: 4px;
-}
-
-.logo a:visited {
-	color: #fff
-}
-
-.logo a:hover {
-	text-decoration: none;
-	color: #fff
+	margin-bottom: 9em;
 }
 
 .menu-item {
@@ -222,5 +187,40 @@ td {
 }
 
 .pager {
-	margin: 0 auto;
+	width: 70%;
+    margin-top: 2.5%;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 14%;
+    text-align: center;
+    cursor: pointer;
 }
+
+.prev, .page, .next {
+    position: relative;
+    display: inline-block;
+    padding: .53125rem .84375rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #303030;
+}
+
+#footer {
+	float: left;
+	width: 100%;
+	margin-top : 30px;
+}
+
+.footer {
+    display: flow-root;
+	margin: auto;
+	padding: 60px 0;
+	left: 0;
+	bottom: 0;
+	width: 69%;
+    background-color: #fAFAFA;
+	color: #3C3C3C;
+	text-align: center;
+	border-top: 1px solid #BFBFBf
+}
+
