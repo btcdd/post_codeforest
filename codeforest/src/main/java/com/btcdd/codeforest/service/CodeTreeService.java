@@ -159,7 +159,16 @@ public class CodeTreeService {
 		return codetreeRepository.findProblemNo(subProblemNo);
 	}
 
-	
+	public Long findCodeNo(Long savePathNo, String fileName) {
+		return codetreeRepository.findCodeNo(savePathNo,fileName);
+	}
+
+	public boolean deleteFile(Long codeNo) {
+		int count = codetreeRepository.delete(codeNo);
+		return count == 1;
+	}
+
+
 
 	
 //	public Map<String, Object> getContentsList(int currentPage, String keyword) {
