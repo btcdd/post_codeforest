@@ -121,4 +121,6 @@ body { margin: 0; padding: 0; background-color: #FAFAFA;}
    left: 300px;
    margin: auto;
    margin-top: 110px;
+   border: 1px solid #d1d5da;
+   width: 6em;
 }

@@ -29,13 +29,11 @@
          </c:choose>
         </div>
         <div class="sidemenu">
-          <nav>
-              <ul>
-                  <li class="menulist"><a href="${pageContext.servletContext.contextPath }/mypage/mypage">마이페이지</a></li>
-                  <li class="menulist"><a href="${pageContext.servletContext.contextPath }/mypage/account">계정 관리</a></li>
-                  <li class="menulist"><a href="${pageContext.servletContext.contextPath }/mypage/problem">문제 관리</a></li>
-              </ul>
-          </nav>
+           <ul>
+               <a href="${pageContext.servletContext.contextPath }/mypage/mypage"><li class="menulist mypage">마이페이지</li></a>
+               <a href="${pageContext.servletContext.contextPath }/mypage/account"><li class="menulist account">계정 관리</li></a>
+               <a href="${pageContext.servletContext.contextPath }/mypage/problem"><li class="menulist problem">문제 관리</li></a>
+           </ul>
       </div>
     </div>
 </div>
