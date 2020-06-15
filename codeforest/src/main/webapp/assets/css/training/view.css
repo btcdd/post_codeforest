@@ -81,7 +81,7 @@ body {
 }
 
 .recommend, .save {
-outline: 0;
+	outline: 0;
     height: 32px;
     border: none;
     width: 100px;
@@ -195,7 +195,12 @@ fieldset {
 	padding: 0 20px 2em;
 }
 
-.input-content, .result-content {
+.input-content {
+	padding-bottom: 20px;
+	padding: 10px
+}
+
+.result-content {
 	padding-bottom: 20px;
 	padding: 10px
 }
@@ -373,4 +378,10 @@ button#modify {
 .custom {
     text-align: center;
     color: #fff;
+}
+
+pre {
+    font-family: consolas;
+    margin: 0;
+    padding: 0;
 }

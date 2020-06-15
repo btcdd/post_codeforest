@@ -3,9 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%
-	pageContext.setAttribute("newLine", "\n");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +46,27 @@ document.addEventListener('DOMContentLoaded', function() {
 var savePandanBool = false;
 var problemNo = '${problemVo.no}';
 var array = new Array();
+
+
+var setHeight = function() {
+	for(var i = 1; i < ${listSize } + 1; i++) {
+		var inputHeight = $('#input' + i).children().height();
+		var outputHeight = $('#output' + i).children().height();
+		
+		console.log("inputHeight : " + inputHeight);
+		console.log("outputHeight : " + outputHeight);
+		
+		if(inputHeight > outputHeight) {
+			$('#output' + i).children().css("height", inputHeight);
+			$('#input' + i).children().css("height", inputHeight);
+// 			$('#output' + i).children().children().eq(1).css("height", inputHeight);
+		} else if(inputHeight < outputHeight) {
+			$('#input' + i).children().css("height", outputHeight);
+			$('#output' + i).children().css("height", outputHeight);
+// 			$('#input' + i).children().children().eq(1).css("height", outputHeight);
+		}
+	}
+}
 
 var linuxSaveCode = function() {
 	$.ajax({
@@ -145,7 +163,6 @@ var savePandan = function() {
 			// 저장이 안되어있다면
 			if(response.data == null) {
 				$('#save-button').removeClass('selected');
-				console.log("addclass");
 				savePandanBool = true;
 			// 저장이 되어있다면
 			} else {
@@ -177,44 +194,6 @@ var saveProblem = function() {
 				return;
 			}
 			linuxSaveCode();
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			////// 해결하세용
-			$('#save-button').classList.toggle('selected');
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			console.log("saveProblem가 안들어오닝?");
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
@@ -261,14 +240,14 @@ $(function() {
     });
     
 	originRecommend();
-	
 	savePandan();
 	
 	var no;
 	
 	$(".open1").show();
 	$('.open1').parent().children().first().css("background-color", "#EBEBEB");
-// 	$('.open1').parent().children().first().children('.subProblemIndex').css("background-color", "#FAFAFA");
+
+	setHeight();
 	
 	$(".top-prob").click(function() {
 		no = $(this).parent().attr("id");
@@ -276,6 +255,7 @@ $(function() {
 		if($(".open" + no).css("display") == "none"){
 			$(".open" + no).show("slow");
 			$(".open" + no).parent().children().first().css("background-color", "#EBEBEB");
+			setHeight();
 		} else {
 			$(".open" + no).hide("slow");
 			$(".open" + no).parent().children().first().css("background-color", "#fff");
@@ -304,6 +284,8 @@ $(function() {
 		var subProblemNo = $('.sub' + i).attr("value");
 		array.push(subProblemNo);
 	}
+	
+	
 	
 });
 </script>
@@ -357,19 +339,19 @@ $(function() {
 						
 						<div class="open${status.index + 1}" style="display:none">
 							<div class="explain">
-								<p>${fn:replace(vo.contents, "<br />", newLine)}</p>
+								<pre>${vo.contents }</pre>
 							</div>
 							<div class="example">
 								<div class="input">
 									<fieldset>
 										<legend class="example-division">예제 입력</legend>
-										<div class="input-content">${fn:replace(vo.examInput, "<br />", newLine)}</div>
+										<div class="input-content" id="input${status.index + 1 }"><pre>${vo.examInput }</pre></div>
 									</fieldset>
 								</div>
 								<div class="result">
 									<fieldset>
 										<legend class="example-division">예제 출력</legend>
-										<div class="result-content">${fn:replace(vo.examOutput, "<br />", newLine)}</div>
+										<div class="result-content" id="output${status.index + 1 }"><pre>${vo.examOutput }</pre></div>
 									</fieldset>
 								</div>
 							</div>
