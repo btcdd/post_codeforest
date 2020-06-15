@@ -129,8 +129,7 @@ public class CodeTreeLinux {
 
 	public void deleteCode(String packagePath, String language, String fileName) {
 		try {
-			String command = "rm -rf " + packagePath + "/" + language + "/" + fileName;
-			process = Runtime.getRuntime().exec(command);
+			process = Runtime.getRuntime().exec("rm -f " + packagePath + "/" + language + "/" + fileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
