@@ -24,7 +24,7 @@
             </div>
             <div>
                 <div class="correct">
-                    <h3>맞은 문제</h3>
+                    <h4>맞은 문제</h4>
                 </div>
                 <div class="correct-answer">
                 	<c:if test="${empty rightSubmit }">
@@ -38,7 +38,7 @@
             <br>
             <div>
                 <div class="wrong">
-                    <h3>틀린 문제</h3>
+                    <h4>틀린 문제</h4>
                 </div>
                 <c:if test="${empty wrongSubmit }">
                 		<div class="empty-wrong-submit"><i class="far fa-lightbulb"></i><span class="light">아직 <strong>틀린 문제</strong>가 없습니다.</span></div>

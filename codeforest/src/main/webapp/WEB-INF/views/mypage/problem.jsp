@@ -57,9 +57,9 @@ var fetchList = function() {
                   '<td class="problem-title" data-no="' + map.list[i].no + '" style="text-align: left">' + map.list[i].title + '</td>' + 
                   '<td>' + map.list[i].hit + '</td>' + 
                   '<td>' + map.list[i].recommend + '</td>' + 
-                  '<td><a href="${pageContext.servletContext.contextPath }/training/modify/' + map.list[i].no + '"><button id="modify-btn">수정하기</button></a></td>' + 
-                   '<td><input data-no="' + map.list[i].no + '" data-title="' + map.list[i].title + '" type="button" alt="list" class="list" value="내보내기"></td>' + 
-                  '<td><input data-no="' + map.list[i].no + '" type="button" alt="delete" class="delete" value="삭제"></td>' + 
+                  '<td><a href="${pageContext.servletContext.contextPath }/training/modify/' + map.list[i].no + '"><button id="modify-btn">수정</button></a></td>' + 
+                   '<td><i data-no="' + map.list[i].no + '" data-title="' + map.list[i].title + '" type="button" alt="list" class="list fas fa-file-download"></i></td>' + 
+                  '<td><i data-no="' + map.list[i].no + '" alt="delete" class="delete fas fa-minus-circle"></i></td>' + 
                 '</tr>' + 
              '<tr class="sub-problem-contents' + map.list[i].no + '">' + 
                 '<td></td>' + 
@@ -284,7 +284,7 @@ $(function() {
 				for(var i in response.data) {
 					tr += '<tr id="sub-problem' + response.data[i].no + '"><td class="sub-problem-padding1">' + response.data[i].no +'</td>' + 
 						'<td class="sub-problem-padding2">' + response.data[i].title + '</td>' + 
-						'<td><input data-no="' + response.data[i].no + '" type="button" alt="delete" class="sp-delete" value="삭제"></td></tr>'
+						'<td><i data-no="' + response.data[i].no + '" type="button" alt="delete" class="sp-delete fas fa-minus-circle"></i></td></tr>'
 
 				}			
 				$("." + no + " .sub-problem-tbody").append(tr);
@@ -352,7 +352,7 @@ $(function() {
     <div class="container">
         <div class="quizlist">
             <div class="line">
-                <h4>작성한 퀴즈</h4>
+                <h4>문제 관리</h4>
             </div>
             <br>
             <table class="quiz-table">
@@ -362,8 +362,8 @@ $(function() {
                        <th width="47%">제목</th>
                        <th width="10%">조회수</th>
                        <th width="10%">추천수</th>
-                       <th width="10%">수정</th>
-                       <th width="10%">목록</th>
+                       <th width="10%">수정하기</th>
+                       <th width="10%">내보내기</th>
                        <th width="10%">삭제</th>
                    </tr>
                 </thead>
