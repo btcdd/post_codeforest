@@ -26,7 +26,7 @@
 					<div class="menu-item"><a href="${pageContext.servletContext.contextPath }/user/join">Sign Up</a></div>
 				</c:when>
 				<c:otherwise>
-					<div class="menu-item"><a href="${pageContext.servletContext.contextPath }/mypage/mypage">Settings</a></div>
+					<div class="menu-item"><a href="${pageContext.servletContext.contextPath }/mypage/account">Settings</a></div>
 					<div class="menu-item"><a href="${pageContext.request.contextPath }/user/logout">Sign Out</a></div>
 				</c:otherwise>
 			</c:choose>

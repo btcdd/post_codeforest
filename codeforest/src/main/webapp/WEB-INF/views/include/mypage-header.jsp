@@ -23,7 +23,7 @@
                <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/user/join">Sign Up</a></div>
             </c:when>
             <c:otherwise>
-               <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/mypage/mypage">Settings</a></div>
+               <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/mypage/account">Settings</a></div>
                <div class="menu-item"><a href="${pageContext.request.contextPath }/user/logout">Sign Out</a></div>
             </c:otherwise>
          </c:choose>
@@ -31,8 +31,8 @@
         <div class="sidemenu">
            <ul>
                <li class="nickname-header"><div class="auth-user">${authUser.nickname }</div> <div class="settings">Personal settings</div></li>
-               <a href="${pageContext.servletContext.contextPath }/mypage/mypage"><li class="menulist mypage"><span class="span-mypage">마이페이지</span></li></a>
                <a href="${pageContext.servletContext.contextPath }/mypage/account"><li class="menulist account"><span class="span-account">계정 관리</span></li></a>
+               <a href="${pageContext.servletContext.contextPath }/mypage/mypage"><li class="menulist mypage"><span class="span-mypage">기록</span></li></a>
                <a href="${pageContext.servletContext.contextPath }/mypage/problem"><li class="menulist problem hover" style="border-bottom: none; "><span class="span-problem">문제 관리</span></li></a>
            </ul>
       </div>
