@@ -13,6 +13,7 @@
 <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>		
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- code mirror -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/codemirror/css/codemirror.css">
@@ -33,20 +34,13 @@
 <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 
 <script>
-
-
-
-
 $(function() {
-
-	
-	
-	
 ////////////////// code-mirror /////////////////////////////
    var save = false;
    $(".codeTest").submit(function(event) {
       event.preventDefault();
       var lang = $("select option:selected").val();
+      
       var code = editor.getValue();
 
       $.ajax({
@@ -67,6 +61,7 @@ $(function() {
                console.log("data[0]\n" + response.data[0]);
                $('#result').val(response.data[0]);
             }
+         
          },
          error: function(xhr, status, e) {
             console.error(status + ":" + e);
@@ -102,9 +97,6 @@ $(function() {
    
    $('.lang').change(function() {
 	   var lang = $(".lang option:selected").val();
-	   
-	   
-	   
 	   var face = '';
 	   
 	   if(lang === 'c') {
@@ -149,133 +141,170 @@ $(function() {
    });
    
  	$('.CodeMirror').addClass('code');
+
  	
- ////////////////////////////////////////////////////////////////
- 
- 	$(document).on('click', '.sub-problem-title', function(event) {
-		event.preventDefault();
-		var no = $(this).data("no");
-		$("#subproblem-" + no).toggle();
+///////////////////////////// problem-list //////////////////////////////////
+ 	var ui = $(".ui"),
+ 	    sidebar = $(".ui__sidebar");
+
+ 	// File Tree
+ 	$(".folder").on("click", function(e) {
+ 	    var t = $(this);
+ 	    var tree = t.closest(".file-tree__item");
+
+ 	    if (t.hasClass("folder--open")) {
+ 	        t.removeClass("folder--open");
+ 	        tree.removeClass("file-tree__item--open");
+ 	    } else {
+ 	        t.addClass("folder--open");
+ 	        tree.addClass("file-tree__item--open");
+ 	    }
+
+ 	    // Close all siblings
+ 	    tree
+ 	        .siblings()
+ 	        .removeClass("file-tree__item--open")
+ 	        .find(".folder--open")
+ 	        .removeClass("folder--open");
+ 	});	
+ 	
+ 	
+
+ 	// 폰트 사이즈 변경
+	$('#font-size').on("propertychange change keyup paste", function(){		
+		var fontSize = $(this).val() + "px";
+		console.log("font-size:"+fontSize);
+		$(".CodeMirror").css("font-size", fontSize+"");
 	});
- 
- 
- 
- 	$('#font-size').on("propertychange change keyup paste", function(){		
- 		var fontSize = $(this).val() + "px";
- 		console.log("font-size:"+fontSize);
- 		$(".CodeMirror").css("font-size", fontSize+"");
-	});
+	
+ 	
+ 	
  	
  	
 ////////////////파일 추가////////////////////
  	
-var packagePath = null;
-var subProblemNo = null;
-var codeNo = null;
-var str='<div id="file-insert"><li>파일 추가</li></div>';
-$(".contextmenu").append(str);
-var str2='<div id="userfile-delete"><li>파일 삭제</li></div>';
-$(".userfile-menu").append(str2);
-	$(document).on('mouseenter','.file',function(){
+ 	var packagePath = null;
+ 	var subProblemNo = null;
+ 	var codeNo = null;
+ 	var str='<div id="file-insert"><li>파일 추가</li></div>';
+ 	$(".contextmenu").append(str);
+ 	var str2='<div id="userfile-delete"><li>파일 삭제</li></div>';
+ 	$(".userfile-menu").append(str2);
+ 	
+
+	$(document).on('mouseenter','#folder',function(){
 		console.log("hi");
-		$(document).on('click','.problem-packageList',function(e){
+		$(document).on('mousedown','#folder',function(e){
 			$(".userfile-menu").hide();
- 			packagePath = $(this).data("no");
- 			subProblemNo = $(this).data("no2");
- 		    //Get window size:
- 		    var winWidth = $(document).width();
- 		    var winHeight = $(document).height();
- 		    //Get pointer position:
- 		    var posX = e.pageX;
- 		    var posY = e.pageY;
- 		    //Get contextmenu size:
- 		    var menuWidth = $(".contextmenu").width();
- 		    var menuHeight = $(".contextmenu").height();
- 		    //Security margin:
- 		    var secMargin = 10;
- 		    //Prevent page overflow:
- 		    if(posX + menuWidth + secMargin >= winWidth
- 		    && posY + menuHeight + secMargin >= winHeight){
- 		      //Case 1: right-bottom overflow:
- 		      posLeft = posX - menuWidth - secMargin + "px";
- 		      posTop = posY - menuHeight - secMargin + "px";
- 		    }
- 		    else if(posX + menuWidth + secMargin >= winWidth){
- 		      //Case 2: right overflow:
- 		      posLeft = posX - menuWidth - secMargin + "px";
- 		      posTop = posY + secMargin + "px";
- 		    }
- 		    else if(posY + menuHeight + secMargin >= winHeight){
- 		      //Case 3: bottom overflow:
- 		      posLeft = posX + secMargin + "px";
- 		      posTop = posY - menuHeight - secMargin + "px";
- 		    }
- 		    else {
- 		      //Case 4: default values:
- 		      posLeft = posX + secMargin + "px";
- 		      posTop = posY + secMargin + "px";
- 		    };
- 		    //Display contextmenu:
- 		    $(".contextmenu").css({
- 		      "left": posLeft,
- 		      "top": posTop
- 		    }).show();
- 		    //Prevent browser default contextmenu.
- 		    return false;			
+			if(e.which == 3){
+
+	 			packagePath = $(this).data("no");
+	 			subProblemNo = $(this).data("no2");
+	 		    //Get window size:
+	 		    var winWidth = $(document).width();
+	 		    var winHeight = $(document).height();
+	 		    //Get pointer position:
+	 		    var posX = e.pageX;
+	 		    var posY = e.pageY;
+	 		    //Get contextmenu size:
+	 		    var menuWidth = $(".contextmenu").width();
+	 		    var menuHeight = $(".contextmenu").height();
+	 		    //Security margin:
+	 		    var secMargin = 10;
+	 		    //Prevent page overflow:
+	 		    if(posX + menuWidth + secMargin >= winWidth
+	 		    && posY + menuHeight + secMargin >= winHeight){
+	 		      //Case 1: right-bottom overflow:
+	 		      posLeft = posX - menuWidth - secMargin + "px";
+	 		      posTop = posY - menuHeight - secMargin + "px";
+	 		    }
+	 		    else if(posX + menuWidth + secMargin >= winWidth){
+	 		      //Case 2: right overflow:
+	 		      posLeft = posX - menuWidth - secMargin + "px";
+	 		      posTop = posY + secMargin + "px";
+	 		    }
+	 		    else if(posY + menuHeight + secMargin >= winHeight){
+	 		      //Case 3: bottom overflow:
+	 		      posLeft = posX + secMargin + "px";
+	 		      posTop = posY - menuHeight - secMargin + "px";
+	 		    }
+	 		    else {
+	 		      //Case 4: default values:
+	 		      posLeft = posX + secMargin + "px";
+	 		      posTop = posY + secMargin + "px";
+	 		    };
+	 		    //Display contextmenu:
+	 		    $(".contextmenu").css({
+	 		      "left": posLeft,
+	 		      "top": posTop
+	 		    }).show();
+	 		    //Prevent browser default contextmenu.
+	 		    return false;					
+				
+				
+			}
+			
+		
 		});
 
 		
-		$(document).on('click','.userFile',function(e){
+		$(document).on('mousedown','.userFile',function(e){
 			$(".contextmenu").hide();
-			codeNo = $(this).data("no");
- 		    //Get window size:
- 		    var winWidth = $(document).width();
- 		    var winHeight = $(document).height();
- 		    //Get pointer position:
- 		    var posX = e.pageX;
- 		    var posY = e.pageY;
- 		    //Get contextmenu size:
- 		    var menuWidth = $(".userfile-menu").width();
- 		    var menuHeight = $(".userfile-menu").height();
- 		    //Security margin:
- 		    var secMargin = 10;
- 		    //Prevent page overflow:
- 		    if(posX + menuWidth + secMargin >= winWidth
- 		    && posY + menuHeight + secMargin >= winHeight){
- 		      //Case 1: right-bottom overflow:
- 		      posLeft = posX - menuWidth - secMargin + "px";
- 		      posTop = posY - menuHeight - secMargin + "px";
- 		    }
- 		    else if(posX + menuWidth + secMargin >= winWidth){
- 		      //Case 2: right overflow:
- 		      posLeft = posX - menuWidth - secMargin + "px";
- 		      posTop = posY + secMargin + "px";
- 		    }
- 		    else if(posY + menuHeight + secMargin >= winHeight){
- 		      //Case 3: bottom overflow:
- 		      posLeft = posX + secMargin + "px";
- 		      posTop = posY - menuHeight - secMargin + "px";
- 		    }
- 		    else {
- 		      //Case 4: default values:
- 		      posLeft = posX + secMargin + "px";
- 		      posTop = posY + secMargin + "px";
- 		    };
- 		    //Display contextmenu:
- 		    $(".userfile-menu").css({
- 		      "left": posLeft,
- 		      "top": posTop
- 		    }).show();
- 		    //Prevent browser default contextmenu.
- 		    return false;			
+			
+			if(e.which == 3){
+				codeNo = $(this).data("no");
+	 		    //Get window size:
+	 		    var winWidth = $(document).width();
+	 		    var winHeight = $(document).height();
+	 		    //Get pointer position:
+	 		    var posX = e.pageX;
+	 		    var posY = e.pageY;
+	 		    //Get contextmenu size:
+	 		    var menuWidth = $(".userfile-menu").width();
+	 		    var menuHeight = $(".userfile-menu").height();
+	 		    //Security margin:
+	 		    var secMargin = 10;
+	 		    //Prevent page overflow:
+	 		    if(posX + menuWidth + secMargin >= winWidth
+	 		    && posY + menuHeight + secMargin >= winHeight){
+	 		      //Case 1: right-bottom overflow:
+	 		      posLeft = posX - menuWidth - secMargin + "px";
+	 		      posTop = posY - menuHeight - secMargin + "px";
+	 		    }
+	 		    else if(posX + menuWidth + secMargin >= winWidth){
+	 		      //Case 2: right overflow:
+	 		      posLeft = posX - menuWidth - secMargin + "px";
+	 		      posTop = posY + secMargin + "px";
+	 		    }
+	 		    else if(posY + menuHeight + secMargin >= winHeight){
+	 		      //Case 3: bottom overflow:
+	 		      posLeft = posX + secMargin + "px";
+	 		      posTop = posY - menuHeight - secMargin + "px";
+	 		    }
+	 		    else {
+	 		      //Case 4: default values:
+	 		      posLeft = posX + secMargin + "px";
+	 		      posTop = posY + secMargin + "px";
+	 		    };
+	 		    //Display contextmenu:
+	 		    $(".userfile-menu").css({
+	 		      "left": posLeft,
+	 		      "top": posTop
+	 		    }).show();
+	 		    //Prevent browser default contextmenu.
+	 		    return false;				
+				
+			}
+			
+			
 			
 		});
 		
-	}).on('mouseleave','.file',function(){
+	}).on('mouseleave','.ui__sidebar',function(){
 		console.log("bye");
-	}).on('contextmenu','.file',function(){
+	}).on('contextmenu','.ui__sidebar',function(){
 		return false;
-	}).on('userfile-menu','.file',function(){
+	}).on('userfile-menu','.ui__sidebar',function(){
 		return false;
 	});
 	
@@ -326,7 +355,7 @@ $(".userfile-menu").append(str2);
 								alert("이미 파일이 존재합니다.");//메시지 처리 필요
 								return;
 							}
-							$("#file"+response.data.savePathNo).prepend("<li class='userFile' data-no="+response.data.codeNo+"><img src='${pageContext.servletContext.contextPath }/assets/images/file.png'/>"+response.data.fileName+"</li>")
+							$("#file"+response.data.savePathNo).append("<li><div class='userFile' data-no="+response.data.codeNo+"><img src='${pageContext.servletContext.contextPath }/assets/images/file.png'/>"+response.data.fileName+"</div></li>")
 
 						},
 						error: function(xhr, status, e) {
@@ -374,6 +403,7 @@ $(".userfile-menu").append(str2);
 							if(response.data != -1){
 								 
 								$(".userFile[data-no="+response.data+"]").remove();
+								
 								dialogDelete.dialog('close');
 								return;
 							}							
@@ -390,144 +420,274 @@ $(".userfile-menu").append(str2);
 				}
 			},
 			close:function(){}
- 	});
+ 	}); 	
  	
-
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
 });
 
+	
+
+
+
+	
+
+/////////////////////////////////////////////////////////////////////////////////////////////////	
+	
+	
+	if (typeof Resizer === 'undefined') {
+
+	var Resizer = function(resizerNode, type, options) {
+		resizerNode.classList.add('resizer');
+		resizerNode.setAttribute('data-resizer-type', type);
+		this.hidebar = (typeof options === 'undefined' ? null : options.hidebar);
+		this.callbackMove = (typeof options === 'undefined' ? null : options.callbackMove);
+		this.callbackStop = (typeof options === 'undefined' ? null : options.callbackStop);
+		this.processing = false;
+		this.container = {
+			node: resizerNode.parentNode,
+			playingSize: null,
+			playingRatio: null
+		};
+		this.beforeBox = {
+			node: resizerNode.previousElementSibling,
+			ratio: null,
+			size: null
+		};
+		this.resizer = {
+			node: resizerNode,
+			type: type
+		};
+		this.afterBox = {
+			node: resizerNode.nextElementSibling,
+			ratio: null,
+			size: null
+		};
+		this.mousePosition = null;
+		this.beforeBox.node.style.flexGrow = 1;
+		this.afterBox.node.style.flexGrow = 1;
+		this.beforeBox.node.style.flexShrink = 1;
+		this.afterBox.node.style.flexShrink = 1;
+		this.beforeBox.node.style.flexBasis = 0;
+		this.afterBox.node.style.flexBasis = 0;
+		// ajout des events
+		this.resizer.node.addEventListener('mousedown', this.startProcess.bind(this), false);
+	};
+
+	Resizer.prototype = {
+		startProcess: function(event) {
+			// cas processus déjà actif
+			if (this.processing) {
+				return false;
+			}
+			// MAJ flag
+			this.processing = true;
+			// cacher la barre
+			if (this.hidebar) {
+				this.resizer.node.style.display = 'none';
+			}
+			// réinitialiser les variables
+			this.beforeBox.ratio = parseFloat(this.beforeBox.node.style.flexGrow);
+			this.afterBox.ratio = parseFloat(this.afterBox.node.style.flexGrow);
+			this.mousePosition = (this.resizer.type === 'H' ? event.clientX : event.clientY);
+			this.beforeBox.size = (this.resizer.type === 'H' ? this.beforeBox.node.offsetWidth : this.beforeBox.node.offsetHeight);
+			this.afterBox.size = (this.resizer.type === 'H' ? this.afterBox.node.offsetWidth : this.afterBox.node.offsetHeight);
+			this.container.playingSize = this.beforeBox.size + this.afterBox.size;
+			this.container.playingRatio = this.beforeBox.ratio + this.afterBox.ratio;
+			// lancer le processus
+			this.stopProcessFunctionBinded = this.stopProcess.bind(this);
+			document.addEventListener('mouseup', this.stopProcessFunctionBinded, false);
+			this.processFunctionBinded = this.process.bind(this);
+			document.addEventListener('mousemove', this.processFunctionBinded, false);
+		},
+		process: function(event) {
+			if (!this.processing) {
+				return false;
+			}
+			// calcul du mouvement de la souris
+			var mousePositionNew = (this.resizer.type === 'H' ? event.clientX : event.clientY);
+			var delta = mousePositionNew - this.mousePosition;
+			// calcul des nouveaux ratios
+			var ratio1, ratio2;
+			ratio1 = (this.beforeBox.size + delta) * this.container.playingRatio / this.container.playingSize;
+			if (ratio1 <= 0) {
+				ratio1 = 0;
+				ratio2 = this.container.playingRatio;
+			} else if (ratio1 >= this.container.playingRatio) {
+				ratio1 = this.container.playingRatio;
+				ratio2 = 0;
+			} else {
+				ratio2 = (this.afterBox.size - delta) * this.container.playingRatio / this.container.playingSize;
+			}
+			// mise à jour du css
+			this.beforeBox.node.style.flexGrow = ratio1;
+			this.afterBox.node.style.flexGrow = ratio2;
+			this.beforeBox.node.style.flexShrink = ratio2;
+			this.afterBox.node.style.flexShrink = ratio1;
+			// lancer la fonction de callback
+			if (typeof this.callbackMove === 'function') {
+				this.callbackMove();
+			}
+		},
+		stopProcess: function(event) {
+			// stopper le processus
+    	document.removeEventListener('mousemove', this.processFunctionBinded, false);
+			this.processFunctionBinded = null;
+			document.removeEventListener('mouseup', this.stopProcessFunctionBinded, false);
+			this.stopProcessFunctionBinded = null;
+			// afficher la barre
+			if (this.hidebar) {
+				this.resizer.node.style.display = '';
+			}
+			// lancer la fonction de callback
+			if (typeof this.callbackStop === 'function') {
+				this.callbackStop();
+			}
+			// réinitialiser le flag
+			this.processing = false;
+		},
+	};
+} else {
+	console.error('"Resizer" class already exists !');
+}
+
+window.onload = function() {
+    new Resizer(document.querySelector('[name=resizerH1]'), 'H');
+    new Resizer(document.querySelector('[name=resizerH2]'), 'H');
+    new Resizer(document.querySelector('[name=resizerV1]'), 'V');
+  };
+  
 
 
 
 </script>
 </head>
 <body>
-
-    <div class="header">
-        <div class='logo'>
-            Code Tree
-        </div>
-        <div class='menu'>
-            <div class='dropdown'>
-                <button class='dropbtn'>FILE</button>
-                <div class='dropdown-content'>
-                    <a href="#">File</a>
-                </div>
-            </div>
-            <div class='dropdown'>
-                <button class='dropbtn'>EDIT</button>
-                <div class='dropdown-content'>
-                    <a href="#">File</a>
-                </div>
-            </div>
-            <div class='dropdown'>
-                <button class='dropbtn'>RUN</button>
-                <div class='dropdown-content'>
-                    <a href="#">File</a>
-                </div>
-            </div>
-            <div class='dropdown'>
-                <button class='dropbtn'>HELP</button>
-                <div class='dropdown-content'>
-                    <a href="#">File</a>
-                </div>
-            </div>                                   
-        </div>
+<div class="header">
+    <div class='logo'>
+        Code Tree
     </div>
-
-    <div class="container">
-        <div class='problem-list'>
-            <div class='problem-title'>
-                <p class='problem-title-head'>${saveVo.title }</p>
-                <c:forEach items='${subProblemList }' var='subproblemvo' varStatus='status'>
-	                <div class='problem'>                    
-		                <div class='sub-problem-title' data-no='${subproblemvo.no }'>
-		                    <p class='problem-index'>문제 ${status.index + 1}</p>
-		                    <p class='subtitle'>${subproblemvo.title }</p>
-		                </div>
-		                <div class='problem-open' style='display:none;' id='subproblem-${subproblemvo.no }'>
-		                    <div class='contents'>
-		                        <p class='problem-contents-title'>문제 내용</p>
-		                        <br />
-		                        <p class='problem-contents'>${subproblemvo.contents }</p>
-		                    </div>
-		                    <hr class='division' />
-		                    <div class='examInput'>
-		                        <p class='problem-examInput-title'>입력 예제</p>
-		                        <br />
-		                        <p class='problem-examInput'>${subproblemvo.examInput }</p>
-		                    </div>
-		                    <hr class='division' />
-		                    <div class='examOutput'>
-		                        <p class='problem-examOutput-title'>출력 예제</p>
-		                        <br />
-		                        <p class='problem-examOutput'>${subproblemvo.examOutput }</p>
-		                    </div>
-	                  </div>                 
-	                </div>
-                </c:forEach>
+    <div class='menu'>
+        <div class='dropdown'>
+            <button class='dropbtn'>FILE</button>
+            <div class='dropdown-content'>
+                <a href="#">File</a>
             </div>
         </div>
-
-        <div class='code-window'>
-            <div class='navigator'>	            
-                <div class='language-selector'>
-                  <select class="lang" name="lang">
-                      <option value="c">C</option>
-                      <option value="cpp">C++</option>
-                      <option value="cs">C#</option>
-                      <option value="java" selected="selected">JAVA</option>
-                      <option value="js">JavaScript</option>
-                      <option value="py">Python</option>
-                  </select>
-                </div>
-                <div class='theme-selector'>
-                  <select class="theme" name="theme">
-                  	<optgroup label="black">
-                      <option value="abcdef">abcdef</option>
-                      <option value="blackboard">blackboard</option>
-                      <option value="dracula">dracula</option>
-                      <option value="moxer">moxer</option>
-                      <option value="panda-syntax" selected="selected">panda-syntax</option>
-                    </optgroup>
-                    <optgroup label="white">
-                      <option value="duotone-light">duotone-light</option>
-                      <option value="eclipse">eclipse</option>
-                      <option value="neat">neat</option>
-                      <option value="ttcn">ttcn</option>
-                      <option value="solarized">solarized</option>
-                    </optgroup>
-                  </select>
-                </div>
-                <div class='font-size'>
-                    <input type='text' id="font-size" value="" />
-                </div>
+        <div class='dropdown'>
+            <button class='dropbtn'>EDIT</button>
+            <div class='dropdown-content'>
+                <a href="#">File</a>
             </div>
-            <div class='code-mirror'>
-                <div class='cover'>
-                    <div class='file'>
-                        <div class='problem-explorer'>PROBLEM EXPLORER</div>
-                        <hr />
-                        <nav>
-                            <ul class='problem-name'>
-    					<c:forEach items='${savePathList }' var='vo' varStatus='status'>
-								<li id="problem-packageList" class="problem-packageList" data-no="${vo.no}" data-no2="${vo.subProblemNo}"><img src="${pageContext.servletContext.contextPath }/assets/images/package.png"/>${saveVo.title}/${status.index+1}</li>
-									<ol id="file${vo.no}">										 
-									</ol>
-										
- 										<c:forEach items='${codeList}' var='codevo' varStatus='status'>
- 										<c:if test="${vo.no == codeList[status.index].savePathNo }">
-											<ol class='userFile' data-no="${codeList[status.index].no}"><img src="${pageContext.servletContext.contextPath }/assets/images/file.png"/>${codevo.fileName}</ol>
-										</c:if>						
-										</c:forEach>									
-						</c:forEach>							
+        </div>
+        <div class='dropdown'>
+            <button class='dropbtn'>RUN</button>
+            <div class='dropdown-content'>
+                <a href="#">File</a>
+            </div>
+        </div>
+        <div class='dropdown'>
+            <button class='dropbtn'>HELP</button>
+            <div class='dropdown-content'>
+                <a href="#">File</a>
+            </div>
+        </div>                                   
+    </div>
+</div>
 
-                            </ul>
-                        </nav>
-                    </div> 
-                    
-					<div class="codeTest">
-				       <form action="" method="post" class="code-form">
-	                      <textarea name="code" class="CodeMirror code">
+<div class="container">
+
+	<div class="frame horizontal">
+	  
+	    <div id="box_1" class="box">
+	    	<c:import url="/WEB-INF/views/codetree/problem-list.jsp"></c:import>
+	    </div>
+	
+	  <div name="resizerH1"></div>
+	  
+	  <div class="frame vertical" id="code-mirror">
+
+		  <div class='navigator'>
+              <div class='language-selector'>
+                <select class="lang" name="lang">
+                    <option value="c">C</option>
+                    <option value="cpp">C++</option>
+                    <option value="cs">C#</option>
+                    <option value="java" selected="selected">JAVA</option>
+                    <option value="js">JavaScript</option>
+                    <option value="py">Python</option>
+                </select>
+              </div>
+              <div class='theme-selector'>
+                <select class="theme" name="theme">
+                	<optgroup label="black">
+                    <option value="abcdef">abcdef</option>
+                    <option value="blackboard">blackboard</option>
+                    <option value="dracula">dracula</option>
+                    <option value="moxer">moxer</option>
+                    <option value="panda-syntax" selected="selected">panda-syntax</option>
+                  </optgroup>
+                  <optgroup label="white">
+                    <option value="duotone-light">duotone-light</option>
+                    <option value="eclipse">eclipse</option>
+                    <option value="neat">neat</option>
+                    <option value="ttcn">ttcn</option>
+                    <option value="solarized">solarized</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class='font-size'>
+                  <input type='text' id="font-size" value="" />
+              </div>
+          </div> 
+
+	    <div class="frame horizontal" id="file-codemirror-cover">	    
+	      <div id="box_2" class="box" style="display:flex;flex-direction:column">
+
+		    <div class="ui__sidebar">
+		        <ul class="file-tree">
+		            <li class="file-tree__item file-tree__item--open">
+		                <div class="folder folder--open">Project A</div>		
+		                <ul class="file-tree__subtree">
+			                <c:forEach items='${savePathList }' var='vo' varStatus='status'>
+			                    <li class="file-tree__item">
+			                        <div id="folder" class="folder" data-no="${vo.no}" data-no2="${vo.subProblemNo}" >${saveVo.title}/${status.index+1}</div>
+									<ul class="file-tree__subtree" id="file${vo.no}">
+										<c:forEach items='${codeList}' var='codevo' varStatus='status'>
+											<c:if test="${vo.no == codeList[status.index].savePathNo }">
+												<li class='userFile' data-no="${codeList[status.index].no}">
+													<div><img src="${pageContext.servletContext.contextPath }/assets/images/file.png"/>${codevo.fileName}</div>
+												</li>
+											</c:if>	
+										</c:forEach>
+									</ul>
+								</li>			                        
+	
+							
+			                    
+			                </c:forEach>
+		                </ul>
+		                <!-- /.file-subtree -->
+		            </li>
+		            
+		        </ul>
+		        <!-- /.file-tree -->
+		    </div>
+		    <!-- /.sidebar -->
+
+	      </div>
+	      	      
+	      <div name="resizerH2"></div>	
+	            
+	      <div id="box_3" class="box">
+	      
+	      		<textarea name="code" class="CodeMirror code">
 /*
 * 기본 언어 : 'JAVA'
 * 기본 테마 : 'panda-syntax'
@@ -537,32 +697,27 @@ public class Test{
 		System.out.println("Hello CodeForest!");
 	}
 }
-							</textarea>
-				         </form>
-           			</div>
-
-                       
-                </div>
-                
-
-					
-                <div class="terminal-cover">
-                	<c:import url="/WEB-INF/views/codetree/terminal2.jsp"></c:import>
-                </div>
-            </div>
-            
+				</textarea>			
+         
+	      </div>
+	    </div>	    
+	      <div name="resizerV1"></div>	      
+	      <div id="box_4" class="box">
+	      	<c:import url="/WEB-INF/views/codetree/terminal2.jsp"></c:import>
+	      </div>
+	  </div>
+	  
+	</div>
+	
 			<div id="dialog-delete-form" class="delete-form" title="메세지 삭제" style="display:none">
 				<p class="validateTips"></p>  
 			</div>
-				            
-            <div>
+			<div>
 				<ul class="contextmenu">
 				</ul>
 				<ul class="userfile-menu">
-				</ul>            
-            </div>
-        </div>
-    </div>
-    
+				</ul> 
+			</div>
+</div>
 </body>
 </html>

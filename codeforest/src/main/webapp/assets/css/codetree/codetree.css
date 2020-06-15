@@ -1,13 +1,72 @@
 body {
-    margin: 0;
-    padding: 0;
+  margin : 0;
+  padding : 0;
+  height: 100vh;
+  width: 100vw;
+  
 }
-
 .container { 
-    width: 100%;
+    width: 100vw;
     height: 96vh;
     display: flex;
+    flex : 1 1 auto;
+  flex-direction: row;
+  -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
+.frame {
+  display: flex;
+  flex: 1 1 auto;
+}
+.horizontal {
+  flex-direction: row;
+}
+.vertical {
+  flex-direction: column;
+}
+.box {
+  flex: 1 1 auto;
+  background: linear-gradient(45deg, #1D1F20, #2F3031) repeat scroll 0% 0% transparent !important;
+  display: flex;
+/*   justify-content: center; */
+/*   align-items: center; */
+  overflow-x: auto;
+  overflow-y: auto;
+/*   white-space: nowrap; */
+}
+#box_1 {
+
+}
+#box_2 {
+	
+}
+#box_3 {
+	
+}
+#box_4 {
+	
+}
+
+.resizer {
+  flex: 0 0 auto;
+}
+.resizer[data-resizer-type=H] {
+  width: 3px;
+  background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% transparent;
+  cursor: col-resize;
+  box-shadow: 1px 0px 0px #6E6E6E inset, 2px 0px 2px rgba(0, 0, 0, 0.4);
+}
+.resizer[data-resizer-type=V] {
+  height: 3px;
+/*   background: linear-gradient(to bottom, #505050, #383838) repeat scroll 0% 0% transparent; */
+background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% transparent;
+  cursor: row-resize;
+  box-shadow: 0px 1px 0px #6E6E6E inset, 0px 2px 2px rgba(0, 0, 0, 0.4);
+}
+
 
 /* ---------------- header -------------------- */
 .header {
@@ -75,162 +134,18 @@ body {
 
 .dropdown:hover .dropbtn {background-color: rgba(248,248,248,90%);}
 
-/* ------------ problem-list -------------------- */
-.problem-list {
-    float: initial;
-    width: 20%;
-    height: 96vh;
-    background-color: #283D39;
-    overflow-y: scroll;
-    resize: horizontal;
-    max-width: 200%;
-    min-width: 0px;
-}
 
-.problem-title {
-    float: inline-start;
-    width: 100%;
-    height: 5%;
-    font-weight: bold;
-}
+/* ------------- problem-list ------------------ */
 
-.problem-title-head {
-    text-align: left;
-    color: #fff;
-    text-shadow: 3px 2px 2px gray;
-    font-size: 1.7rem;
-    margin: 6% 4% 2% 4%;
-}
 
-/* ----------- problem ------------------------- */
-li {
-    padding: 0 10px;
-    list-style: none;
-    margin: 0 0 8px 0;
-    color: rgb(59, 59, 59);
-}
-
-.sub-problem-title {
-    float: inline-start;
-    background-color: #D8D6D6;
-    width: 100%;
-    height: 10%;
-    font-weight: bold;
-    font-size: 1.0rem;
-}
-.problem-index {
-    float: left;
-    width: 25%;
-    height: 100%;
-    text-align: center;
-    color:#494949;
-}
-.subtitle {
-    width: 50%;
-    height: 100%;
-    text-align: center;
-}
-
-.sub-problem-title:hover {
-    background-color: #EFEEED;
-}
-
-.problem-open {
-    padding: 0 5%;
-    background-color: #FCFBF4;
-    transition: all 0.05s ease-in-out;
-    font-size: 1.2rem;
-    font-weight: lighter;
-}
-
-.problem-close {
-    background-color: #FCFBF4;
-    transition: all 0.05s ease-in-out;
-    height: 0;
-    overflow: hidden;
-}
-
-p {
-    display: inline-block;
-}
-
-.problem-contents-title, .problem-examInput-title, .problem-examOutput-title {
-    font-weight: bold;
-    background-color: #997000;
-    color: #fff;
-    padding: 5px 20px;
-    border-radius: 8px; 
-}
-
-.problem-contents, .problem-examInput, .problem-examOutput {
-    margin-top: 0
-}
-
-.division {
-    width: 100%;
-}
-
-ul {
-    padding: 0;
-}
-
-/* ---------------- code-window ------------------------- */
-.code-window {
-    float: left;
-    width: 100%;
-    height: 96vh;
-    max-width: 100%;
-    min-width: 0px;
-}
-
-.open {
-    padding: 0 5%;
-    background-color: rgb(238, 208, 11);
-    transition: all 0.05s ease-in-out;
-    font-size: 1.2rem;
-    font-weight: lighter;
-}
-
-.close {
-    background-color: rgb(228, 199, 15);
-    transition: all 0.05s ease-in-out;
-    height: 0;
-    overflow: hidden;
-}
-
+/* ------------- navigator ------------------ */
 .navigator {
-    background-color: #E8E9E7;
+/*     background-color: #E8E9E7; */
+	background: #253141;
     width: 100%;
     height: 4%;
 }
 
-.code-mirror {
-    width: 100%;
-    height: 96%;
-}
-
-.file {
-    float: left;
-    background-color: #fff;
-    width: 15%;
-    height: 100%;
-    overflow: scroll;
-    resize: horizontal;
-}
-
-.problem-explorer {
-    color: #997000;
-    font-weight: bold;
-    text-align: center;
-}
-
-
-
-.cover {
-    display: flex;
-    width: 100%;
-    height: 75%; 
-}
 .language-selector {
     float: right;
 }
@@ -241,164 +156,84 @@ ul {
 
 .font-size {
     float: right;
-}  
+} 
 
-hr {
-    margin: 0
-}
-
-/* -------------------- package-list ------------------- */
-.file-img {
-    margin-right: 8px;
-}
-
-.problem-packageList, .problem-file {
-    margin-left: 15px;
-}
 
 /* ------------------- code-mirror ----------------- */
-.codeTest {
-	width: 100%;
-	height: 100%;
-}
 
-.code-form {
-	width: 100%;
-	height: 100%;
-}
-
-.code {
-	width: 100%;
-	height: 100%;
-	
-}
-
-#code {
-	width: 100%;
-	height: 100%;
-    background-color: #fff;
-    color: #000;
-    font-family: Consolas, sans-serif;
-    line-height: 2em;
-    font-stretch: ultra-expanded;
-}
-
-
-/* ------------------- result --------------------- */
-.terminal-cover {
-/* 	background-image: -webkit-radial-gradient(top, circle cover, #00d2ff 0%, #3a7bd5 80%); */
-	width: 100%;
-    height: 25%;
-}
-
-.result {
-    background-color: rgb(179, 179, 179);
+#file-codemirror-cover {
     width: 100%;
-    height: 25%;
-}
-.result-header {
-    background-color: #555;
-    height: 10%;
-    text-align: left;
-    color: #DDD;
+    height: 75%;
     overflow: hidden;
-    font-size: small;
 }
-.result-header p {
-    float: left;
-    margin-top: 0.2%;
+.code {
+	height: auto;
+	width: 100%;
+	max-width: 100%;
 }
-.result-body {
-    height: 90%;
-    overflow-y: scroll;
-    overflow-x: scroll;
-    background-color: #000;
-    color: #63de00;
-}
-.cmd-img {
-    margin-top: 0.2%;
-    float: left;
-    margin-left: 1%;
-    margin-right: -1%;
-}
-.cmd-title {
-    float: left;
-    margin-top: 0;
-    margin-left: 2%;
-    font-size: xx-small;
 
+/* ---------------------- file-list ------------------------- */
+.ui__sidebar {
+  display: block;
+/*   background: #404040; */
+  background: #0C1021;
+  color: #ccc;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
 }
-.result-body p {
-    margin-top: 1%;
-    margin-left: 1%;
-    margin-right: -1%;
-    margin-bottom: -20%;
-    font-size: small;
-}
-.under-bar {    
-    animation: blink-animation 1s steps(5, start) infinite;
-    -webkit-animation: blink-animation 1s steps(5, start) infinite;
-}
-@keyframes blink-animation {
-    to {
-      visibility: hidden;
-    }
-  }
-  @-webkit-keyframes blink-animation {
-    to {
-      visibility: hidden;
-    }
-  }
-
-  
-  
-.contextmenu {
-  display: none;
-  position: absolute;
-  width: 200px;
+.file-tree {
+  display: block;
   margin: 0;
   padding: 0;
-  background: #FFFFFF;
-  border-radius: 5px;
   list-style: none;
-  box-shadow:
-    0 15px 35px rgba(50,50,90,0.1),
-    0 5px 15px rgba(0,0,0,0.07);
-  overflow: hidden;
-  z-index: 999999;
+  max-height: 100%;
+  user-select: none;
 }
-
-.contextmenu li {
-  border-left: 3px solid transparent;
-  transition: ease .2s;
-}
-
-.contextmenu li a {
+.file-tree__item {
   display: block;
-  padding: 10px;
-  color: #B0BEC5;
-  text-decoration: none;
-  transition: ease .2s;
+  padding: 0.5rem 0 0.5rem 1rem;
 }
-
-.contextmenu li:hover {
-  background: #CE93D8;
-  border-left: 3px solid #9C27B0;
+.file-tree__subtree {
+  display: none;
+  margin: 0.5rem 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
 }
-
-.contextmenu li:hover a {
-  color: #FFFFFF;
-}  
-.problem-packageList:hover{
-	text-decoration: underline;
-	cursor:pointer;
+.file-tree__item--open .file-tree__subtree {
+  display: block;
 }
-.userFile:hover{
-	text-decoration: underline;
-	cursor:pointer;
+.file-tree__subtree > li {
+  padding: 0.3333333333rem 0;
+  font-size: 0.875rem;
 }
-
-
+.file-tree__subtree > li .folder::before {
+  color: #c298cf;
+}
+.folder {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.folder::before {
+  content: "\f07b";
+  font-family: FontAwesome;
+  margin-right: 0.5rem;
+  color: #47cedf;
+}
+.folder:hover {
+  color: white;
+  cursor: pointer;
+}
+.folder:hover::before {
+  color: #5dd4e3;
+}
+.folder.folder--open {
+  color: white;
+}
+.folder.folder--open::before {
+  content: "\f07c";
+}
 
 
 
@@ -442,4 +277,48 @@ hr {
   color: #FFFFFF;
 }
 
+
+
+.contextmenu {
+  display: none;
+  position: absolute;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+  background: #FFFFFF;
+  border-radius: 5px;
+  list-style: none;
+  box-shadow:
+    0 15px 35px rgba(50,50,90,0.1),
+    0 5px 15px rgba(0,0,0,0.07);
+  overflow: hidden;
+  z-index: 999999;
+}
+
+.contextmenu li {
+  border-left: 3px solid transparent;
+  transition: ease .2s;
+}
+
+.contextmenu li a {
+  display: block;
+  padding: 10px;
+  color: #B0BEC5;
+  text-decoration: none;
+  transition: ease .2s;
+}
+
+.contextmenu li:hover {
+  background: #CE93D8;
+  border-left: 3px solid #9C27B0;
+}
+
+.contextmenu li:hover a {
+  color: #FFFFFF;
+}  
+
+.userFile:hover{
+	text-decoration: underline;
+	cursor:pointer;
+}
 

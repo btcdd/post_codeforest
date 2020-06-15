@@ -51,6 +51,7 @@ public class CodeTreeController {
 		return JsonResult.success(map);
 	}
 	
+
 	@Auth
 	@PostMapping("/fileInsert")
 	public JsonResult fileInsert(Long savePathNo,String language,String fileName,Long subProblemNo, HttpSession session) {
@@ -66,8 +67,8 @@ public class CodeTreeController {
 		if(!exist) {
 			System.out.println("기존 존재하지 않는다");
 			codetreeService.insertFile(savePathNo,language,fileName);
-			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
-			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
+//			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
+//			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
 			Long codeNo = codetreeService.findCodeNo(savePathNo,fileName);
 			System.out.println("codeNo>>"+codeNo);
 			map.put("fileName", fileName);
@@ -88,14 +89,14 @@ public class CodeTreeController {
 		
 		SavePathVo savePathVo = codetreeService.findSavePathVo(codeVo.getSavePathNo());
 		
-		System.out.println("codeVo:" + codeVo);
-		System.out.println("savePathVo:" + savePathVo);
-		
-		CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
-		codeTreeLinux.deleteCode(savePathVo.getPackagePath(), codeVo.getLanguage(), codeVo.getFileName());
+
+//		CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
+//		codeTreeLinux.deleteCode(savePathVo.getPackagePath(), codeVo.getLanguage(), codeVo.getFileName());
+
 		
 		return JsonResult.success(result ? codeNo : -1);
 	}	
+
 }
 
 

@@ -173,7 +173,7 @@ $(document).keypress(function(e) {
 	}
 });
 //Set the window title
-title.text("1. "+ email +": ~ ("+nickname+")");
+title.text(email +": ~ ("+nickname+")");
 //Get the date for our fake last-login
 var date = new Date().toString(); date = date.substr(0, date.indexOf("GMT") - 1);
 //Display last-login and promt

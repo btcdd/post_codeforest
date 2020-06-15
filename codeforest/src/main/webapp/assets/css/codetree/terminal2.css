@@ -32,9 +32,9 @@ textarea, input, button {
   font-size: 13px;
   line-height: 22px;
   text-align: center;
+  overflow: hidden;
 }
 .window .buttons {
-  position: absolute;
   float: left;
   margin: 0 8px;
 }
