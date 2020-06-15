@@ -8,10 +8,8 @@
 <title>Code Forest</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
-    
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/main/main.css">
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -29,9 +27,24 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/codemirror/theme/ttcn.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/codemirror/js/codemirror.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/codemirror/mode/clike.js"></script>
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script>
 $(function() {
+	$(window).scroll(function() {
+        if ($(this).scrollTop() > 500) {
+            $('#MOVE-TOP').fadeIn();
+        } else {
+            $('#MOVE-TOP').fadeOut();
+        }
+    });
+    
+    $("#MOVE-TOP").click(function() {
+        $('html, body').animate({
+            scrollTop : 0
+        }, 400);
+        return false;
+    });
+
 	
    var save = false;
    $(".codeTest").submit(function(event) {
@@ -138,13 +151,20 @@ $(function() {
 			<p>쉽고 간단하게</p>
 			<p class="end">코딩을 시작해보세요</p>
 		</div>
-		<a  class="join-btn" href="${pageContext.request.contextPath }/user/login">Get Started</a>
+		<c:choose>
+			<c:when test="${empty authUser }">
+				<a  class="join-btn" href="${pageContext.request.contextPath }/user/login">Get Started</a>
+			</c:when>
+			<c:otherwise>
+				<a  class="join-btn" href="${pageContext.request.contextPath }/codetree/list">Get Started</a>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<div class="codeTest">
         <form action="" method="post">
             <table class="tbl-ex">
                <tr>
-                  <td style="float:left">
+                  <td style="float:left; width: 150px;">
 	                  <select class="lang" name="lang">
 	                      <option value="c">C</option>
 	                      <option value="cpp">C++</option>
@@ -199,5 +219,6 @@ public class Test{
          </form>
     </div>
     <c:import url="/WEB-INF/views/include/footer.jsp" />
+    <span id="MOVE-TOP"><i class="fas fa-angle-up custom"></i></span>
 </body>
 </html>

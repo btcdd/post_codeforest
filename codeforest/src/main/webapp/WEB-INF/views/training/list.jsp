@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
     <link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script>
 function onKeyDown() {
 	if(event.keyCode == 13) {
@@ -68,7 +68,7 @@ var fetchList = function() {
 	for(var i = 0; i < map.list.length;i++){
 		str += '<div class="problem-box" onclick="location.href=' + "'" + '${pageContext.servletContext.contextPath }/training/view/' + map.list[i].no + "'" + '">' +
 		'<div class="problem-no"><a class="problem-number" data-no=' + map.list[i].no + '>' + map.list[i].no +'</a></div>' +
-        '<div class="problem-recommend"><img src="${pageContext.servletContext.contextPath }/assets/images/like.png" class="like" />' + map.list[i].recommend + '</div>' + 
+        '<div class="problem-recommend"><i class="fas fa-heart like"></i>' + map.list[i].recommend + '</div>' + 
 		'<div class="problem-title" id="title">' + map.list[i].title + '</div>' +
         '<div class="problem-user">' + map.list[i].nickname + '</div>' + 
         '<div class="problem-kind">' + map.list[i].kind + '</div>' + 
@@ -141,6 +141,21 @@ var nextRemove = function() {
 }
 
 $(function() {
+	$(window).scroll(function() {
+        if ($(this).scrollTop() > 500) {
+            $('#MOVE-TOP').fadeIn();
+        } else {
+            $('#MOVE-TOP').fadeOut();
+        }
+    });
+    
+    $("#MOVE-TOP").click(function() {
+        $('html, body').animate({
+            scrollTop : 0
+        }, 400);
+        return false;
+    });
+	
 	originList('1', '', '');
 	
 	$(document).on("click", ".page", function() {
@@ -348,6 +363,7 @@ $(function() {
         </div> <!-- div list -->
     </div>
     <c:import url="/WEB-INF/views/include/footer.jsp" />
+    <span id="MOVE-TOP"><i class="fas fa-angle-up custom"></i></span>
 </body>
 
 </html>

@@ -155,9 +155,11 @@ input[type=text] {
 }
 
 .like {
+	color: indianred;
     width: 35px;
     vertical-align: middle;
     margin-left: 200px;
+    font-size: 1.6em;
 }
 
 .problem-title {
@@ -306,4 +308,23 @@ input[type=text] {
     margin-left: -1px;
     line-height: 1.25;
     color: #90929e;
+}
+
+#MOVE-TOP {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    cursor: pointer;
+    font-size: 2.2em;
+    text-align: center;
+    border: 2px solid #adbac0;
+    border-radius: 2rem;
+    width: 50px;
+    height: 50px;
+    background-color: #adbac0;
+}
+
+.custom {
+    text-align: center;
+    color: #fff;
 }

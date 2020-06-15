@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.btcdd.codeforest.dto.JsonResult;
 import com.btcdd.codeforest.linux.CodeTreeLinux;
 import com.btcdd.codeforest.service.CodeTreeService;
+
 import com.btcdd.codeforest.vo.UserVo;
 import com.btcdd.security.Auth;
 
@@ -81,12 +82,20 @@ public class CodeTreeController {
 	
 	@DeleteMapping("/fileDelete/{codeNo}")
 	public JsonResult deleteFile(@PathVariable("codeNo") Long codeNo) {
+		CodeVo codeVo = codetreeService.findSavePathNoAndFileName(codeNo);
 		boolean result = codetreeService.deleteFile(codeNo);
+		
+		SavePathVo savePathVo = codetreeService.findSavePathVo(codeVo.getSavePathNo());
+//		String[] tmp = savePathVo.getPackagePath().split("/");
+//		String probNoTmp = tmp[3].replace("prob", "");
+//		Long problemNo = Long.parseLong(probNoTmp);
+		System.out.println(savePathVo);
+		
+		CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
+		codeTreeLinux.deleteCode(savePathVo.getPackagePath(), codeVo.getLanguage(), codeVo.getFileName());
+		
 		return JsonResult.success(result ? codeNo : -1);
-
 	}	
-	
-	
 }
 
 

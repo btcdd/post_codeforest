@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+	pageContext.setAttribute("newLine", "\n");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +66,7 @@ var linuxSaveCode = function() {
 				console.error(response.message);
 				return;
 			}
+			console.log("linucSaveCode가 안들어오닝?");
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
@@ -172,8 +176,45 @@ var saveProblem = function() {
 				console.error(response.message);
 				return;
 			}
-			$('#save-button').classList.toggle('selected');
 			linuxSaveCode();
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			////// 해결하세용
+			$('#save-button').classList.toggle('selected');
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			console.log("saveProblem가 안들어오닝?");
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
@@ -204,6 +245,21 @@ var deleteProblem = function() {
 };
 
 $(function() {
+	$(window).scroll(function() {
+        if ($(this).scrollTop() > 500) {
+            $('#MOVE-TOP').fadeIn();
+        } else {
+            $('#MOVE-TOP').fadeOut();
+        }
+    });
+    
+    $("#MOVE-TOP").click(function() {
+        $('html, body').animate({
+            scrollTop : 0
+        }, 400);
+        return false;
+    });
+    
 	originRecommend();
 	
 	savePandan();
@@ -211,11 +267,19 @@ $(function() {
 	var no;
 	
 	$(".open1").show();
+	$('.open1').parent().children().first().css("background-color", "#EBEBEB");
+// 	$('.open1').parent().children().first().children('.subProblemIndex').css("background-color", "#FAFAFA");
 	
-	$(".problem").click(function() {
-		no = $(this).children().attr("id");
+	$(".top-prob").click(function() {
+		no = $(this).parent().attr("id");
 		
-		$(".open" + no).toggle("slow");
+		if($(".open" + no).css("display") == "none"){
+			$(".open" + no).show("slow");
+			$(".open" + no).parent().children().first().css("background-color", "#EBEBEB");
+		} else {
+			$(".open" + no).hide("slow");
+			$(".open" + no).parent().children().first().css("background-color", "#fff");
+		}
 	});
   
 	$(document).on("click","#code-tree", function() {
@@ -264,10 +328,10 @@ $(function() {
 				</button>
             </div>
             <div class="recommend-div">
-            <button type="button" id="like-button">
-            	<i class="fas fa-heart"></i>
-			  추천<p id="recommend-num">${problemVo.recommend }</p>
-			</button>
+	            <button type="button" id="like-button">
+	            	<i class="fas fa-heart"></i>
+				  추천<p id="recommend-num">${problemVo.recommend }</p>
+				</button>
             </div>
         </div>
         <div class="second-block">
@@ -280,27 +344,32 @@ $(function() {
 				<div class="problem">
 					<div class="pro pro${status.index + 1}" id="${status.index + 1}">
 						<div class="top-prob">
-							<p class="division">문제 ${status.index + 1} - 고유번호 ${vo.no }</p>
+							<div class="subProblemIndex"><i class="fas fa-bookmark bookmark"></i><strong>${status.index + 1 }</strong></div>
+							<div class="subProblemNo"># ${vo.no }</div>
 							<input class="sub${status.index }" type="hidden" value="${vo.no }" />
-							<p id="click">${vo.title }</p>
-							<a href="${pageContext.servletContext.contextPath }/training/answerlist/${status.index + 1}/${vo.no}"><button>맞은 사람</button></a>
+							<div class="subProblemTitle" id="click"><strong>${vo.title }</strong></div>
+							<div class="correct-person">
+					            <button type="button" id="correct-person-button" onClick="location.href='${pageContext.servletContext.contextPath }/training/answerlist/${status.index + 1}/${vo.no}'">
+								  	맞은 사람
+								</button>
+				            </div>
 						</div>
 						
 						<div class="open${status.index + 1}" style="display:none">
 							<div class="explain">
-								<p>${vo.contents }</p>
+								<p>${fn:replace(vo.contents, "<br />", newLine)}</p>
 							</div>
 							<div class="example">
 								<div class="input">
 									<fieldset>
 										<legend class="example-division">예제 입력</legend>
-										<div class="input-content">${vo.examInput }</div>
+										<div class="input-content">${fn:replace(vo.examInput, "<br />", newLine)}</div>
 									</fieldset>
 								</div>
 								<div class="result">
 									<fieldset>
 										<legend class="example-division">예제 출력</legend>
-										<div class="result-content">${vo.examOutput }</div>
+										<div class="result-content">${fn:replace(vo.examOutput, "<br />", newLine)}</div>
 									</fieldset>
 								</div>
 							</div>
@@ -315,6 +384,7 @@ $(function() {
         </c:if>
     </div>
     <c:import url="/WEB-INF/views/include/footer.jsp" />
+    <span id="MOVE-TOP"><i class="fas fa-angle-up custom"></i></span>
 </body>
 
 </html>

@@ -116,6 +116,23 @@ public class CodeTreeLinux {
 	}
 
 	public void insertCode(Long authUserNo, Long problemNo, Long subProblemNo, String language, String fileName) {
-		createFileAsSource(language, "userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + language + "/" + fileName);
+		String faceCode = "";
+		if("c".equals(language)) faceCode = c;
+		else if("cpp".equals(language)) faceCode = cpp;
+		else if("cs".equals(language)) faceCode = cs;
+		else if("java".equals(language)) faceCode = java;
+		else if("js".equals(language)) faceCode = js;
+		else if("py".equals(language)) faceCode = py;
+		
+		createFileAsSource(faceCode, "userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + language + "/" + fileName);
+	}
+
+	public void deleteCode(String packagePath, String language, String fileName) {
+		try {
+			process = Runtime.getRuntime().exec("rm -rf " + packagePath + "/" + language + "/" + fileName);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
