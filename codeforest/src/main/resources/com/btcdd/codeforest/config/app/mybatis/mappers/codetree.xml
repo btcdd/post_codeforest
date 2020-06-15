@@ -142,7 +142,7 @@
 		<![CDATA[
 			select c.no as no, c.save_path_no as savePathNo, c.language as language, c.file_name as fileName, sp.sub_problem_no as subProblemNo
 			  from code c, save_path sp
-			 where c.save_path_no = #{savePathNo } and c.save_path_no = sp.no
+			 where c.save_path_no = #{savePathNo } and c.save_path_no = sp.no order by c.file_name;
 		]]>
 	</select>
 	
@@ -164,7 +164,7 @@
 			select 
 				*
 			from code 
-			where file_name = #{fileName}
+			where file_name = #{fileName} and save_path_no = #{savePathNo}
 			 
 		]]>
 	</select>	
