@@ -130,7 +130,7 @@ public class CodeTreeLinux {
 	public void deleteCode(String packagePath, String language, String fileName) {
 		try {
 			process = Runtime.getRuntime().exec("rm -rf " + packagePath + "/" + language + "/" + fileName);
-			process = Runtime.getRuntime().exec("rm -rf /Test2.java");
+			process = Runtime.getRuntime().exec("rm -rf /userDirectory/user1/prob92/subProb219/java/hi.java");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
