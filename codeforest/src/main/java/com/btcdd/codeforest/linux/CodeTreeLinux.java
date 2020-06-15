@@ -129,8 +129,11 @@ public class CodeTreeLinux {
 
 	public void deleteCode(String packagePath, String language, String fileName) {
 		try {
-			String pac = packagePath.substring(13);
-			process = Runtime.getRuntime().exec("rm -rf userDirectory" + pac + "/" + language + "/" + fileName);
+			Long authUserNo = 1L;
+			Long problemNo = 92L;
+			Long subProblemNo = 219L;
+			
+			process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/java/as.java");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
