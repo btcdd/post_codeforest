@@ -35,8 +35,12 @@
 <script>
 
 
+
+
 $(function() {
 
+	
+	
 	
 ////////////////// code-mirror /////////////////////////////
    var save = false;
@@ -162,6 +166,9 @@ $(function() {
  		console.log("font-size:"+fontSize);
  		$(".CodeMirror").css("font-size", fontSize+"");
 	});
+ 	
+ 	
+////////////////파일 추가////////////////////
  	
 var packagePath = null;
 var subProblemNo = null;
@@ -320,7 +327,7 @@ $(".userfile-menu").append(str2);
 								alert("이미 파일이 존재합니다.");//메시지 처리 필요
 								return;
 							}
-							$("#file"+response.data.savePathNo).append("<li class='userFile' data-no="+response.data.codeNo+"><img src='${pageContext.servletContext.contextPath }/assets/images/file.png'/>"+response.data.fileName+"</li>")
+							$("#file"+response.data.savePathNo).prepend("<li class='userFile' data-no="+response.data.codeNo+"><img src='${pageContext.servletContext.contextPath }/assets/images/file.png'/>"+response.data.fileName+"</li>")
 
 						},
 						error: function(xhr, status, e) {
@@ -386,9 +393,10 @@ $(".userfile-menu").append(str2);
 			close:function(){}
  	});
  	
- 	
- 	
+
 });
+
+
 
 
 </script>
@@ -504,10 +512,15 @@ $(".userfile-menu").append(str2);
                             <ul class='problem-name'>
     					<c:forEach items='${savePathList }' var='vo' varStatus='status'>
 								<li id="problem-packageList" class="problem-packageList" data-no="${vo.no}" data-no2="${vo.subProblemNo}"><img src="${pageContext.servletContext.contextPath }/assets/images/package.png"/>${saveVo.title}/${status.index+1}</li>
-									<ol id="file${vo.no}">
-									</ol>								
+									<ol id="file${vo.no}">										 
+									</ol>
+										
+ 										<c:forEach items='${codeList}' var='codevo' varStatus='status'>
+ 										<c:if test="${vo.no == codeList[status.index].savePathNo }">
+											<ol class='userFile' data-no="${codeList[status.index].no}"><img src="${pageContext.servletContext.contextPath }/assets/images/file.png"/>${codevo.fileName}</ol>
+										</c:if>						
+										</c:forEach>									
 						</c:forEach>							
-
 
                             </ul>
                         </nav>
