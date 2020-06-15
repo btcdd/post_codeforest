@@ -33,7 +33,15 @@
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/ejs/ejs.js"></script>
+
 <script>
+
+var listTemplate = new EJS({
+	url: "${pageContext.request.contextPath }/assets/js/ejs/codetree-fileList.ejs"
+});
+
+
 $(function() {
 ////////////////// code-mirror /////////////////////////////
    var save = false;
@@ -96,6 +104,7 @@ $(function() {
    });
    
    $('.lang').change(function() {
+	  
 	   var lang = $(".lang option:selected").val();
 	   var face = '';
 	   
@@ -138,6 +147,53 @@ $(function() {
 	   }
 	   
 	   editor.setValue(face);
+	   
+	   
+	   
+	   ////////////////////////////////////////////////////////////////////
+	   ////////////////////////////
+	   ///////////////////////////////////해야할곳////
+	   
+ 	   $(".file-tree__subtree").remove();
+	   var saveNo = "${saveVo.no }";
+/* 	   var savePathList2 = "${savePathList }";
+	   var a = '{ "savePathList" : "${savePathList}" }';
+	   
+	   var b = JSON.parse(a);
+	   var codeList = "${codeList}";
+ 	   var list = {
+ 			   data : {
+ 				  savePathList : b
+ 			   }
+ 			   
+	   }; */
+ 	   
+
+
+
+	   $.ajax({
+	         url: '${pageContext.request.contextPath }/api/codetree/file-list',
+	         async: true,
+	         type: 'post',
+	         dataType: 'json',
+				data: {
+					'saveNo' : saveNo,
+					'language' : lang
+				},
+	         success: function(response){
+	        	 console.log(response.data);
+	        	var html = listTemplate.render(response);
+	        	
+	      	   	$(".file-tree__item").append(html); 
+	         },
+	         error: function(xhr, status, e) {
+	            console.error(status + ":" + e);
+	         }
+	      });
+	   
+	   
+	   
+	   
    });
    
  	$('.CodeMirror').addClass('code');
@@ -149,6 +205,7 @@ $(function() {
 
  	// File Tree
  	$(".folder").on("click", function(e) {
+ 		$(".contextmenu").hide();
  	    var t = $(this);
  	    var tree = t.closest(".file-tree__item");
 
@@ -161,13 +218,23 @@ $(function() {
  	    }
 
  	    // Close all siblings
+ 	    /*
  	    tree
  	        .siblings()
  	        .removeClass("file-tree__item--open")
  	        .find(".folder--open")
  	        .removeClass("folder--open");
+ 	    */
  	});	
  	
+ // 파일 열고 닫기
+ 	$(document).on('click','#folder',function() {
+ 		if ($(this).hasClass("folder--open")) {
+ 			$("#file"+$(this).data("no")).show();
+ 	    } else { 	    	
+ 	    	$("#file"+$(this).data("no")).hide();
+ 	    }
+ 	});
  	
 
  	// 폰트 사이즈 변경
@@ -192,9 +259,9 @@ $(function() {
  	$(".userfile-menu").append(str2);
  	
 
-	$(document).on('mouseenter','#folder',function(){
+	$(document).on('mouseenter','#folder',function() {
 		console.log("hi");
-		$(document).on('mousedown','#folder',function(e){
+		$(document).on('mousedown','#folder',function(e) {
 			$(".userfile-menu").hide();
 			if(e.which == 3){
 
@@ -293,12 +360,10 @@ $(function() {
 	 		    }).show();
 	 		    //Prevent browser default contextmenu.
 	 		    return false;				
-				
-			}
-			
-			
-			
+			}			
 		});
+		
+		
 		
 	}).on('mouseleave','.ui__sidebar',function(){
 		console.log("bye");
@@ -355,7 +420,7 @@ $(function() {
 								alert("이미 파일이 존재합니다.");//메시지 처리 필요
 								return;
 							}
-							$("#file"+response.data.savePathNo).append("<li><div class='userFile' data-no="+response.data.codeNo+"><img src='${pageContext.servletContext.contextPath }/assets/images/file.png'/>"+response.data.fileName+"</div></li>")
+							$("#file"+response.data.savePathNo).append("<li class='userFile' data-no="+response.data.codeNo+"><div class='file'>"+response.data.fileName+"</div></li>")
 
 						},
 						error: function(xhr, status, e) {
@@ -421,7 +486,6 @@ $(function() {
 			},
 			close:function(){}
  	}); 	
- 	
  	
  	
  	
@@ -653,16 +717,16 @@ window.onload = function() {
 		    <div class="ui__sidebar">
 		        <ul class="file-tree">
 		            <li class="file-tree__item file-tree__item--open">
-		                <div class="folder folder--open">Project A</div>		
+		                <div class="folder folder--open">${saveVo.title }</div>		
 		                <ul class="file-tree__subtree">
 			                <c:forEach items='${savePathList }' var='vo' varStatus='status'>
 			                    <li class="file-tree__item">
-			                        <div id="folder" class="folder" data-no="${vo.no}" data-no2="${vo.subProblemNo}" >${saveVo.title}/${status.index+1}</div>
+			                        <div id="folder" class="folder folder--open" data-no="${vo.no}" data-no2="${vo.subProblemNo}" >${saveVo.title}/${status.index+1}</div>
 									<ul class="file-tree__subtree" id="file${vo.no}">
 										<c:forEach items='${codeList}' var='codevo' varStatus='status'>
-											<c:if test="${vo.no == codeList[status.index].savePathNo }">
+											<c:if test="${vo.no == codeList[status.index].savePathNo && codeList[status.index].language == 'java' }">
 												<li class='userFile' data-no="${codeList[status.index].no}">
-													<div><img src="${pageContext.servletContext.contextPath }/assets/images/file.png"/>${codevo.fileName}</div>
+													<div class="file">${codevo.fileName}</div>
 												</li>
 											</c:if>	
 										</c:forEach>
