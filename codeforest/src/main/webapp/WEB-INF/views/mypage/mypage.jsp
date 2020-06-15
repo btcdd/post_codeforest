@@ -24,9 +24,12 @@
             </div>
             <div>
                 <div class="correct">
-                    <h3>맞힌 문제</h3>
+                    <h3>맞은 문제</h3>
                 </div>
                 <div class="correct-answer">
+                	<c:if test="${empty rightSubmit }">
+                		<div class="empty-right-submit"><i class="far fa-lightbulb"></i><span class="light">아직 <strong>맞은 문제</strong>가 없습니다.</span></div>
+                	</c:if>
                     <c:forEach items='${rightSubmit }' var='vo' varStatus='status'>
                     	<span><a id="right-problem" href="${pageContext.servletContext.contextPath }/training/view/${vo.problemNo }">${vo.subproblemNo }</a></span>
                     </c:forEach>
@@ -37,6 +40,9 @@
                 <div class="wrong">
                     <h3>틀린 문제</h3>
                 </div>
+                <c:if test="${empty wrongSubmit }">
+                		<div class="empty-wrong-submit"><i class="far fa-lightbulb"></i><span class="light">아직 <strong>틀린 문제</strong>가 없습니다.</span></div>
+                	</c:if>
                 <div class="wrong-answer">
                     <c:forEach items='${wrongSubmit }' var='vo' varStatus='status'>
                     	<span><a id="wrong-problem" href="${pageContext.servletContext.contextPath }/training/view/${vo.problemNo }">${vo.subproblemNo }</a></span>
