@@ -112,7 +112,7 @@ body {
 .second-block {
     display: block;
     height: 2em;
-    margin: 0.2em 1.6em 0.2em 0;
+    margin: 0.2em 2em 0.2em 0;
 }
 
 .hit {
@@ -120,6 +120,17 @@ body {
 	float: right;
 	font-size: 0.9em;
     padding-top: 7px;	
+}
+
+.modify {
+	dispaly: inline-block;
+	float: right;
+	font-size: 0.9em;
+    padding-top: 7px;	
+}
+
+.modify:hover {
+	
 }
 
 .subProblemIndex {
