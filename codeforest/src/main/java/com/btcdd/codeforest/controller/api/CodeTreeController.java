@@ -88,6 +88,9 @@ public class CodeTreeController {
 		
 		SavePathVo savePathVo = codetreeService.findSavePathVo(codeVo.getSavePathNo());
 		
+		System.out.println("codeVo:" + codeVo);
+		System.out.println("savePathVo:" + savePathVo);
+		
 		CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
 		codeTreeLinux.deleteCode(savePathVo.getPackagePath(), codeVo.getLanguage(), codeVo.getFileName());
 		
