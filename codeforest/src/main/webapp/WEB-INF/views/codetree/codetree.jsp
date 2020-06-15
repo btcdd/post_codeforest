@@ -41,8 +41,34 @@ var listTemplate = new EJS({
 	url: "${pageContext.request.contextPath }/assets/js/ejs/codetree-fileList.ejs"
 });
 
+var fileFetchList = function(){
+	   var saveNo = "${saveVo.no }";
+	   var lang = $("select option:selected").val();
+	   $.ajax({
+	         url: '${pageContext.request.contextPath }/api/codetree/file-list',
+	         async: true,
+	         type: 'post',
+	         dataType: 'json',
+				data: {
+					'saveNo' : saveNo,
+					'language' : lang
+				},
+	         success: function(response){
+	        	 console.log(response.data);
+	        	 var html = listTemplate.render(response);
+	        	
+	      	   	 $(".file-tree__item").append(html);  
+	         },
+	         error: function(xhr, status, e) {
+	            console.error(status + ":" + e);
+	         }
+	      });	
+};
 
 $(function() {
+	
+	fileFetchList();
+	
 ////////////////// code-mirror /////////////////////////////
    var save = false;
    $(".codeTest").submit(function(event) {
@@ -155,42 +181,8 @@ $(function() {
 	   ///////////////////////////////////해야할곳////
 	   
  	   $(".file-tree__subtree").remove();
-	   var saveNo = "${saveVo.no }";
-/* 	   var savePathList2 = "${savePathList }";
-	   var a = '{ "savePathList" : "${savePathList}" }';
-	   
-	   var b = JSON.parse(a);
-	   var codeList = "${codeList}";
- 	   var list = {
- 			   data : {
- 				  savePathList : b
- 			   }
- 			   
-	   }; */
- 	   
+	   fileFetchList();
 
-
-
-	   $.ajax({
-	         url: '${pageContext.request.contextPath }/api/codetree/file-list',
-	         async: true,
-	         type: 'post',
-	         dataType: 'json',
-				data: {
-					'saveNo' : saveNo,
-					'language' : lang
-				},
-	         success: function(response){
-	        	 console.log(response.data);
-	        	var html = listTemplate.render(response);
-	        	
-	      	   	$(".file-tree__item").append(html); 
-	         },
-	         error: function(xhr, status, e) {
-	            console.error(status + ":" + e);
-	         }
-	      });
-	   
 	   
 	   
 	   
@@ -420,8 +412,10 @@ $(function() {
 								alert("이미 파일이 존재합니다.");//메시지 처리 필요
 								return;
 							}
-							$("#file"+response.data.savePathNo).append("<li class='userFile' data-no="+response.data.codeNo+"><div class='file'>"+response.data.fileName+"</div></li>")
+							$(".file-tree__subtree").remove();
 
+							fileFetchList();
+							
 						},
 						error: function(xhr, status, e) {
 							console.error(status + ":" + e);
@@ -719,7 +713,7 @@ window.onload = function() {
 		            <li class="file-tree__item file-tree__item--open">
 		                <div class="folder folder--open">${saveVo.title }</div>		
 		                <ul class="file-tree__subtree">
-			                <c:forEach items='${savePathList }' var='vo' varStatus='status'>
+<%-- 			                <c:forEach items='${savePathList }' var='vo' varStatus='status'>
 			                    <li class="file-tree__item">
 			                        <div id="folder" class="folder folder--open" data-no="${vo.no}" data-no2="${vo.subProblemNo}" >${saveVo.title}/${status.index+1}</div>
 									<ul class="file-tree__subtree" id="file${vo.no}">
@@ -732,10 +726,7 @@ window.onload = function() {
 										</c:forEach>
 									</ul>
 								</li>			                        
-	
-							
-			                    
-			                </c:forEach>
+			                </c:forEach> --%>
 		                </ul>
 		                <!-- /.file-subtree -->
 		            </li>

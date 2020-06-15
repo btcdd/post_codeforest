@@ -90,8 +90,11 @@ public class CodeTreeRepository {
 	}
 
 
-	public CodeVo findByFileName(String fileName) {
-		return sqlSession.selectOne("codetree.findByFileName",fileName);
+	public CodeVo findByFileName(String fileName,Long savePathNo) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("fileName", fileName);
+		map.put("savePathNo", savePathNo);
+		return sqlSession.selectOne("codetree.findByFileName",map);
   }
 	public Long findProblemNo(Long subProblemNo) {
 		return sqlSession.selectOne("codetree.findProblemNo", subProblemNo);

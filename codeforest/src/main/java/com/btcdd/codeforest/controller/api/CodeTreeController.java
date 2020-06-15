@@ -61,7 +61,7 @@ public class CodeTreeController {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 
 		Long problemNo = codetreeService.findProblemNo(subProblemNo);
-		boolean exist = codetreeService.existFile(fileName); //false면 존재하지 않고 true면 존재한다
+		boolean exist = codetreeService.existFile(fileName,savePathNo); //false면 존재하지 않고 true면 존재한다
 		
 		
 		
