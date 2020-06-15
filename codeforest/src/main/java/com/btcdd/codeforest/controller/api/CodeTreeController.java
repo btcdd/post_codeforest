@@ -95,10 +95,6 @@ public class CodeTreeController {
 		boolean result = codetreeService.deleteFile(codeNo);
 		
 		SavePathVo savePathVo = codetreeService.findSavePathVo(codeVo.getSavePathNo());
-//		String[] tmp = savePathVo.getPackagePath().split("/");
-//		String probNoTmp = tmp[3].replace("prob", "");
-//		Long problemNo = Long.parseLong(probNoTmp);
-		System.out.println(savePathVo);
 		
 		CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
 		codeTreeLinux.deleteCode(savePathVo.getPackagePath(), codeVo.getLanguage(), codeVo.getFileName());

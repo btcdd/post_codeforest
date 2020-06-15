@@ -131,7 +131,6 @@ public class CodeTreeLinux {
 		try {
 			process = Runtime.getRuntime().exec("rm -rf " + packagePath + "/" + language + "/" + fileName);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -63,7 +63,6 @@ $(function() {
                console.log("data[0]\n" + response.data[0]);
                $('#result').val(response.data[0]);
             }
-         
          },
          error: function(xhr, status, e) {
             console.error(status + ":" + e);
