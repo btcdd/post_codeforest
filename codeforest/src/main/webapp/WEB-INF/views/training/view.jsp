@@ -195,6 +195,7 @@ var saveProblem = function() {
 				return;
 			}
 			linuxSaveCode();
+			moveToCodetree.dialog('open');
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
