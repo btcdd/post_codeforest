@@ -84,7 +84,7 @@
   opacity: 0;
 }
 .accordion__content.open {
-  height: 320px;
+  height: auto;
   overflow-y: scroll;
   opacity: 1;
 }

@@ -412,8 +412,7 @@ window.onload = function() {
 		    <div class="ui__sidebar">
 		        <ul class="file-tree">
 		            <li class="file-tree__item file-tree__item--open">
-		                <div class="folder folder--open">Project A</div>
-		
+		                <div class="folder folder--open">Project A</div>		
 		                <ul class="file-tree__subtree">
 		                    <li class="file-tree__item">
 		                        <div class="folder">Planfolder</div>
@@ -427,92 +426,7 @@ window.onload = function() {
 		                </ul>
 		                <!-- /.file-subtree -->
 		            </li>
-		            <li class="file-tree__item">
-		                <div class="folder">Project A</div>
-		                <ul class="file-tree__subtree">
-		                    <li class="file-tree__item">
-		                        <div class="folder">Planfolder</div>
-		                    </li>
-		                    <li class="file-tree__item">
-		                        <div class="folder folder--open">Holiday</div>
-		
-		                    </li>
-		                    <li class="file-tree__item">
-		                        <div class="folder">Shared</div>
-		
-		                    </li>
-		                </ul>
-		                <!-- /.file-subtree -->
-		            </li>
-		            <li class="file-tree__item">
-		                <div class="folder">Project XYS</div>
-		            </li>
-		            <li class="file-tree__item">
-		                <div class="folder">Project A</div>
-		            </li>
-		             <li class="file-tree__item">
-		                <div class="folder">Project A</div>
-		            </li>
-		             <li class="file-tree__item">
-		                <div class="folder">Project A</div>
-		            </li>
-		             <li class="file-tree__item">
-		                <div class="folder">Project A</div>
-		            </li>
-		            <li class="file-tree__item">
-		                <div class="folder">Project F</div>
-		                <ul class="file-tree__subtree">
-		                    <li class="file-tree__item">
-		                        <div class="folder">Planfolder</div>
-		                    </li>
-		                    <li class="file-tree__item">
-		                        <div class="folder folder--open">Holiday</div>
-		
-		                    </li>
-		                    <li class="file-tree__item">
-		                        <div class="folder">Shared</div>
-		
-		                    </li>
-		                </ul>
-		                <!-- /.file-subtree -->
-		            </li>
-		            <li class="file-tree__item">
-		                <div class="folder">Project A</div>
-		            </li>
-		            <li class="file-tree__item">
-		                <div class="folder">Project A</div>
-		            </li>
-		            <li class="file-tree__item">
-		                <div class="folder">Project C</div>
-		                <ul class="file-tree__subtree">
-		                    <li class="file-tree__item">
-		                        <div class="folder">Planfolder</div>
-		                    </li>
-		                    <li class="file-tree__item">
-		                        <div class="folder folder--open">Holiday</div>
-		                    </li>
-		                    <li class="file-tree__item">
-		                        <div class="folder">Shared</div>
-		                    </li>
-		                </ul>
-		                <!-- /.file-subtree -->
-		            </li>
-		            <li class="file-tree__item">
-		                <div class="folder">Project A</div>
-		                <ul class="file-tree__subtree">
-		                    <li class="file-tree__item">
-		                        <div class="folder">Planfolder</div>
-		                    </li>
-		                    <li class="file-tree__item">
-		                        <div class="folder folder--open">Holiday</div>
-		
-		                    </li>
-		                    <li class="file-tree__item">
-		                        <div class="folder">Shared</div>
-		                    </li>
-		                </ul>
-		                <!-- /.file-subtree -->
-		            </li>
+		            
 		        </ul>
 		        <!-- /.file-tree -->
 		    </div>
