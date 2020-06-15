@@ -129,12 +129,12 @@ $(function() {
         width: 400,
         modal: true,
         buttons: {
-            "완료": function() {
+            "변경": function() {
             	changeNickname($('#nickname').val());
             	$(this).dialog("close");
             	window.location = "${pageContext.request.contextPath }/mypage/account";
             },
-            Cancel: function() {
+            "취소": function() {
                 $(this).dialog("close");
             }
         }
@@ -143,6 +143,8 @@ $(function() {
     	event.preventDefault();
     	
     	$("#change-nickname").dialog("open");
+    	
+    	
     });
 
     $("#delete-user").dialog({
@@ -263,17 +265,16 @@ $(function() {
         </div>
     </div>
     
-    <div id="change-nickname" title="닉네임 변경" style="display:none" >
-	        변경하실 닉네임을 입력해주세요.
-	        <form>
-	            <fieldset>
-	                <label for="name">닉네임 입력 : </label>
-	                <input type="text" name="nickname" id="nickname" value="${authUser.nickname }" class="text ui-widget-content ui-corner-all">
-	
-	                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-	            </fieldset>
-	        </form>
-	    </div>
+    <div id="change-nickname" title="사용자 이름 변경" style="display:none" >
+           <pre class="nickname-pre">변경하실 사용자 이름을 입력해주세요.</pre>
+           <form>
+               <fieldset class="nickname-fieldset">
+                   <label for="name">사용자 이름</label>
+                   <input type="text" name="nickname" id="nickname" value="${authUser.nickname }" class="nickname-input">
+                   <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+               </fieldset>
+           </form>
+       </div>
 	
 	    <div id="change-password" title="비밀번호 변경" style="display:none" >
 	        <pre>
