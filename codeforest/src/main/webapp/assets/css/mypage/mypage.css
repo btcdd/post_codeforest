@@ -10,9 +10,10 @@ body {
 .container {
 	width: 980px;
     margin: auto;
-    margin-top: 7em;
+    margin-top: 6em;
     padding: 10px 30px;
     margin-bottom: 9em;
+    margin-left: 34em;
 }
 
 .menu-item {
@@ -74,9 +75,10 @@ a:visited {
 }
 
 .menulist {
-	padding: 10px 0px;
+	padding: 10px 3px;
     border-bottom: 1px solid #B4B4B4;
-    color: #037EE2;
+    color: #7d7d7d;
+    font-size: 0.9em;
 }
 
 .menulist:hover {
@@ -118,7 +120,31 @@ a:visited {
 }
 
 .mypage {
-	border-left: 2px solid #ff0000;
-	pointer-events: none;
-	color: #222;
+	border-left: 3px solid orange;
+    pointer-events: none;
+    color: saddlebrown;
+    padding-left: 4px;
+    margin-left: -1px;
+}
+
+.span-account, .span-problem {
+	margin-left: 6px;
+}
+
+.span-mypage {
+	margin-left: 3px;
+	font-weight: bold;
+}
+
+.empty-right-submit, .empty-wrong-submit {
+	margin: auto;
+    width: 100%;
+    text-align: center;
+    margin-top: 3em;
+    font-size: 0.95em;
+    color: #aaa;
+}
+
+.light {
+	margin-left: 0.6em;
 }

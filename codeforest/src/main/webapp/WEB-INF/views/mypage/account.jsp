@@ -231,22 +231,23 @@ $(function() {
     <div class="container">
         <div class="nickname">
             <div class="line">
-                <h4>닉네임 변경</h4>
+                <h4>사용자 이름 변경</h4>
             </div>
-            <button id="nickname-btn">변경</button>
+            <button id="nickname-btn">사용자 이름 변경</button>
         </div>
         <div class="password">
             <div class="line">
                 <h4>비밀번호 변경</h4>
             </div>
+           	<div class="safe-password"><i class="fas fa-info-circle info"></i>안전한 비밀번호를 만들고 같은 비밀번호를 다른 계정에 사용하지 마세요.</div>
             <button id="password-btn">비밀번호 변경</button>
         </div>
         <div class="disclosure">
             <div class="line">
                 <h4>계정 공개 여부</h4>
             </div>
-            <h4>계정 비공개를 설정하시겠습니까?</h4>
-            계정 공개를 설정하시면 문제를 푼 기록, 팔로우와 관련된 모든 기록을 다른 사람이 열람 할 수 있습니다.
+            <strong style="font-size: 0.9em">계정 비공개를 설정하시겠습니까?</strong>
+            <div class="safe-password">계정 공개를 설정하시면 문제를 푼 기록, 팔로우와 관련된 모든 기록을 다른 사람이 열람 할 수 있습니다.</div>
 			<div class="privacy-div">
 	            <input type="radio" name="chk_info" value="open" checked="checked">공개
 	            <input type="radio" name="chk_info" value="private">비공개
@@ -254,12 +255,10 @@ $(function() {
         </div>
         <div class="delete">
             <div class="line">
-                <h4>계정 삭제</h4>
+                <h4 style="color: #cb2431">계정 삭제</h4>
             </div>
-            <h4>회원 탈퇴를 하시겠습니까?</h4>
-            <p>
-                회원 탈퇴를 하시면 문제를 푼 기록이 다 사라집니다.
-            </p>
+            <strong style="font-size: 0.9em">계정을 삭제하시겠습니까?</strong>
+            <div class="safe-password"><i class="fas fa-info-circle info"></i>계정을 삭제하시면 사용자의 모든 기록이 사라집니다.</div>
             <button id="delete-btn">회원 탈퇴</button>
         </div>
     </div>

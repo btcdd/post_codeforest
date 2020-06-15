@@ -10,9 +10,10 @@ body {
 .container {
 	width: 980px;
     margin: auto;
-    margin-top: 7em;
+    margin-top: 6em;
     padding: 10px 30px;
     margin-bottom: 9em;
+    margin-left: 34em;
 }
 
 ul {
@@ -58,9 +59,10 @@ a:visited {
 }
 
 .menulist {
-	padding: 10px 0px;
+	padding: 10px 3px;
 	border-bottom: 1px solid #B4B4B4;
-	color: #037EE2;
+	color: #7d7d7d;
+	font-size: 0.9em;
 }
 
 .menulist:hover {
@@ -87,7 +89,7 @@ a:visited {
 }
 
 #nickname-btn, #password-btn {
-	background-color: #7A8B9B;
+	background-color: #ab9a78;
     border: none;
     color: #fff;
     padding: 2px 15px;
@@ -97,12 +99,12 @@ a:visited {
     display: inline-block;
     font-size: 13px;
     transition-duration: 0.4s;
-    border: 1.5px #7A8B9B solid;
+    border: 1.5px #ab9a78 solid;
     cursor: pointer;
 }
 
 #delete-btn {
-	background-color: #aa7b69;
+	background-color: #b27761;
     border: none;
     color: #fff;
     padding: 2px 15px;
@@ -112,7 +114,7 @@ a:visited {
     display: inline-block;
     font-size: 13px;
     transition-duration: 0.4s;
-    border: 1.5px #aa7b69 solid;
+    border: 1.5px #b27761 solid;
     cursor: pointer;
 }
 .privacy input:checked+.ico-privacy {
@@ -144,5 +146,51 @@ a:visited {
 }
 
 .account {
-	border-left: 2px solid #ff0000;
+	border-left: 3px solid orange;
+    pointer-events: none;
+    color: saddlebrown;
+    padding-left: 4px;
+    margin-left: -1px;
+}
+
+.span-mypage, .span-problem {
+	margin-left: 6px;
+}
+
+.span-account {
+	margin-left: 3px;
+	font-weight: bold;
+}
+
+.safe-password {
+	font-size: 0.9em;
+    margin-bottom: 1em;
+    color: #515151;
+    margin-top: 1em;
+}
+
+.info {
+	margin-right: 5px;
+}
+
+button {
+	outline: none;
+}
+
+#nickname-btn:hover {
+	-webkit-box-shadow: 0 2px 3px 0 rgba(192,179,154,0.3), 0 2px 4px 2px rgba(192,179,154,0.15);
+	background-color: #907d59;
+	border: 1.5px #907d59 solid;
+}
+
+#password-btn:hover {
+	-webkit-box-shadow: 0 2px 3px 0 rgba(192,179,154,0.3), 0 2px 4px 2px rgba(192,179,154,0.15);
+	background-color: #907d59;
+	border: 1.5px #907d59 solid;
+}
+
+#delete-btn:hover {
+	-webkit-box-shadow: 0 2px 3px 0 rgba(192,179,154,0.3), 0 2px 4px 2px rgba(192,179,154,0.15);
+	background-color: #945d48;
+	border: 1.5px #945d48 solid;
 }

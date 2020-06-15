@@ -122,5 +122,31 @@ body { margin: 0; padding: 0; background-color: #FAFAFA;}
    margin: auto;
    margin-top: 110px;
    border: 1px solid #d1d5da;
-   width: 6em;
+   width: 9em;
+   margin-left: 6em;
+   border-radius: 0.3rem;
+}
+
+.nickname-header {
+	padding: 10px 0px;
+    border-bottom: 1px solid #B4B4B4;
+    color: #222;
+    background-color: #f2f0ed;
+    border-radius: 0.3rem 0.3rem 0 0;
+}
+
+.settings {
+	color: #586069!important;
+	margin-left: 15px;
+    font-size: 0.8em;
+}
+
+.auth-user {
+	font-weight: bold;
+	margin-left: 15px;
+    font-size: 0.9em;
+}
+
+.hover:hover {
+	border-radius: 0 0 0.3rem 0.3rem;
 }

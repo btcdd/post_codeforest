@@ -101,7 +101,6 @@ $(function() {
 		   $(".prompt").css('color', "#bde371");
 		   $(".path").css('color', "#5ed7ff");
 	   }
-
    });
    
    $('.lang').change(function() {
