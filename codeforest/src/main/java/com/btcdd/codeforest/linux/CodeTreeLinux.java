@@ -132,7 +132,7 @@ public class CodeTreeLinux {
 			Long problemNo = 92L;
 			Long subProblemNo = 219L;
 			
-			process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/java/" + fileName);
+			process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + language + "/" + fileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
