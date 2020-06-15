@@ -3,19 +3,18 @@ body {
     padding: 0;
 }
 
-.sidemenu {
+.side {
 	width: 250px;
 	height: 300px;
-	margin-left: 30px;
+	margin-left: 300px;
     left: 300px;
+    margin-top: 100px;
 }
 
 .statistics-container {
-    width: 845px;
-    margin-left: 300px;
+    width: 700px;
+    margin-left: 1200px;
     margin-top: -300px;
-    border: 1px solid rgb(180, 180, 180);
-    border-radius: 1%;
 }
 
 ul {
@@ -29,6 +28,11 @@ ul {
 .menulist {
     margin: 5px;
     padding: 10px 0px;
+    overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 200px;
+	height: 20px;
 }
 
 .quizlist {
@@ -36,8 +40,12 @@ ul {
 }
 
 .line {
-    border-bottom: 1px solid lightgray;
     margin-bottom: 10px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #167426;
+    border-bottom: 3px solid #167426;
 }
 
 table {
@@ -49,4 +57,24 @@ table {
 th, td {
     border: 0.3px solid lightgray;
     padding: 10px 35px;
+    text-align: center;
+}
+
+#footer {
+	float: left;
+	width: 100%;
+}
+
+.footer {
+    display: flow-root;
+	margin: auto;
+	padding: 60px 0;
+	left: 0;
+	bottom: 0;
+	width: 60%;
+    background-color: #fAFAFA;
+	color: #3C3C3C;
+	text-align: center;
+	border-top: 1px solid #BFBFBf;
+	margin-top: 120px;
 }

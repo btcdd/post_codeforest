@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+	pageContext.setAttribute("newLine", "\n");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,13 +17,40 @@
 <link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
-<%-- <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/ckeditor/contents.css"> --%>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+	  var likeButton = document.getElementById('like-button');
+	  likeButton.addEventListener('click', function() {
+	    window.lb = likeButton;
+		likeButton.classList.toggle('selected');
+	    recommendCheck();
+	  });
+}, false);
+
+document.addEventListener('DOMContentLoaded', function() {
+	  var saveButton = document.getElementById('save-button');
+	  saveButton.addEventListener('click', function() {
+	    window.lb = saveButton;
+	    savePandan();
+	    if(savePandanBool == true) {
+			console.log("pandan true");
+			saveProblem();
+			savePandanBool = false;
+		} else {
+			console.log("pandan false");
+			deleteProblem();
+			savePandanBool = true;
+		}
+	    saveButton.classList.toggle('selected');
+	  });
+}, false);
+
+var savePandanBool = false;
 var problemNo = '${problemVo.no}';
 var array = new Array();
 
 var linuxSaveCode = function() {
-	
 	$.ajax({
 		url: '${pageContext.request.contextPath }/api/training/linux/savecode',
 		async: false,
@@ -36,33 +66,7 @@ var linuxSaveCode = function() {
 				console.error(response.message);
 				return;
 			}
-		},
-		error: function(xhr, status, e){
-			console.error(status + ":" + e);
-		}
-	});
-}
-
-var saveProblem = function() {
-	
-	$.ajax({
-		url: '${pageContext.request.contextPath }/api/training/save/problem',
-		async: false,
-		type: 'post',
-		dataType: 'json',
-		traditional: true,
-		data: {
-			'problemNo': problemNo,
-			'subProblemNoArray': array
-		},	
-		success: function(response){
-			if(response.result != "success"){
-				console.error(response.message);
-				return;
-			}
-			$('#save').text('저장 해제');
-			
-			linuxSaveCode();
+			console.log("linucSaveCode가 안들어오닝?");
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
@@ -71,6 +75,7 @@ var saveProblem = function() {
 }
 
 var recommendCheck = function() {
+	var likeButton = document.getElementById('like-button');
 	$.ajax({
 		url: '${pageContext.servletContext.contextPath }/api/training/recommend',
 		async: false,
@@ -86,8 +91,35 @@ var recommendCheck = function() {
 				return;
 			}
 			map = response.data;
-			
-			$('#recommend').text('추천 ' + map.recommend);
+			$('#recommend-num').text(map.recommend);
+		},
+		error: function(xhr, status, e){
+			console.error(status + ":" + e);
+		}
+	});
+};
+
+var originRecommend = function() {
+	var likeButton = document.getElementById('like-button');
+	$.ajax({
+		url: '${pageContext.servletContext.contextPath }/api/training/recommend/origin',
+		async: false,
+		type: 'post',
+		dataType: 'json',
+		traditional: true,
+		data: {
+			'problemNo': problemNo,
+		},
+		success: function(response){
+			if(response.result != "success"){
+				console.error(response.message);
+				return;
+			}
+			map = response.data;
+			if(map.check > 0) {
+				$('#like-button').addClass('selected');
+			}
+			$('#recommend-num').text(map.recommend);
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
@@ -110,10 +142,16 @@ var savePandan = function() {
 				console.error(response.message);
 				return;
 			}
+			// 저장이 안되어있다면
 			if(response.data == null) {
-				$('#save').text('저장');
+				$('#save-button').removeClass('selected');
+				console.log("addclass");
+				savePandanBool = true;
+			// 저장이 되어있다면
 			} else {
-				$('#save').text('저장 해제');
+				$('#save-button').addClass('selected');
+				console.log("removeclass");
+				savePandanBool = false;
 			}
 		},
 		error: function(xhr, status, e){
@@ -121,6 +159,68 @@ var savePandan = function() {
 		}
 	});
 };
+
+var saveProblem = function() {
+	$.ajax({
+		url: '${pageContext.request.contextPath }/api/training/save/problem',
+		async: false,
+		type: 'post',
+		dataType: 'json',
+		traditional: true,
+		data: {
+			'problemNo': problemNo,
+			'subProblemNoArray': array
+		},
+		success: function(response){
+			if(response.result != "success"){
+				console.error(response.message);
+				return;
+			}
+			linuxSaveCode();
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			////// 해결하세용
+			$('#save-button').classList.toggle('selected');
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			console.log("saveProblem가 안들어오닝?");
+		},
+		error: function(xhr, status, e){
+			console.error(status + ":" + e);
+		}
+	});
+}
 
 var deleteProblem = function() {
 	$.ajax({
@@ -137,11 +237,6 @@ var deleteProblem = function() {
 				console.error(response.message);
 				return;
 			}
-			if(response.data == null) {
-				$('#save').text('저장');
-			} else {
-				$('#save').text('저장 해제');
-			}
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
@@ -150,15 +245,41 @@ var deleteProblem = function() {
 };
 
 $(function() {
+	$(window).scroll(function() {
+        if ($(this).scrollTop() > 500) {
+            $('#MOVE-TOP').fadeIn();
+        } else {
+            $('#MOVE-TOP').fadeOut();
+        }
+    });
+    
+    $("#MOVE-TOP").click(function() {
+        $('html, body').animate({
+            scrollTop : 0
+        }, 400);
+        return false;
+    });
+    
+	originRecommend();
 	
 	savePandan();
 	
 	var no;
 	
-	$(".problem").click(function() {
-		no = $(this).children().attr("id");
+	$(".open1").show();
+	$('.open1').parent().children().first().css("background-color", "#EBEBEB");
+// 	$('.open1').parent().children().first().children('.subProblemIndex').css("background-color", "#FAFAFA");
+	
+	$(".top-prob").click(function() {
+		no = $(this).parent().attr("id");
 		
-		$(".open" + no).toggle("slow");
+		if($(".open" + no).css("display") == "none"){
+			$(".open" + no).show("slow");
+			$(".open" + no).parent().children().first().css("background-color", "#EBEBEB");
+		} else {
+			$(".open" + no).hide("slow");
+			$(".open" + no).parent().children().first().css("background-color", "#fff");
+		}
 	});
   
 	$(document).on("click","#code-tree", function() {
@@ -179,23 +300,11 @@ $(function() {
       });
    });
 	
-	
-	$('#save').click(function() {
-		if($(this).text() == '저장') {
-			saveProblem();
-		} else {
-			deleteProblem();
-		}
-	});
-	
 	for(var i = 0; i < ${listSize }; i++) {
 		var subProblemNo = $('.sub' + i).attr("value");
 		array.push(subProblemNo);
 	}
 	
-	$('#recommend').click(function() {
-		recommendCheck();
-	});
 });
 </script>
 </head>
@@ -204,39 +313,63 @@ $(function() {
     <c:import url="/WEB-INF/views/include/main-header.jsp" />
     <div class="container">
         <div class="top">
-            <p class="division">${problemVo.no }</p>
-            <p>${problemVo.title }</p>
-			<p>조회수</p><p>${problemVo.hit + 1}</p>
-            <button id="save"></button>
-            <button id="code-tree">코드 트리로 가져오기</button>
-            <a href="${pageContext.servletContext.contextPath }/training/statistics/${problemVo.no }"><button>통계</button></a>
-            <button id="recommend">추천 ${problemVo.recommend }</button>
+        	<div class="no">${problemVo.no }</div>
+            <div class="problem-title">${problemVo.title }</div>
+            <div class="statistics-div">
+	            <button type="button" id="statistics-button" onClick="location.href='${pageContext.servletContext.contextPath }/training/statistics/${problemVo.no }'">
+	            <i class="fas fa-chart-bar"></i>
+				  통계
+				</button>
+            </div>
+            <div class="save-div">
+	            <button type="button" id="save-button">
+	            <i class="fas fa-save"></i>
+				  저장
+				</button>
+            </div>
+            <div class="recommend-div">
+	            <button type="button" id="like-button">
+	            	<i class="fas fa-heart"></i>
+				  추천<p id="recommend-num">${problemVo.recommend }</p>
+				</button>
+            </div>
         </div>
-        
+        <div class="second-block">
+        	<div class="hit">
+	        	조회수  ${problemVo.hit + 1}
+        	</div>
+        </div>
         <div class="problem-list">
         	<c:forEach items='${list }' var='vo' step='1' varStatus='status'>
 				<div class="problem">
 					<div class="pro pro${status.index + 1}" id="${status.index + 1}">
-						<p class="division">문제 ${status.index + 1} - 고유번호 ${vo.no }</p>
-						<input class="sub${status.index }" type="hidden" value="${vo.no }" />
-						<p id="click">${vo.title }</p>
-						<a href="${pageContext.servletContext.contextPath }/training/answerlist/${status.index + 1}/${vo.no}"><button>맞은 사람</button></a>
+						<div class="top-prob">
+							<div class="subProblemIndex"><i class="fas fa-bookmark bookmark"></i><strong>${status.index + 1 }</strong></div>
+							<div class="subProblemNo"># ${vo.no }</div>
+							<input class="sub${status.index }" type="hidden" value="${vo.no }" />
+							<div class="subProblemTitle" id="click"><strong>${vo.title }</strong></div>
+							<div class="correct-person">
+					            <button type="button" id="correct-person-button" onClick="location.href='${pageContext.servletContext.contextPath }/training/answerlist/${status.index + 1}/${vo.no}'">
+								  	맞은 사람
+								</button>
+				            </div>
+						</div>
 						
-						<div class="open${status.index + 1}">
+						<div class="open${status.index + 1}" style="display:none">
 							<div class="explain">
-								<p>${vo.contents }</p>
+								<p>${fn:replace(vo.contents, "<br />", newLine)}</p>
 							</div>
 							<div class="example">
 								<div class="input">
 									<fieldset>
 										<legend class="example-division">예제 입력</legend>
-										<div class="input-content">${vo.examInput }</div>
+										<div class="input-content">${fn:replace(vo.examInput, "<br />", newLine)}</div>
 									</fieldset>
 								</div>
 								<div class="result">
 									<fieldset>
 										<legend class="example-division">예제 출력</legend>
-										<div class="result-content">${vo.examOutput }</div>
+										<div class="result-content">${fn:replace(vo.examOutput, "<br />", newLine)}</div>
 									</fieldset>
 								</div>
 							</div>
@@ -251,6 +384,7 @@ $(function() {
         </c:if>
     </div>
     <c:import url="/WEB-INF/views/include/footer.jsp" />
+    <span id="MOVE-TOP"><i class="fas fa-angle-up custom"></i></span>
 </body>
 
 </html>

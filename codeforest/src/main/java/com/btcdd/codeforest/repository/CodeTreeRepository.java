@@ -81,6 +81,41 @@ public class CodeTreeRepository {
 		return sqlSession.selectList("codetree.findSubProblemList", problemNo);
 	}
 
+	public int insertFile(Long savePathNo, String language, String fileName) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("savePathNo", savePathNo);
+		map.put("language", language);
+		map.put("fileName", fileName);
+		return sqlSession.insert("codetree.insertFile", map);
+	}
+
+
+	public CodeVo findByFileName(String fileName) {
+		return sqlSession.selectOne("codetree.findByFileName",fileName);
+  }
+	public Long findProblemNo(Long subProblemNo) {
+		return sqlSession.selectOne("codetree.findProblemNo", subProblemNo);
+	}
+
+	public Long findCodeNo(Long savePathNo, String fileName) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("savePathNo", savePathNo);
+		map.put("fileName", fileName);
+		return sqlSession.selectOne("codetree.findCodeNo",map);
+	}
+
+	public int delete(Long codeNo) {
+		return sqlSession.delete("codetree.delete", codeNo);
+	}
+
+	public CodeVo findSavePathNoAndFileName(Long codeNo) {
+		return sqlSession.selectOne("codetree.findSavePathNoAndFileName", codeNo);
+	}
+
+	public SavePathVo findSavePathVo(Long savePathNo) {
+		return sqlSession.selectOne("codetree.findSavePathVo", savePathNo);
+	}
+
 
 //	public int getTotalCount(String keyword) {
 //		return sqlSession.selectOne("codetree.totalCount",keyword);

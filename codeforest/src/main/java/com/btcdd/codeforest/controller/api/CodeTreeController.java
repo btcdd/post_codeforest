@@ -6,32 +6,29 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.btcdd.codeforest.dto.JsonResult;
+import com.btcdd.codeforest.linux.CodeTreeLinux;
 import com.btcdd.codeforest.service.CodeTreeService;
-import com.btcdd.codeforest.service.CodingTestService;
-import com.btcdd.codeforest.service.MypageService;
-import com.btcdd.codeforest.service.TrainingService;
+import com.btcdd.codeforest.vo.CodeVo;
+import com.btcdd.codeforest.vo.SavePathVo;
 import com.btcdd.codeforest.vo.UserVo;
 import com.btcdd.security.Auth;
 
 @RestController("CodeTreeController")
 @RequestMapping("/api/codetree")
 public class CodeTreeController {
-	@Autowired
-	private TrainingService trainingService;
+
 	
 	@Autowired 
 	private CodeTreeService codetreeService;
 	
-	@Autowired
-	private MypageService mypageService;
-	
-	@Autowired 
-	private CodingTestService testService;
+
 	
 	@Auth
 	@PostMapping(value="/list")// main-header에서 처음 열때
@@ -47,15 +44,57 @@ public class CodeTreeController {
 	}
 	
 	@Auth
-	@PostMapping(value="/codemirror")// main-header에서 처음 열때
+	@PostMapping(value="/codemirror")// Code Tree에서 리스트 창 띄울때
 	public JsonResult codemirror(Long saveNo) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("saveNo",saveNo);				
 		return JsonResult.success(map);
 	}
 	
+
+	@Auth
+	@PostMapping("/fileInsert")
+	public JsonResult fileInsert(Long savePathNo,String language,String fileName,Long subProblemNo, HttpSession session) {
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+
+		Long problemNo = codetreeService.findProblemNo(subProblemNo);
+		boolean exist = codetreeService.existFile(fileName); //false면 존재하지 않고 true면 존재한다
+		
+		
+		
+		Map<String,Object> map = new HashMap<>();
+				
+		if(!exist) {
+			System.out.println("기존 존재하지 않는다");
+			codetreeService.insertFile(savePathNo,language,fileName);
+//			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
+//			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
+			Long codeNo = codetreeService.findCodeNo(savePathNo,fileName);
+			System.out.println("codeNo>>"+codeNo);
+			map.put("fileName", fileName);
+			map.put("savePathNo", savePathNo);
+			map.put("codeNo",codeNo);
+		}else {
+			System.out.println("기존파일이 존재한다");
+			map.put("result", "no");
+		}
+		
+		return JsonResult.success(map);
+	}	
 	
-	
+	@DeleteMapping("/fileDelete/{codeNo}")
+	public JsonResult deleteFile(@PathVariable("codeNo") Long codeNo) {
+		CodeVo codeVo = codetreeService.findSavePathNoAndFileName(codeNo);
+		boolean result = codetreeService.deleteFile(codeNo);
+		
+		SavePathVo savePathVo = codetreeService.findSavePathVo(codeVo.getSavePathNo());
+		
+//		CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
+//		codeTreeLinux.deleteCode(savePathVo.getPackagePath(), codeVo.getLanguage(), codeVo.getFileName());
+		
+		return JsonResult.success(result ? codeNo : -1);
+	}	
+
 }
 
 

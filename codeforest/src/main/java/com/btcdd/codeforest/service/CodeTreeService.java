@@ -147,7 +147,36 @@ public class CodeTreeService {
 		return codetreeRepository.findSubProblemList(problemNo);
 	}
 
-	
+	public boolean insertFile(Long savePathNo, String language, String fileName) {
+		return codetreeRepository.insertFile(savePathNo,language,fileName) == 1;
+		
+	}
+
+	public boolean existFile(String fileName) {
+		return codetreeRepository.findByFileName(fileName) != null;
+  }
+	public Long findProblemNo(Long subProblemNo) {
+		return codetreeRepository.findProblemNo(subProblemNo);
+	}
+
+	public Long findCodeNo(Long savePathNo, String fileName) {
+		return codetreeRepository.findCodeNo(savePathNo,fileName);
+	}
+
+	public boolean deleteFile(Long codeNo) {
+		int count = codetreeRepository.delete(codeNo);
+		return count == 1;
+	}
+
+	public CodeVo findSavePathNoAndFileName(Long codeNo) {
+		return codetreeRepository.findSavePathNoAndFileName(codeNo);
+	}
+
+	public SavePathVo findSavePathVo(Long savePathNo) {
+		return codetreeRepository.findSavePathVo(savePathNo);
+	}
+
+
 
 	
 //	public Map<String, Object> getContentsList(int currentPage, String keyword) {

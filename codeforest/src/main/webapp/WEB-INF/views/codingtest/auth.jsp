@@ -47,10 +47,7 @@ var messageBox = function(title,message,message2,callback){
 };
 
 $(function(){
-	FullHours
-	console.log("FullHours",FullHours);
-	console.log("FullHoursSplit[0]",FullHoursSplit[0]);
-	console.log("FullHoursSplit[1]",FullHoursSplit[1]);
+
 	
 	$("#auth-form").submit(function(e){
 		e.preventDefault();

@@ -10,18 +10,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Code Forest</title>
 <link href="${pageContext.servletContext.contextPath }/assets/css/training/statistics.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.servletContext.contextPath }/assets/css/training/header.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
+<link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
+<script>
+$(function() {
+	var tableWidth = $('#statistics-table').width();
+	
+	$('.line').css('width', tableWidth + 64 + 'px');
+});
+</script>
 </head>
 
 <body>
     <c:import url="/WEB-INF/views/include/main-header.jsp" />
-	    <div class="sidemenu">
+	    <div class="side">
 	        <nav>
 	            <ul>
 	            	<c:forEach items='${subProblemList }' var='vo' step='1' varStatus='status'>
-		                <li class="menulist">문제 ${status.index + 1} - ${vo.title }</li>
+		                <li class="menulist" title="${vo.title }">문제 ${status.index + 1} - ${vo.title }</li>
 		            </c:forEach>
 	            </ul>
 	        </nav>
@@ -32,12 +40,12 @@
 	                <h4>문제 통계</h4>
 	            </div>
 	            <br />
-	            <table>
+	            <table id="statistics-table">
 	                <thead>
 	                    <tr>
 	                        <th></th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<th>문제 ${status.index+1 }</th>	                        
+								<th>문제 ${status.index+1 }</th>
 	                        </c:forEach>
 	                    </tr>
 	                </thead>
@@ -45,31 +53,31 @@
 	                    <tr>
 	                        <th>맞았습니다</th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<td>${vo.y }</td>	                        
+								<td>${vo.y }</td>
 	                        </c:forEach>
 	                    </tr>
 	                    <tr>
 	                        <th>틀렸습니다</th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<td>${vo.n }</td>	                        
+								<td>${vo.n }</td>
 	                        </c:forEach>
 	                    </tr>
 	                    <tr>
 	                        <th>C</th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<td>${vo.c }</td>	                        
+								<td>${vo.c }</td>
 	                        </c:forEach>
 	                    </tr>
 	                    <tr>
 	                        <th>C++</th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<td>${vo.cpp }</td>	                        
+								<td>${vo.cpp }</td>
 	                        </c:forEach>
 	                    </tr>
 	                    <tr>
 	                        <th>C#</th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<td>${vo.cs }</td>	                        
+								<td>${vo.cs }</td>
 	                        </c:forEach>
 	                    </tr>
 	                    <tr>
@@ -100,5 +108,6 @@
 	            </table>
 	        </div>
 	    </div>
+	    <c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>

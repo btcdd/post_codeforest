@@ -30,6 +30,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/codemirror/js/codemirror.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/codemirror/mode/clike.js"></script>
 
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+
 <script>
 $(function() {
 ////////////////// code-mirror /////////////////////////////
@@ -167,36 +170,275 @@ $(function() {
  	});	
  	
  	
- 	
- 	
-});
 
-	
-////////////////////////////////////////////////////////////////
-
-	$(document).on('click', '.sub-problem-title', function(event) {
-		event.preventDefault();
-		var no = $(this).data("no");
-		$("#subproblem-" + no).toggle();
-	});
-
-
-
+ 	// 폰트 사이즈 변경
 	$('#font-size').on("propertychange change keyup paste", function(){		
 		var fontSize = $(this).val() + "px";
 		console.log("font-size:"+fontSize);
 		$(".CodeMirror").css("font-size", fontSize+"");
 	});
 	
-	
-	$(document).on('contextmenu', function() {
-		  return false;
+ 	
+ 	
+ 	
+ 	
+////////////////파일 추가////////////////////
+ 	
+ 	var packagePath = null;
+ 	var subProblemNo = null;
+ 	var codeNo = null;
+ 	var str='<div id="file-insert"><li>파일 추가</li></div>';
+ 	$(".contextmenu").append(str);
+ 	var str2='<div id="userfile-delete"><li>파일 삭제</li></div>';
+ 	$(".userfile-menu").append(str2);
+ 	
+
+	$(document).on('mouseenter','#folder',function(){
+		console.log("hi");
+		$(document).on('mousedown','#folder',function(e){
+			$(".userfile-menu").hide();
+			if(e.which == 3){
+
+	 			packagePath = $(this).data("no");
+	 			subProblemNo = $(this).data("no2");
+	 		    //Get window size:
+	 		    var winWidth = $(document).width();
+	 		    var winHeight = $(document).height();
+	 		    //Get pointer position:
+	 		    var posX = e.pageX;
+	 		    var posY = e.pageY;
+	 		    //Get contextmenu size:
+	 		    var menuWidth = $(".contextmenu").width();
+	 		    var menuHeight = $(".contextmenu").height();
+	 		    //Security margin:
+	 		    var secMargin = 10;
+	 		    //Prevent page overflow:
+	 		    if(posX + menuWidth + secMargin >= winWidth
+	 		    && posY + menuHeight + secMargin >= winHeight){
+	 		      //Case 1: right-bottom overflow:
+	 		      posLeft = posX - menuWidth - secMargin + "px";
+	 		      posTop = posY - menuHeight - secMargin + "px";
+	 		    }
+	 		    else if(posX + menuWidth + secMargin >= winWidth){
+	 		      //Case 2: right overflow:
+	 		      posLeft = posX - menuWidth - secMargin + "px";
+	 		      posTop = posY + secMargin + "px";
+	 		    }
+	 		    else if(posY + menuHeight + secMargin >= winHeight){
+	 		      //Case 3: bottom overflow:
+	 		      posLeft = posX + secMargin + "px";
+	 		      posTop = posY - menuHeight - secMargin + "px";
+	 		    }
+	 		    else {
+	 		      //Case 4: default values:
+	 		      posLeft = posX + secMargin + "px";
+	 		      posTop = posY + secMargin + "px";
+	 		    };
+	 		    //Display contextmenu:
+	 		    $(".contextmenu").css({
+	 		      "left": posLeft,
+	 		      "top": posTop
+	 		    }).show();
+	 		    //Prevent browser default contextmenu.
+	 		    return false;					
+				
+				
+			}
+			
+		
+		});
+
+		
+		$(document).on('mousedown','.userFile',function(e){
+			$(".contextmenu").hide();
+			
+			if(e.which == 3){
+				codeNo = $(this).data("no");
+	 		    //Get window size:
+	 		    var winWidth = $(document).width();
+	 		    var winHeight = $(document).height();
+	 		    //Get pointer position:
+	 		    var posX = e.pageX;
+	 		    var posY = e.pageY;
+	 		    //Get contextmenu size:
+	 		    var menuWidth = $(".userfile-menu").width();
+	 		    var menuHeight = $(".userfile-menu").height();
+	 		    //Security margin:
+	 		    var secMargin = 10;
+	 		    //Prevent page overflow:
+	 		    if(posX + menuWidth + secMargin >= winWidth
+	 		    && posY + menuHeight + secMargin >= winHeight){
+	 		      //Case 1: right-bottom overflow:
+	 		      posLeft = posX - menuWidth - secMargin + "px";
+	 		      posTop = posY - menuHeight - secMargin + "px";
+	 		    }
+	 		    else if(posX + menuWidth + secMargin >= winWidth){
+	 		      //Case 2: right overflow:
+	 		      posLeft = posX - menuWidth - secMargin + "px";
+	 		      posTop = posY + secMargin + "px";
+	 		    }
+	 		    else if(posY + menuHeight + secMargin >= winHeight){
+	 		      //Case 3: bottom overflow:
+	 		      posLeft = posX + secMargin + "px";
+	 		      posTop = posY - menuHeight - secMargin + "px";
+	 		    }
+	 		    else {
+	 		      //Case 4: default values:
+	 		      posLeft = posX + secMargin + "px";
+	 		      posTop = posY + secMargin + "px";
+	 		    };
+	 		    //Display contextmenu:
+	 		    $(".userfile-menu").css({
+	 		      "left": posLeft,
+	 		      "top": posTop
+	 		    }).show();
+	 		    //Prevent browser default contextmenu.
+	 		    return false;				
+				
+			}
+			
+			
+			
+		});
+		
+	}).on('mouseleave','.ui__sidebar',function(){
+		console.log("bye");
+	}).on('contextmenu','.ui__sidebar',function(){
+		return false;
+	}).on('userfile-menu','.ui__sidebar',function(){
+		return false;
 	});
 	
-	$(document).on('mousedown','.problem-packageList', function() {
-		console.log("click!!!");  
-	});
+ 	
+ 	//Hide contextmenu:
+ 	$(document).click(function(){
+ 	   $(".contextmenu").hide();
+ 	});
+ 
+ 	//Hide contextmenu:
+ 	$(document).click(function(){
+ 	   $(".userfile-menu").hide();
+ 	});	
+ 	
+ 	$(document).on('click','#file-insert',function(){
+ 		console.log("packagePath!!!"+packagePath);
+ 		console.log("subProblemNo!!!"+subProblemNo);
+ 		var lang = $(".lang option:selected").val();
+ 		var fileName = null;
+ 		$('<div> <input type="text" style="z-index:10000" class="fileName-input"  placeholder='+'.'+lang+' }> </div>')
+ 		    .attr("title","파일 추가")
+ 			.dialog({
+ 			modal: true,
+			buttons:{
+				"추가": function(){
+					var filename = $(this).find(".fileName-input").val();
+					var filename2 =filename.replace(/(\s*)/g,""); 
+					if(filename2.split(".").length >2 || filename2.split(".")[1] !=lang || filename2.split(".")[0] ==""){
+						alert("잘못된 형식입니다");
+						return;
+					}
+					fileName = filename2;
+					
+					$.ajax({
+						url: '${pageContext.servletContext.contextPath }/api/codetree/fileInsert',
+						async: true,
+						type: 'post',
+						dataType: 'json',
+						data: {
+							'savePathNo' : packagePath,
+							'language' : lang,
+							'fileName' : fileName,
+							'subProblemNo':subProblemNo
+						},
+						success: function(response) {
+										
+							if(response.data.result == 'no'){
+								alert("이미 파일이 존재합니다.");//메시지 처리 필요
+								return;
+							}
+							$("#file"+response.data.savePathNo).append("<li><div class='userFile' data-no="+response.data.codeNo+"><img src='${pageContext.servletContext.contextPath }/assets/images/file.png'/>"+response.data.fileName+"</div></li>")
+
+						},
+						error: function(xhr, status, e) {
+							console.error(status + ":" + e);
+						}
+					});
+					$(this).dialog("close");
+				},
+				"취소":function(){
+					$(this).dialog("close");
+				}
+			},
+			close:function(){}
+ 		}); 		
+ 	});
+ 	
+ 	
+ 	$(document).on('click','#userfile-delete',function(){
+ 		console.log("userfile-delete   >>codeNo",codeNo);
+ 		$(".validateTips").css("color","black").html("<p>정말로 삭제하시겠습니까?</p>");
+ 		dialogDelete.dialog("open");
+ 	});
+ 	
+ 	
+ 	var dialogDelete = $("#dialog-delete-form").dialog({
+			autoOpen: false,
+			width:300,
+			height:220,
+			modal:true,
+			buttons:{
+				"삭제":function(){
+					$.ajax({
+						url: '${pageContext.servletContext.contextPath }/api/codetree/fileDelete/'+codeNo,
+						async: true,
+						type: 'delete',
+						dataType:'json',
+						data:'',
+						success: function(response) {
+							
+							if(response.result != "success"){
+								console.error(response.message);
+								return;
+							}
+							
+							if(response.data != -1){
+								 
+								$(".userFile[data-no="+response.data+"]").remove();
+								
+								dialogDelete.dialog('close');
+								return;
+							}							
+							
+							$(".validateTips").css("color","red").html("<p>삭제실패</p>");
+						},
+						error: function(xhr, status, e) {
+							console.error(status + ":" + e);
+						}							
+					});
+				},
+				"취소":function(){
+					$(this).dialog("close");
+				}
+			},
+			close:function(){}
+ 	}); 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+});
+
 	
+
+
+
+	
+
 /////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 	
@@ -414,15 +656,23 @@ window.onload = function() {
 		            <li class="file-tree__item file-tree__item--open">
 		                <div class="folder folder--open">Project A</div>		
 		                <ul class="file-tree__subtree">
-		                    <li class="file-tree__item">
-		                        <div class="folder">Planfolder</div>
-		                    </li>
-		                    <li class="file-tree__item">
-		                        <div class="folder folder--open">Holiday</div>
-		                    </li>
-		                    <li class="file-tree__item">
-		                        <div class="folder">Shared</div>
-		                    </li>
+			                <c:forEach items='${savePathList }' var='vo' varStatus='status'>
+			                    <li class="file-tree__item">
+			                        <div id="folder" class="folder" data-no="${vo.no}" data-no2="${vo.subProblemNo}" >${saveVo.title}/${status.index+1}</div>
+									<ul class="file-tree__subtree" id="file${vo.no}">
+										<c:forEach items='${codeList}' var='codevo' varStatus='status'>
+											<c:if test="${vo.no == codeList[status.index].savePathNo }">
+												<li class='userFile' data-no="${codeList[status.index].no}">
+													<div><img src="${pageContext.servletContext.contextPath }/assets/images/file.png"/>${codevo.fileName}</div>
+												</li>
+											</c:if>	
+										</c:forEach>
+									</ul>
+								</li>			                        
+	
+							
+			                    
+			                </c:forEach>
 		                </ul>
 		                <!-- /.file-subtree -->
 		            </li>
@@ -459,7 +709,16 @@ public class Test{
 	  </div>
 	  
 	</div>
-
+	
+			<div id="dialog-delete-form" class="delete-form" title="메세지 삭제" style="display:none">
+				<p class="validateTips"></p>  
+			</div>
+			<div>
+				<ul class="contextmenu">
+				</ul>
+				<ul class="userfile-menu">
+				</ul> 
+			</div>
 </div>
 </body>
 </html>

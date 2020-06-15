@@ -89,7 +89,6 @@
 			</otherwise>			
 		</choose>
 	</select>
-
 	
 	<select id="selectSaveNoList" parameterType="hashmap" resultType="savevo">
 		<choose>
@@ -122,7 +121,6 @@
 			</otherwise>			
 		</choose>		
 	</select>
-	
 
 	<select id="findSaveVo" parameterType="long" resultType="savevo">
 		<![CDATA[
@@ -155,6 +153,60 @@
 			 where problem_no = #{problemNo } and state = 'y'
 		]]>
 	</select>
+	<insert id="insertFile" parameterType="hashmap" useGeneratedKeys="true" keyProperty="id">
+		<![CDATA[
+			insert into code values(null,#{savePathNo},#{language},#{fileName});
+		]]>
+	</insert>
 
+	<select id="findByFileName" parameterType="string" resultType="codevo">
+		<![CDATA[
+			select 
+				*
+			from code 
+			where file_name = #{fileName}
+			 
+		]]>
+	</select>	
+
+	<select id="findProblemNo" parameterType="long" resultType="long">
+		<![CDATA[
+			select problem_no
+			  from sub_problem
+			 where no = #{subProblemNo }
+		]]>
+	</select>
+
+	<select id="findCodeNo" parameterType="hashmap" resultType="long">
+		<![CDATA[
+			select no
+			  from code
+			 where save_path_no = #{savePathNo} and file_name like #{fileName}
+		]]>
+	</select>
+	
+	<delete id="delete" parameterType="long">
+		<![CDATA[
+			delete 
+			  from code 
+			 where no=#{no}
+		]]>
+	</delete>
+	
+	<select id="findSavePathNoAndFileName" parameterType="long" resultType="codevo">
+		<![CDATA[
+			select no, save_path_no as savePathNo, language, file_name as fileName
+			  from code
+			 where no = #{codeNo }
+		]]>
+	</select>
+	
+	<select id="findSavePathVo" parameterType="long" resultType="savepathvo">
+		<![CDATA[
+			select no, sub_problem_no as subProblemNo, save_no as saveNo, package_path as packagePath
+			  from save_path
+			 where no = #{savePathNo }
+		]]>
+	</select>
 	
 </mapper>
