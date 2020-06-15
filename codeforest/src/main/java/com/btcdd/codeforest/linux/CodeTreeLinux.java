@@ -8,6 +8,7 @@ import java.io.IOException;
 public class CodeTreeLinux {
 	
 	private File file;
+	private BufferedWriter bufferWriter;
 	
 	private final String FILENAME = "Test.java";
 	
