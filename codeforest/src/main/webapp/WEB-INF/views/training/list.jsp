@@ -274,6 +274,9 @@ $(function() {
 		$('#kwd').val('');
 		
 		originList('1', '', '');
+		
+		$('.hashtag').remove();
+		$('.tag-content').css('margin-bottom', '0');
 	});
 	
 	$(window).scroll(function() {

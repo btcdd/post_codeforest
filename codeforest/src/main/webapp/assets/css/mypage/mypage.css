@@ -18,13 +18,13 @@ body {
 .menu-item {
 	float: left;
 	margin: 3px 10px 0 0;
-	padding: 8px 10px
+	padding: 8px 10px;
 }
 
 .menu-user {
 	float: right;
 	font-size: 1em;
-	margin-top: 2px
+	margin-top: 2px;
 }
 
 .menu-user a {
@@ -120,4 +120,5 @@ a:visited {
 .mypage {
 	border-left: 2px solid #ff0000;
 	pointer-events: none;
+	color: #222;
 }

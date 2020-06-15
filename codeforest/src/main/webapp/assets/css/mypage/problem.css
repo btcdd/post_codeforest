@@ -61,6 +61,7 @@ a:visited {
 .menulist {
 	padding: 10px 0px;
 	border-bottom: 1px solid #B4B4B4;
+	color: #037EE2;
 }
 
 .menulist:hover {
