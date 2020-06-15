@@ -8,7 +8,6 @@ import java.io.IOException;
 public class CodeTreeLinux {
 	
 	private File file;
-	private BufferedWriter bufferWriter;
 	
 	private final String FILENAME = "Test.java";
 	
@@ -96,7 +95,6 @@ public class CodeTreeLinux {
 		try {
 			process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -133,7 +131,7 @@ public class CodeTreeLinux {
 			Long problemNo = 92L;
 			Long subProblemNo = 219L;
 			
-			process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/java/as.java");
+			process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/java/" + fileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
