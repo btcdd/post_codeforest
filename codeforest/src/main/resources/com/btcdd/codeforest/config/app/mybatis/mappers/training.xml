@@ -512,7 +512,7 @@
 		<foreach collection="subProblemNoArray" item="item"
 			separator=",">
 			(null, ${item}, ${saveNo}, concat('/userDirectory/user',
-			${authUserNo }, '/prob', ${problemNo }, '/subprob', ${item }))
+			${authUserNo }, '/prob', ${problemNo }, '/subProb', ${item }))
 		</foreach>
 	</insert>
 
