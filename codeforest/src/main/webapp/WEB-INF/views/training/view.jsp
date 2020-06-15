@@ -285,7 +285,34 @@ $(function() {
 		array.push(subProblemNo);
 	}
 	
-	
+	var moveToCodetree = $("#move-to-codetree").dialog({
+		autoOpen: false,
+		resizable: false,
+		height: "auto",
+		width: "auto",
+		modal: true,
+		buttons: {
+			"이동": function() {		
+				var title = $("#hidden-title").val();
+				$(".problem-list-table").table2excel({
+					exclude: ".discard",
+					filename: title.concat(".xls")
+				})
+			},
+			"취소": function() {
+				$(this).dialog('close');
+			}
+		},
+		close: function() {
+			$(".problem-list-table tr th").removeClass();
+			$(".problem-list-table tr th").show();
+			$(".box-component").each(function(){
+			       $(this).prop('checked',true);
+			});
+			$(".problem-list-table > #tbody > tr").remove();
+			$("#hidden-no").val('');
+		}
+	});
 	
 });
 </script>
@@ -320,6 +347,11 @@ $(function() {
         	<div class="hit">
 	        	조회수  ${problemVo.hit + 1}
         	</div>
+	       <c:if test="${problemVo.userNo eq authUser.no }">
+	        	<div class="modify" style="margin-right: 1.5em;">
+		       		<a href="${pageContext.servletContext.contextPath }/training/modify/${problemVo.no }">수정하기</a>
+	       		</div>
+	       </c:if>
         </div>
         <div class="problem-list">
         	<c:forEach items='${list }' var='vo' step='1' varStatus='status'>
@@ -361,12 +393,21 @@ $(function() {
 				</div>
 			</c:forEach>
         </div>
-        <c:if test="${problemVo.userNo eq authUser.no }">
-        	<a href="${pageContext.servletContext.contextPath }/training/modify/${problemVo.no }">수정하기</a>
-        </c:if>
+        
     </div>
     <c:import url="/WEB-INF/views/include/footer.jsp" />
     <span id="MOVE-TOP"><i class="fas fa-angle-up custom"></i></span>
+    
+    <div id="move-to-codetree" title="저장" style="display: none">
+       <p>
+          <span class="ui-icon ui-icon-alert" style="float: left; margin: 12px 12px 20px 0;">   
+          </span>
+          'CODE TREE'로 지금 이동하시겠습니까?
+       </p>
+       <form>
+          <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+       </form>
+    </div>
 </body>
 
 </html>
