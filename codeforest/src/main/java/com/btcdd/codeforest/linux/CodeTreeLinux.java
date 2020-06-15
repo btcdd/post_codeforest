@@ -96,7 +96,6 @@ public class CodeTreeLinux {
 		try {
 			process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -129,8 +128,7 @@ public class CodeTreeLinux {
 
 	public void deleteCode(String packagePath, String language, String fileName) {
 		try {
-			String package2 = packagePath.substring(1);
-			process = Runtime.getRuntime().exec("rm -rf " + package2 + "/" + language + "/" + fileName);
+			process = Runtime.getRuntime().exec("rm -rf " + packagePath + "/" + language + "/" + fileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
