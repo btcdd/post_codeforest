@@ -8,12 +8,12 @@ body {
 }
 
 .container {
-	width: 980px;
+	width: 820px;
     margin: auto;
     margin-top: 6em;
     padding: 10px 30px;
     margin-bottom: 9em;
-    margin-left: 34em;
+    margin-left: 38em;
 }
 
 .menu-item {
@@ -112,15 +112,15 @@ a:visited {
 	padding: 60px 0;
 	left: 0;
 	bottom: 0;
-	width: 69%;
+	width: 55%;
 	background-color: #fAFAFA;
 	color: #3C3C3C;
 	text-align: center;
-	border-top: 1px solid #BFBFBf
+	border-top: 1px solid #BFBFBf;
 }
 
 .mypage {
-	border-left: 3px solid orange;
+	border-left: 3px solid #cb2431;
     pointer-events: none;
     color: saddlebrown;
     padding-left: 4px;
