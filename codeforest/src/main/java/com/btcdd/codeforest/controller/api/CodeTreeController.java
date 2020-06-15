@@ -1,6 +1,8 @@
 package com.btcdd.codeforest.controller.api;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.btcdd.codeforest.dto.JsonResult;
-import com.btcdd.codeforest.linux.CodeTreeLinux;
 import com.btcdd.codeforest.service.CodeTreeService;
 import com.btcdd.codeforest.vo.CodeVo;
 import com.btcdd.codeforest.vo.SavePathVo;
+import com.btcdd.codeforest.vo.SaveVo;
+import com.btcdd.codeforest.vo.SubProblemVo;
 import com.btcdd.codeforest.vo.UserVo;
 import com.btcdd.security.Auth;
 
@@ -82,6 +85,7 @@ public class CodeTreeController {
 		return JsonResult.success(map);
 	}	
 	
+	@Auth
 	@DeleteMapping("/fileDelete/{codeNo}")
 	public JsonResult deleteFile(@PathVariable("codeNo") Long codeNo) {
 		CodeVo codeVo = codetreeService.findSavePathNoAndFileName(codeNo);
@@ -95,6 +99,41 @@ public class CodeTreeController {
 		return JsonResult.success(result ? codeNo : -1);
 	}	
 
+	@Auth
+	@PostMapping("/file-list")
+	public JsonResult fileList(Long saveNo, String language) {
+		SaveVo saveVo = codetreeService.findSaveVo(saveNo);
+		List<SavePathVo> savePathList = codetreeService.findSavePathList(saveVo.getNo());
+		List<CodeVo> codeList = codetreeService.findCodeList(savePathList.get(0).getNo());
+		for(int i = 1; i < savePathList.size(); i++) {
+			codeList.addAll(codetreeService.findCodeList(savePathList.get(i).getNo()));
+		}
+//		List<CodeVo> codeList_copy = codeList;
+//		for(int i = 0; i < codeList_copy.size();i++) {
+//			
+//		}
+		
+		Iterator<CodeVo> iterator = codeList.iterator();
+		while(iterator.hasNext()) {
+			CodeVo it = iterator.next();
+			if(!it.getLanguage().equals(language)) {
+				iterator.remove();
+			}
+		}
+		System.out.println(">>>>123123>>>>>>>>>>>>>>>>>>"+codeList);
+		List<SubProblemVo> subProblemList = codetreeService.findSubProblemList(saveVo.getProblemNo());
+		
+		Map<String,Object> map = new HashMap<>();
+		map.put("saveVo", saveVo);
+		map.put("savePathList", savePathList);
+		map.put("codeList", codeList);
+		map.put("subProblemList", subProblemList);
+		
+		return JsonResult.success(map);
+	}	
+
+	
+	
 }
 
 

@@ -234,7 +234,17 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 .folder.folder--open::before {
   content: "\f07c";
 }
-
+.file {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.file::before {
+	content: "\f15b";
+	font-family: FontAwesome;
+	margin-right: 0.5rem;
+	color: #FFF000;
+}
 
 
 
