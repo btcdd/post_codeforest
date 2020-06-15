@@ -1,21 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Bigshot+One&family=Pacifico&family=Roboto:wght@300&display=swap');
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
+@import
+	url('https://fonts.googleapis.com/css2?family=Bigshot+One&family=Pacifico&family=Roboto:wght@300&display=swap')
+	;
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800)
+	;
 
 body {
 	margin: 0;
 	padding: 0;
 }
-  
-body { margin: 0; padding: 0; background-color: #FAFAFA;}
 
-.header { 
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #FAFAFA;
+}
+
+.header {
 	position: fixed;
-  	top: 0;
-    z-index: 2;
-    background-repeat : no-repeat;
-    background-size : 100vw;
-    height: 49px;
-    width: 100vw;
+	top: 0;
+	z-index: 2;
+	background-repeat: no-repeat;
+	background-size: 100vw;
+	height: 49px;
+	width: 100vw;
 }
 
 .head-navigation {
@@ -58,8 +66,6 @@ body { margin: 0; padding: 0; background-color: #FAFAFA;}
 	font-family: 'Roboto', sans-serif;
 }
 
-
-
 .menu-user {
 	float: right;
 	font-size: 1em;
@@ -87,7 +93,6 @@ body { margin: 0; padding: 0; background-color: #FAFAFA;}
 /* 	text-decoration: none; */
 /* 	color: #3C3C3C */
 /* } */
-
 .menu-user a {
 	text-decoration: none;
 	color: #3C3C3C;
@@ -117,75 +122,66 @@ body { margin: 0; padding: 0; background-color: #FAFAFA;}
 	color: #3C3C3C
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .menu {
-  font-family: 'Raleway', Arial, sans-serif;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 500;
-  padding-left: 0;
-}
-.menu * {
-  box-sizing: border-box;
-}
-.menu li {
-  display: inline-block;
-  list-style: outside none none;
-  margin: 0 1.5em;
-  padding: 0;
-  color: #8E8E8E;
-}
-.menu a {
-  padding: 0.5em 0;
-  color: #AEAEAE;
-  position: relative;
-  letter-spacing: 1px;
-  text-decoration: none;
-}
-.menu a:before,
-.menu a:after {
-  position: absolute;
-  -webkit-transition: all 0.35s ease;
-  transition: all 0.35s ease;
-}
-.menu a:before {
-  bottom: 0;
-  display: block;
-  height: 3px;
-  width: 0%;
-  content: "";
-  background-color: #244C1E;
-}
-.menu a:after {
-  left: 0;
-  top: 0;
-  padding: 0.5em 0;
-  position: absolute;
-  content: attr(data-hover);
-  color: #244C1E;
-  white-space: nowrap;
-  max-width: 0%;
-  overflow: hidden;
-}
-.menu a:hover:before,
-.menu .current a:before {
-  opacity: 1;
-  width: 100%;
-}
-.menu a:hover:after,
-.menu .current a:after {
-  max-width: 100%;
+	font-family: 'Raleway', Arial, sans-serif;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 500;
+	padding-left: 0;
 }
 
+.menu * {
+	box-sizing: border-box;
+}
+
+.menu li {
+	display: inline-block;
+	list-style: outside none none;
+	margin: 0 1.5em;
+	padding: 0;
+	color: #8E8E8E;
+}
+
+.menu a {
+	padding: 0.5em 0;
+	color: #AEAEAE;
+	position: relative;
+	letter-spacing: 1px;
+	text-decoration: none;
+}
+
+.menu a:before, .menu a:after {
+	position: absolute;
+	-webkit-transition: all 0.35s ease;
+	transition: all 0.35s ease;
+}
+
+.menu a:before {
+	bottom: 0;
+	display: block;
+	height: 3px;
+	width: 0%;
+	content: "";
+	background-color: #244C1E;
+}
+
+.menu a:after {
+	left: 0;
+	top: 0;
+	padding: 0.5em 0;
+	position: absolute;
+	content: attr(data-hover);
+	color: #244C1E;
+	white-space: nowrap;
+	max-width: 0%;
+	overflow: hidden;
+}
+
+.menu a:hover:before, .menu .current a:before {
+	opacity: 1;
+	width: 100%;
+}
+
+.menu a:hover:after, .menu .current a:after {
+	max-width: 100%;
+}

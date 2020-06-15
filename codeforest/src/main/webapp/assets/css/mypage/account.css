@@ -180,11 +180,35 @@ button {
 #nickname-btn:hover, #password-btn:hover {
 	-webkit-box-shadow: 0 2px 3px 0 rgba(192,179,154,0.3), 0 2px 4px 2px rgba(192,179,154,0.15);
 	background-color: #907d59;
-	border: 1.5px #907d59 solid;
+	border: 1.5px #907d59 solid;	
 }
 
 #delete-btn:hover {
 	-webkit-box-shadow: 0 2px 3px 0 rgba(192,179,154,0.3), 0 2px 4px 2px rgba(192,179,154,0.15);
 	background-color: #945d48;
 	border: 1.5px #945d48 solid;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: right;
+    width: 66%;
+}
+
+.nickname-pre {
+   margin-top: 0.6em;
+   text-align: center;
+}
+
+.nickname-fieldset {
+   border-radius: 0.5rem;
+    padding-top: 0.7em;
+}
+
+.nickname-input {
+   margin-left: 0.6em;
+    width: 68%;
+    padding-bottom: 4px;
+    background-color: #F6F6F6;
+    outline: none;
+    border: 1px solid #b2b2b2;
 }

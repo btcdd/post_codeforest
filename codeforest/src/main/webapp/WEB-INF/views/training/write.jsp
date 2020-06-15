@@ -8,50 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link
-	href="${pageContext.servletContext.contextPath }/assets/css/training/write.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="${pageContext.servletContext.contextPath }/assets/css/training/header.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="${pageContext.servletContext.contextPath }/assets/css/sample.css"
-	rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script type="text/javascript"
-	src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
-<script type="text/javascript"
-	src="${pageContext.servletContext.contextPath }/assets/ckeditor/ckeditor.js"></script>
-
-<!-- code mirror -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/css/codemirror.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/abcdef.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/blackboard.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/dracula.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/duotone-light.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/eclipse.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/moxer.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/neat.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/panda-syntax.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/solarized.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/ttcn.css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/assets/codemirror/js/codemirror.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/assets/codemirror/mode/clike.js"></script>
-
+<link href="${pageContext.servletContext.contextPath }/assets/css/training/write.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/ckeditor/ckeditor.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <title>Code Forest</title>
 <script>
 var index = 1;
@@ -224,7 +187,7 @@ $(function() {
 
 			<div class="write-container">
 				<div class="tab">
-					<ul>
+					<ul class="tab-ul">
 						<li id="0" class="tablinks" name="selected">문제 1 <span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>
 						<li id="addSubProblem">+</li>
 					</ul>
@@ -235,7 +198,7 @@ $(function() {
 					<div class="prob0">
 						<h3>문제 1</h3>
 						<div class="sub-title">
-							문제 제목<input type="text" name="subProblemList[0].title" required />
+							문제 제목<input class="sub-problem-title" type="text" name="subProblemList[0].title" required />
 						</div>
 						<div class="prob-content">
 							<div class="prob-content-title">내용</div>
@@ -257,5 +220,6 @@ $(function() {
 			</div>
 		</div>
 	</form>
+	<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>
