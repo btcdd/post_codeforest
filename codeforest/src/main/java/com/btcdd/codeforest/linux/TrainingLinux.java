@@ -128,11 +128,11 @@ public class TrainingLinux {
 			
 			Thread.sleep(1000);
 			
+			process = Runtime.getRuntime().exec("mkdir asdfasdfasdfasdfasdfasdfdddd");
 			for(int i = 0; i < list.size(); i++) {
 				for(int j = 0; j < files.length; j++) {
 					String[] split = files[i].toString().split("/");
 					Long subProblemNo = Long.parseLong(split[4].substring(7));
-					process = Runtime.getRuntime().exec("mkdir asdfasdfasdfasdfasdfasdf" + subProblemNo);
 					
 					if(subProblemNoList.get(i) != subProblemNo) {
 						process = Runtime.getRuntime().exec("mkdir asdfasdfasdfasdfasdfasdf" + subProblemNoList.get(i));
