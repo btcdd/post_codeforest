@@ -128,7 +128,10 @@ public class TrainingLinux {
 			
 			Thread.sleep(1000);
 			
-			process = Runtime.getRuntime().exec("mkdir asdfasdfasdfasdfasdfasdfdddd");
+			for(int i = 0; i < files.length; i++) {
+				createFileAsSource(files.toString(), "hihi.txt");
+			}
+			
 			for(int i = 0; i < list.size(); i++) {
 				for(int j = 0; j < files.length; j++) {
 					String[] split = files[i].toString().split("/");
