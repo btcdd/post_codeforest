@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-import com.btcdd.codeforest.vo.SubProblemList;
+import com.btcdd.codeforest.vo.SubProblemVo;
 
 public class TrainingLinux {
 	
@@ -117,13 +117,17 @@ public class TrainingLinux {
 		}
 	}
 
-	public void modifyFile(Long authUserNo, List<SubProblemList> list, Long[] array, Long problemNo) {
+	public void modifyFile(Long authUserNo, List<SubProblemVo> list, Long[] array, Long problemNo) {
 		try {
 			File dir = new File("userDirectory/user" + authUserNo + "/prob" + problemNo);
 			File files [] = dir.listFiles();
 			
+			for(int i = 0; i < array.length; i++) {
+				process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + array[i]);
+			}
 			
-			
+//			String[] split = files[i].toString().split("/");
+//			Integer subProblemNo = Integer.parseInt(split[4].substring(7));
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

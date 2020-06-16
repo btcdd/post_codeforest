@@ -152,7 +152,7 @@ public class TrainingController {
 		}
 		
 		TrainingLinux trainingLinux = new TrainingLinux();
-//		trainingLinux.modifyFile(authUser.getNo(), list, array, problemNo);
+		trainingLinux.modifyFile(authUser.getNo(), list, array, problemNo);
 		
 		return "redirect:/training/view/" + problemNo;
 	}
