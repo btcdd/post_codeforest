@@ -10,8 +10,8 @@
         <div class="logo">
             <a class="title" href="${pageContext.servletContext.contextPath }">Code Forest</a>
         </div>
-        <div class="menulist clearfix">
-        	<ul class="menu">
+        <div class="header-menulist clearfix">
+        	<ul class="header-menu">
 			  <li><a href="${pageContext.servletContext.contextPath }/about" data-hover="About Us">About Us</a></li>
 			  <li><a href="${pageContext.servletContext.contextPath }/codetree/list" data-hover="Code Tree">Code Tree</a></li>
 			  <li><a href="${pageContext.servletContext.contextPath }/codingtest" data-hover="Coding Test">Coding Test</a></li>
