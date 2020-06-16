@@ -86,6 +86,7 @@ a:visited {
 
 .privacy-div {
 	margin-top: 20px;
+	font-size: 0.9em;
 }
 
 #nickname-btn, #password-btn {
@@ -196,19 +197,60 @@ button {
 
 .nickname-pre {
    margin-top: 0.6em;
-   text-align: center;
+   text-align: left;
 }
 
 .nickname-fieldset {
    border-radius: 0.5rem;
     padding-top: 0.7em;
+    background-color: #F6F6F6;
 }
 
 .nickname-input {
    margin-left: 0.6em;
     width: 68%;
     padding-bottom: 4px;
-    background-color: #F6F6F6;
     outline: none;
-    border: 1px solid #b2b2b2;
+}
+
+.password-pre {
+   margin-top: 0.6em;
+   text-align: left;
+}
+
+.password-input {
+	width: 13em;
+	margin-left: 0.6em;
+	margin-bottom: 0.7em;
+	outline: none;
+	
+}
+
+.password-input2 {
+	width: 13em;
+	margin-left: 0.6em;
+	outline: none;
+}
+
+.password-fieldset {
+	border-radius: 0.5rem;
+    padding-top: 0.7em;
+    background-color: #F6F6F6;
+}
+
+.delete-pre {
+   margin-top: 0.6em;
+   text-align: left;
+   line-height: 21px;
+}
+
+.delete-fieldset {
+	border-radius: 0.5rem;
+    padding-top: 0.7em;
+    background-color: #F6F6F6;
+}
+
+.delete-input {
+	width: 13em;
+	outline: none;
 }
