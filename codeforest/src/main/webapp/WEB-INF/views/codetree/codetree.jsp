@@ -66,7 +66,7 @@ var fileFetchList = function(){
 };
 
 
-var tempFile = null;
+
 
 $(function() {
 	
@@ -511,7 +511,7 @@ $(function() {
 		});
  	});
  	
- 	
+ 	var tempFile = null;
  	$(document).on("click","#Run",function(){
  		console.log("tempFile.data>>>",tempFile);
  		
