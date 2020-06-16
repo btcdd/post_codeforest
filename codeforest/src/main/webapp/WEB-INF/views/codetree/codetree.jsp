@@ -498,8 +498,7 @@ $(function() {
 				'packagePath' : packagePath
 			},
 			success: function(response) {
-// 				editor.setValue(response.data);				
-				editor.setValue("asdfasdfasdfadsfaf");
+				editor.setValue(response.data);				
 				console.log("code : " + response.data);
 			},
 			error: function(xhr, status, e) {
