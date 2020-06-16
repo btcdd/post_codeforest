@@ -196,7 +196,7 @@ $(function() {
  	    sidebar = $(".ui__sidebar");
 
  	// File Tree
- 	$(".folder").on("click", function(e) {
+ 	$(document).on("click", ".folder", function(e) {
  		$(".contextmenu").hide();
  	    var t = $(this);
  	    var tree = t.closest(".file-tree__item");
@@ -230,10 +230,10 @@ $(function() {
  	
 
  	// 폰트 사이즈 변경
-	$('#font-size').on("propertychange change keyup paste", function(){		
-		var fontSize = $(this).val() + "px";
+	$(document).on("click", '#font-size', function(){	
+		var fontSize = $("#font-size option:selected").val();
 		console.log("font-size:"+fontSize);
-		$(".CodeMirror").css("font-size", fontSize+"");
+		$(".CodeMirror").css("font-size", fontSize);
 	});
 	
  	
@@ -701,7 +701,19 @@ window.onload = function() {
                 </select>
               </div>
               <div class='font-size'>
-                  <input type='text' id="font-size" value="" />
+                  <select class="size" id="font-size" name="size">
+                    <option value="10px">10px</option>
+                    <option value="12px">12px</option>
+                    <option value="15px">15px</option>
+                    <option value="16px" selected="selected">16px</option>
+                    <option value="17px">17px</option>
+                    <option value="18px">18px</option>
+                    <option value="19px">19px</option>
+                    <option value="20px">20px</option>
+                    <option value="25px">25px</option>
+                    <option value="30px">30px</option>
+                    <option value="35px">35px</option>
+                </select>
               </div>
           </div> 
 
