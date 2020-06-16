@@ -157,7 +157,7 @@ public class TrainingLinux {
 		}
 	}
 	
-	public void mkdirSubProblem(Long authUserNo, Long problemNo, Long subProblemNo) {
+	public void mkdirSubProblem(Long authUserNo, Long problemNo, Long subProblemNo) {	
 		String[] langArray = { "c", "cpp", "cs", "java", "js", "py" };
 		
 		try {
