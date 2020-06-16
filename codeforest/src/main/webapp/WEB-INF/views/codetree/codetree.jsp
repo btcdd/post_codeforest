@@ -481,9 +481,10 @@ $(function() {
 			close:function(){}
  	}); 	
  	
- 	
+ 	var tempFile = null;
  	
  	$(document).on("dblclick", ".file", function() {
+ 		tempFile = $(this);
  		var language = $(this).data("language");
  		var fileName = $(this).data("file-name");
  		var packagePath = $(this).data("package-path");
@@ -508,8 +509,12 @@ $(function() {
  	});
  	
  	
- 	
- 	
+ 	$(document).on("click","#Run",function(){
+ 		console.log("tempFile.data>>>",tempFile.data("file-name"));
+ 		
+ 		
+ 	});
+ 	 	
  	
 });
 
@@ -737,6 +742,9 @@ window.onload = function() {
                     <option value="30px">30px</option>
                     <option value="35px">35px</option>
                 </select>
+              </div>
+              <div>
+              	<button id="Run">Run</button>
               </div>
           </div> 
 
