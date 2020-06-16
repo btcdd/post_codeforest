@@ -484,14 +484,19 @@ $(function() {
  	
  	
  	$(document).on("click", ".file", function() {
- 		var codeNo = $(this).data("no");
- 		
+ 		var language = $(this).data("language");
+ 		var fileName = $(this).data("file-name");
+ 		var packagePath = $(this).data("package-path");
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
 			async: true,
 			type: 'post',
 			dataType:'json',
-			data:'codeNo='+codeNo,
+			data: {
+				'language' : language,
+				'fileName' : fileName,
+				'packagePath' : packagePath
+			},
 			success: function(response) {
 				editor.setValue(response.data);				
 			},
