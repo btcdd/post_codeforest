@@ -10,6 +10,45 @@ import com.btcdd.codeforest.vo.SubProblemVo;
 
 public class TrainingLinux {
 	
+	String c = "#include <stdio.h>\r\n" + 
+			"\r\n" + 
+			"int main() {\r\n" + 
+			"	printf(\"Hello CodeForest!\\n\");\r\n" + 
+			"\r\n" + 
+			"	return 0;\r\n" + 
+			"}";
+	String cpp = "#include <iostream>\r\n" + 
+			"\r\n" + 
+			"using namespace std;\r\n" + 
+			"\r\n" + 
+			"int main()\r\n" + 
+			"{\r\n" + 
+			"	cout << \"Hello CodeForest!\" << endl;\r\n" + 
+			"\r\n" + 
+			"	return 0;\r\n" + 
+			"}";
+	String cs = "using System;\r\n" + 
+			"\r\n" + 
+			"class HelloWorld {\r\n" + 
+			"\r\n" + 
+			"	static void Main() {\r\n" + 
+			"		Console.WriteLine(\"Hello CodeForest\");\r\n" + 
+			"	}\r\n" + 
+			"}";
+	String java = "/*\r\n" + 
+			"* 기본 언어 : 'JAVA'\r\n" + 
+			"* 기본 테마 : 'panda-syntax'\r\n" + 
+			"*/\r\n" + 
+			"public class Test{\r\n" + 
+			"	public static void main(String[] args) {\r\n" + 
+			"		System.out.println(\"Hello CodeForest!\");\r\n" + 
+			"	}\r\n" + 
+			"}";
+	String js = "var str = \"Hello CodeForest\";\r\n" + 
+			"\r\n" + 
+			"console.log(str);";
+	String py = "print(\"Hello World\")";
+	
 	private File file;
 	private BufferedWriter bufferWriter;
 	
@@ -63,45 +102,6 @@ public class TrainingLinux {
 	}
 
 	public void linuxSaveCode(Long authUserNo, Long problemNo, Long[] subProblemNoArray) {
-		String c = "#include <stdio.h>\r\n" + 
-				"\r\n" + 
-				"int main() {\r\n" + 
-				"	printf(\"Hello CodeForest!\\n\");\r\n" + 
-				"\r\n" + 
-				"	return 0;\r\n" + 
-				"}";
-		String cpp = "#include <iostream>\r\n" + 
-				"\r\n" + 
-				"using namespace std;\r\n" + 
-				"\r\n" + 
-				"int main()\r\n" + 
-				"{\r\n" + 
-				"	cout << \"Hello CodeForest!\" << endl;\r\n" + 
-				"\r\n" + 
-				"	return 0;\r\n" + 
-				"}";
-		String cs = "using System;\r\n" + 
-				"\r\n" + 
-				"class HelloWorld {\r\n" + 
-				"\r\n" + 
-				"	static void Main() {\r\n" + 
-				"		Console.WriteLine(\"Hello CodeForest\");\r\n" + 
-				"	}\r\n" + 
-				"}";
-		String java = "/*\r\n" + 
-				"* 기본 언어 : 'JAVA'\r\n" + 
-				"* 기본 테마 : 'panda-syntax'\r\n" + 
-				"*/\r\n" + 
-				"public class Test{\r\n" + 
-				"	public static void main(String[] args) {\r\n" + 
-				"		System.out.println(\"Hello CodeForest!\");\r\n" + 
-				"	}\r\n" + 
-				"}";
-		String js = "var str = \"Hello CodeForest\";\r\n" + 
-				"\r\n" + 
-				"console.log(str);";
-		String py = "print(\"Hello World\")";
-		
 		String[] faceCode = { c, cpp, cs, java, js, py };
 		
 		try {
@@ -116,6 +116,21 @@ public class TrainingLinux {
 			e.printStackTrace();
 		}
 	}
+	
+	public void linuxModifySaveCode(Long authUserNo, Long problemNo, Long subProblemNo) {
+		String[] faceCode = { c, cpp, cs, java, js, py };
+		
+		try {
+			String[] langArray = { "c", "cpp", "cs", "java", "js", "py" };
+			
+			for(int j = 0; j < langArray.length; j++) {
+				createFileAsSource(faceCode[j], "userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + langArray[j] + "/Test." + langArray[j]);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void modifyFile(Long authUserNo, List<SubProblemVo> list, Long[] array, Long problemNo, List<Long> subProblemNoList) {
 		try {
@@ -125,12 +140,6 @@ public class TrainingLinux {
 			for(int i = 0; i < array.length; i++) {
 				process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + array[i]);
 			}
-//			
-//			String[] split = files[0].toString().split("/");
-//			Long subProblemNo = Long.parseLong(split[3].substring(7));
-//			for(int i = 0; i < files.length; i++) {
-//				createFileAsSource(files.length, "hihi.txt");
-//			}
 			
 			for(int i = 0; i < list.size(); i++) {
 				for(int j = 0; j < files.length; j++) {
@@ -138,13 +147,11 @@ public class TrainingLinux {
 					Long subProblemNo = Long.parseLong(split[3].substring(7));
 					
 					if(subProblemNoList.get(i) != subProblemNo) {
-//						process = Runtime.getRuntime().exec("mkdir asdfasdfasdfasdfasdfasdf" + subProblemNoList.get(i));
 						mkdirSubProblem(authUserNo, problemNo, subProblemNoList.get(i));
-//						process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo);
+						linuxModifySaveCode(authUserNo, problemNo, subProblemNoList.get(i));
 					}
 				}
 			}
-			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
