@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 import com.btcdd.codeforest.vo.SubProblemList;
 
@@ -116,8 +117,12 @@ public class TrainingLinux {
 		}
 	}
 
-	public void modifyFile(SubProblemList subProblemList, Long[] array, Long problemNo) {
+	public void modifyFile(Long authUserNo, List<SubProblemList> list, Long[] array, Long problemNo) {
 		try {
+			File dir = new File("userDirectory/user" + authUserNo + "/prob" + problemNo);
+			File files [] = dir.listFiles();
+			
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();

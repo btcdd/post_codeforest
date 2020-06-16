@@ -166,12 +166,11 @@ public class TrainingService {
 		List<SubProblemVo> list = subProblemList.getSubProblemList();
 		Map<String, Object> map = new HashMap<>();
 		map.put("subProblemList", list);
-		
 		map.put("deleteNoList", array);
 		
 		trainingRepository.deleteSubProblem(map);
 	}
-
+	
 	public boolean existUser(String email) {
 		return trainingRepository.findByUserEmail(email) != null;
 	}

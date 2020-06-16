@@ -128,7 +128,10 @@ public class TrainingController {
 	public String problemModifySubmit(@ModelAttribute SubProblemList subProblemList,
 			ProblemVo problemVo,
 			@PathVariable("problemNo") Long problemNo,
-			@RequestParam(value = "array", required = true, defaultValue = "") Long[] array) {
+			@RequestParam(value = "array", required = true, defaultValue = "") Long[] array,
+			HttpSession session) {
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		problemVo.setNo(problemNo);
 		trainingService.modifyProblem(problemVo);
@@ -149,7 +152,7 @@ public class TrainingController {
 		}
 		
 		TrainingLinux trainingLinux = new TrainingLinux();
-		trainingLinux.modifyFile(subProblemList, array, problemNo);
+//		trainingLinux.modifyFile(authUser.getNo(), list, array, problemNo);
 		
 		return "redirect:/training/view/" + problemNo;
 	}
