@@ -132,8 +132,8 @@ public class TrainingLinux {
 					Long subProblemNo = Long.parseLong(split[4].substring(7));
 					
 					if(list.get(i).getNo() != subProblemNo) {
-						mkdirSubProblem(authUserNo, problemNo, subProblemNo);
-						process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo);
+						mkdirSubProblem(authUserNo, problemNo, list.get(i).getNo());
+//						process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo);
 					}
 				}
 			}
