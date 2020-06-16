@@ -122,8 +122,12 @@ public class TrainingLinux {
 			File dir = new File("userDirectory/user" + authUserNo + "/prob" + problemNo);
 			File files [] = dir.listFiles();
 			
+			for(int i = 0; i < array.length; i++) {
+				process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + array[i]);
+			}
 			
-			
+//			String[] split = files[i].toString().split("/");
+//			Integer subProblemNo = Integer.parseInt(split[4].substring(7));
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
