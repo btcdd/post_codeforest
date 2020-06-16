@@ -148,7 +148,6 @@ public class TrainingLinux {
 					
 					if(subProblemNoList.get(i) != subProblemNo) {
 						mkdirSubProblem(authUserNo, problemNo, subProblemNoList.get(i));
-						linuxModifySaveCode(authUserNo, problemNo, subProblemNoList.get(i));
 					}
 				}
 			}
