@@ -245,12 +245,12 @@ $(function() {
  	
 ////////////////파일 추가////////////////////
  	
- 	var packagePath = null;
+ 	var savePathNo = null;
  	var subProblemNo = null;
  	var codeNo = null;
  	var str='<div id="file-insert"><li>파일 추가</li></div>';
  	$(".contextmenu").append(str);
- 	var str2='<div id="userfile-delete"><li>파일 삭제</li></div>';
+ 	var str2='<div><li id="userfile-delete">파일 삭제</li><li id="userfile-update">이름변경</li></div>';
  	$(".userfile-menu").append(str2);
  	
 
@@ -260,7 +260,7 @@ $(function() {
 			$(".userfile-menu").hide();
 			if(e.which == 3){
 
-	 			packagePath = $(this).data("no");
+				savePathNo = $(this).data("no");
 	 			subProblemNo = $(this).data("no2");
 	 		    //Get window size:
 	 		    var winWidth = $(document).width();
@@ -380,11 +380,11 @@ $(function() {
  	});	
  	
  	$(document).on('click','#file-insert',function(){
- 		console.log("packagePath!!!"+packagePath);
+ 		console.log("savePathNo!!!"+savePathNo);
  		console.log("subProblemNo!!!"+subProblemNo);
  		var lang = $(".lang option:selected").val();
  		var fileName = null;
- 		$('<div> <input type="text" style="z-index:10000" class="fileName-input"  placeholder='+'.'+lang+' }> </div>')
+ 		$('<div> <input type="text" style="z-index:10000" class="fileName-input"  placeholder='+'.'+lang+' > </div>')
  		    .attr("title","파일 추가")
  			.dialog({
  			modal: true,
@@ -404,7 +404,7 @@ $(function() {
 						type: 'post',
 						dataType: 'json',
 						data: {
-							'savePathNo' : packagePath,
+							'savePathNo' : savePathNo,
 							'language' : lang,
 							'fileName' : fileName,
 							'subProblemNo':subProblemNo
@@ -485,6 +485,59 @@ $(function() {
  	}); 	
  	
  	
+ 	$(document).on("click", "#userfile-update", function() {
+ 		var lang = $(".lang option:selected").val();
+ 		var fileName = null;
+ 		$('<div> <input type="text" style="z-index:10000" class="fileName-update" placeholder='+'.'+lang+'></div>')
+		    .attr("title","파일 수정")
+		    .dialog({
+		    	modal: true,
+		    	buttons:{
+		    		"수정":function(){
+						var filename = $(this).find(".fileName-update").val();
+						var filename2 =filename.replace(/(\s*)/g,""); 
+						if(filename2.split(".").length >2 || filename2.split(".")[1] !=lang || filename2.split(".")[0] ==""){
+							alert("잘못된 형식입니다");
+							return;
+						}
+						fileName = filename2;
+						$.ajax({
+							url: '${pageContext.servletContext.contextPath }/api/codetree/fileUpdate',
+							async: true,
+							type: 'post',
+							dataType: 'json',
+							data: {
+								'savePathNo' : savePathNo,
+								'codeNo' : codeNo,
+								'fileName' : fileName,
+								'subProblemNo':subProblemNo
+							},
+							success: function(response) {
+											
+ 								if(response.data.result == 'no'){
+									alert("이미 파일이 존재합니다.");//메시지 처리 필요
+									return;
+								}
+								$(".file-tree__subtree").remove();
+
+								fileFetchList(); 
+								
+							},
+							error: function(xhr, status, e) {
+								console.error(status + ":" + e);
+							}
+						});
+						$(this).dialog("close");		    			
+		    		},
+					"취소":function(){
+						$(this).dialog("close");
+					}
+		    	},
+		    	close:function(){}
+		    });
+			
+ 	});
+ 	
  	
  	$(document).on("dblclick", ".file", function() {
  		tempFile = $(this);
@@ -514,11 +567,62 @@ $(function() {
  	var tempFile = null;
  	$(document).on("click","#Run",function(){
  		console.log("tempFile.data>>>",tempFile);
- 		
- 		
+ 		console.log("file-name>>>",tempFile.data("file-name"));
+ 		$.ajax({
+			url: '${pageContext.servletContext.contextPath }/api/codetree/run',
+			async: true,
+			type: 'post',
+			dataType:'json',
+			data: {
+				'fileNo' : tempFile.data("no"),
+				'language' : tempFile.data("language"),
+				'fileName' : tempFile.data("file-name"),
+				'packagePath' : tempFile.data("package-path")
+			},
+			success: function(response) {
+				console.log("ok");
+			},
+			error: function(xhr, status, e) {
+				console.error(status + ":" + e);
+			}							
+		}); 		
  	});
- 	 	
- 	
+  	$(document).on("click","#Save",function(){
+ 		$.ajax({
+			url: '${pageContext.servletContext.contextPath }/api/codetree/save',
+			async: true,
+			type: 'post',
+			dataType:'json',
+			data: {
+				'fileNo' : tempFile.data("no"),
+				'packagePath' : tempFile.data("package-path")
+			},
+			success: function(response) {
+				console.log("ok");
+			},
+			error: function(xhr, status, e) {
+				console.error(status + ":" + e);
+			}							
+		}); 		
+ 	}); 
+/*   	$(document).on("click","#Submit",function(){
+ 		$.ajax({
+			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
+			async: true,
+			type: 'post',
+			dataType:'json',
+			data: {
+				
+			},
+			success: function(response) {
+				console.log("ok");
+			},
+			error: function(xhr, status, e) {
+				console.error(status + ":" + e);
+			}							
+		}); 		
+ 	});  */  	
+  	
 });
 
 	
@@ -747,7 +851,9 @@ window.onload = function() {
                 </select>
               </div>
               <div>
+              	<button id="Save">Save</button>
               	<button id="Run">Run</button>
+              	<button id="Submit">제출</button>
               </div>
           </div> 
 

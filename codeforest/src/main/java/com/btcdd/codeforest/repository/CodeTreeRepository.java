@@ -119,6 +119,13 @@ public class CodeTreeRepository {
 		return sqlSession.selectOne("codetree.findSavePathVo", savePathNo);
 	}
 
+	public int updateFile(Long codeNo, String fileName) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("codeNo", codeNo);
+		map.put("fileName", fileName);
+		return sqlSession.update("codetree.updateFile",map);
+	}
+
 //	public int getTotalCount(String keyword) {
 //		return sqlSession.selectOne("codetree.totalCount",keyword);
 //	}
