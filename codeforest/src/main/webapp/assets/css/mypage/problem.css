@@ -230,11 +230,6 @@ th {
 	color: #555;
 }
 
-#proceed {
-	padding: 2px 9px; 
-	background-color: #ff9800;
-}
-
 .blinking{
    -webkit-animation:blink 1.5s ease-in-out infinite alternate;
     -moz-animation:blink 1.5s ease-in-out infinite alternate;

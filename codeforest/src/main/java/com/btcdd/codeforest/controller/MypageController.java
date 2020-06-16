@@ -54,7 +54,6 @@ public class MypageController {
 		
 		Map<String,Object> map = mypageService.getContentsList(currentPage, authUser.getNo());
 		
-		System.out.println(map);
 		model.addAttribute("map",map);
 		
 		return "mypage/problem";

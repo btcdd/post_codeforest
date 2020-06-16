@@ -15,7 +15,7 @@
 			  <li><a href="${pageContext.servletContext.contextPath }/codingtest" data-hover="Coding Test">Coding Test</a></li>
 			  <li><a href="${pageContext.servletContext.contextPath }/training" data-hover="Coding Training">Coding Training</a></li>
 			</ul>
-        </div>			
+        </div>
         <div class="menu-user clearfix">
 	        <c:choose>
 				<c:when test="${empty authUser }">
