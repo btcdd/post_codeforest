@@ -129,7 +129,7 @@ public class TrainingLinux {
 			Thread.sleep(1000);
 			
 			for(int i = 0; i < files.length; i++) {
-				createFileAsSource(files.toString(), "hihi.txt");
+				createFileAsSource(files[i].toString(), "hihi.txt");
 			}
 			
 			for(int i = 0; i < list.size(); i++) {
