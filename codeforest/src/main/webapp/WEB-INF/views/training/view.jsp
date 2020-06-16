@@ -13,8 +13,8 @@
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
 <link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	    if(savePandanBool == true) {
 			console.log("pandan true");
 			saveProblem();
+			$("#move-to-codetree").dialog('open');
 			savePandanBool = false;
 		} else {
 			console.log("pandan false");
@@ -179,28 +180,27 @@ var savePandan = function() {
 };
 
 var saveProblem = function() {
-	$.ajax({
-		url: '${pageContext.request.contextPath }/api/training/save/problem',
-		async: false,
-		type: 'post',
-		dataType: 'json',
-		traditional: true,
-		data: {
-			'problemNo': problemNo,
-			'subProblemNoArray': array
-		},
-		success: function(response){
-			if(response.result != "success"){
-				console.error(response.message);
-				return;
-			}
-			linuxSaveCode();
-			moveToCodetree.dialog('open');
-		},
-		error: function(xhr, status, e){
-			console.error(status + ":" + e);
-		}
-	});
+// 	$.ajax({
+// 		url: '${pageContext.request.contextPath }/api/training/save/problem',
+// 		async: false,
+// 		type: 'post',
+// 		dataType: 'json',
+// 		traditional: true,
+// 		data: {
+// 			'problemNo': problemNo,
+// 			'subProblemNoArray': array
+// 		},
+// 		success: function(response){
+// 			if(response.result != "success"){
+// 				console.error(response.message);
+// 				return;
+// 			}
+// 			linuxSaveCode();
+// 		},
+// 		error: function(xhr, status, e){
+// 			console.error(status + ":" + e);
+// 		}
+// 	});
 }
 
 var deleteProblem = function() {
@@ -226,6 +226,32 @@ var deleteProblem = function() {
 };
 
 $(function() {
+	
+	$("#move-to-codetree").dialog({
+		autoOpen: false,
+		resizable: false,
+		height: "auto",
+		width: "auto",
+		modal: true,
+		buttons: {
+			"이동": function() {	
+				window.location.href='${pageContext.request.contextPath }/codetree/list'
+			},
+			"취소": function() {
+				$(this).dialog('close');
+			}
+		},
+		close: function() {
+			$(".problem-list-table tr th").removeClass();
+			$(".problem-list-table tr th").show();
+			$(".box-component").each(function(){
+			       $(this).prop('checked',true);
+			});
+			$(".problem-list-table > #tbody > tr").remove();
+			$("#hidden-no").val('');
+		}
+	});
+	
 	$(window).scroll(function() {
         if ($(this).scrollTop() > 500) {
             $('#MOVE-TOP').fadeIn();
@@ -286,36 +312,6 @@ $(function() {
 		var subProblemNo = $('.sub' + i).attr("value");
 		array.push(subProblemNo);
 	}
-	
-	var moveToCodetree = $("#move-to-codetree").dialog({
-		autoOpen: false,
-		resizable: false,
-		height: "auto",
-		width: "auto",
-		modal: true,
-		buttons: {
-			"이동": function() {		
-				var title = $("#hidden-title").val();
-				$(".problem-list-table").table2excel({
-					exclude: ".discard",
-					filename: title.concat(".xls")
-				})
-			},
-			"취소": function() {
-				$(this).dialog('close');
-			}
-		},
-		close: function() {
-			$(".problem-list-table tr th").removeClass();
-			$(".problem-list-table tr th").show();
-			$(".box-component").each(function(){
-			       $(this).prop('checked',true);
-			});
-			$(".problem-list-table > #tbody > tr").remove();
-			$("#hidden-no").val('');
-		}
-	});
-	
 });
 </script>
 </head>
