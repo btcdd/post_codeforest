@@ -4,6 +4,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
+
+import com.btcdd.codeforest.vo.SubProblemVo;
 
 public class TrainingLinux {
 	
@@ -109,6 +112,14 @@ public class TrainingLinux {
 					createFileAsSource(faceCode[j], "userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNoArray[i] + "/" + langArray[j] + "/Test." + langArray[j]);
 				}
 			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void modifyFile(List<SubProblemVo> list, Long[] array, Long problemNo) {
+		try {
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
