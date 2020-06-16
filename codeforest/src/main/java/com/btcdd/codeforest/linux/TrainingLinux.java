@@ -126,6 +126,8 @@ public class TrainingLinux {
 				process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + array[i]);
 			}
 			
+			Thread.sleep(1000);
+			
 			for(int i = 0; i < list.size(); i++) {
 				for(int j = 0; j < files.length; j++) {
 					String[] split = files[i].toString().split("/");
