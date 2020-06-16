@@ -49,14 +49,6 @@ ul {
     margin: 0;
 }
 
-a {
-	text-decoration: none;
-	color: #222;
-}
-
-a:visited {
-	color: #222;
-}
 
 #right-problem {
 	color: #428BCA;
