@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.btcdd.codeforest.linux.TrainingLinux;
 import com.btcdd.codeforest.service.TrainingService;
 import com.btcdd.codeforest.vo.ProblemVo;
 import com.btcdd.codeforest.vo.SubProblemList;
@@ -146,6 +147,10 @@ public class TrainingController {
 		if(list.size() > 0) {
 			trainingService.modify(subProblemList, problemNo);
 		}
+		
+		TrainingLinux trainingLinux = new TrainingLinux();
+		trainingLinux.modifyFile(list, array, problemNo);
+		
 		return "redirect:/training/view/" + problemNo;
 	}
 	
