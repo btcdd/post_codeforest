@@ -209,4 +209,13 @@
 		]]>
 	</select>
 	
+	<update id="updateFile" parameterType="hashmap">
+		<![CDATA[
+			update code set
+				file_name = #{fileName}
+			where no = #{codeNo}
+		]]>	
+	</update>
+	
+	
 </mapper>
