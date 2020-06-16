@@ -79,7 +79,7 @@ var fetchList = function() {
    str += '<tbody id="problem-tbody">';
    for(var i = 0; i < map.list.length; i++){
 	   if(map.list[i].startTime <= getTimeStamp() && map.list[i].endTime >= getTimeStamp()) {
-		   codingTestStr = '<td><button class="blinking" id="modify-btn" style="padding: 2px 9px; background-color: #fc9303; border: 1px solid #fc9303" >진행중</button></a></td>';
+		   codingTestStr = '<td><button class="blinking" id="modify-btn" style="padding: 2px 9px; background-color: #fc9303; border: 1px solid #fc9303; outline: none; cursor: default" >진행중</button></a></td>';
 	   } else {
 		   codingTestStr = '<td><a href="${pageContext.servletContext.contextPath }/training/modify/' + map.list[i].no + '"><button id="modify-btn">수정</button></a></td>';
 	   }
