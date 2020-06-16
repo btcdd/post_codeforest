@@ -4,9 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 
-import com.btcdd.codeforest.vo.SubProblemVo;
+import com.btcdd.codeforest.vo.SubProblemList;
 
 public class TrainingLinux {
 	
@@ -117,7 +116,7 @@ public class TrainingLinux {
 		}
 	}
 
-	public void modifyFile(List<SubProblemVo> list, Long[] array, Long problemNo) {
+	public void modifyFile(SubProblemList subProblemList, Long[] array, Long problemNo) {
 		try {
 			
 		} catch(Exception e) {

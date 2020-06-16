@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.btcdd.codeforest.dto.JsonResult;
+import com.btcdd.codeforest.linux.CodeTreeLinux;
 import com.btcdd.codeforest.service.CodeTreeService;
 import com.btcdd.codeforest.vo.CodeVo;
 import com.btcdd.codeforest.vo.SavePathVo;
@@ -140,6 +141,8 @@ public class CodeTreeController {
 	@PostMapping("/find-code")
 	public JsonResult findCode(Long codeNo) {
 		// 여기야 여기!
+//		CodeTreeLinux codetreeLinux = new CodeTreeLinux();
+//		String code = codetreeLinux.findCode(codeNo);
 		
 		return JsonResult.success("");
 	}	
