@@ -145,7 +145,7 @@ public class CodeTreeLinux {
 			BufferedReader br = new BufferedReader(rw);
 			
 			code = null;
-			while(( code = br.readLine()) != null) {
+			while(( br.readLine()) != null) {
 				code += br.readLine();
 			}
 		} catch (IOException e) {
