@@ -163,6 +163,7 @@ public class CodeTreeLinux {
 		
 		for(String readLines: list) {
 			code += readLines;
+			code += "\n";
 		}
 
 		return code;
