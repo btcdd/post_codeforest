@@ -483,7 +483,7 @@ $(function() {
  	
  	
  	
- 	$(document).on("click", ".file", function() {
+ 	$(document).on("dblclick", ".file", function() {
  		var language = $(this).data("language");
  		var fileName = $(this).data("file-name");
  		var packagePath = $(this).data("package-path");
