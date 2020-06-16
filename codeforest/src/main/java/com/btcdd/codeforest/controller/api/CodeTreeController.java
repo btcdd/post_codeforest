@@ -135,7 +135,14 @@ public class CodeTreeController {
 	}	
 
 	
-	
+
+	@Auth
+	@PostMapping("/find-code")
+	public JsonResult findCode(Long codeNo) {
+		// 여기야 여기!
+		
+		return JsonResult.success("");
+	}	
 }
 
 
