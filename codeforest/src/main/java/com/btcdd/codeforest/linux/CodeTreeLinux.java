@@ -146,7 +146,7 @@ public class CodeTreeLinux {
 			
 			code = null;
 			while(( code = br.readLine()) != null) {
-				System.out.println(code);
+				code += br.readLine();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

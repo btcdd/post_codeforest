@@ -500,7 +500,7 @@ $(function() {
 			success: function(response) {
 // 				editor.setValue(response.data);				
 				editor.setValue("asdfasdfasdfadsfaf");
-				console.log(response.data);
+				console.log("code : " + response.data);
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
