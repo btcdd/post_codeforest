@@ -243,6 +243,12 @@ $(function() {
 		$('.privateAndPassword').append('<input type="hidden" name="array" value="' + array + '">');
 		$("#true-submit").trigger("click");
 	});
+	
+	if(!$('.codingtest').is(':checked')) {
+		$('#addSubProblem').remove();
+		$('.delete').remove();
+		$('.privateAndPassword').remove();
+	}
 });
 </script>
 </head>
@@ -251,10 +257,6 @@ $(function() {
 	<form method="post" action="${pageContext.servletContext.contextPath }/training/modify/${problemVo.no }">
 		<div class="regist">
 			<div class="privateAndPassword">
-<!-- 				<div class="private"> -->
-<!-- 					코딩테스트 <input class="codingtest" type="checkbox"> -->
-<!-- 				</div> -->
-				<!-- <div class="password">비밀번호 <input type="password"></div> -->
 			</div>
 			<div class="privacy">
 				<!-- 코딩테스트가 끝난 뒤 문제를 공개하시려면 선택하세요<div class="privacy">공개여부 <input type="checkbox" name="privacy" required></div> -->

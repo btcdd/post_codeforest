@@ -454,4 +454,8 @@ public class TrainingService {
 		trainingRepository.insertSubProblemFaceCode(map);
 	}
 
+	public List<Long> findSubProblemNo(Long problemNo) {
+		return trainingRepository.findSubProblemNo(problemNo);
+	}
+
 }

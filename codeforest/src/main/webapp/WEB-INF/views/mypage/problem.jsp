@@ -45,19 +45,50 @@ var originList = function(page) {
    });
 }
 
+function leadingZeros(n, digits) {
+	  var zero = '';
+	  n = n.toString();
+
+	  if (n.length < digits) {
+	    for (i = 0; i < digits - n.length; i++)
+	      zero += '0';
+	  }
+	  return zero + n;
+}
+
+function getTimeStamp() {
+	  var d = new Date();
+	  var s =
+	    leadingZeros(d.getFullYear(), 4) + '-' +
+	    leadingZeros(d.getMonth() + 1, 2) + '-' +
+	    leadingZeros(d.getDate(), 2) + ' ' +
+
+	    leadingZeros(d.getHours(), 2) + ':' +
+	    leadingZeros(d.getMinutes(), 2) + ':' +
+	    leadingZeros(d.getSeconds(), 2);
+
+	  return s;
+	}
+
 var fetchList = function() {
     $("#problem-tbody").remove();
    $("#pager").remove();
    
    var str = "";
+   var codingTestStr = "";
    str += '<tbody id="problem-tbody">';
    for(var i = 0; i < map.list.length; i++){
-      str += '<tr class="list-contents" id="list-contents" data-no="' + map.list[i].no + '">' + 
+	   if(map.list[i].startTime <= getTimeStamp() && map.list[i].endTime >= getTimeStamp()) {
+		   codingTestStr = '<td><button id="modify-btn">진행중</button></a></td>';
+	   } else {
+		   codingTestStr = '<td><a href="${pageContext.servletContext.contextPath }/training/modify/' + map.list[i].no + '"><button id="modify-btn">수정</button></a></td>';
+	   }
+       str += '<tr class="list-contents" id="list-contents" data-no="' + map.list[i].no + '">' + 
                 '<td><a data-no="' + map.list[i].no + '">' + map.list[i].no + '</a></td>' + 
                   '<td class="problem-title" data-no="' + map.list[i].no + '" style="text-align: left">' + map.list[i].title + '</td>' + 
                   '<td>' + map.list[i].hit + '</td>' + 
                   '<td>' + map.list[i].recommend + '</td>' + 
-                  '<td><a href="${pageContext.servletContext.contextPath }/training/modify/' + map.list[i].no + '"><button id="modify-btn">수정</button></a></td>' + 
+                  codingTestStr + 
                    '<td><i data-no="' + map.list[i].no + '" data-title="' + map.list[i].title + '" type="button" alt="list" class="list fas fa-file-download"></i></td>' + 
                   '<td><i data-no="' + map.list[i].no + '" alt="delete" class="delete fas fa-minus-circle"></i></td>' + 
                 '</tr>' + 

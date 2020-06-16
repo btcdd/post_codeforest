@@ -679,5 +679,14 @@
 			</foreach>
 		</foreach>
 	</insert>
+	
+	<select id="findSubProblemNo" parameterType="long" resultType="long">
+		<![CDATA[
+			  select no 
+				from sub_problem 
+			   where problem_no = #{problemNo }
+				 and state = 'y'
+		]]>
+	</select>
 
 </mapper>
