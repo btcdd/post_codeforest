@@ -115,4 +115,13 @@
 			   and answer = 'n'
 		]]>
 	</select>
+	
+	<update id="privacyChange" parameterType="map">
+		<![CDATA[
+			update user
+  			   set privacy = #{privacy }
+ 			 where no = #{authUserNo }
+		]]>
+	</update>
+	
 </mapper>

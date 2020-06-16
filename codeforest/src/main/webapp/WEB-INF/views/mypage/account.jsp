@@ -139,12 +139,14 @@ $(function() {
             }
         }
     });
-    $(document).on("click","#nickname-btn", function(event) {
+    $(document).on("click", "#nickname-btn", function(event) {
     	event.preventDefault();
     	
     	$("#change-nickname").dialog("open");
     	
-    	
+   	   var len = $('.nickname-input').val().length;
+   	   $('.nickname-input').focus();
+   	   $('.nickname-input')[0].setSelectionRange(len, len);
     });
 
     $("#delete-user").dialog({
@@ -154,7 +156,7 @@ $(function() {
         width: 400,
         modal: true,
         buttons: {
-            "회원 탈퇴": function() {
+            "탈퇴": function() {
             	if(deleteUser($('#delete').val())) {
             		$('#delete').val('');
             		$(this).dialog("close");
@@ -178,6 +180,11 @@ $(function() {
     	event.preventDefault();
     	
         $("#delete-user").dialog("open");
+        
+        var hi2 = $('.ui-dialog-buttonset').eq(1).eq(1);
+        console.log(hi2);
+        hi2.removeClass('ui-dialog-buttonset');
+        hi2.addClass('delete-user');
     });
 
     $("#change-password").dialog({
@@ -219,8 +226,16 @@ $(function() {
         }
 	});
     
-    $('.privacy').click(function() {
+    $('#open').click(function() {
     	privacy = $(this).val();
+    	console.log(privacy);
+    	
+    	$("#privacy").dialog("open");
+    })
+    
+    $('#no-open').click(function() {
+    	privacy = $(this).val();
+    	console.log(privacy);
     	
     	$("#privacy").dialog("open");
     })
@@ -251,8 +266,8 @@ $(function() {
             <strong style="font-size: 0.9em">계정 비공개를 설정하시겠습니까?</strong>
             <div class="safe-password">계정 공개를 설정하시면 문제를 푼 기록, 팔로우와 관련된 모든 기록을 다른 사람이 열람 할 수 있습니다.</div>
 			<div class="privacy-div">
-	            <input type="radio" name="chk_info" value="open" checked="checked">공개
-	            <input type="radio" name="chk_info" value="private">비공개
+	            <input id="open" type="radio" name="chk_info" value="open" checked="checked">공개
+	            <input id="no-open" type="radio" name="chk_info" value="private">비공개
 			</div>
         </div>
         <div class="delete">
@@ -277,15 +292,13 @@ $(function() {
        </div>
 	
 	    <div id="change-password" title="비밀번호 변경" style="display:none" >
-	        <pre>
-	            변경하시려는 비밀번호를 입력해주세요.
-	        </pre>
+	        <pre class="password-pre">변경하시려는 비밀번호를 입력해주세요.</pre>
 	        <form>
-	            <fieldset>
-	                <label for="name">변경 비밀번호 : </label>
-	                <input type="text" name="password" id="password" value="" class="text ui-widget-content ui-corner-all">
-	                <label for="name">비밀번호 확인: </label>
-	                <input type="text" name="passwordSecond" id="passwordSecond" value="" class="text ui-widget-content ui-corner-all">
+	            <fieldset class="password-fieldset">
+	                <label for="name">변경 비밀번호</label>
+	                <input type="text" name="password" id="password" value="" class="text ui-widget-content ui-corner-all password-input"autocomplete="name">
+	                <label for="name">비밀번호 확인</label>
+	                <input type="text" name="passwordSecond" id="passwordSecond" value="" class="text ui-widget-content ui-corner-all password-input2" autocomplete="off">
 	
 	                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
 	            </fieldset>
@@ -293,15 +306,13 @@ $(function() {
 	    </div>
 	
 	    <div id="delete-user" title="회원 탈퇴" style="display:none" >
-	        <pre>
-	            회원 탈퇴를 하시겠습니까?
-	            회원 탈퇴를 하시면 문제를 푼 기록이 다 사라집니다.
-	            아래 비밀번호를 입력하세요.
-	        </pre>
+	        <pre class="delete-pre">회원 탈퇴를 하시겠습니까?
+회원 탈퇴를 하시면 문제를 푼 기록이 다 사라집니다.
+아래 비밀번호를 입력하세요.</pre>
 	        <form>
-	            <fieldset>
+	            <fieldset class="delete-fieldset">
 	                <label for="name">비밀번호 입력 : </label>
-	                <input type="text" name="delete" id="delete" value="" class="text ui-widget-content ui-corner-all">
+	                <input type="text" name="delete" id="delete" value="" class="text ui-widget-content ui-corner-all delete-input" autocomplete="off">
 	
 	                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
 	            </fieldset>
@@ -309,9 +320,7 @@ $(function() {
 	    </div>
 	    
 	    <div id="privacy" title="공개 비공개 설정" style="display:none" >
-	        <pre>
-	            공개 범위를 변경하시겠어요?
-	        </pre>
+	        <pre>공개 범위를 변경하시겠어요?</pre>
 	    </div>
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
