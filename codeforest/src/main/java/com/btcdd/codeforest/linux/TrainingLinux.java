@@ -126,9 +126,32 @@ public class TrainingLinux {
 				process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + array[i]);
 			}
 			
-//			String[] split = files[i].toString().split("/");
-//			Integer subProblemNo = Integer.parseInt(split[4].substring(7));
+			for(int i = 0; i < list.size(); i++) {
+				for(int j = 0; j < files.length; j++) {
+					String[] split = files[i].toString().split("/");
+					Long subProblemNo = Long.parseLong(split[4].substring(7));
+					
+					if(list.get(i).getNo() != subProblemNo) {
+						mkdirSubProblem(authUserNo, problemNo, subProblemNo);
+					}
+				}
+			}
+			
 		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void mkdirSubProblem(Long authUserNo, Long problemNo, Long subProblemNo) {
+		String[] langArray = { "c", "cpp", "cs", "java", "js", "py" };
+		
+		try {
+			process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo);
+			for(int j = 0; j < langArray.length; j++) {
+				process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + langArray[j]);
+			}
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
