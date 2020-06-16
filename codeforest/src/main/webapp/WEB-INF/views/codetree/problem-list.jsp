@@ -24,25 +24,18 @@ $(function() {
 
 
 <div class="accordion">
-  <h1 class="accordion__title">PROBLEM LIST</h1>
-  <h2 class="accordion__items">SUB PROBLEM 01</h2>
-  <div class="accordion__content">
-    <h3 class="accordion__content__caption">문제 내용</h3>
-    <p class="accordion__content__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, repellat vel et neque at asperiores recusandae necessitatibus voluptatum magnam. Odio est, repellendus quas molestias laborum itaque perspiciatis perferendis consequuntur quidem. Non ullam velit eaque accusantium nam, voluptates earum ab, placeat quaerat commodi delectus vel, magni maxime itaque dicta consequatur quisquam maiores nisi.</p>
-    <h3 class="accordion__content__caption">예제 입력</h3>
-    <p class="accordion__content__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, repellat vel et neque at asperiores recusandae necessitatibus voluptatum magnam. Odio est, repellendus quas molestias laborum itaque perspiciatis perferendis consequuntur quidem. Non ullam velit eaque accusantium nam, voluptates earum ab, placeat quaerat commodi delectus vel, magni maxime itaque dicta consequatur quisquam maiores nisi.</p>
-    <h3 class="accordion__content__caption">예제 출력</h3>
-    <p class="accordion__content__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, repellat vel et neque at asperiores recusandae necessitatibus voluptatum magnam. Odio est, repellendus quas molestias laborum itaque perspiciatis perferendis consequuntur quidem. Non ullam velit eaque accusantium nam, voluptates earum ab, placeat quaerat commodi delectus vel, magni maxime itaque dicta consequatur quisquam maiores nisi.</p>
-  </div>
-  
-  <h2 class="accordion__items">SUB PROBLEM 01</h2>
-  <div class="accordion__content">
-    <h3 class="accordion__content__caption">문제 내용</h3>
-    <p class="accordion__content__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, repellat vel et neque at asperiores recusandae necessitatibus voluptatum magnam. Odio est, repellendus quas molestias laborum itaque perspiciatis perferendis consequuntur quidem. Non ullam velit eaque accusantium nam, voluptates earum ab, placeat quaerat commodi delectus vel, magni maxime itaque dicta consequatur quisquam maiores nisi.</p>
-    <h3 class="accordion__content__caption">예제 입력</h3>
-    <p class="accordion__content__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, repellat vel et neque at asperiores recusandae necessitatibus voluptatum magnam. Odio est, repellendus quas molestias laborum itaque perspiciatis perferendis consequuntur quidem. Non ullam velit eaque accusantium nam, voluptates earum ab, placeat quaerat commodi delectus vel, magni maxime itaque dicta consequatur quisquam maiores nisi.</p>
-    <h3 class="accordion__content__caption">예제 출력</h3>
-    <p class="accordion__content__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, repellat vel et neque at asperiores recusandae necessitatibus voluptatum magnam. Odio est, repellendus quas molestias laborum itaque perspiciatis perferendis consequuntur quidem. Non ullam velit eaque accusantium nam, voluptates earum ab, placeat quaerat commodi delectus vel, magni maxime itaque dicta consequatur quisquam maiores nisi.</p>
-  </div>
+  <h1 class="accordion__title">${saveVo.title }</h1>
+  <c:forEach items='${subProblemList }' var='subproblemvo' varStatus='status'>
+	  <h2 class="accordion__items">문제 0${status.index + 1}</h2>
+	  <div class="accordion__content">
+	    <h3 class="accordion__content__caption">문제 내용</h3>
+	    <p class="accordion__content__txt">${subproblemvo.contents }</p>
+	    <h3 class="accordion__content__caption">예제 입력</h3>
+	    <p class="accordion__content__txt">${subproblemvo.examInput }</p>
+	    <h3 class="accordion__content__caption">예제 출력</h3>
+	    <p class="accordion__content__txt">${subproblemvo.examOutput }</p>
+	  </div>
+  </c:forEach>
+
 
 </div>
