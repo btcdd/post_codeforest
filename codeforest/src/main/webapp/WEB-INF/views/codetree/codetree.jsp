@@ -65,6 +65,9 @@ var fileFetchList = function(){
 	      });	
 };
 
+
+var tempFile = null;
+
 $(function() {
 	
 	fileFetchList();
@@ -481,7 +484,7 @@ $(function() {
 			close:function(){}
  	}); 	
  	
- 	var tempFile = null;
+ 	
  	
  	$(document).on("dblclick", ".file", function() {
  		tempFile = $(this);
