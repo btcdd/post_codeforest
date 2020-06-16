@@ -117,7 +117,7 @@ public class TrainingLinux {
 		}
 	}
 
-	public void modifyFile(Long authUserNo, List<SubProblemVo> list, Long[] array, Long problemNo) {
+	public void modifyFile(Long authUserNo, List<SubProblemVo> list, Long[] array, Long problemNo, List<Long> subProblemNoList) {
 		try {
 			File dir = new File("userDirectory/user" + authUserNo + "/prob" + problemNo);
 			File files [] = dir.listFiles();
@@ -131,8 +131,8 @@ public class TrainingLinux {
 					String[] split = files[i].toString().split("/");
 					Long subProblemNo = Long.parseLong(split[4].substring(7));
 					
-					if(list.get(i).getNo() != subProblemNo) {
-						mkdirSubProblem(authUserNo, problemNo, list.get(i).getNo());
+					if(subProblemNoList.get(i) != subProblemNo) {
+						mkdirSubProblem(authUserNo, problemNo, subProblemNoList.get(i));
 //						process = Runtime.getRuntime().exec("mkdir userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo);
 					}
 				}
