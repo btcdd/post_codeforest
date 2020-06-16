@@ -176,6 +176,11 @@ public class CodeTreeService {
 		return codetreeRepository.findSavePathVo(savePathNo);
 	}
 
+	public boolean updateFile(Long codeNo, String fileName) {
+		return codetreeRepository.updateFile(codeNo,fileName) == 1;
+		
+	}
+
 
 	
 //	public Map<String, Object> getContentsList(int currentPage, String keyword) {
