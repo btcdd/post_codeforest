@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <div class="header">
-    <div class="head-navigation">
+    <div class="head-navigation">	
         <div class="logo">
             <a class="title" href="${pageContext.servletContext.contextPath }">Code Forest</a>
         </div>
