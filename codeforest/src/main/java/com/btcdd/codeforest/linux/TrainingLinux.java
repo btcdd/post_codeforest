@@ -126,16 +126,16 @@ public class TrainingLinux {
 				process = Runtime.getRuntime().exec("rm -rf userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + array[i]);
 			}
 			
-			Thread.sleep(1000);
-			
+			String[] split = files[0].toString().split("/");
+			Long subProblemNo = Long.parseLong(split[3].substring(7));
 			for(int i = 0; i < files.length; i++) {
-				createFileAsSource(files[i].toString(), "hihi.txt");
+				createFileAsSource(String.valueOf(subProblemNo), "hihi.txt");
 			}
 			
 			for(int i = 0; i < list.size(); i++) {
 				for(int j = 0; j < files.length; j++) {
-					String[] split = files[i].toString().split("/");
-					Long subProblemNo = Long.parseLong(split[3].substring(7));
+//					String[] split = files[i].toString().split("/");
+//					Long subProblemNo = Long.parseLong(split[3].substring(7));
 					
 					if(subProblemNoList.get(i) != subProblemNo) {
 						process = Runtime.getRuntime().exec("mkdir asdfasdfasdfasdfasdfasdf" + subProblemNoList.get(i));
