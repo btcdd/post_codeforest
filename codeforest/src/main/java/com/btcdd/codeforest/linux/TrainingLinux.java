@@ -129,7 +129,7 @@ public class TrainingLinux {
 			String[] split = files[0].toString().split("/");
 			Long subProblemNo = Long.parseLong(split[3].substring(7));
 			for(int i = 0; i < files.length; i++) {
-				createFileAsSource(String.valueOf(subProblemNo), "hihi.txt");
+				createFileAsSource(files.length, "hihi.txt");
 			}
 			
 			for(int i = 0; i < list.size(); i++) {
