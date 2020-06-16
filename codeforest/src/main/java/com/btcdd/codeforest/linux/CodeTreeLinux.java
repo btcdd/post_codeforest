@@ -144,9 +144,9 @@ public class CodeTreeLinux {
 			FileReader rw = new FileReader(packagePath + "/" + language + "/" + fileName);
 			BufferedReader br = new BufferedReader(rw);
 			
-			code = null;
 			while(( br.readLine()) != null) {
 				code += br.readLine();
+				code += "\n";
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
