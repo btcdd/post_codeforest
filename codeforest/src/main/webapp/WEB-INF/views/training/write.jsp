@@ -135,9 +135,12 @@ $(function() {
 	$('#fake-submit').click(function() {
 		event.preventDefault();
 		
-		var str = $('.content').val();
-		str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
-		$('.content').val(str);
+		for(var i = 0; i < index; i++) {
+			var str = $('.content').eq(i).val();
+			str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
+			$('.content').eq(i).val(str);
+			
+		}
 		
 		$("#true-submit").trigger("click");
 	});

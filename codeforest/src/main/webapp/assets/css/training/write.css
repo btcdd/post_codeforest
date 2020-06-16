@@ -50,8 +50,9 @@ body {
 }
 
 .content {
-	width: 800px;
+	width: 74.5em;
     height: 250px;
+    outline: none;
 }
 
 .prob-content-title {
@@ -72,11 +73,12 @@ body {
 	margin-left: 0;
 	width: 100%;
 	height: 220px;
-	background-color: #292A2B;
+	background-color: #fff;
 	font-size: 1em;
-	color: #fff;
+	color: #222;
 	padding: 15px;
 	font-weight: bold;
+	outline: none;
 }
 
 .ex-output {
@@ -88,11 +90,12 @@ body {
 #ex-output-text {
 	width: 91%;
 	height: 220px;
-	background-color: #292A2B;
+	background-color: #fff;
 	font-size: 1em;
-	color: #fff;
+	color: #222;
 	padding: 15px;
 	font-weight: bold;
+	outline: none;
 }
 
 #answer-code-text {
@@ -220,6 +223,7 @@ ul {
 	margin-left: 1%;
 	width: 59%;
 	height: 90%;
+	outline: none;
 }
 
 #btn-cancel {
@@ -297,5 +301,6 @@ img:hover {
 }
 
 .sub-problem-title {
-	width: 55em;
+	width: 69.3em;
+	outline: none;
 }
