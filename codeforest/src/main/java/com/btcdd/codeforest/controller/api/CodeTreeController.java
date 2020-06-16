@@ -141,13 +141,15 @@ public class CodeTreeController {
 	@PostMapping("/find-code")
 	public JsonResult findCode(String language, String packagePath, String fileName) {
 		// 여기야 여기!
-//		CodeTreeLinux codetreeLinux = new CodeTreeLinux();
-//		String code = codetreeLinux.findCode(codeNo);
 		
 		System.out.println("language: " + language);
 		System.out.println("packagePath: " + packagePath);
 		System.out.println("fileName: " + fileName);
-		return JsonResult.success("");
+		
+		CodeTreeLinux codetreeLinux = new CodeTreeLinux();
+		String code = codetreeLinux.findCode(packagePath, language, fileName);
+		
+		return JsonResult.success(code);
 	}	
 }
 

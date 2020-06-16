@@ -1,7 +1,10 @@
 package com.btcdd.codeforest.linux;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -132,6 +135,24 @@ public class CodeTreeLinux {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String findCode(String packagePath, String language, String fileName) {
+		String code = "";
+		
+		try {
+			FileReader rw = new FileReader(packagePath + "/" + language + "/" + fileName);
+			BufferedReader br = new BufferedReader(rw);
+			
+			code = null;
+			while(( code = br.readLine()) != null) {
+				System.out.println(code);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return code;
 	}
 
 //	public String findCode(Long codeNo) {
