@@ -248,6 +248,7 @@ $(function() {
  	var savePathNo = null;
  	var subProblemNo = null;
  	var codeNo = null;
+ 	var prevFileName = null;
  	var str='<div id="file-insert"><li>파일 추가</li></div>';
  	$(".contextmenu").append(str);
  	var str2='<div><li id="userfile-delete">파일 삭제</li><li id="userfile-update">이름변경</li></div>';
@@ -315,6 +316,7 @@ $(function() {
 			
 			if(e.which == 3){
 				codeNo = $(this).data("no");
+				prevFileName = $(this).data("file-name");
 	 		    //Get window size:
 	 		    var winWidth = $(document).width();
 	 		    var winHeight = $(document).height();
@@ -510,7 +512,8 @@ $(function() {
 								'savePathNo' : savePathNo,
 								'codeNo' : codeNo,
 								'fileName' : fileName,
-								'subProblemNo':subProblemNo
+								'subProblemNo':subProblemNo,
+								'prevFileName':prevFileName
 							},
 							success: function(response) {
 											
