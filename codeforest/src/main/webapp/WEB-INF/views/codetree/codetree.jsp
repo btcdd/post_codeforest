@@ -510,7 +510,7 @@ $(function() {
  	
  	
  	$(document).on("click","#Run",function(){
- 		console.log("tempFile.data>>>",tempFile.data("file-name"));
+ 		console.log("tempFile.data>>>",tempFile);
  		
  		
  	});
