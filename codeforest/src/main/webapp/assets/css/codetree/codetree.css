@@ -334,7 +334,7 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 
 
 /* --------------- 실행 버튼 --------------------- */
-#Run {
+.Run {
   font-family: 'Roboto', sans-serif;
   text-align: center;
   outline: none;
@@ -351,14 +351,14 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
   cursor: pointer;
   transition: all 0.25s ease;
 }
-#Run:hover {
+.Run:hover {
   color: white;
   background: #1ECD97;
 }
-#Run:active {
+.Run:active {
   letter-spacing: 2px;
 }
-#Run:after {
+.Run:after {
   content: "Run";
 }
 .onclic {

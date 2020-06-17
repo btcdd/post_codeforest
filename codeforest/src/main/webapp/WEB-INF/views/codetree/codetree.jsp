@@ -909,7 +909,7 @@ window.onload = function() {
               </div>
               <div>
               	<button id="Save">Save</button>
-              	<button id="Run"></button>
+              	<button id="Run" class="Run"></button>
               	<button id="Submit">제출</button>
               </div>
           </div> 
