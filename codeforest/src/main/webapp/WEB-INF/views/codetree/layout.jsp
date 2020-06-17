@@ -68,6 +68,7 @@ $(function() {
 			componentName : "newTab",
 			title : "New Tab"
 		});
+		
 		console.log("자식 추가");
 	});
 
@@ -78,7 +79,8 @@ $(function() {
 			console.log("open!!!");
 			var code = $('.CodeMirror')[0];
 			console.log("기존 탭 코드미러 : " + code);
-// 			console.log(code + "zzzzzzzzzzzzzzzzz");
+			console.log("기존 탭 [0] : " + $('.CodeMirror')[0]);
+			console.log("기존 탭 [1] : " + $('.CodeMirror')[1]);
 			var editor = CodeMirror.fromTextArea(code, {
 				lineNumbers : true,
 				mode : 'text/x-java',
@@ -95,24 +97,30 @@ $(function() {
 
 	myLayout.registerComponent("newTab", function(container) {
 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="newTab"></textarea>');
-
+		console.log("뉴탭 부모: " + container.getElement().parent());
+		container.getElement().attr("id", "zzz"+i);
+		console.log(container.getElement());
 		console.log("새로운 탭 추가!");
-		container.on("open", function() {
+		console.log("새로운 탭 open");
 		
-			console.log("새로운 탭 open");
-	
-			var code = $('.CodeMirror')[0];
+		if(i != 0) {
+			var code = $('#zzz'+(i-1)+' > .CodeMirror')[0];
+		
 			console.log("새로운 탭 코드미러 : " + code);
+			
 			var editor = CodeMirror.fromTextArea(code, {
 				lineNumbers : true,
 				mode : 'text/x-java',
 				theme : 'panda-syntax',
 				matchBrackets : true
 			});
+		
+		}
+		i++;
+			console.log("새로운 탭 코드미러 입히기");
+		container.on("open", function() {
+		
 			
-			
-	
-				console.log("새로운 탭 코드미러 입히기");
 				//null
 				console.log("newTab : ", $("#newTab"));
 			});
