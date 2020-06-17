@@ -1,3 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!-- code mirror -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/codemirror/css/codemirror.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/codemirror/theme/abcdef.css">
@@ -31,81 +36,92 @@
 
 
 
-
+	var i = 0;
+	var index = 1;
+	var indexCopy = 1;
 
 /////////////////////////////////////////////////
-var id = 0;
-var config = {
-  content: [
-    {
-      type: "component",
-      componentName: "testComponent",
-      title: "Test Component"
-    }
-  ]
-};
+$(function() {
+	console.log("start");
+	var config = {
+		content : [ {
+			type : "component",
+			componentName : "testComponent",
+			title : "Test Component"
+		} ]
+	};
+	
+	console.log("config 생성");
+	
+	var myLayout = new GoldenLayout(config);
+	
+	console.log("mylayout ", myLayout);
 
-var myLayout = new GoldenLayout(config);
-$(document).on("click", "#addTab", function() {
+	$(document).on("click", "#addTab", function() {
+		console.log("버튼을 클릭함");
+		console.log("myLayout.root.contentItems",myLayout.root.contentItems);
+		console.log("myLayout.root.contentItems[0]",myLayout.root.contentItems[0]);
+		var root = myLayout.root.contentItems[0] || myLayout.root;
+		console.log("root : " + root);
+		root.addChild({
+			type : "component",
+			componentName : "newTab",
+			title : "New Tab"
+		});
+		console.log("자식 추가");
+	});
 
-  var root = myLayout.root.contentItems[0] || myLayout.root;
-  root.addChild({
-    type: "component",
-    componentName: "newTab",
-    title: "New Tab"
-  });
-  
-  
+	myLayout.registerComponent("testComponent",	function(container) {
+		container.getElement().html('<textarea name="code" class="CodeMirror code" id="testComponent"></textarea>');
+		console.log("textarea 추가");
+		container.on("open", function() {
+			console.log("open!!!");
+			var code = $('.CodeMirror')[0];
+			console.log("기존 탭 코드미러 : " + code);
+// 			console.log(code + "zzzzzzzzzzzzzzzzz");
+			var editor = CodeMirror.fromTextArea(code, {
+				lineNumbers : true,
+				mode : 'text/x-java',
+				theme : 'duotone-light',
+				matchBrackets : true
+			});
+			
+			console.log("코드미러 입히기");
+
+			//not-null
+ 			console.log("initial", $("#testComponent"));
+		});
+	});
+
+	myLayout.registerComponent("newTab", function(container) {
+		container.getElement().html('<textarea name="code" class="CodeMirror code" id="newTab"></textarea>');
+
+		console.log("새로운 탭 추가!");
+		container.on("open", function() {
+		
+			console.log("새로운 탭 open");
+	
+			var code = $('.CodeMirror')[0];
+			console.log("새로운 탭 코드미러 : " + code);
+			var editor = CodeMirror.fromTextArea(code, {
+				lineNumbers : true,
+				mode : 'text/x-java',
+				theme : 'panda-syntax',
+				matchBrackets : true
+			});
+			
+			
+	
+				console.log("새로운 탭 코드미러 입히기");
+				//null
+				console.log("newTab : ", $("#newTab"));
+			});
+		});
+	
+	myLayout.init();
+	console.log("레이아웃 이닛!");
 });
-
- myLayout.registerComponent("testComponent", function(container) {
- container.getElement().html('<textarea name="code" class="CodeMirror code" id="code"></textarea>');
-  container.on("open", function() {
-    console.log("open");
-    var code = $('.CodeMirror')[0];
- console.log(code + "zzzzzzzzzzzzzzzzz");
- var editor = CodeMirror.fromTextArea(code, {
- 		lineNumbers: true,
- 		mode: 'text/x-java',
- 		theme: 'duotone-light',
- 		matchBrackets: true
- });
-
-
- 	   
- 	$('.CodeMirror').addClass('code');
- 	 editor.setValue("xxxx");
-    //not-null
-    console.log(document.getElementById("testComponent"));
-  });
-}); 
-
- myLayout.registerComponent("newTab", function(container) {
- container.getElement().html('<textarea name="code" class="CodeMirror code" id="code"></textarea>');
- container.on("open", function() {
-
- var code = $('.CodeMirror')[0];
- console.log(">>>>>>>>>>>>>>>>",$('.CodeMirror'));
- console.log(code + "zzzzzzzzzzzzzzzzz");
- var editor = CodeMirror.fromTextArea(code, {
- 		lineNumbers: true,
- 		mode: 'text/x-java',
- 		theme: 'duotone-light',
- 		matchBrackets: true
- });
- 	   
- 	$('.CodeMirror').addClass('code');
- 	 editor.setValue("xxxx");
-    console.log("open");
-    //null
-    console.log(document.getElementById("newTab"));
-  });
-});		   
-
-myLayout.init();
-		   
-		   
-
+	
 </script>
 <button id="addTab">Add Tab</button>
 
