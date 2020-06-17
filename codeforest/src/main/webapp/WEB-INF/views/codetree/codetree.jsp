@@ -655,6 +655,9 @@ $(function() {
  	}); 
    	$(document).on("click","#Submit",function(){
    		var subProblemList = "${subProblemList}";
+   		console.log('tempFile.data("subproblem-no")>>',tempFile.data("subproblem-no"));
+   		console.log("subProblemList>>",subProblemList);
+   		console.log("subProblemList.length>>",subProblemList.length);
    		var selected = null;
    		var examOutput = null;
    		for(var i=0;i<subProblemList.length;i++){
