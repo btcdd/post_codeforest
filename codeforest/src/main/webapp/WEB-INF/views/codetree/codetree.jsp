@@ -597,8 +597,14 @@ $(function() {
 				
 				console.log(response.data.result[0]);
 				
-				$(".terminal").append("<p>"+response.data.result[0]+"</p>");
-				return
+				if(response.data.result[0] != "") {
+					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
+				}
+				else {
+					$(".terminal").append("<p>"+response.data.result[1]+"</p>");
+				}
+				
+
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
