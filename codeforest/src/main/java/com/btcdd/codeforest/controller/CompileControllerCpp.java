@@ -21,10 +21,6 @@ public class CompileControllerCpp {
 	@PostMapping("/cpp")
 	public JsonResult compileCpp(@RequestParam String code) {
 		rtt.createFileAsSource(code);
-		
-		
-		RunCpp rtt = new RunCpp();
-
 		rtt.execCompile();
 		String result = rtt.execCommand();
 		String errorResult = rtt.execCompile();
