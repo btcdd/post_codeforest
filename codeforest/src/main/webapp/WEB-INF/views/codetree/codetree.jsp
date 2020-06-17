@@ -591,9 +591,12 @@ $(function() {
 				'problemNo' : ${saveVo.problemNo }
 			},
 			success: function(response) {
+				
 				console.log("ok");
 				
 				console.log(response.data);
+				
+				$(".terminal").append(response.data);
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
