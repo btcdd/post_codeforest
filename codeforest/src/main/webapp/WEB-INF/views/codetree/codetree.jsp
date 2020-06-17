@@ -599,13 +599,13 @@ $(function() {
 				
 				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
-					$(".terminal").append("<span class=\"prompt\">" + prompt + "</span> ");
-					$(".terminal").append("<span class=\"path\">" + path + "</span> ");
+					$(".terminal").append("<span class=\"prompt\">-></span> ");
+					$(".terminal").append("<span class=\"path\">~</span> ");
 				}
 				else {
 					$(".terminal").append("<p>"+response.data.result[1]+"</p>");
-					$(".terminal").append("<span class=\"prompt\">" + prompt + "</span> ");
-					$(".terminal").append("<span class=\"path\">" + path + "</span> ");
+					$(".terminal").append("<span class=\"prompt\">-></span> ");
+					$(".terminal").append("<span class=\"path\">~</span> ");
 				}
 				
 
