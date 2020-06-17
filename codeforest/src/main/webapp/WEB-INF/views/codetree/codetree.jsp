@@ -655,6 +655,28 @@ $(function() {
 		}); 		
  	});  */  	
   	
+ 	
+ 	 $( "#Run" ).click(function() {
+ 	    $( "#Run" ).addClass( "onclic", 250, validate);
+ 	  });
+
+ 	  function validate() {
+ 	    setTimeout(function() {
+ 	      $( "#Run" ).removeClass( "onclic" );
+ 	      $( "#Run" ).addClass( "validate", 450, callback );
+ 	    }, 2250 );
+ 	  }
+ 	    function callback() {
+ 	      setTimeout(function() {
+ 	        $( "#Run" ).removeClass( "validate" );
+ 	      }, 1250 );
+ 	    }
+ 	
+ 	
+ 	
+ 	
+ 	
+////// function 끝부분 	
 });
 
 	
@@ -886,7 +908,7 @@ window.onload = function() {
               </div>
               <div>
               	<button id="Save">Save</button>
-              	<button id="Run">Run</button>
+              	<button id="Run"></button>
               	<button id="Submit">제출</button>
               </div>
           </div> 
