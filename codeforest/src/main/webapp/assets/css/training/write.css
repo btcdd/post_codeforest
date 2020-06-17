@@ -3,6 +3,35 @@ body {
 	padding: 0;
 }
 
+.codingtest-div {
+	background-color: #fff;
+	width: 77%;
+	padding: 1em 2em;
+	margin-bottom: 1em;
+	border-radius: 0.5em;
+}
+
+.codingtest {
+	margin-right: 1em;
+}
+
+.password-input {
+	outline: none;
+}
+
+select {
+	outline: none;
+    width: 75px;
+    height: 35px;
+    font-family: inherit;
+    font-size: 1em;
+    background: no-repeat 95% 50%;
+    background-color: #fff;
+    border: 1px solid #999;
+    border-radius: 0px;
+    margin: auto;
+}
+
 .regist {
 	margin-left: auto;
 	margin-top: 7%;
@@ -11,11 +40,10 @@ body {
 }
 
 .private {
-	float: left;
 }
 
 .password {
-	margin-left: 100px;
+	margin-top: 1em;
 }
 
 .start-date {
@@ -28,6 +56,7 @@ body {
 
 .division {
 	float: left;
+	margin-left: 8px;
 }
 
 .language-select {
@@ -161,7 +190,7 @@ td {
 /* Style the tab */
 .tab {
 	float: left;
-    width: 6%;
+    width: 9%;
     height: 100%;
 }
 

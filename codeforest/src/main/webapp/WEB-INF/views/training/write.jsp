@@ -90,7 +90,7 @@ $(function() {
 	// 코딩테스트 체크박스를 체크하면, 비밀번호와 시작 일자, 마감 일자를 설정할 수 있는 칸이 나타난다.
 	$('.codingtest').click(function() {
 		if ($(this).prop("checked")) {
-			var passwordStr = '<div class="password">비밀번호 <input type="password" name="password" required></div>';
+			var passwordStr = '<div class="password">비밀번호 <input class="password-input" type="password" name="password" required></div>';
 			var privacyStr = '<div class="privacy-check"><p>코딩테스트가 끝난 뒤 문제를 공개하시려면 선택하세요</p> 공개여부 <input type="checkbox" name="privacy"></div>';
 			var startDateStr = '<div class="start-date">시작일자 <input type="datetime-local" name="startTime" required></div>';
 			var endDateStr = '<div class="end-date">마감일자 <input type="datetime-local" name="endTime" required></div>';
@@ -166,18 +166,20 @@ function captureReturnKey(e) {
 	<form method="post"
 		action="${pageContext.servletContext.contextPath }/training/write" onkeydown="return captureReturnKey(event)">
 		<div class="regist">
-			<div class="privateAndPassword">
-				<div class="private">
-					코딩테스트 <input class="codingtest" type="checkbox">
+			<div class="codingtest-div">
+				<div class="privateAndPassword">
+					<div class="private">
+						<input class="codingtest" type="checkbox">코딩테스트
+					</div>
+					<!-- <div class="password">비밀번호 <input type="password"></div> -->
 				</div>
-				<!-- <div class="password">비밀번호 <input type="password"></div> -->
-			</div>
-			<div class="privacy">
-				<!-- 코딩테스트가 끝난 뒤 문제를 공개하시려면 선택하세요<div class="privacy">공개여부 <input type="checkbox" name="privacy" required></div> -->
-			</div>
-			<div class="date">
-				<!-- <div class="start-date">시작일자 <input type="datetime-local"></div> -->
-				<!-- <div class="end-date">마감일자 <input type="datetime-local"></div> -->
+				<div class="privacy">
+					<!-- 코딩테스트가 끝난 뒤 문제를 공개하시려면 선택하세요<div class="privacy">공개여부 <input type="checkbox" name="privacy" required></div> -->
+				</div>
+				<div class="date">
+					<!-- <div class="start-date">시작일자 <input type="datetime-local"></div> -->
+					<!-- <div class="end-date">마감일자 <input type="datetime-local"></div> -->
+				</div>
 			</div>
 
 			<div class="divisionAndLanguage">

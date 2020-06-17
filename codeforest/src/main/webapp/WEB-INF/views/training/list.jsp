@@ -30,6 +30,7 @@ var kwd = '';
 var selectTag = '';
 var hashtagText = '';
 var scrollPandan = false;
+var endPageTrueNum;
 
 var originList = function(page, kwd, category) {
 	
@@ -51,7 +52,11 @@ var originList = function(page, kwd, category) {
 				return;
 			}
 			map = response.data;
-						
+			
+			if(page == '1') {
+				endPageTrueNum = map.endPageNum;
+			}
+			
 			fetchList();
 		},
 		error: function(xhr, status, e){
@@ -128,19 +133,15 @@ var disabled = function(add, remove) {
 }
 
 var nextRemove = function() {
-	var endPage = map.endPageNum - 1;
-	var nextPandan = true;
+	var endPage = endPageTrueNum;
 	
 	if(page == endPage) {
 		$('.next').remove();
-		nextPandan = false;
-	} else if(nextPandan == false){
-		$('.pager').append('<span class="next">▶</span>');
-		nextPandan = true;
 	}
 }
 
 $(function() {
+	
 	$(window).scroll(function() {
         if ($(this).scrollTop() > 500) {
             $('#MOVE-TOP').fadeIn();
