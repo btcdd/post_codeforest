@@ -13,10 +13,8 @@ import com.btcdd.codeforest.vo.CodeVo;
 public class RunJavaLinux {
 	
 	private String fileName;
-	private Long authUserNo;
-	private Long problemNo;
-	private Long subProblemNo;
 	private String language;
+	private String packagePath;
 	
 	private StringBuffer buffer;
 	private Process process;
@@ -28,17 +26,15 @@ public class RunJavaLinux {
 	private BufferedWriter bufferWriter;
 	
 	
-	public RunJavaLinux(String fileName, Long authUserNo, Long problemNo, Long subProblemNo, String language) {
+	public RunJavaLinux(String fileName, String packagePath, String language) {
 		this.fileName = fileName;
-		this.authUserNo = authUserNo;
-		this.problemNo = problemNo;
-		this.subProblemNo = subProblemNo;
+		this.packagePath = packagePath;
 		this.language = language;
 	}
 
 	public void createFileAsSource(String source, String fileName) {
 		try {
-			file = new File("/userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/java/" + fileName);
+//			file = new File("/userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/java/" + fileName);
 			bufferWriter = new BufferedWriter(new FileWriter(file, false));
 			
 			bufferWriter.write(source);
@@ -61,7 +57,7 @@ public class RunJavaLinux {
 		try {
 			
 			process = Runtime.getRuntime().exec(
-					"javac -cp userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + language + "/ userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + language + "/" + fileName);	
+					"javac -cp " + packagePath + "/" + language + "/ " + packagePath + "/" + language + "/" + fileName);	
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 			String line = null;
@@ -109,7 +105,8 @@ public class RunJavaLinux {
 	
 	public String execCommand() {
 		try {
-			process = Runtime.getRuntime().exec("userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + language + "/" + fileName);
+			String[] split = fileName.split(".");
+			process = Runtime.getRuntime().exec("java -cp " + packagePath + "/" + language + "/ " + split[0]);
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			bufferedReader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));

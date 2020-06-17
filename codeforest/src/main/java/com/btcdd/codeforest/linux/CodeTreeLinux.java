@@ -169,9 +169,9 @@ public class CodeTreeLinux {
 		return code;
 	}
 	
-	public Map<String, Object> javaCompile(String fileName, Long authUserNo, Long problemNo, Long subProblemNo, String language) {
+	public Map<String, Object> javaCompile(String fileName, String packagePath, String language) {
 
-		RunJavaLinux runJavaLinux = new RunJavaLinux(fileName, authUserNo, problemNo, subProblemNo, language);
+		RunJavaLinux runJavaLinux = new RunJavaLinux(fileName, packagePath, language);
 		
 		runJavaLinux.execCompile();
 		String result = runJavaLinux.execCommand();

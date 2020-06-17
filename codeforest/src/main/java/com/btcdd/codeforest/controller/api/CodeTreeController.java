@@ -190,7 +190,7 @@ public class CodeTreeController {
 		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
-		Map<String, Object> map = codeTreeLinux.javaCompile(fileName, authUser.getNo(), problemNo, subProblemNo, language);
+		Map<String, Object> map = codeTreeLinux.javaCompile(fileName, packagePath, language);
 		
 		//////////////////////
 		
