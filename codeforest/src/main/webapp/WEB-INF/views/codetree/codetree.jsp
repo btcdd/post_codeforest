@@ -599,16 +599,14 @@ $(function() {
 				
 				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
-					$(".terminal").append("<span class=\"prompt\">-></span> ");
-					$(".terminal").append("<span class=\"path\">~</span> ");
 				}
 				else {
 					$(".terminal").append("<p>"+response.data.result[1]+"</p>");
-					$(".terminal").append("<span class=\"prompt\">-></span> ");
-					$(".terminal").append("<span class=\"path\">~</span> ");
+					
 				}
-				
-
+				$(".terminal").append("<span class=\"prompt\">-></span> ");
+				$(".terminal").append("<span class=\"path\">~</span> ");
+				$('.terminal').scrollTop($('.terminal').prop('scrollHeight'));
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
