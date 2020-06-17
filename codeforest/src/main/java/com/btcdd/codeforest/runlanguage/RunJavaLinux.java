@@ -34,7 +34,6 @@ public class RunJavaLinux {
 
 	public void createFileAsSource(String source, String fileName) {
 		try {
-//			file = new File("/userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/java/" + fileName);
 			bufferWriter = new BufferedWriter(new FileWriter(fileName, false));
 			
 			bufferWriter.write(source);
