@@ -21,9 +21,6 @@ public class CompileControllerJs {
    @PostMapping("/js")
    public JsonResult compileJs(@RequestParam String code) {
       rtt.createFileAsSource(code);
-	   
-      RunJs rtt = new RunJs();
-
       rtt.execCompile();
       String result = rtt.execCommand();
       String errorResult = rtt.execCompile();

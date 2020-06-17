@@ -21,9 +21,6 @@ public class CompileControllerJava {
 	@PostMapping("/java")
 	public JsonResult javaCompile(@RequestParam String code) {
 		rtt.createFileAsSource(code);
-		
-		RunJava rtt = new RunJava();
-
 		rtt.execCompile();
 		String result = rtt.execCommand();
 		String errorResult = rtt.execCompile();

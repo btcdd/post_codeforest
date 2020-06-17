@@ -21,9 +21,6 @@ public class CompileControllerC {
 	@PostMapping("/c")
 	public JsonResult compileC(@RequestParam String code) {
 		rtt.createFileAsSource(code);
-		
-		RunC rtt = new RunC();
-
 		rtt.execCompile();
 		String result = rtt.execCommand();
 		
@@ -36,30 +33,4 @@ public class CompileControllerC {
 		return JsonResult.success(res);
 	}
 	
-	@ResponseBody
-	@PostMapping("/c/save")
-	public JsonResult compileSaveC(@RequestParam String code) {
-		
-		String[] token = code.split("\n");
-		
-		for(int i = 0; i < token.length; i++) {
-			buffer.append(token[i] + "\n");
-		}
-		rtt.createFileAsSource(code);
-		
-		String test = "success";
-		
-		return JsonResult.success(test);
-	}
-	
-	@ResponseBody
-	@PostMapping("/c/compile")
-	public JsonResult cCompileexam() {
-
-		RunC rtt = new RunC();
-
-		String result = rtt.execCompile();
-
-		return JsonResult.success(result);
-	}
 }
