@@ -654,6 +654,7 @@ $(function() {
 		}); 		
  	}); 
    	$(document).on("click","#Submit",function(){
+   		var subProblemList = "${subProblemList}";
    		var selected = null;
    		var examOutput = null;
    		for(var i=0;i<subProblemList.length;i++){
