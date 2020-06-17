@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.btcdd.codeforest.repository.CodeTreeRepository;
-import com.btcdd.codeforest.runlanguage.RunJavaCodeTree;
+import com.btcdd.codeforest.runlanguage.RunJavaLinux;
 import com.btcdd.codeforest.vo.CodeVo;
 import com.btcdd.codeforest.vo.SavePathVo;
 import com.btcdd.codeforest.vo.SaveVo;
@@ -53,13 +53,13 @@ public class CodeTreeService {
 //												"/" + codeVoListTrue.get(0).getLanguage() + "\n");
 		
 			
-			RunJavaCodeTree rjct = new RunJavaCodeTree(authUserNo, problemNo, subProblemNo);
+//			RunJavaLinux rjct = new RunJavaLinux(authUserNo, problemNo, subProblemNo);
 			
 //			for(int i = 0; i < codeVoListTrue.size(); i++) {
 //				rjct.createFileAsSource(codeVoListTrue.get(i).getCode(), codeVoListTrue.get(i).getFileName());
 //			}
 			
-			rjct.execCompile(codeVoListTrue);
+//			rjct.execCompile(codeVoListTrue);
 //			String result = rjct.execCommand();
 //			String errorResult = rjct.execCompile(codeVoListTrue);
 //			

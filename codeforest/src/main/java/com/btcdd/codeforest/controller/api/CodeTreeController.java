@@ -33,7 +33,7 @@ public class CodeTreeController {
 	@Autowired 
 	private CodeTreeService codetreeService;
 	
-
+	CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
 	
 	@Auth
 	@PostMapping(value="/list")// main-header에서 처음 열때
@@ -165,11 +165,6 @@ public class CodeTreeController {
 	@PostMapping("/find-code")
 	public JsonResult findCode(String language, String packagePath, String fileName) {
 		// 여기야 여기!
-		
-		System.out.println("language: " + language);
-		System.out.println("packagePath: " + packagePath);
-		System.out.println("fileName: " + fileName);
-		
 		CodeTreeLinux codetreeLinux = new CodeTreeLinux();
 		String code = codetreeLinux.findCode(packagePath, language, fileName);
 		return JsonResult.success(code);
@@ -177,33 +172,24 @@ public class CodeTreeController {
 	
 	@Auth
 	@PostMapping("/run")
-	public JsonResult Run(String language, String packagePath, String fileName,Long subProblemNo,String codeValue) {
-		System.out.println("language: " + language);
-		System.out.println("packagePath: " + packagePath);
-		System.out.println("fileName: " + fileName);
-		System.out.println("subProblemNo: " + subProblemNo);
-		System.out.println("codeValue: " + codeValue);
-		return JsonResult.success(null);
+	public JsonResult Run(String language, String packagePath, String fileName,Long subProblemNo,String codeValue, Long problemNo,
+							HttpSession session) {
+		// 관우 유진 코드
+		/////////////////////
+		
+		Map<String, Object> map = codeTreeLinux.javaCompile(fileName, packagePath, language);
+		
+		//////////////////////
+		
+		return JsonResult.success(map);
 	}
 	
 	@Auth
 	@PostMapping("/save")
-	public JsonResult Save(Long fileNo,String packagePath,Long subProblemNo,String codeValue) {
-		System.out.println("fileNo: " + fileNo);
-		System.out.println("packagePath: " + packagePath);
-		System.out.println("subProblemNo: " + subProblemNo);
-		System.out.println("codeValue: " + codeValue);
-		
+	public JsonResult Save(String language, String fileName, String packagePath,Long subProblemNo,String codeValue, Long problemNo) {
 		// 관우 유진 코드
 		//////////
-		TrainingLinux trainigLinux = new TrainingLinux();
-		
-		String tmp = "fileNo: " + fileNo + "/n" + "packagePath: " + packagePath + "\n" + "subProblemNo: " + subProblemNo + "\n" + "codeValue: " + codeValue;
-		
-		trainigLinux.createFileAsSource(tmp, "gwanwoo.txt");
-		
-		
-		
+		codeTreeLinux.createFileAsSource(codeValue, packagePath + "/" + language + "/" + fileName);
 		
 		//////////
 		return JsonResult.success(null);
