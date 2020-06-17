@@ -551,8 +551,6 @@ $(function() {
  	var tempFile = null;
  	$(document).on("dblclick", ".file", function() {
  		tempFile = $(this);
- 		var subProblemNo = $(this).data("subproblem-no");
- 		console.log("subProblemNo>>>>",subProblemNo);
  		var language = $(this).data("language");
  		var fileName = $(this).data("file-name");
  		var packagePath = $(this).data("package-path");
@@ -576,17 +574,11 @@ $(function() {
 		});
  	});
  	
- 	
+ 	var compileResult = null;
  	$(document).on("click","#Run",function(){
  		$(this).addClass( "onclic", 250, validate);
  		console.log("editor.getValue()>>>>>>",editor.getValue());
  		var problemNo = "${saveVo.problemNo }";
- 		console.log('tempFile>>>>',tempFile);
-		console.log('tempFile.data("no")>>>>',tempFile.data("no"));
- 		console.log('tempFile.data("language")>>>>',tempFile.data("language"));
- 		console.log('tempFile.data("file-name")>>>>',tempFile.data("file-name"));
- 		console.log('tempFile.data("file-name")>>>>',tempFile.data("package-path"));
- 		console.log('tempFile.data("subProblemNo2")>>>>',tempFile.data("subProblemNo2"));
  		$("#Run").blur();
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/run',
@@ -597,7 +589,7 @@ $(function() {
 				'language' : tempFile.data("language"),
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
-				'subProblemNo':tempFile.data("subProblemNo"),
+				'subProblemNo':tempFile.data("subproblem-no"),
 				'codeValue' : editor.getValue(),
 				'problemNo' : problemNo
 			},
@@ -606,7 +598,7 @@ $(function() {
 				console.log("ok");
 				
 				console.log(response.data.result);
-				
+				compileResult = response.data.result;
 				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
 				}
@@ -639,11 +631,6 @@ $(function() {
   	$(document).on("click","#Save",function(){
   		console.log("editor.getValue()>>>>>>",editor.getValue());
   		var problemNo = "${saveVo.problemNo }";
-		console.log('tempFile.data("no")>>>>',tempFile.data("no"));
- 		console.log('tempFile.data("language")>>>>',tempFile.data("language"));
- 		console.log('tempFile.data("file-name")>>>>',tempFile.data("file-name"));
- 		console.log('tempFile.data("file-name")>>>>',tempFile.data("package-path"));
- 		console.log('tempFile.data("subProblemNo2")>>>>',tempFile.data("subProblemNo2"));
   		
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/save',
@@ -654,7 +641,7 @@ $(function() {
 				'language' : tempFile.data("language"),
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
-				'subProblemNo':tempFile.data("subProblemNo"),
+				'subProblemNo':tempFile.data("subproblem-no"),
 				'codeValue' : editor.getValue(),
 				'problemNo' : problemNo
 			},
@@ -666,8 +653,17 @@ $(function() {
 			}							
 		}); 		
  	}); 
-/*   	$(document).on("click","#Submit",function(){
- 		$.ajax({
+   	$(document).on("click","#Submit",function(){
+   		var selected = null;
+   		var examOutput = null;
+   		for(var i=0;i<subProblemList.length;i++){
+   			if(subProblemList[i].no ==tempFile.data("subproblem-no")){
+   				selected = subProblemList[i];
+   			}
+   			console.log("selected>>",selected);
+   		}
+   		console.log("examOutput>>",selected.examOutput);
+/* 		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
 			type: 'post',
