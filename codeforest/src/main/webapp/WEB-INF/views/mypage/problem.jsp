@@ -39,12 +39,7 @@ var originList = function(page2) {
          }
          map = response.data;
          
-         if(page == '1') {
-			endPageTrueNum = map.endPageNum;
-		 }
-         
-         console.log('startPageNum:' + map.startPageNum);
-         console.log('endPageNum:' + endPageTrueNum);
+         endPageTrueNum = parseInt(map.count / 10 + 1);
         
          fetchList();
       },
@@ -118,7 +113,7 @@ var fetchList = function() {
    if(page != '1'){
       str2 += '<span class="prev"><i class="fas fa-angle-left"></i></span>';
    }   
-   for(var i = map.startPageNum; i < map.endPageNum - 1; i++){
+   for(var i = map.startPageNum; i < map.endPageNum; i++){
       str2 += '<span class="page" id="' + i + '">';
       if(map.select != i ) {
          str2 += i;
