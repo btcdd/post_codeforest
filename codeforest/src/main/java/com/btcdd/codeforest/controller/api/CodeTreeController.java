@@ -165,11 +165,6 @@ public class CodeTreeController {
 	@PostMapping("/find-code")
 	public JsonResult findCode(String language, String packagePath, String fileName) {
 		// 여기야 여기!
-		
-		System.out.println("language: " + language);
-		System.out.println("packagePath: " + packagePath);
-		System.out.println("fileName: " + fileName);
-		
 		CodeTreeLinux codetreeLinux = new CodeTreeLinux();
 		String code = codetreeLinux.findCode(packagePath, language, fileName);
 		return JsonResult.success(code);
@@ -179,12 +174,6 @@ public class CodeTreeController {
 	@PostMapping("/run")
 	public JsonResult Run(String language, String packagePath, String fileName,Long subProblemNo,String codeValue, Long problemNo,
 							HttpSession session) {
-		System.out.println("language: " + language);
-		System.out.println("packagePath: " + packagePath);
-		System.out.println("fileName: " + fileName);
-		System.out.println("subProblemNo: " + subProblemNo);
-		System.out.println("codeValue: " + codeValue);
-		
 		// 관우 유진 코드
 		/////////////////////
 		
@@ -198,10 +187,6 @@ public class CodeTreeController {
 	@Auth
 	@PostMapping("/save")
 	public JsonResult Save(String language, String fileName, String packagePath,Long subProblemNo,String codeValue, Long problemNo) {
-		System.out.println("packagePath: " + packagePath);
-		System.out.println("subProblemNo: " + subProblemNo);
-		System.out.println("codeValue: " + codeValue);
-		
 		// 관우 유진 코드
 		//////////
 		codeTreeLinux.createFileAsSource(codeValue, packagePath + "/" + language + "/" + fileName);
