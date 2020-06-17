@@ -578,7 +578,7 @@ $(function() {
  	$(document).on("click","#Run",function(){
  		$(this).addClass( "onclic", 250, validate);
  		console.log("editor.getValue()>>>>>>",editor.getValue());
- 		var problemNo = ${saveVo.problemNo }
+ 		var problemNo = "${saveVo.problemNo }";
  		$("#Run").blur();
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/run',
@@ -630,6 +630,7 @@ $(function() {
  	
   	$(document).on("click","#Save",function(){
   		console.log("editor.getValue()>>>>>>",editor.getValue());
+  		var problemNo = "${saveVo.problemNo }";
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/save',
 			async: true,
@@ -641,7 +642,7 @@ $(function() {
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subProblemNo"),
 				'codeValue' : editor.getValue(),
-				'problemNo' : ${saveVo.problemNo }
+				'problemNo' : problemNo
 			},
 			success: function(response) {
 				console.log("ok");
