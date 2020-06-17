@@ -80,8 +80,9 @@ public class MypageService {
 		map.put("pageNum",pageNum);
 		map.put("select",currentPage);
 		map.put("startPageNum",startPageNum);
-		map.put("endPageNum",endPageNum);
+		map.put("endPageNum",endPageNum );
 		map.put("next",next);
+		map.put("count", count);
 		
 		return map;
 	}
