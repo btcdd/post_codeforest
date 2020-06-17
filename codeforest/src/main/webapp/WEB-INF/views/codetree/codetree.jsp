@@ -577,6 +577,7 @@ $(function() {
  	
  	$(document).on("click","#Run",function(){
  		console.log("editor.getValue()>>>>>>",editor.getValue());
+ 		var problemNo = ${saveVo.problemNo }
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/run',
 			async: true,
@@ -588,7 +589,7 @@ $(function() {
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subProblemNo"),
 				'codeValue' : editor.getValue(),
-				'problemNo' : ${saveVo.problemNo }
+				'problemNo' : problemNo
 			},
 			success: function(response) {
 				
@@ -596,7 +597,7 @@ $(function() {
 				
 				console.log(response.data);
 				
-				$(".terminal").append(response.data);
+				$(".terminal #text").last().append(response.data);
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
