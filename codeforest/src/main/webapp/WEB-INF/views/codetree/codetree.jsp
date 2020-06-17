@@ -659,11 +659,12 @@ $(function() {
    		var examOutput = null;
    		for(var i=0;i<subProblemList.length;i++){
    			if(subProblemList[i].no ==tempFile.data("subproblem-no")){
-   				selected = subProblemList[i];
+   				console.log("subProblemList[i]>>",subProblemList[i]);
+   				/* selected = subProblemList[i]; */
    			}
-   			console.log("selected>>",selected);
+   			
    		}
-   		console.log("examOutput>>",selected.examOutput);
+   		
 /* 		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
