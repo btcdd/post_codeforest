@@ -201,9 +201,8 @@ ul {
 
 .tablinks {
 	padding: 20px;
-	background-color: #E7E7E7;
-	border: 1px solid #bbb;
 	cursor: pointer;
+	border-radius: 15px;
 }
 
 .tablinks:hover {
