@@ -195,9 +195,9 @@ public class CodeTreeController {
 		
 		// 관우 유진 코드
 		//////////
-		TrainingLinux trainigLinux = new TrainingLinux();
-		trainigLinux.createFileAsSource(codeValue, packagePath + "/" + language + "/" + fileName);
-		
+		TrainingLinux trainingLinux = new TrainingLinux();
+//		trainingLinux.createFileAsSource(codeValue, packagePath + "/" + language + "/" + fileName);
+		trainingLinux.createFileAsSource("language:" + language + "\n" + "fileName:" + fileName,  "gwanwoo.txt");
 		
 		//////////
 		return JsonResult.success(null);
