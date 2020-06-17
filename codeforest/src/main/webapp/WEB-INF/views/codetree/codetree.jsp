@@ -597,7 +597,7 @@ $(function() {
 				
 				console.log(response.data.result);
 				
-				if(response.data.result[0] != "") {
+				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
 					terminal.append("<span class=\"prompt\">" + prompt + "</span> ");
 					terminal.append("<span class=\"path\">" + path + "</span> ");
