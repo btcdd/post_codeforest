@@ -174,8 +174,9 @@ public class CodeTreeLinux {
 		RunJavaLinux runJavaLinux = new RunJavaLinux(fileName, packagePath, language);
 		
 		String[] split = fileName.split(".");
+		String tmp2 = fileName.replace(".java", "");
 		String tmp = split[0];
-		runJavaLinux.createFileAsSource("java -cp " + packagePath + "/" + language + "/ " + tmp, "gwanwoo.txt");
+		runJavaLinux.createFileAsSource("java -cp " + packagePath + "/" + language + "/ " + tmp2, "gwanwoo.txt");
 		
 		runJavaLinux.execCompile();
 		String result = runJavaLinux.execCommand();
