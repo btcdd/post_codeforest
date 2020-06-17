@@ -120,6 +120,7 @@ $(function() {
 	
 	myLayout.init();
 	console.log("레이아웃 이닛!");
+	console.log("");
 });
 	
 </script>
