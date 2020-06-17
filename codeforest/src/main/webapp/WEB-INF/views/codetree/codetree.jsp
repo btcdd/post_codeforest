@@ -576,7 +576,10 @@ $(function() {
  	
  	
  	$(document).on("click","#Run",function(){
+ 		$(this).addClass( "onclic", 250, validate);
  		console.log("editor.getValue()>>>>>>",editor.getValue());
+ 		var problemNo = ${saveVo.problemNo }
+ 		$("#Run").blur();
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/run',
 			async: true,
@@ -588,18 +591,43 @@ $(function() {
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subProblemNo"),
 				'codeValue' : editor.getValue(),
-				'problemNo' : ${saveVo.problemNo }
+				'problemNo' : problemNo
 			},
 			success: function(response) {
+				
 				console.log("ok");
 				
-				console.log(response.data);
+				console.log(response.data.result);
+				
+				if(response.data.result[1] == "") {
+					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
+				}
+				else {
+					$(".terminal").append("<p>"+response.data.result[1]+"</p>");
+					
+				}
+				$(".terminal").append("<span class=\"prompt\">-></span> ");
+				$(".terminal").append("<span class=\"path\">~</span> ");
+				$('.terminal').scrollTop($('.terminal').prop('scrollHeight'));
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
 			}							
 		}); 		
  	});
+ 	 function validate() {
+  	    setTimeout(function() {
+  	      $( "#Run" ).removeClass( "onclic" );
+  	      $( "#Run" ).addClass( "validate", 450, callback );
+  	    }, 2250 );
+  	  }
+  	    function callback() {
+  	      setTimeout(function() {
+  	        $( "#Run" ).removeClass( "validate" );
+  	      }, 1250 );
+  	    }
+ 	
+ 	
   	$(document).on("click","#Save",function(){
   		console.log("editor.getValue()>>>>>>",editor.getValue());
  		$.ajax({
@@ -641,6 +669,15 @@ $(function() {
 		}); 		
  	});  */  	
   	
+
+
+ 	 
+ 	
+ 	
+ 	
+ 	
+ 	
+////// function 끝부분 	
 });
 
 	
@@ -872,7 +909,7 @@ window.onload = function() {
               </div>
               <div>
               	<button id="Save">Save</button>
-              	<button id="Run">Run</button>
+              	<button id="Run" class="Run"></button>
               	<button id="Submit">제출</button>
               </div>
           </div> 

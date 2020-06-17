@@ -36,13 +36,10 @@
 
 
 
-	var i = 0;
-	var index = 1;
-	var indexCopy = 1;
+var i = 0;
 
 /////////////////////////////////////////////////
 $(function() {
-	console.log("start");
 	var config = {
 		content : [ {
 			type : "component",
@@ -51,76 +48,54 @@ $(function() {
 		} ]
 	};
 	
-	console.log("config 생성");
-	
 	var myLayout = new GoldenLayout(config);
-	
-	console.log("mylayout ", myLayout);
-
-	$(document).on("click", "#addTab", function() {
-		console.log("버튼을 클릭함");
-		console.log("myLayout.root.contentItems",myLayout.root.contentItems);
-		console.log("myLayout.root.contentItems[0]",myLayout.root.contentItems[0]);
-		var root = myLayout.root.contentItems[0] || myLayout.root;
-		console.log("root : " + root);
-		root.addChild({
-			type : "component",
-			componentName : "newTab",
-			title : "New Tab"
-		});
-		console.log("자식 추가");
-	});
 
 	myLayout.registerComponent("testComponent",	function(container) {
 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="testComponent"></textarea>');
-		console.log("textarea 추가");
+
 		container.on("open", function() {
-			console.log("open!!!");
+
 			var code = $('.CodeMirror')[0];
-			console.log("기존 탭 코드미러 : " + code);
-// 			console.log(code + "zzzzzzzzzzzzzzzzz");
+
 			var editor = CodeMirror.fromTextArea(code, {
 				lineNumbers : true,
 				mode : 'text/x-java',
 				theme : 'duotone-light',
 				matchBrackets : true
 			});
-			
-			console.log("코드미러 입히기");
-
-			//not-null
- 			console.log("initial", $("#testComponent"));
 		});
 	});
 
 	myLayout.registerComponent("newTab", function(container) {
 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="newTab"></textarea>');
 
-		console.log("새로운 탭 추가!");
-		container.on("open", function() {
-		
-			console.log("새로운 탭 open");
+		container.getElement().attr("id", "cm"+i);		
+
+	});
 	
-			var code = $('.CodeMirror')[0];
-			console.log("새로운 탭 코드미러 : " + code);
-			var editor = CodeMirror.fromTextArea(code, {
-				lineNumbers : true,
-				mode : 'text/x-java',
-				theme : 'panda-syntax',
-				matchBrackets : true
-			});
-			
-			
-	
-				console.log("새로운 탭 코드미러 입히기");
-				//null
-				console.log("newTab : ", $("#newTab"));
-			});
+	$(document).on("click", "#addTab", function() {
+		var root = myLayout.root.contentItems[0] || myLayout.root;
+
+		root.addChild({
+			type : "component",
+			componentName : "newTab",
+			title : "New Tab"
 		});
+		var code = $('#cm'+i+' > .CodeMirror')[0];		
+		
+		var editor = CodeMirror.fromTextArea(code, {
+			lineNumbers : true,
+			mode : 'text/x-java',
+			theme : 'panda-syntax',
+			matchBrackets : true
+		});	
+
+		i++;
+
+	});
 	
 	myLayout.init();
-	console.log("레이아웃 이닛!");
-	console.log("");
+
 });
 	
 </script>
