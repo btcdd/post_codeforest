@@ -578,6 +578,7 @@ $(function() {
  	$(document).on("click","#Run",function(){
  		console.log("editor.getValue()>>>>>>",editor.getValue());
  		var problemNo = ${saveVo.problemNo }
+ 		$("#Run").blur();
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/run',
 			async: true,
