@@ -35,7 +35,7 @@ public class RunJavaLinux {
 	public void createFileAsSource(String source, String fileName) {
 		try {
 //			file = new File("/userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/java/" + fileName);
-			bufferWriter = new BufferedWriter(new FileWriter(file, false));
+			bufferWriter = new BufferedWriter(new FileWriter(fileName, false));
 			
 			bufferWriter.write(source);
 			bufferWriter.flush();
@@ -105,8 +105,7 @@ public class RunJavaLinux {
 	
 	public String execCommand() {
 		try {
-			String[] split = fileName.split(".");
-			createFileAsSource("java -cp " + packagePath + "/" + language + "/ " + split[0], "gwanwoo.txt");
+			
 			process = Runtime.getRuntime().exec(runClass());
 			
 			
