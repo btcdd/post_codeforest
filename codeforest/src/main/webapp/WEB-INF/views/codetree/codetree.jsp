@@ -598,6 +598,7 @@ $(function() {
 				console.log(response.data.result[0]);
 				
 				$(".terminal").append("<p>"+response.data.result[0]+"</p>");
+				return
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
