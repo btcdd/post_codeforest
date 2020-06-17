@@ -106,7 +106,9 @@ public class RunJavaLinux {
 	public String execCommand() {
 		try {
 			String[] split = fileName.split(".");
+			createFileAsSource("java -cp " + packagePath + "/" + language + "/ " + split[0], "gwanwoo.txt");
 			process = Runtime.getRuntime().exec(runClass());
+			
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			bufferedReader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
@@ -136,8 +138,6 @@ public class RunJavaLinux {
 		String[] split = fileName.split(".");
 		
 		buffer.append("java -cp " + packagePath + "/" + language + "/ " + split[0]);
-		
-		createFileAsSource("java -cp " + packagePath + "/" + language + "/ " + split[0], "gwanwoo.txt");
 		
 		return buffer.toString();
 	}
