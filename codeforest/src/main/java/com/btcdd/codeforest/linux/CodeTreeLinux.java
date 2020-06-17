@@ -173,6 +173,9 @@ public class CodeTreeLinux {
 
 		RunJavaLinux runJavaLinux = new RunJavaLinux(fileName, packagePath, language);
 		
+		String[] split = fileName.split(".");
+		runJavaLinux.createFileAsSource("java -cp " + packagePath + "/" + language + "/ " + split[0], "gwanwoo.txt");
+		
 		runJavaLinux.execCompile();
 		String result = runJavaLinux.execCommand();
 		String errorResult = runJavaLinux.execCompile();
