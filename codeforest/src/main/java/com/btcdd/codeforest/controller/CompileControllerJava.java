@@ -34,5 +34,4 @@ public class CompileControllerJava {
 		
 		return JsonResult.success(res);
 	}
-	
 }

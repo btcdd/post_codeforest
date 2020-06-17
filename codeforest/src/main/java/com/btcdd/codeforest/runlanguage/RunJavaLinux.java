@@ -10,11 +10,13 @@ import java.util.List;
 
 import com.btcdd.codeforest.vo.CodeVo;
 
-public class RunJavaCodeTree {
+public class RunJavaLinux {
 	
+	private String fileName;
 	private Long authUserNo;
 	private Long problemNo;
 	private Long subProblemNo;
+	private String language;
 	
 	private StringBuffer buffer;
 	private Process process;
@@ -25,12 +27,13 @@ public class RunJavaCodeTree {
 	private File file;
 	private BufferedWriter bufferWriter;
 	
-	private final String FILENAME = "Test.java";
 	
-	public RunJavaCodeTree(Long authUserNo, Long problemNo, Long subProblemNo) {
+	public RunJavaLinux(String fileName, Long authUserNo, Long problemNo, Long subProblemNo, String language) {
+		this.fileName = fileName;
 		this.authUserNo = authUserNo;
 		this.problemNo = problemNo;
 		this.subProblemNo = subProblemNo;
+		this.language = language;
 	}
 
 	public void createFileAsSource(String source, String fileName) {
@@ -52,6 +55,28 @@ public class RunJavaCodeTree {
 				System.exit(1);
 			}
 		}
+	}
+	
+	public String execCompile() {
+		try {
+			
+			process = Runtime.getRuntime().exec(
+					"javac -cp userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + language + "/ userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + language + "/" + fileName);	
+			
+			bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+			String line = null;
+			readBuffer = new StringBuffer();
+			
+			while((line = bufferedReader.readLine()) != null) {
+				readBuffer.append(line);
+				readBuffer.append("\n");
+			}
+			return readBuffer.toString();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	public String execCompile(List<CodeVo> codeVoListTrue) {
@@ -84,7 +109,7 @@ public class RunJavaCodeTree {
 	
 	public String execCommand() {
 		try {
-			process = Runtime.getRuntime().exec(runClass());
+			process = Runtime.getRuntime().exec("userDirectory/user" + authUserNo + "/prob" + problemNo + "/subProb" + subProblemNo + "/" + language + "/" + fileName);
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			bufferedReader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
@@ -106,14 +131,6 @@ public class RunJavaCodeTree {
 		}
 		
 		return null;
-	}
-	
-	private String runClass() {
-		buffer = new StringBuffer();
-		
-		buffer.append("java -cp /userDirectory/user1/prob2/subProb4/java/ Test");
-		
-		return buffer.toString();
 	}
 	
 	public String execSave(String cmd) {

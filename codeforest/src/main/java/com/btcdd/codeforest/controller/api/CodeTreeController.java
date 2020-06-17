@@ -33,7 +33,7 @@ public class CodeTreeController {
 	@Autowired 
 	private CodeTreeService codetreeService;
 	
-
+	CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
 	
 	@Auth
 	@PostMapping(value="/list")// main-header에서 처음 열때
@@ -177,26 +177,36 @@ public class CodeTreeController {
 	
 	@Auth
 	@PostMapping("/run")
-	public JsonResult Run(String language, String packagePath, String fileName,Long subProblemNo,String codeValue) {
+	public JsonResult Run(String language, String packagePath, String fileName,Long subProblemNo,String codeValue, Long problemNo,
+							HttpSession session) {
 		System.out.println("language: " + language);
 		System.out.println("packagePath: " + packagePath);
 		System.out.println("fileName: " + fileName);
 		System.out.println("subProblemNo: " + subProblemNo);
 		System.out.println("codeValue: " + codeValue);
-		return JsonResult.success(null);
+		
+		// 관우 유진 코드
+		/////////////////////
+		
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		
+		Map<String, Object> map = codeTreeLinux.javaCompile(fileName, authUser.getNo(), problemNo, subProblemNo, language);
+		
+		//////////////////////
+		
+		return JsonResult.success(map);
 	}
 	
 	@Auth
 	@PostMapping("/save")
-	public JsonResult Save(String language, String fileName, String packagePath,Long subProblemNo,String codeValue) {
+	public JsonResult Save(String language, String fileName, String packagePath,Long subProblemNo,String codeValue, Long problemNo) {
 		System.out.println("packagePath: " + packagePath);
 		System.out.println("subProblemNo: " + subProblemNo);
 		System.out.println("codeValue: " + codeValue);
 		
 		// 관우 유진 코드
 		//////////
-		TrainingLinux trainingLinux = new TrainingLinux();
-		trainingLinux.createFileAsSource(codeValue, packagePath + "/" + language + "/" + fileName);
+		codeTreeLinux.createFileAsSource(codeValue, packagePath + "/" + language + "/" + fileName);
 		
 		//////////
 		return JsonResult.success(null);

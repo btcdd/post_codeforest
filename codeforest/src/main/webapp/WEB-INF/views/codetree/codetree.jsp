@@ -74,16 +74,8 @@ var fileFetchList = function(){
 
 
 $(function() {
-	
-	
-
-	
-	
-	
 	fileFetchList();
 	
-	
-
 ////////////////// code-mirror /////////////////////////////
    var save = false;
    $(".codeTest").submit(function(event) {
@@ -595,10 +587,13 @@ $(function() {
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subProblemNo"),
-				'codeValue' : editor.getValue()
+				'codeValue' : editor.getValue(),
+				'problemNo' : ${saveVo.problemNo }
 			},
 			success: function(response) {
 				console.log("ok");
+				
+				console.log(response.data.result);
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
@@ -617,7 +612,8 @@ $(function() {
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subProblemNo"),
-				'codeValue' : editor.getValue()
+				'codeValue' : editor.getValue(),
+				'problemNo' : ${saveVo.problemNo }
 			},
 			success: function(response) {
 				console.log("ok");
