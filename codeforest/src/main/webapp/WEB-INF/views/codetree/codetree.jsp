@@ -551,6 +551,8 @@ $(function() {
  	var tempFile = null;
  	$(document).on("dblclick", ".file", function() {
  		tempFile = $(this);
+ 		var subProblemNo2 = tempFile.data("subProblemNo2");
+ 		console.log("subProblemNo2>>>>",subProblemNo2);
  		var language = $(this).data("language");
  		var fileName = $(this).data("file-name");
  		var packagePath = $(this).data("package-path");
