@@ -595,7 +595,7 @@ $(function() {
 				
 				console.log("ok");
 				
-				console.log(response.data.result[0]);
+				console.log(response.data.result);
 				
 				if(response.data.result[0] != "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
