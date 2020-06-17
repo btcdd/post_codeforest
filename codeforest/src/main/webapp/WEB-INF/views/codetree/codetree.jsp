@@ -579,7 +579,7 @@ $(function() {
  		$(this).addClass( "onclic", 250, validate);
  		console.log("editor.getValue()>>>>>>",editor.getValue());
  		var problemNo = "${saveVo.problemNo }";
- 		
+ 		console.log('tempFile>>>>',tempFile);
 		console.log('tempFile.data("no")>>>>',tempFile.data("no"));
  		console.log('tempFile.data("language")>>>>',tempFile.data("language"));
  		console.log('tempFile.data("file-name")>>>>',tempFile.data("file-name"));
