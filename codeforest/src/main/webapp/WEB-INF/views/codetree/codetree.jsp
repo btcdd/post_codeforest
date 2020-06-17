@@ -10,7 +10,8 @@
 <title>Document</title>
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/codetree/codetree.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>		
+<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
+
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,6 +35,11 @@
 <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/ejs/ejs.js"></script>
+
+<!-- <script type="text/javascript" src="https://golden-layout.com/files/latest/js/goldenlayout.min.js"></script>
+<link type="text/css" rel="stylesheet" href="https://golden-layout.com/files/latest/css/goldenlayout-base.css" />
+<link type="text/css" rel="stylesheet" href="https://golden-layout.com/files/latest/css/goldenlayout-dark-theme.css" />
+ -->
 
 <script>
 
@@ -67,11 +73,17 @@ var fileFetchList = function(){
 
 
 
-
 $(function() {
+	
+	
+
+	
+	
 	
 	fileFetchList();
 	
+	
+
 ////////////////// code-mirror /////////////////////////////
    var save = false;
    $(".codeTest").submit(function(event) {
@@ -312,6 +324,9 @@ $(function() {
 
 		
 		$(document).on('mousedown','.userFile',function(e){
+			
+
+			
 			$(".contextmenu").hide();
 			
 			if(e.which == 3){
@@ -541,7 +556,7 @@ $(function() {
 			
  	});
  	
- 	
+ 	var tempFile = null;
  	$(document).on("dblclick", ".file", function() {
  		tempFile = $(this);
  		var language = $(this).data("language");
@@ -567,10 +582,9 @@ $(function() {
 		});
  	});
  	
- 	var tempFile = null;
+ 	
  	$(document).on("click","#Run",function(){
- 		console.log("tempFile.data>>>",tempFile);
- 		console.log("file-name>>>",tempFile.data("file-name"));
+ 		console.log("editor.getValue()>>>>>>",editor.getValue());
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/run',
 			async: true,
@@ -580,7 +594,9 @@ $(function() {
 				'fileNo' : tempFile.data("no"),
 				'language' : tempFile.data("language"),
 				'fileName' : tempFile.data("file-name"),
-				'packagePath' : tempFile.data("package-path")
+				'packagePath' : tempFile.data("package-path"),
+				'subProblemNo':tempFile.data("subProblemNo"),
+				'codeValue' : editor.getValue()
 			},
 			success: function(response) {
 				console.log("ok");
@@ -591,6 +607,7 @@ $(function() {
 		}); 		
  	});
   	$(document).on("click","#Save",function(){
+  		console.log("editor.getValue()>>>>>>",editor.getValue());
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/save',
 			async: true,
@@ -598,7 +615,9 @@ $(function() {
 			dataType:'json',
 			data: {
 				'fileNo' : tempFile.data("no"),
-				'packagePath' : tempFile.data("package-path")
+				'packagePath' : tempFile.data("package-path"),
+				'subProblemNo':tempFile.data("subProblemNo"),
+				'codeValue' : editor.getValue()
 			},
 			success: function(response) {
 				console.log("ok");
@@ -761,10 +780,12 @@ window.onload = function() {
   
 
 
-
 </script>
 </head>
 <body>
+
+
+
 <div class="header">
     <div class='logo'>
         Code Tree

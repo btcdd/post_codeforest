@@ -171,22 +171,25 @@ public class CodeTreeController {
 		
 		CodeTreeLinux codetreeLinux = new CodeTreeLinux();
 		String code = codetreeLinux.findCode(packagePath, language, fileName);
-		
 		return JsonResult.success(code);
 	}
 	@Auth
 	@PostMapping("/run")
-	public JsonResult Run(String language, String packagePath, String fileName) {
+	public JsonResult Run(String language, String packagePath, String fileName,Long subProblemNo,String codeValue) {
 		System.out.println("language: " + language);
 		System.out.println("packagePath: " + packagePath);
 		System.out.println("fileName: " + fileName);
+		System.out.println("subProblemNo: " + subProblemNo);
+		System.out.println("codeValue: " + codeValue);
 		return JsonResult.success(null);
 	}
 	@Auth
 	@PostMapping("/save")
-	public JsonResult Save(Long fileNo,String packagePath) {
+	public JsonResult Save(Long fileNo,String packagePath,Long subProblemNo,String codeValue) {
 		System.out.println("fileNo: " + fileNo);
 		System.out.println("packagePath: " + packagePath);
+		System.out.println("subProblemNo: " + subProblemNo);
+		System.out.println("codeValue: " + codeValue);
 		return JsonResult.success(null);
 	}	
 }
