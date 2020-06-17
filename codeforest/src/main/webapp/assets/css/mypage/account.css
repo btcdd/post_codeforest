@@ -12,15 +12,15 @@ body {
     width: 100vw;
     background-color: #414141;
     color: #fff;
-    height: 40px;
+    height: 65px;
     top: 0;
-    z-index: 1;
+    z-index: 102;
 }
 
 .wrong-ptag {
 	margin: 0;
     text-align: center;
-    line-height: 40px;
+    line-height: 65px;
 }
 
 .container {
