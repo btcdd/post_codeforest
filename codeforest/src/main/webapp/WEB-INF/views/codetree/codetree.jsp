@@ -591,7 +591,6 @@ $(function() {
 			type: 'post',
 			dataType:'json',
 			data: {
-				'fileNo' : tempFile.data("no"),
 				'language' : tempFile.data("language"),
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
@@ -614,7 +613,8 @@ $(function() {
 			type: 'post',
 			dataType:'json',
 			data: {
-				'fileNo' : tempFile.data("no"),
+				'language' : tempFile.data("language"),
+				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subProblemNo"),
 				'codeValue' : editor.getValue()

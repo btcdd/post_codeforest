@@ -188,8 +188,7 @@ public class CodeTreeController {
 	
 	@Auth
 	@PostMapping("/save")
-	public JsonResult Save(Long fileNo,String packagePath,Long subProblemNo,String codeValue) {
-		System.out.println("fileNo: " + fileNo);
+	public JsonResult Save(String language, String fileName, String packagePath,Long subProblemNo,String codeValue) {
 		System.out.println("packagePath: " + packagePath);
 		System.out.println("subProblemNo: " + subProblemNo);
 		System.out.println("codeValue: " + codeValue);
@@ -197,12 +196,7 @@ public class CodeTreeController {
 		// 관우 유진 코드
 		//////////
 		TrainingLinux trainigLinux = new TrainingLinux();
-		
-		String tmp = "fileNo: " + fileNo + "/n" + "packagePath: " + packagePath + "\n" + "subProblemNo: " + subProblemNo + "\n" + "codeValue: " + codeValue;
-		
-		trainigLinux.createFileAsSource(tmp, "gwanwoo.txt");
-		
-		
+		trainigLinux.createFileAsSource(codeValue, packagePath + "/" + language + "/" + fileName);
 		
 		
 		//////////
