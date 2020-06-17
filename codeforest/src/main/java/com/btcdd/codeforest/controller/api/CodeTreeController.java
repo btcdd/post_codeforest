@@ -188,11 +188,11 @@ public class CodeTreeController {
 		// 관우 유진 코드
 		/////////////////////
 		
-//		Map<String, Object> map = codeTreeLinux.javaCompile(fileName, packagePath, language);
+		Map<String, Object> map = codeTreeLinux.javaCompile(fileName, packagePath, language);
 		
 		//////////////////////
 		
-		return JsonResult.success(null);
+		return JsonResult.success(map);
 	}
 	
 	@Auth
