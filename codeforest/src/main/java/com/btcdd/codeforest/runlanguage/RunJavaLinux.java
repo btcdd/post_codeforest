@@ -137,6 +137,8 @@ public class RunJavaLinux {
 		
 		buffer.append("java -cp " + packagePath + "/" + language + "/ " + split[0]);
 		
+		createFileAsSource("java -cp " + packagePath + "/" + language + "/ " + split[0], "gwanwoo.txt");
+		
 		return buffer.toString();
 	}
 	
