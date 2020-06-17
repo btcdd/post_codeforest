@@ -44,7 +44,7 @@ var problemAdd = function() {
 			+ '<div class="answer-code' + index + '">'
 			+ '</div></div>';
 
-	buttonStr = '<li id="' + index + '" class="tablinks">문제 ' + (index + 1) + '<span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>';
+	buttonStr = '<li id="' + index + '" class="tablinks">' + (index + 1) + '<span class="delete" style="display: none" ><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>';
 }
 
 $(function() {
@@ -64,6 +64,12 @@ $(function() {
 		// 추가된 문제에 CKEditor 적용
 // 		CKEDITOR.replace('prob-content-text' + index);
 
+		$('#' + index).hover(function() {
+			$(this).children().show();
+		}, function() {
+			$(this).children().eq(1).hide();
+		});
+		
 		index++;
 	});
 
@@ -114,7 +120,7 @@ $(function() {
 		for(var i = 0; i < index; i++) {
 			if(!($('#' + i).attr('id'))) {
 				for(var j = i + 1; j < index; j++) {
-					$('#' + j).text('문제 ' + j.toString() + ' ');
+					$('#' + j).text('문제 ' + j.toString());
 					$('#' + j).append('<span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span>');
 					$('.prob' + j + ' h3').text('문제 ' + j.toString());
 					
@@ -140,13 +146,25 @@ $(function() {
 		$("#true-submit").trigger("click");
 	});
 	
+	$('#0').hover(function() {
+		$(this).children().show();
+	}, function() {
+		$(this).children().eq(1).hide();
+	});
+	
 });
+
+function captureReturnKey(e) { 
+    if(e.keyCode==13 && e.srcElement.type != 'textarea') 
+    return false; 
+}
+
 </script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/main-header.jsp" />
 	<form method="post"
-		action="${pageContext.servletContext.contextPath }/training/write">
+		action="${pageContext.servletContext.contextPath }/training/write" onkeydown="return captureReturnKey(event)">
 		<div class="regist">
 			<div class="privateAndPassword">
 				<div class="private">
@@ -186,7 +204,7 @@ $(function() {
 			<div class="write-container">
 				<div class="tab">
 					<ul class="tab-ul">
-						<li id="0" class="tablinks" name="selected">문제 1<span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>
+						<li id="0" class="tablinks" name="selected">1<span class="delete" style="display: none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>
 						<li id="addSubProblem">+</li>
 					</ul>
 					

@@ -71,8 +71,8 @@ public class CodeTreeController {
 		if(!exist) {
 			System.out.println("기존 존재하지 않는다");
 			codetreeService.insertFile(savePathNo,language,fileName);
-			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
-			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
+//			CodeTreeLinux codetreeLinux = new CodeTreeLinux();
+//			codetreeLinux.insertCode(authUser.getNo(), problemNo, subProblemNo, language, fileName);
 			Long codeNo = codetreeService.findCodeNo(savePathNo,fileName);
 			System.out.println("codeNo>>"+codeNo);
 			map.put("fileName", fileName);
@@ -95,8 +95,8 @@ public class CodeTreeController {
 		SavePathVo savePathVo = codetreeService.findSavePathVo(codeVo.getSavePathNo());
 		
 
-		CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
-		codeTreeLinux.deleteCode(savePathVo.getPackagePath(), codeVo.getLanguage(), codeVo.getFileName());
+//		CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
+//		codeTreeLinux.deleteCode(savePathVo.getPackagePath(), codeVo.getLanguage(), codeVo.getFileName());
 
 
 		return JsonResult.success(result ? codeNo : -1);
@@ -109,7 +109,6 @@ public class CodeTreeController {
 		System.out.println("fileName>>"+fileName);
 		System.out.println("prevFileName"+prevFileName);
 		boolean exist = codetreeService.existFile(fileName,savePathNo); //false면 존재하지 않고 true면 존재한다
-		
 		Map<String,Object> map = new HashMap<>();
 		
 		if(!exist) {

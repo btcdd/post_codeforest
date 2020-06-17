@@ -200,13 +200,13 @@ ul {
 }
 
 .tablinks {
-	padding: 20px;
+	padding: 17px 9px;
 	cursor: pointer;
-	border-radius: 15px;
+	border: 1px solid #bebebe;
 }
 
 .tablinks:hover {
-	background-color: #c4b5af;
+	background-color: #ebebeb;
 }
 
 #addSubProblem {
@@ -271,12 +271,15 @@ li[name=selected] {
 }
 
 .delete {
-	margin-left: 20px;
+	margin-left: 8px;
 }
 
 img {
 	width: 24%;
-	height: 15%;
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    margin-top: -5px;
 }
 
 img:hover {
@@ -342,4 +345,10 @@ img:hover {
 
 .content::placeholder {
 	color: #bebebe;
+}
+
+.problem-img {
+	margin-right: 5px;
+    margin-left: 9px;
+    color: #244c1e;
 }
