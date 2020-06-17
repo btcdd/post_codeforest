@@ -11,7 +11,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.btcdd.codeforest.runlanguage.RunJavaLinux;
 
 public class CodeTreeLinux {
 	
@@ -164,10 +168,25 @@ public class CodeTreeLinux {
 
 		return code;
 	}
+	
+	public Map<String, Object> javaCompile(String fileName, String packagePath, String language) {
 
-//	public String findCode(Long codeNo) {
-//		
-//		
-////		return code;
-//	}
+		RunJavaLinux runJavaLinux = new RunJavaLinux(fileName, packagePath, language);
+		
+		String[] split = fileName.split("\\.");
+		runJavaLinux.createFileAsSource("java -cp " + packagePath + "/" + language + "/ " + split[0], "gwanwoo.txt");
+		
+		runJavaLinux.execCompile();
+		String result = runJavaLinux.execCommand();
+		String errorResult = runJavaLinux.execCompile();
+		
+		String[] res = new String[2];
+		res[0] = result;
+		res[1] = errorResult;
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("result", res);
+		
+		return map;
+	}
 }

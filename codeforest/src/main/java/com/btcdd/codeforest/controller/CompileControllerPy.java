@@ -29,9 +29,6 @@ public class CompileControllerPy {
 			buffer.append(token[i] + "\n");
 		}
 		rtt.createFileAsSource(buffer.toString());
-		
-		RunPy rtt = new RunPy();
-		
 		rtt.execCompile();
 		String result = rtt.execCommand();
 		String errorResult = rtt.execCompile();
