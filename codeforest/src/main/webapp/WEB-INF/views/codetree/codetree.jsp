@@ -579,6 +579,11 @@ $(function() {
  		$(this).addClass( "onclic", 250, validate);
  		console.log("editor.getValue()>>>>>>",editor.getValue());
  		var problemNo = "${saveVo.problemNo }";
+ 		
+		console.log('tempFile.data("no")>>>>',tempFile.data("no"));
+ 		console.log('tempFile.data("language")>>>>',tempFile.data("language"));
+ 		console.log('tempFile.data("file-name")>>>>',tempFile.data("file-name"));
+ 		console.log('tempFile.data("file-name")>>>>',tempFile.data("package-path"));
  		console.log('tempFile.data("subProblemNo")>>>>',tempFile.data("subProblemNo"));
  		$("#Run").blur();
  		$.ajax({
@@ -632,7 +637,12 @@ $(function() {
   	$(document).on("click","#Save",function(){
   		console.log("editor.getValue()>>>>>>",editor.getValue());
   		var problemNo = "${saveVo.problemNo }";
-  		console.log('tempFile.data("subProblemNo")>>>>',tempFile.data("subProblemNo"));
+		console.log('tempFile.data("no")>>>>',tempFile.data("no"));
+ 		console.log('tempFile.data("language")>>>>',tempFile.data("language"));
+ 		console.log('tempFile.data("file-name")>>>>',tempFile.data("file-name"));
+ 		console.log('tempFile.data("file-name")>>>>',tempFile.data("package-path"));
+ 		console.log('tempFile.data("subProblemNo")>>>>',tempFile.data("subProblemNo"));
+  		
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/save',
 			async: true,
