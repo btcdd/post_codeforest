@@ -597,7 +597,7 @@ $(function() {
 				
 				console.log(response.data.result[0]);
 				
-				$(".terminal #text").last().append(response.data.result[0]);
+				$(".terminal").append("<p>"+response.data.result[0]+"</p>");
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
