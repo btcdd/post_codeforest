@@ -584,7 +584,7 @@ $(function() {
  		console.log('tempFile.data("language")>>>>',tempFile.data("language"));
  		console.log('tempFile.data("file-name")>>>>',tempFile.data("file-name"));
  		console.log('tempFile.data("file-name")>>>>',tempFile.data("package-path"));
- 		console.log('tempFile.data("subProblemNo")>>>>',tempFile.data("subProblemNo"));
+ 		console.log('tempFile.data("subProblemNo2")>>>>',tempFile.data("subProblemNo2"));
  		$("#Run").blur();
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/run',
@@ -641,7 +641,7 @@ $(function() {
  		console.log('tempFile.data("language")>>>>',tempFile.data("language"));
  		console.log('tempFile.data("file-name")>>>>',tempFile.data("file-name"));
  		console.log('tempFile.data("file-name")>>>>',tempFile.data("package-path"));
- 		console.log('tempFile.data("subProblemNo")>>>>',tempFile.data("subProblemNo"));
+ 		console.log('tempFile.data("subProblemNo2")>>>>',tempFile.data("subProblemNo2"));
   		
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/save',
