@@ -576,6 +576,7 @@ $(function() {
  	
  	
  	$(document).on("click","#Run",function(){
+ 		$(this).addClass( "onclic", 250, validate);
  		console.log("editor.getValue()>>>>>>",editor.getValue());
  		var problemNo = ${saveVo.problemNo }
  		$("#Run").blur();
@@ -614,6 +615,19 @@ $(function() {
 			}							
 		}); 		
  	});
+ 	 function validate() {
+  	    setTimeout(function() {
+  	      $( "#Run" ).removeClass( "onclic" );
+  	      $( "#Run" ).addClass( "validate", 450, callback );
+  	    }, 2250 );
+  	  }
+  	    function callback() {
+  	      setTimeout(function() {
+  	        $( "#Run" ).removeClass( "validate" );
+  	      }, 1250 );
+  	    }
+ 	
+ 	
   	$(document).on("click","#Save",function(){
   		console.log("editor.getValue()>>>>>>",editor.getValue());
  		$.ajax({
@@ -655,22 +669,9 @@ $(function() {
 		}); 		
  	});  */  	
   	
- 	
- 	 $( "#Run" ).click(function() {
- 	    $( "#Run" ).addClass( "onclic", 250, validate);
- 	  });
 
- 	  function validate() {
- 	    setTimeout(function() {
- 	      $( "#Run" ).removeClass( "onclic" );
- 	      $( "#Run" ).addClass( "validate", 450, callback );
- 	    }, 2250 );
- 	  }
- 	    function callback() {
- 	      setTimeout(function() {
- 	        $( "#Run" ).removeClass( "validate" );
- 	      }, 1250 );
- 	    }
+
+ 	 
  	
  	
  	

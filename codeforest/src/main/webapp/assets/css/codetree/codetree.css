@@ -335,12 +335,11 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 
 /* --------------- 실행 버튼 --------------------- */
 #Run {
-  text-align: center;
   font-family: 'Roboto', sans-serif;
+  text-align: center;
   outline: none;
   height: 40px;
-  text-align: center;
-  width: 130px;
+  width: 40px;
   border-radius: 40px;
   background: #fff;
   border: 2px solid #1ECD97;
@@ -363,6 +362,7 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
   content: "Run";
 }
 .onclic {
+  font-size: 0px;
   width: 40px;
   border-color: #bbbbbb;
   border-width: 3px;
