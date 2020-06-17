@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.btcdd.codeforest.dto.JsonResult;
 import com.btcdd.codeforest.linux.CodeTreeLinux;
+import com.btcdd.codeforest.linux.TrainingLinux;
 import com.btcdd.codeforest.service.CodeTreeService;
 import com.btcdd.codeforest.vo.CodeVo;
 import com.btcdd.codeforest.vo.SavePathVo;
@@ -173,6 +174,7 @@ public class CodeTreeController {
 		String code = codetreeLinux.findCode(packagePath, language, fileName);
 		return JsonResult.success(code);
 	}
+	
 	@Auth
 	@PostMapping("/run")
 	public JsonResult Run(String language, String packagePath, String fileName,Long subProblemNo,String codeValue) {
@@ -183,6 +185,7 @@ public class CodeTreeController {
 		System.out.println("codeValue: " + codeValue);
 		return JsonResult.success(null);
 	}
+	
 	@Auth
 	@PostMapping("/save")
 	public JsonResult Save(Long fileNo,String packagePath,Long subProblemNo,String codeValue) {
@@ -190,6 +193,19 @@ public class CodeTreeController {
 		System.out.println("packagePath: " + packagePath);
 		System.out.println("subProblemNo: " + subProblemNo);
 		System.out.println("codeValue: " + codeValue);
+		
+		// 관우 유진 코드
+		//////////
+		TrainingLinux trainigLinux = new TrainingLinux();
+		
+		String tmp = "fileNo: " + fileNo + "/n" + "packagePath: " + packagePath + "\n" + "subProblemNo: " + subProblemNo + "\n" + "codeValue: " + codeValue;
+		
+		trainigLinux.createFileAsSource(tmp, "gwanwoo.txt");
+		
+		
+		
+		
+		//////////
 		return JsonResult.success(null);
 	}	
 }
