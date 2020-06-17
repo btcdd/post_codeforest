@@ -53,13 +53,13 @@ public class CodeTreeService {
 //												"/" + codeVoListTrue.get(0).getLanguage() + "\n");
 		
 			
-			RunJavaLinux rjct = new RunJavaLinux(authUserNo, problemNo, subProblemNo);
+//			RunJavaLinux rjct = new RunJavaLinux(authUserNo, problemNo, subProblemNo);
 			
 //			for(int i = 0; i < codeVoListTrue.size(); i++) {
 //				rjct.createFileAsSource(codeVoListTrue.get(i).getCode(), codeVoListTrue.get(i).getFileName());
 //			}
 			
-			rjct.execCompile(codeVoListTrue);
+//			rjct.execCompile(codeVoListTrue);
 //			String result = rjct.execCommand();
 //			String errorResult = rjct.execCompile(codeVoListTrue);
 //			
