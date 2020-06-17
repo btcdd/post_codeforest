@@ -173,8 +173,8 @@ public class CodeTreeLinux {
 
 		RunJavaLinux runJavaLinux = new RunJavaLinux(fileName, packagePath, language);
 		
-		String[] split = fileName.split(".");
-//		runJavaLinux.createFileAsSource("java -cp " + packagePath + "/" + language + "/ " + split[0], "gwanwoo.txt");
+//		String[] split = fileName.split(".");
+		runJavaLinux.createFileAsSource("java -cp " + packagePath + "/" + language + "/ " + fileName, "gwanwoo.txt");
 		
 		runJavaLinux.execCompile();
 		String result = runJavaLinux.execCommand();
@@ -186,7 +186,6 @@ public class CodeTreeLinux {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("result", res);
-		map.put("split", split[0]);
 		
 		return map;
 	}
