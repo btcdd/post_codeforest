@@ -11,50 +11,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link
-	href="${pageContext.servletContext.contextPath }/assets/css/training/modify.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="${pageContext.servletContext.contextPath }/assets/css/training/header.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="${pageContext.servletContext.contextPath }/assets/css/sample.css"
-	rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script type="text/javascript"
-	src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
-<script type="text/javascript"
-	src="${pageContext.servletContext.contextPath }/assets/ckeditor/ckeditor.js"></script>
-
-<!-- code mirror -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/css/codemirror.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/abcdef.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/blackboard.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/dracula.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/duotone-light.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/eclipse.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/moxer.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/neat.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/panda-syntax.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/solarized.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/codemirror/theme/ttcn.css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/assets/codemirror/js/codemirror.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/assets/codemirror/mode/clike.js"></script>
-
+<link href="${pageContext.servletContext.contextPath }/assets/css/training/modify.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/ckeditor/ckeditor.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <title>Code Forest</title>
 <script>
 var index = ${listSize };
@@ -74,23 +37,20 @@ var password = '${problemVo.password }';
 var problemAdd = function() {
 
 	str = '<div class="prob' + index + '">'
-			+ '<h3>문제 '
-			+ (index + 1)
-			+ '</h3>'
 			+ '<div class="sub-title">'
-			+ '문제 제목<input type="text" name="subProblemList[' + index + '].title" required/>'
+			+ '<input class="sub-problem-title" type="text" name="subProblemList[' + index + '].title" required autocomplete="off"/>'
 			+ '</div>'
-			+ '<div class="prob-content">'
-			+ '<div class="prob-content-title">내용</div>'
-			+ '<textarea class="content" id="prob-content-text' + index + '" name="subProblemList[' + index + '].contents" required></textarea>'
+			+ '<div class="sub-prob-content">'
+			+ '<textarea class="content" id="prob-content-text' + index + '" name="subProblemList[' + index + '].contents" required autocomplete="off"></textarea>'
 			+ '</div>'
+			+ '<br>'
 			+ '<div class="ex-input">'
-			+ '<div class="ex-input-title">예제 입력</div>'
-			+ '<textarea id="ex-input-text" name="subProblemList[' + index + '].examInput"></textarea>'
+			+ '<div class="ex-input-title">입력 예제</div>'
+			+ '<textarea id="ex-input-text" name="subProblemList[' + index + '].examInput" autocomplete="off"></textarea>'
 			+ '</div>'
 			+ '<div class="ex-output">'
-			+ '<div class="ex-output-title">예제 출력</div>'
-			+ '<textarea id="ex-output-text" name="subProblemList[' + index + '].examOutput" required></textarea>'
+			+ '<div class="ex-output-title">출력 예제</div>'
+			+ '<textarea id="ex-output-text" name="subProblemList[' + index + '].examOutput" required autocomplete="off"></textarea>'
 			+ '</div>'
 			+ '<div class="answer-code' + index + '">'
 			+ '</div></div>';
@@ -204,8 +164,6 @@ $(function() {
 			return;
 		}
 		
-		console.log('asdfasdf');
-		
 		var ind = $(this).parent().attr('id');
 		var deleteNo = $(this).parent().attr("value");
 		array.push(deleteNo);
@@ -251,6 +209,10 @@ $(function() {
 		$('.delete').remove();
 		$('.privateAndPassword').remove();
 	}
+	
+	for(var i = 1; i < index; i++) {
+		$('.prob' + i).hide();
+	}
 });
 </script>
 </head>
@@ -281,7 +243,7 @@ $(function() {
 			</div>
 			<br />
 			<div class="title">
-				문제집 제목<input id="title-text" type="text" name="title" value="${problemVo.title }" required />
+				<input id="title-text" type="text" name="title" value="${problemVo.title }" placeholder="문제집 제목을 입력하세요" required autocomplete="off"/>
 				<a id="btn-cancel"
 					href="${pageContext.servletContext.contextPath }/training">취소</a> 
 				<input id="fake-submit" type="submit" value="등록">
@@ -303,26 +265,23 @@ $(function() {
 					<c:forEach items="${list }" var="item" varStatus="status" begin="0">
 						<c:set var="index" value="${status.index }" />
 						<div class="prob${index }">
-							<h3>문제 ${index + 1 }</h3>
 							<input type="hidden" name="subProblemList[${index }].no" value="${item.no }" />
 							<div class="sub-title">
-								문제 제목<input type="text" name="subProblemList[${index }].title" value="${item.title }"required />
+								<input class="sub-problem-title" type="text" name="subProblemList[${index }].title" value="${item.title }"required autocomplete="off" />
 							</div>
-							<div class="prob-content">
-								<div class="prob-content-title">내용</div>
-								<textarea class="content" id="prob-content-text${index }"
-									name="subProblemList[${index }].contents" required>${fn:replace(item.contents, "<br />", newLine)}</textarea>
+							<div class="sub-prob-content">
+								<textarea class="content" id="prob-content-text${index }" name="subProblemList[${index }].contents" required autocomplete="off">${fn:replace(item.contents, "<br />", newLine)}</textarea>
 							</div>
 							<br />
 	
 							<div class="ex-input">
 								<div class="ex-input-title">예제 입력</div>
-								<textarea id="ex-input-text" name="subProblemList[${index }].examInput">${item.examInput }</textarea>
+								<textarea id="ex-input-text" name="subProblemList[${index }].examInput" autocomplete="off">${item.examInput }</textarea>
 							</div>
 	
 							<div class="ex-output">
 								<div class="ex-output-title">예제 출력</div>
-								<textarea id="ex-output-text" name="subProblemList[${index }].examOutput" required>${item.examOutput }</textarea>
+								<textarea id="ex-output-text" name="subProblemList[${index }].examOutput" required autocomplete="off">${item.examOutput }</textarea>
 							</div>
 						</div> <!--  prob0 -->
 					</c:forEach>
@@ -330,5 +289,6 @@ $(function() {
 			</div>
 		</div>
 	</form>
+	<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>
