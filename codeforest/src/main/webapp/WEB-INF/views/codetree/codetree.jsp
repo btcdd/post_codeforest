@@ -593,7 +593,7 @@ $(function() {
 			success: function(response) {
 				console.log("ok");
 				
-				console.log(response.data.result);
+				console.log(response.data);
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);

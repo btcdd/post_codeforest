@@ -188,8 +188,6 @@ public class CodeTreeController {
 		// 관우 유진 코드
 		/////////////////////
 		
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		
 		Map<String, Object> map = codeTreeLinux.javaCompile(fileName, packagePath, language);
 		
 		//////////////////////
