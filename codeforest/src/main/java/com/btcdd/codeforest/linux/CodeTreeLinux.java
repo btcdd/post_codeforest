@@ -150,13 +150,9 @@ public class CodeTreeLinux {
 		List<String> list = new ArrayList<String>();
 		try {
 			FileReader rw = new FileReader(packagePath + "/" + language + "/" + fileName);
-//			BufferedReader br = new BufferedReader(rw);
-//			
-//			while(( br.readLine()) != null) {
-//				code += br.readLine();
-//				code += "\n";
-//			}
 			list = Files.readAllLines(path,cs);
+			
+			rw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

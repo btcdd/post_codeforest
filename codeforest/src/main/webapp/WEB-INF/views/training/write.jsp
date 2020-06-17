@@ -26,23 +26,20 @@ var buttonStr;
 var problemAdd = function() {
 
 	str = '<div class="prob' + index + '">'
-			+ '<h3>문제 '
-			+ (index + 1)
-			+ '</h3>'
 			+ '<div class="sub-title">'
-			+ '문제 제목<input type="text" name="subProblemList[' + index + '].title" required/>'
+			+ '<input class="sub-problem-title" type="text" name="subProblemList[' + index + '].title" placeholder="문제 제목을 입력하세요" required autocomplete="off"/>'
 			+ '</div>'
-			+ '<div class="prob-content">'
-			+ '<div class="prob-content-title">내용</div>'
-			+ '<textarea class="content" id="prob-content-text' + index + '" name="subProblemList[' + index + '].contents" required></textarea>'
+			+ '<div class="sub-prob-content">'
+			+ '<textarea class="content" id="prob-content-text' + index + '" name="subProblemList[' + index + '].contents" placeholder="내용을 입력하세요" required autocomplete="off"></textarea>'
 			+ '</div>'
+			+ '<br>'
 			+ '<div class="ex-input">'
-			+ '<div class="ex-input-title">예제 입력</div>'
-			+ '<textarea id="ex-input-text" name="subProblemList[' + index + '].examInput"></textarea>'
+			+ '<div class="ex-input-title">입력 예제</div>'
+			+ '<textarea id="ex-input-text" name="subProblemList[' + index + '].examInput" placeholder="입력 예제를 작성하세요" autocomplete="off"></textarea>'
 			+ '</div>'
 			+ '<div class="ex-output">'
-			+ '<div class="ex-output-title">예제 출력</div>'
-			+ '<textarea id="ex-output-text" name="subProblemList[' + index + '].examOutput" required></textarea>'
+			+ '<div class="ex-output-title">출력 예제</div>'
+			+ '<textarea id="ex-output-text" name="subProblemList[' + index + '].examOutput" placeholder="출력 예제를 작성하세요" required autocomplete="off"></textarea>'
 			+ '</div>'
 			+ '<div class="answer-code' + index + '">'
 			+ '</div></div>';
@@ -135,10 +132,11 @@ $(function() {
 	$('#fake-submit').click(function() {
 		event.preventDefault();
 		
-		var str = $('.content').val();
-		str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
-		$('.content').val(str);
-		
+		for(var i = 0; i < index; i++) {
+			var str = $('.content').eq(i).val();
+			str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
+			$('.content').eq(i).val(str);
+		}
 		$("#true-submit").trigger("click");
 	});
 	
@@ -177,7 +175,7 @@ $(function() {
 			</div>
 			<br />
 			<div class="title">
-				문제집 제목<input id="title-text" type="text" name="title" required />
+				<input id="title-text" type="text" name="title" placeholder="문제집 제목을 입력하세요" autocomplete="off"/>
 				<a id="btn-cancel"
 					href="${pageContext.servletContext.contextPath }/training">취소</a> 
 				<input id="fake-submit" type="submit" value="등록">
@@ -188,7 +186,7 @@ $(function() {
 			<div class="write-container">
 				<div class="tab">
 					<ul class="tab-ul">
-						<li id="0" class="tablinks" name="selected">문제 1 <span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>
+						<li id="0" class="tablinks" name="selected">문제 1<span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>
 						<li id="addSubProblem">+</li>
 					</ul>
 					
@@ -196,24 +194,22 @@ $(function() {
 
 				<div id="problem" class="tabcontent">
 					<div class="prob0">
-						<h3>문제 1</h3>
 						<div class="sub-title">
-							문제 제목<input class="sub-problem-title" type="text" name="subProblemList[0].title" required />
+							<input class="sub-problem-title" type="text" name="subProblemList[0].title" placeholder="문제 제목을 입력하세요" required autocomplete="off" />
 						</div>
-						<div class="prob-content">
-							<div class="prob-content-title">내용</div>
-							<textarea class="content" id="prob-content-text0" name="subProblemList[0].contents" required></textarea>
+						<div class="sub-prob-content">
+							<textarea class="content" id="prob-content-text0" name="subProblemList[0].contents" placeholder="내용을 입력하세요" required autocomplete="off"></textarea>
 						</div>
 						<br />
 
 						<div class="ex-input">
-							<div class="ex-input-title">예제 입력</div>
-							<textarea id="ex-input-text" name="subProblemList[0].examInput"></textarea>
+							<div class="ex-input-title">입력 예제</div>
+							<textarea id="ex-input-text" name="subProblemList[0].examInput" placeholder="입력 예제를 작성하세요" autocomplete="off"></textarea>
 						</div>
 
 						<div class="ex-output">
-							<div class="ex-output-title">예제 출력</div>
-							<textarea id="ex-output-text" name="subProblemList[0].examOutput" required></textarea>
+							<div class="ex-output-title">출력 예제</div>
+							<textarea id="ex-output-text" name="subProblemList[0].examOutput" placeholder="출력 예제를 작성하세요" required autocomplete="off"></textarea>
 						</div>
 					</div>
 				</div>

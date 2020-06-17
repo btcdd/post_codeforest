@@ -151,8 +151,9 @@ public class TrainingController {
 			trainingService.modify(subProblemList, problemNo);
 		}
 		
-		TrainingLinux trainingLinux = new TrainingLinux();
-//		trainingLinux.modifyFile(authUser.getNo(), list, array, problemNo);
+//		List<Long> subProblemNoList = trainingService.findSubProblemNo(problemNo); 
+//		TrainingLinux trainingLinux = new TrainingLinux();
+//		trainingLinux.modifyFile(authUser.getNo(), list, array, problemNo, subProblemNoList);
 		
 		return "redirect:/training/view/" + problemNo;
 	}

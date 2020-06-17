@@ -180,27 +180,27 @@ var savePandan = function() {
 };
 
 var saveProblem = function() {
-// 	$.ajax({
-// 		url: '${pageContext.request.contextPath }/api/training/save/problem',
-// 		async: false,
-// 		type: 'post',
-// 		dataType: 'json',
-// 		traditional: true,
-// 		data: {
-// 			'problemNo': problemNo,
-// 			'subProblemNoArray': array
-// 		},
-// 		success: function(response){
-// 			if(response.result != "success"){
-// 				console.error(response.message);
-// 				return;
-// 			}
-// 			linuxSaveCode();
-// 		},
-// 		error: function(xhr, status, e){
-// 			console.error(status + ":" + e);
-// 		}
-// 	});
+	$.ajax({
+		url: '${pageContext.request.contextPath }/api/training/save/problem',
+		async: false,
+		type: 'post',
+		dataType: 'json',
+		traditional: true,
+		data: {
+			'problemNo': problemNo,
+			'subProblemNoArray': array
+		},
+		success: function(response){
+			if(response.result != "success"){
+				console.error(response.message);
+				return;
+			}
+			linuxSaveCode();
+		},
+		error: function(xhr, status, e){
+			console.error(status + ":" + e);
+		}
+	});
 }
 
 var deleteProblem = function() {

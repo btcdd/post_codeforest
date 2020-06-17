@@ -103,6 +103,29 @@ public class CodeTreeController {
 	}	
 
 	@Auth
+	@PostMapping("/fileUpdate")
+	public JsonResult fileUpdate(Long savePathNo,Long codeNo,String fileName,Long subProblemNo,String prevFileName) {
+		System.out.println("codeNo>>"+codeNo);
+		System.out.println("fileName>>"+fileName);
+		System.out.println("prevFileName"+prevFileName);
+		boolean exist = codetreeService.existFile(fileName,savePathNo); //false면 존재하지 않고 true면 존재한다
+		Map<String,Object> map = new HashMap<>();
+		
+		if(!exist) {
+			System.out.println("기존 존재하지 않는다");
+			codetreeService.updateFile(codeNo,fileName);
+			// 여기!!
+		}else {
+			System.out.println("기존파일이 존재한다");
+			map.put("result", "no");
+		}
+
+		return JsonResult.success(map);
+	}		
+	
+	
+	
+	@Auth
 	@PostMapping("/file-list")
 	public JsonResult fileList(Long saveNo, String language) {
 		SaveVo saveVo = codetreeService.findSaveVo(saveNo);
@@ -148,8 +171,26 @@ public class CodeTreeController {
 		
 		CodeTreeLinux codetreeLinux = new CodeTreeLinux();
 		String code = codetreeLinux.findCode(packagePath, language, fileName);
-		
 		return JsonResult.success(code);
+	}
+	@Auth
+	@PostMapping("/run")
+	public JsonResult Run(String language, String packagePath, String fileName,Long subProblemNo,String codeValue) {
+		System.out.println("language: " + language);
+		System.out.println("packagePath: " + packagePath);
+		System.out.println("fileName: " + fileName);
+		System.out.println("subProblemNo: " + subProblemNo);
+		System.out.println("codeValue: " + codeValue);
+		return JsonResult.success(null);
+	}
+	@Auth
+	@PostMapping("/save")
+	public JsonResult Save(Long fileNo,String packagePath,Long subProblemNo,String codeValue) {
+		System.out.println("fileNo: " + fileNo);
+		System.out.println("packagePath: " + packagePath);
+		System.out.println("subProblemNo: " + subProblemNo);
+		System.out.println("codeValue: " + codeValue);
+		return JsonResult.success(null);
 	}	
 }
 

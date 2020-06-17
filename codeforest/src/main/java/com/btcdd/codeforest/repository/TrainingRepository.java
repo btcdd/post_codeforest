@@ -256,4 +256,8 @@ public class TrainingRepository {
 	public void insertSubProblemFaceCode(Map<String, Object> map) {
 		sqlSession.insert("training.insertSubProblemFaceCode", map);
 	}
+
+	public List<Long> findSubProblemNo(Long problemNo) {
+		return sqlSession.selectList("training.findSubProblemNo", problemNo);
+	}
 }

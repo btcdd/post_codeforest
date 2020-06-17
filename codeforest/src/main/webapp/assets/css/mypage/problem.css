@@ -50,14 +50,6 @@ ul {
 	color: #fff
 }
 
-a {
-	text-decoration: none;
-	color: #222;
-}
-
-a:visited {
-	color: #222;
-}
 
 .menulist {
 	padding: 10px 3px;
@@ -228,4 +220,22 @@ td {
 th {
 	font-size: 0.9em;
 	color: #555;
+}
+
+.blinking{
+   -webkit-animation:blink 1.5s ease-in-out infinite alternate;
+    -moz-animation:blink 1.5s ease-in-out infinite alternate;
+    animation:blink 1.5s ease-in-out infinite alternate;
+}
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
 }

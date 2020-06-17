@@ -6,16 +6,18 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <div class="header">
-    <div class="head-navigation">
+    <div class="head-navigation">	
         <div class="logo">
             <a class="title" href="${pageContext.servletContext.contextPath }">Code Forest</a>
         </div>
-        <div class="menu clearfix">
-            <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/info">Info</a></div>
-            <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/codetree/list">Code Tree</a></div>
-            <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/codingtest">Coding Test</a></div>
-            <div class="menu-item"><a href="${pageContext.servletContext.contextPath }/training">Coding Training</a></div>
-        </div>         
+        <div class="header-menulist clearfix">
+        	<ul class="header-menu">
+			  <li><a href="${pageContext.servletContext.contextPath }/about" data-hover="About Us">About Us</a></li>
+			  <li><a href="${pageContext.servletContext.contextPath }/codetree/list" data-hover="Code Tree">Code Tree</a></li>
+			  <li><a href="${pageContext.servletContext.contextPath }/codingtest" data-hover="Coding Test">Coding Test</a></li>
+			  <li><a href="${pageContext.servletContext.contextPath }/training" data-hover="Coding Training">Coding Training</a></li>
+			</ul>
+        </div>
         <div class="menu-user clearfix">
            <c:choose>
             <c:when test="${empty authUser }">
