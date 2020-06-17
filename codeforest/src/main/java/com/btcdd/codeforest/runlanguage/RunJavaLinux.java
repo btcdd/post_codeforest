@@ -107,7 +107,6 @@ public class RunJavaLinux {
 			
 			process = Runtime.getRuntime().exec(runClass());
 			
-			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			bufferedReader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 						
@@ -133,7 +132,7 @@ public class RunJavaLinux {
 	public String runClass() {
 		buffer = new StringBuffer();
 		
-		String[] split = fileName.split(".");
+		String[] split = fileName.split("\\.");
 		
 		buffer.append("java -cp " + packagePath + "/" + language + "/ " + split[0]);
 		
