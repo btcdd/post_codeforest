@@ -595,9 +595,9 @@ $(function() {
 				
 				console.log("ok");
 				
-				console.log(response.data[0]);
+				console.log(response.data.result[0]);
 				
-				$(".terminal #text").last().append(response.data[0]);
+				$(".terminal #text").last().append(response.data.result[0]);
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
