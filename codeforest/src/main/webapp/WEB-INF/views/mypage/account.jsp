@@ -15,7 +15,34 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script>
-    
+var slide = function Slide(str) {
+	$("#" + str).slideDown(500);
+	$("#" + str).delay(2000).slideUp(500);
+}
+
+var checkPasswordPattern = function CheckPasswordPattern(str) {
+	var pw = str;
+	var num = pw.search(/[0-9]/g);
+	var eng = pw.search(/[a-z]/ig);
+	var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		 
+	if(pw.length < 8 || pw.length > 20){
+		return false;
+	}
+	 
+	if(pw.search(/₩s/) != -1){
+		return false;
+	}
+	 
+	if(num < 0 || eng < 0 || spe < 0 ){
+		return false;
+	}
+	return true;
+}
+
+var password_pandan = false;
+var passwordSecond_pandan = false;
+
 var no = '${authUser.no}';
 var email = '${authUser.email}';
 var currentURL = '${pageContext.request.contextPath }/mypage/account'
@@ -82,7 +109,7 @@ var deleteUser = function(password) {
         success: function(response){
            if(response.data == 0) {
         	   pandan =  false;            	   
-           } else {
+           } else {w
         	   pandan = true;
         	   $("#delete-user").dialog("close");
         	   window.location = "${pageContext.request.contextPath }";
@@ -121,6 +148,62 @@ var privacyChange = function() {
 }
 
 $(function() {
+	
+	$('#password').on("propertychange change keyup paste input", function(){
+		var password = $('#password').val();
+		
+		if($('#password').val().length == 0) {
+			$('.error-password-pattern').hide();
+			$('#password').css('background-image', 'none');
+			$('#password-warning').hide();
+			password_pandan = false;			
+		} else {
+			if(checkPasswordPattern(password) == false) {
+				$('.error-password-pattern').show();
+				$('#password').css('background-image', 'url("${pageContext.request.contextPath }/assets/images/user/cross.png")');
+				$('#password').css('background-position', '190px');
+				$('#password').css('background-repeat', 'no-repeat');
+				$("#passwordSecond").attr("disabled",true);
+				$("#passwordSecond").val('');
+				$("#passwordSecond").css('background-color', '#DEDEDE');
+				$('#passwordSecond').css('background-image', '');
+				password_pandan = false;
+			}
+			
+			if(checkPasswordPattern(password) == true) {
+				$('.error-password-pattern').hide();
+				$('#password').css('background-image', 'url("${pageContext.request.contextPath }/assets/images/user/check.png")');
+				$('#password').css('background-position', '190px');
+				$('#password').css('background-repeat', 'no-repeat');
+				$("#passwordSecond").removeAttr("disabled");
+				$("#passwordSecond").css('background-color', '#fff');
+				password_pandan = true;
+			}
+		}
+	});
+	
+	$('#passwordSecond').on("propertychange change keyup paste input", function(){
+		if($('#passwordSecond').val().length == 0) {
+			$('#passwordSecond').css('background-image', '');
+			$("#passwordSecond").focus();
+			passwordSecond_pandan = false;
+		} else {
+			if( $('#password').val() != $('#passwordSecond').val() ){
+				$('#passwordSecond').css('background-image', 'url("${pageContext.request.contextPath }/assets/images/user/cross.png")');
+				$('#passwordSecond').css('background-position', '190px');
+				$('#passwordSecond').css('background-repeat', 'no-repeat');
+				$("#passwordSecond").focus();
+				
+				passwordSecond_pandan = false;
+			} else {
+				$('#passwordSecond').css('background-image', 'url("${pageContext.request.contextPath }/assets/images/user/check.png")');
+				$('#passwordSecond').css('background-position', '190px');
+				$('#passwordSecond').css('background-repeat', 'no-repeat');
+				passwordSecond_pandan = true;
+			}
+		}
+		
+	});
 	
     $("#change-nickname").dialog({
         autoOpen: false,
@@ -195,8 +278,14 @@ $(function() {
         modal: true,
         buttons: {
             "변경": function() {
-            	changePassword($('#password').val());
-                $(this).dialog("close");
+            	if(password_pandan == false || passwordSecond_pandan == false){
+            		console.log("password-pandan : " + password_pandan + " / passwordSecond_pandan : " + passwordSecond_pandan);
+					slide('wrong-password');
+// 					$(this).dialog.dismiss();
+            	} else {
+	            	changePassword($('#password').val());
+	                $(this).dialog("close");
+            	}
             },
             "취소": function() {
                 $(this).dialog("close");
@@ -244,6 +333,9 @@ $(function() {
 </head>
 
 <body>
+	<div class="wrong" id="wrong-password" style="display: none">
+		<p class="wrong-ptag">비밀번호가 일치하지 않습니다</p>
+	</div>
     <c:import url="/WEB-INF/views/include/mypage-header.jsp" />
     <div class="container">
         <div class="nickname">
@@ -296,10 +388,12 @@ $(function() {
 	        <form>
 	            <fieldset class="password-fieldset">
 	                <label for="name">변경 비밀번호</label>
-	                <input type="text" name="password" id="password" value="" class="text ui-widget-content ui-corner-all password-input"autocomplete="name">
+	                <input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all password-input" autocomplete="off">
+	                <div class="error-password-pattern" style="display:none">
+                   		8~20자 영문 대 소문자, 숫자, 특수문자를 사용하세요.
+                   	</div>
 	                <label for="name">비밀번호 확인</label>
-	                <input type="text" name="passwordSecond" id="passwordSecond" value="" class="text ui-widget-content ui-corner-all password-input2" autocomplete="off">
-	
+	                <input type="password" name="passwordSecond" id="passwordSecond" value="" class="text ui-widget-content ui-corner-all password-input2" autocomplete="off">
 	                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
 	            </fieldset>
 	        </form>
@@ -311,8 +405,8 @@ $(function() {
 아래 비밀번호를 입력하세요.</pre>
 	        <form>
 	            <fieldset class="delete-fieldset">
-	                <label for="name">비밀번호 입력 : </label>
-	                <input type="text" name="delete" id="delete" value="" class="text ui-widget-content ui-corner-all delete-input" autocomplete="off">
+	                <label for="name">비밀번호 입력</label>
+	                <input type="password" name="delete" id="delete" value="" class="text ui-widget-content ui-corner-all delete-input" autocomplete="off">
 	
 	                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
 	            </fieldset>
