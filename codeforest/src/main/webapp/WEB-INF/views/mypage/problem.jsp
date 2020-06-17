@@ -7,20 +7,22 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Code Forest</title>
-    <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/mypage-header.css">
-    <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
-    <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/mypage/problem.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/table2excel.js"></script>
-  	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Code Forest</title>
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/mypage-header.css">
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/mypage/problem.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/table2excel.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script>
 var page = '1';
+var endPageTrueNum;
 
-var originList = function(page) {
+var originList = function(page2) {
+	
    $.ajax({
       url: '${pageContext.request.contextPath }/api/mypage/problem',
       async: false,
@@ -28,7 +30,7 @@ var originList = function(page) {
       dataType: 'json',
       traditional: true,
       data: {
-         'page': page,
+         'page': page2,
       },
       success: function(response){
          if(response.result != "success"){
@@ -37,6 +39,13 @@ var originList = function(page) {
          }
          map = response.data;
          
+         if(page == '1') {
+			endPageTrueNum = map.endPageNum;
+		 }
+         
+         console.log('startPageNum:' + map.startPageNum);
+         console.log('endPageNum:' + endPageTrueNum);
+        
          fetchList();
       },
       error: function(xhr, status, e){
@@ -68,7 +77,7 @@ function getTimeStamp() {
 	    leadingZeros(d.getSeconds(), 2);
 
 	  return s;
-	}
+}
 
 var fetchList = function() {
     $("#problem-tbody").remove();
@@ -109,7 +118,7 @@ var fetchList = function() {
    if(page != '1'){
       str2 += '<span class="prev"><i class="fas fa-angle-left"></i></span>';
    }   
-   for(var i = map.startPageNum; i < map.endPageNum + 1; i++){
+   for(var i = map.startPageNum; i < map.endPageNum - 1; i++){
       str2 += '<span class="page" id="' + i + '">';
       if(map.select != i ) {
          str2 += i;
@@ -128,16 +137,11 @@ var fetchList = function() {
 }
 
 var nextRemove = function() {
-   var endPage = map.endPageNum;
-   var nextPandan = true;
-   
-   if(page == endPage) {
-      $('.next').remove();
-      nextPandan = false;
-   } else if(nextPandan == false){
-      $('.pager').append('<span class="next">▶</span>');
-      nextPandan = true;
-   }
+	var endPage = endPageTrueNum;
+	
+	if(page == endPage) {
+		$('.next').remove();
+	}
 }
 	
 
@@ -370,7 +374,6 @@ $(function() {
 		
 		var spNo = $(this).data('no');
 		var tableClass = $("#sub-problem-table").attr('class');
-		console.log("spno=" + spNo);
 		$('#hidden-sp-no').val(spNo);
 		$('#hidden-table-class').val(tableClass);
 		dialogSpDelete.dialog('open');
