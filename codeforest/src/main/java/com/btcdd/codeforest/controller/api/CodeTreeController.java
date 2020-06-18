@@ -225,7 +225,7 @@ public class CodeTreeController {
  		
 		Map<String, Object> map = new HashMap<>();
 		
-		if(compileResult2 != null || compileResult2.equals("") == false) {
+		if(compileResult2 != null || compileResult2.equals("") == false || compileResult2.isEmpty()) {
 			compileError = true;
 		} else {
 			if(compileResult1.equals(examOutput)) {
