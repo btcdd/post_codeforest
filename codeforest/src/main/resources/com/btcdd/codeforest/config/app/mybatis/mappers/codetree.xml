@@ -240,7 +240,7 @@
 				solve_time as solveTime,
 				lang as lang
 			  from submit
-			 where subproblem_no = #{subProblemNo} and user_no = #{authUserNo} and lang = #{language }
+			 where subproblem_no = #{subProblemNo} and user_no = #{authUserNo}
 		]]>
 	</select>	
 	
