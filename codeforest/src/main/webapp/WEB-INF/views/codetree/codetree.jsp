@@ -599,17 +599,6 @@ $(function() {
 				
 				console.log(response.data.result);
 				compileResult = response.data.result;
-/* 				console.log("run compileResult>>>>",compileResult);
-				console.log("1>>",compileResult[0].charAt(9));
-				console.log("2>>",compileResult[0].charAt(10));
-				console.log("3>>",compileResult[0].charAt(11));
-				console.log("4>>",typeof compileResult[0].charAt(10));
-				console.log("5>>",typeof compileResult[0].charAt(9));
-				console.log("6>>",typeof compileResult[0].charAt(11));
-				var bbbbb =compileResult[0].replace(/(\s*)/g,"");
-				console.log("bbbbb>>>>>",bbbbb);
-				var cccccc = new String(bbbbb);
-				console.log("cccccc>>>>>",cccccc); */
 				
 				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
@@ -668,7 +657,6 @@ $(function() {
    	$(document).on("click","#Submit",function(){
    		var problemNo = "${saveVo.problemNo }";
    		var subProblemNo = tempFile.data("subproblem-no");
-   		console.log("subProblemNo>>>",subProblemNo);
    		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
    			var json = new Object();
@@ -676,15 +664,12 @@ $(function() {
    			json.examOutput = "${info.examOutput}";
    			result.push(json);
    		</c:forEach>
-   		console.log("result>>>>",result);
    		var selected = null;
    		for(var i=0;i<result.length;i++){
    			if(result[i].no == subProblemNo){
    				selected = result[i];
    			}
    		}
-   		console.log("selected>>>>",selected);
-
    				
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
@@ -697,24 +682,18 @@ $(function() {
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subproblem-no"),
 				'codeValue' : editor.getValue(),
-				'problemNo' : problemNo				
+				'problemNo' : problemNo,
+				'examOutput': selected.examOutput
 			},
 			success: function(response) {
 				console.log("ok");
-				console.log("response  selected>>>>",selected);
-				console.log("response  compileResult>>>>",compileResult);
-				console.log("selected.examOutput>>>",typeof selected.examOutput);
-				console.log("response  compileResult[0]>>>>",typeof compileResult[0]);
-				console.log("selected.examOutput>>>",selected.examOutput);
-				console.log("response  compileResult[0]>>>>",compileResult[0]);
-				var examOutput1 = selected.examOutput;
-				
-				var newCompileResult =compileResult[0].replace(/(\s*)/g,"");
 	
-				if(newCompileResult == examOutput1){
+/* 				var newCompileResult =compileResult[0].replace(/(\s*)/g,"");
+	
+				if(newCompileResult == selected.examOutput){
 					alert("정답입니다");
 					return;
-				}
+				} */
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
