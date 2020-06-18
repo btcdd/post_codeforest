@@ -573,11 +573,11 @@ $(function() {
 		});
  	});
  	
- 	
+ 	var compileResult = null;
  	$(document).on("click","#Run",function(){
  		$(this).addClass( "onclic", 250, validate);
  		console.log("editor.getValue()>>>>>>",editor.getValue());
- 		var problemNo = ${saveVo.problemNo }
+ 		var problemNo = "${saveVo.problemNo }";
  		$("#Run").blur();
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/run',
@@ -588,7 +588,7 @@ $(function() {
 				'language' : tempFile.data("language"),
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
-				'subProblemNo':tempFile.data("subProblemNo"),
+				'subProblemNo':tempFile.data("subproblem-no"),
 				'codeValue' : editor.getValue(),
 				'problemNo' : problemNo
 			},
@@ -597,6 +597,7 @@ $(function() {
 				console.log("ok");
 				
 				console.log(response.data.result);
+				compileResult = response.data.result;
 				
 				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
@@ -625,10 +626,12 @@ $(function() {
   	        $( "#Run" ).removeClass( "validate" );
   	      }, 1250 );
   	    }
- 	
+ 	 
  	
   	$(document).on("click","#Save",function(){
   		console.log("editor.getValue()>>>>>>",editor.getValue());
+  		var problemNo = "${saveVo.problemNo }";
+  		
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/save',
 			async: true,
@@ -638,9 +641,9 @@ $(function() {
 				'language' : tempFile.data("language"),
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
-				'subProblemNo':tempFile.data("subProblemNo"),
+				'subProblemNo':tempFile.data("subproblem-no"),
 				'codeValue' : editor.getValue(),
-				'problemNo' : ${saveVo.problemNo }
+				'problemNo' : problemNo
 			},
 			success: function(response) {
 				console.log("ok");
@@ -650,23 +653,52 @@ $(function() {
 			}							
 		}); 		
  	}); 
-/*   	$(document).on("click","#Submit",function(){
+   	$(document).on("click","#Submit",function(){
+   		var problemNo = "${saveVo.problemNo }";
+   		var subProblemNo = tempFile.data("subproblem-no");
+   		var result = new Array();
+   		<c:forEach items="${subProblemList}" var="info">
+   			var json = new Object();
+   			json.no = "${info.no}";
+   			json.examOutput = "${info.examOutput}";
+   			result.push(json);
+   		</c:forEach>
+   		var selected = null;
+   		for(var i=0;i<result.length;i++){
+   			if(result[i].no == subProblemNo){
+   				selected = result[i];
+   			}
+   		}
+   				
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
 			type: 'post',
 			dataType:'json',
 			data: {
-				
+				'language' : tempFile.data("language"),
+				'fileName' : tempFile.data("file-name"),
+				'packagePath' : tempFile.data("package-path"),
+				'subProblemNo':tempFile.data("subproblem-no"),
+				'codeValue' : editor.getValue(),
+				'problemNo' : problemNo,
+				'examOutput': selected.examOutput
 			},
 			success: function(response) {
 				console.log("ok");
+	
+/* 				var newCompileResult =compileResult[0].replace(/(\s*)/g,"");
+	
+				if(newCompileResult == selected.examOutput){
+					alert("정답입니다");
+					return;
+				} */
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
 			}							
-		}); 		
- 	});  */  	
+		});		
+ 	});    	
   	
 
 
