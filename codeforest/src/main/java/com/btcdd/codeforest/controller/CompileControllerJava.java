@@ -53,7 +53,7 @@ public class CompileControllerJava {
 		
 		try {
 			// Linux의 경우는 /bin/bash
-			 Process process = Runtime.getRuntime().exec("/bin/bash");
+			 Process process = Runtime.getRuntime().exec("content");
 //			Process process = Runtime.getRuntime().exec("cmd");
 			
 			// Process의 각 stream을 받는다.
@@ -76,14 +76,11 @@ public class CompileControllerJava {
 				try (BufferedReader reader = new BufferedReader(new InputStreamReader(stdout, "euc-kr"))) {
 					
 					String line;
-					String lines = "";
 					while ((line = reader.readLine()) != null) {
-						lines += line;
 						readBuffer.append(line);
 						readBuffer.append("\n");
 					}
 					map.put("readbuffer", readBuffer.toString());
-					map.put("stdout", lines);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -97,7 +94,6 @@ public class CompileControllerJava {
 				try (BufferedReader reader = new BufferedReader(new InputStreamReader(stderr, "euc-kr"))) {
 					String line;
 					while ((line = reader.readLine()) != null) {
-						map.put("stderr", "err " + line);
 						readBuffer.append(line);
 						readBuffer.append("\n");
 					}
