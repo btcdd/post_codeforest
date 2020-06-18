@@ -560,7 +560,7 @@ $(function() {
  		var fileName = $(this).data("file-name");
  		var packagePath = $(this).data("package-path");
  		fileNo = $(this).data("no");
- 		
+ 		console.log($("#cm"+fileNo).length);
  		if($("#cm"+fileNo).length < 1) { // 켜진 창이 중복되서 안켜지도록 함
 	 		var root = myLayout.root.contentItems[0] || myLayout.root;
 	
