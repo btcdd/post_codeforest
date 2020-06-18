@@ -222,16 +222,17 @@ public class CodeTreeController {
 		}
 		*/
 		
-		compileResult2 = "afsdf";
  		
 		Map<String, Object> map = new HashMap<>();
 //		
 		if(compileResult2 == null || compileResult2.equals("")) {
 			if(compileResult1.equals(examOutput)) {
+				compileResult2 = "바보다바보";
 				compileResult = true;
 			}
 		} else {
 			compileError = true;
+			compileResult2 = "엘스다엘스";
 		}
 		
 		
