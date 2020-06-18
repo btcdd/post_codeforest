@@ -181,6 +181,10 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 	width: 100%;
 }
 
+.lm_content {
+	height: 500px;
+}
+
 /* ---------------------- file-list ------------------------- */
 .ui__sidebar {
   display: block;
@@ -416,3 +420,4 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
     width: 100%;
     height: 100%;
 }
+
