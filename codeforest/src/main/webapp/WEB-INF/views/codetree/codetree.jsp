@@ -661,8 +661,8 @@ $(function() {
   	
    	$(document).on("click","#Submit",function(){
    		var problemNo = "${saveVo.problemNo }";
-   		var subProblemNo = tempFile.data("subproblem-no");
-   		var result = new Array();
+/* 		var subProblemNo = tempFile.data("subproblem-no");
+  		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
    			var json = new Object();
    			json.no = "${info.no}";
@@ -674,7 +674,7 @@ $(function() {
    			if(result[i].no == subProblemNo){
    				selected = result[i];
    			}
-   		}
+   		} */
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,

@@ -187,6 +187,8 @@ public class CodeTreeController {
 	@Auth
 	@PostMapping("/save")
 	public JsonResult Save(String language, String fileName, String packagePath,Long subProblemNo,String codeValue, Long problemNo) {
+		//db에 저장 필요
+		
 		// 관우 유진 코드
 		//////////
 		codeTreeLinux.createFileAsSource(codeValue, packagePath + "/" + language + "/" + fileName);
@@ -199,10 +201,8 @@ public class CodeTreeController {
 	public JsonResult Submit(String language, String fileName, String packagePath,
 			Long subProblemNo,String codeValue, Long problemNo,
 			String compileResult1, String compileResult2,HttpSession session) {
-	///////////////////////////////////제출한 결과값 디비에 저장하기
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
-	//////////////////////////////////////////////////////////////////////////////////	
+		UserVo authUser = (UserVo)session.getAttribute("authUser");	
 		
 		String examOutput = codetreeService.getExamOutput(subProblemNo);
 		
