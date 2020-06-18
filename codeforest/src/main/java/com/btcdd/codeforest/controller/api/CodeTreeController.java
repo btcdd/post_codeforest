@@ -207,18 +207,20 @@ public class CodeTreeController {
 		boolean compileResult = false;
 		boolean compileError = false;
 		
-		if(examOutput.equals(compileResult1)) {
-			compileResult = true;
-			compileError = false;
-		} else if(!examOutput.equals(compileResult1)){
-			compileResult = false;
-			compileError = false;
-		}
-		
 		if(compileResult2 != null) {
 			compileResult = false;
 			compileError = true;
+		} else {
+			if(examOutput.equals(compileResult1)) {
+				compileResult = true;
+				compileError = false;
+			} else if(!examOutput.equals(compileResult1)){
+				compileResult = false;
+				compileError = false;
+			}
 		}
+
+		
  		
 		Map<String, Object> map = new HashMap<>();
 		map.put("compileResult", compileResult);
