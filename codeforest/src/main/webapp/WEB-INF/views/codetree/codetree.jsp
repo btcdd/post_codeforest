@@ -675,8 +675,6 @@ $(function() {
    				selected = result[i];
    			}
    		}
-   		console.log("------------------------------compileResult : " + compileResult);	
-   		console.log("------------------------------compileResult : " + typeof compileResult);	
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
@@ -694,8 +692,19 @@ $(function() {
 				'compileResult2':compileResult2
 			},
 			success: function(response) {
+				var compileResult = response.data;
+				
 				console.log("ok");
-	
+				console.log("compileResult : " + compileResult);
+			 		
+				if(compileResult == true){
+					alert("정답입니다");
+					return;
+				} else {
+					alert("오답입니다");
+					return;
+				}
+ 		)
 /* 				var newCompileResult =compileResult[0].replace(/(\s*)/g,"");
 	
 				if(newCompileResult == selected.examOutput){
