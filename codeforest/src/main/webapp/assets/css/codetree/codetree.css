@@ -5,6 +5,11 @@ body {
   width: 100vw;
   
 }
+
+.test {
+	flex: 0.30788 1.12466 0px;
+}
+
 .container { 
     width: 100vw;
     height: 96vh;
@@ -38,7 +43,7 @@ body {
 /*   white-space: nowrap; */
 }
 #box_1 {
-
+	flex: 0.30788 1.12466 0px;
 }
 #box_2 {
 	
