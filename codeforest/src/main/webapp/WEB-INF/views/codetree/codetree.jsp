@@ -698,16 +698,13 @@ $(function() {
 				console.log("response  compileResult[0]>>>>",compileResult[0]);
 				var examOutput1 = selected.examOutput;
 				var compileResult1 = compileResult[0];
-				var examOutput2 = new String(examOutput1);
-				var compileResult2 = new String(compileResult1);
-				console.log("examOutput2",examOutput2);
-				console.log("compileResult2",compileResult2);
-				if(examOutput2.equals(compileResult2)){
-					alert("정답입니다");
-					return;
-				}else{
-					alert("오답입니다");
+				
+				var res_split = [];
+				for (i in compileResult1) {
+				  res_split.push(compileResult1[i].split(/(\r\n|\n|\r)/gm));
 				}
+				console.log("res_split>>>",res_split);
+				
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
