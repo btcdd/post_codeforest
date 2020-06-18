@@ -599,6 +599,7 @@ $(function() {
 				
 				console.log(response.data.result);
 				compileResult = response.data.result;
+				console.log("compileResult>>>>",compileResult);
 				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
 				}
