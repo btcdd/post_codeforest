@@ -654,7 +654,8 @@ $(function() {
 		}); 		
  	}); 
    	$(document).on("click","#Submit",function(){
-   		var subProblemNo = tempFile.data("subproblem-no")
+   		var problemNo = "${saveVo.problemNo }";
+   		var subProblemNo = tempFile.data("subproblem-no");
    		console.log("subProblemNo>>>",subProblemNo);
    		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
