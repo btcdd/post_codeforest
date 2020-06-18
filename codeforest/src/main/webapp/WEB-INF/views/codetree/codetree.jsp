@@ -667,6 +667,7 @@ $(function() {
    			var json = new Object();
    			json.no = "${info.no}";
    			json.examOutput = "${info.examOutput}";
+   			
    			result.push(json);
    		</c:forEach>
    		var selected = null;
@@ -675,8 +676,6 @@ $(function() {
    				selected = result[i];
    			}
    		}
-   		console.log("------------------------------compileResult : " + compileResult);	
-   		console.log("------------------------------compileResult : " + typeof compileResult);	
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
@@ -694,14 +693,24 @@ $(function() {
 				'compileResult2':compileResult2
 			},
 			success: function(response) {
-				console.log("ok");
-	
-/* 				var newCompileResult =compileResult[0].replace(/(\s*)/g,"");
-	
-				if(newCompileResult == selected.examOutput){
-					alert("정답입니다");
+				var compileResult = response.data.compileResult;
+				var compileError = response.data.compileError;
+				
+				console.log("compileResult : " + compileResult);
+				console.log("compileError : " + compileError);
+				
+				if(compileError == true) {
+					alert("컴파일 오류입니다");
 					return;
-				} */
+				} else {
+					if(compileResult == true){
+						alert("정답입니다");
+						return;
+					} else if(compileResult == false) {
+						alert("오답입니다");
+						return;
+					} 
+				}
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
