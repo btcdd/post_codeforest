@@ -217,5 +217,11 @@
 		]]>	
 	</update>
 	
+	<select id="getExamOutput" parameterType="long" resultType="string">
+		<![CDATA[
+			select exam_output as examOutput from sub_problem where no = #{no }
+		]]>
+	</select>
+	
 	
 </mapper>

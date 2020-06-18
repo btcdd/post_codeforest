@@ -197,8 +197,10 @@ public class CodeTreeController {
 	@Auth
 	@PostMapping("/submit")
 	public JsonResult Submit(String language, String fileName, String packagePath,
-			Long subProblemNo,String codeValue, Long problemNo,String examOutput, 
+			Long subProblemNo,String codeValue, Long problemNo,
 			String compileResult1, String compileResult2) {
+		
+		String examOutput = codetreeService.getExamOutput(subProblemNo);
 		
 		boolean compileResult = false;
 		boolean compileError = false;

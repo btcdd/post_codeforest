@@ -126,6 +126,10 @@ public class CodeTreeRepository {
 		return sqlSession.update("codetree.updateFile",map);
 	}
 
+	public String getExamOutput(Long subProblemNo) {
+		return sqlSession.selectOne("codetree.getExamOutput", subProblemNo);
+	}
+
 //	public int getTotalCount(String keyword) {
 //		return sqlSession.selectOne("codetree.totalCount",keyword);
 //	}

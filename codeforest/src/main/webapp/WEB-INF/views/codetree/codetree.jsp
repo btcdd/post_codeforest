@@ -665,7 +665,7 @@ $(function() {
    		<c:forEach items="${subProblemList}" var="info">
    			var json = new Object();
    			json.no = "${info.no}";
-   			json.examOutput = "${info.examOutput}";
+//    			json.examOutput = "${info.examOutput}";
    			
    			result.push(json);
    		</c:forEach>
@@ -687,7 +687,7 @@ $(function() {
 				'subProblemNo':tempFile.data("subproblem-no"),
 				'codeValue' : currentEditor.getValue(),
 				'problemNo' : problemNo,
-				'examOutput': selected.examOutput,
+// 				'examOutput': selected.examOutput,
 				'compileResult1':compileResult1,
 				'compileResult2':compileResult2
 			},

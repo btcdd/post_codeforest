@@ -181,6 +181,10 @@ public class CodeTreeService {
 		
 	}
 
+	public String getExamOutput(Long subProblemNo) {
+		return codetreeRepository.getExamOutput(subProblemNo);
+	}
+
 
 	
 //	public Map<String, Object> getContentsList(int currentPage, String keyword) {
