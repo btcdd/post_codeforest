@@ -600,6 +600,8 @@ $(function() {
 				console.log(response.data.result);
 				compileResult = response.data.result;
 				console.log("run compileResult>>>>",compileResult);
+				var aaaaaaaaaaa = compileResult.split("\n");
+				console.log("run aaaaaaaaaaa>>>>>",aaaaaaaaaaa);
 				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
 				}
@@ -701,6 +703,7 @@ $(function() {
 				
 				var newcompileResult = compileResult1.split("\n");
 				console.log("newcompileResult>>>",newcompileResult);
+				console.log("examOutput1>>>",examOutput1);
 				if(newcompileResult == examOutput1){
 					alert("정답입니다");
 					return;
