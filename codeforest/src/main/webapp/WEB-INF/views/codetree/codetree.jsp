@@ -654,6 +654,8 @@ $(function() {
 		}); 		
  	}); 
    	$(document).on("click","#Submit",function(){
+   		var subProblemNo = tempFile.data("subproblem-no")
+   		console.log("subProblemNo>>>",subProblemNo);
    		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
    			var json = new Object();
@@ -662,12 +664,14 @@ $(function() {
    			result.push(json);
    		</c:forEach>
    		console.log("result>>>>",result);
-   		console.log("JSON.stringify(result)>>",JSON.stringify(result));
-   		
-   		var subProblemList = "${subProblemList}";
-   		console.log('tempFile.data("subproblem-no")>>',tempFile.data("subproblem-no"));
-   		console.log("subProblemList>>",subProblemList);
-   		console.log("subProblemList.length>>",subProblemList.length);
+   		var selected = null;
+   		for(var i=0;i<result.length;i++){
+   			if(result[i].no == subProblemNo){
+   				selected = result[i];
+   			}
+   		}
+   		console.log("selected>>>>",selected);
+
    		
    		
    		
