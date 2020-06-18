@@ -692,7 +692,8 @@ $(function() {
 				'compileResult2':compileResult2
 			},
 			success: function(response) {
-				var compileResult = response.data;
+				var compileResult = response.data.compileResult;
+				var compileError = response.data.compileError;
 				
 				console.log("ok");
 				console.log("compileResult : " + compileResult);
