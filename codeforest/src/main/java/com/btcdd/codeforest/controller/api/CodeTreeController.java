@@ -197,30 +197,24 @@ public class CodeTreeController {
 	@Auth
 	@PostMapping("/submit")
 	public JsonResult Submit(String language, String fileName, String packagePath,
-			Long subProblemNo,String codeValue, Long problemNo,String examOutput, 
+			Long subProblemNo,String codeValue, Long problemNo,
 			String compileResult1, String compileResult2) {
 		
-		String str = "examOutput : " + examOutput + "\ncompileResult1 : " + compileResult1 + "\ncompileRestul2 : " + compileResult2; 
-		
-		codeTreeLinux.createFileAsSource(str, "testtesty00jin.txt");
+		String examOutput = codetreeService.getExamOutput(subProblemNo);
 		
 		boolean compileResult = false;
 		boolean compileError = false;
-		
-		if(examOutput.equals(compileResult1)) {
-			compileResult = true;
-			compileError = false;
-		} else if(!examOutput.equals(compileResult1)){
-			compileResult = false;
-			compileError = false;
-		}
-		
-		if(compileResult2 != null) {
-			compileResult = false;
-			compileError = true;
-		}
  		
 		Map<String, Object> map = new HashMap<>();
+
+		if(compileResult2 == null || compileResult2.equals("")) {
+			if(compileResult1.equals(examOutput)) {
+				compileResult = true;
+			}
+		} else {
+			compileError = true;
+		}
+		
 		map.put("compileResult", compileResult);
 		map.put("compileError", compileError);
 		

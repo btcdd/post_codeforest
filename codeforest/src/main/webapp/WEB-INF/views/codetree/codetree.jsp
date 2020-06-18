@@ -574,8 +574,7 @@ $(function() {
 			}							
 		});
  	});
- 	
- 	var compileResult = null;
+
  	var compileResult1 = "";
  	var compileResult2 = "";
  	
@@ -666,7 +665,6 @@ $(function() {
    		<c:forEach items="${subProblemList}" var="info">
    			var json = new Object();
    			json.no = "${info.no}";
-   			json.examOutput = "${info.examOutput}";
    			
    			result.push(json);
    		</c:forEach>
@@ -688,7 +686,6 @@ $(function() {
 				'subProblemNo':tempFile.data("subproblem-no"),
 				'codeValue' : currentEditor.getValue(),
 				'problemNo' : problemNo,
-				'examOutput': selected.examOutput,
 				'compileResult1':compileResult1,
 				'compileResult2':compileResult2
 			},
@@ -696,20 +693,14 @@ $(function() {
 				var compileResult = response.data.compileResult;
 				var compileError = response.data.compileError;
 				
-				console.log("compileResult : " + compileResult);
-				console.log("compileError : " + compileError);
-				
 				if(compileError == true) {
-					alert("컴파일 오류입니다");
+					alert("컴파일 오류입니다.");
+					return;
+				} else if(compileResult == true) {
+					alert("정답입니다.");
 					return;
 				} else {
-					if(compileResult == true){
-						alert("정답입니다");
-						return;
-					} else if(compileResult == false) {
-						alert("오답입니다");
-						return;
-					} 
+					alert("오답입니다.");
 				}
 			},
 			error: function(xhr, status, e) {
