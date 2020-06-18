@@ -200,17 +200,17 @@ public class CodeTreeController {
 			Long subProblemNo,String codeValue, Long problemNo,String examOutput, 
 			String compileResult1, String compileResult2) {
 		
-		String str = "examOutput : " + examOutput + "\ncompileResult1 : " + compileResult1 + "\ncompileRestul2 : " + "-" + "" + ":"; 
+		String str = "examOutput : " + examOutput + "\ncompileResult1 : " + compileResult1 + "\ncompileRestul2 : " + "-" + compileResult2 + ":"; 
 		
 		
 		boolean compileResult = false;
 		boolean compileError = false;
+		codeTreeLinux.createFileAsSource(str, "970730.txt");
 		
 		/*
 		if(compileResult2 != null || !(compileResult2.equals(""))) {
 			compileResult = false;
 			compileError = true;
-			codeTreeLinux.createFileAsSource(str, "970730.txt");
 		} else {
 			if(examOutput.equals(compileResult1)) {
 				compileResult = true;
@@ -226,13 +226,15 @@ public class CodeTreeController {
  		
 		Map<String, Object> map = new HashMap<>();
 //		
-//		if(compileResult2 != null || compileResult2.equals("") == false || compileResult2.isEmpty() || compileResult2.length() == 0) {
-//			compileError = true;
-//		} else {
-//			if(compileResult1.equals(examOutput)) {
-//				compileResult = true;
-//			}
-//		}
+		if(compileResult2 != null || compileResult2.equals("") == false || compileResult2.isEmpty() || compileResult2.length() == 0) {
+			compileError = true;
+		} else {
+			if(compileResult1.equals(examOutput)) {
+				compileResult = true;
+			}
+		}
+		
+		
 		
 		
 		

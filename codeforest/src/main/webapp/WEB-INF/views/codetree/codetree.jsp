@@ -574,8 +574,7 @@ $(function() {
 			}							
 		});
  	});
- 	
- 	var compileResult = null;
+
  	var compileResult1 = "";
  	var compileResult2 = "";
  	
