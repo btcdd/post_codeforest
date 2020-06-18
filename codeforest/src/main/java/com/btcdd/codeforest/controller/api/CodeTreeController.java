@@ -222,6 +222,7 @@ public class CodeTreeController {
 		}
 		*/
 		
+		compileResult2 = "afsdf";
  		
 		Map<String, Object> map = new HashMap<>();
 		
