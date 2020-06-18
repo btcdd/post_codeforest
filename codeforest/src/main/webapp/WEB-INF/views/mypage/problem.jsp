@@ -217,7 +217,7 @@ $(function() {
 	var dialogList = $(".problem-list").dialog({
 		autoOpen: false,
 		resizable: false,
-		height: "auto",
+		height: 600,
 		width: 1200,
 		modal: true,
 		buttons: {
