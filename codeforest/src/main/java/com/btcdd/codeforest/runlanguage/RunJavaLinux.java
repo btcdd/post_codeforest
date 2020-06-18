@@ -121,7 +121,7 @@ public class RunJavaLinux {
 				readBuffer.append(line);
 				readBuffer.append("\n");
 			}
-			return readBuffer.toString();
+			return readBuffer.substring(0, readBuffer.length() - 1).toString();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
