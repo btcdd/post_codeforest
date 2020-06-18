@@ -549,8 +549,34 @@ $(function() {
 			
  	});
  	
+ 	
+	$(document).on("click", "#addTab", function() {
+		
+	});
+ 	
+ 	
+ 	
  	var tempFile = null;
  	$(document).on("dblclick", ".file", function() {
+ 		var root = myLayout.root.contentItems[0] || myLayout.root;
+
+		root.addChild({
+			type : "component",
+			componentName : "newTab",
+			title : "New Tab"
+		});
+		var code = $('#cm'+codeMirrorIndex+' > .CodeMirror')[0];		
+		
+		var editor = CodeMirror.fromTextArea(code, {
+			lineNumbers : true,
+			mode : 'text/x-java',
+			theme : 'panda-syntax',
+			matchBrackets : true
+		});	
+		currentEditor = editor;
+		
+		codeMirrorIndex++;
+
  		tempFile = $(this);
  		var language = $(this).data("language");
  		var fileName = $(this).data("file-name");
@@ -715,46 +741,35 @@ $(function() {
  	
  	//////////////////////////// golden layout /////////////////////////////	
 	var config = {
-		content : [ {
-			type : "component",
-			componentName : "testComponent",
-			title : "Test Component"
-		} ]
+    content: [
+	      {
+	        type: 'stack',
+	      	isClosable: false,
+	        content: [
+	        ]
+	    }]
 	};
 	
-	var myLayout = new GoldenLayout(config, document.getElementById('gl-cover'));
+	var myLayout = new GoldenLayout(config, $('#gl-cover'));
 
-	myLayout.registerComponent("testComponent",	function(container) {
-		container.getElement().html('<textarea name="code" class="CodeMirror code" id="testComponent"></textarea>');
+// 	myLayout.registerComponent("testComponent",	function(container) {
+// 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="testComponent"></textarea>');
 		
 
-		container.on("open", function() {
+// 		container.on("open", function() {
 
-			var code = $('.CodeMirror')[0];
+// 			var code = $('.CodeMirror')[0];
 
-			var editor = CodeMirror.fromTextArea(code, {
-				lineNumbers : true,
-				mode : 'text/x-java',
-				theme : 'panda-syntax',
-				matchBrackets : true
-			});
-			currentEditor = editor;
-			var glCm = document.getElementsByClassName("lm_root")[0];
-			glCm.style = "";
-			
-			var glCm2 = document.getElementsByClassName("lm_stack")[0];
-			glCm2.style = "";
-			
-			var glCm3 = document.getElementsByClassName("lm_items")[0];
-			glCm3.style = "";
-			
-			var glCm4 = document.getElementsByClassName("lm_item_container")[0];
-			glCm4.style = "";
-			
-			var glCm5 = document.getElementsByClassName("lm_content")[0];
-			glCm5.style = "";
-		});
-	});
+// 			var editor = CodeMirror.fromTextArea(code, {
+// 				lineNumbers : true,
+// 				mode : 'text/x-java',
+// 				theme : 'panda-syntax',
+// 				matchBrackets : true
+// 			});
+// 			currentEditor = editor;
+
+// 		});
+// 	});
 
 	myLayout.registerComponent("newTab", function(container) {
 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="newTab"></textarea>');
@@ -763,34 +778,29 @@ $(function() {
 		
 	});
 	
-	$(document).on("click", "#addTab", function() {
-		var root = myLayout.root.contentItems[0] || myLayout.root;
 
-		root.addChild({
-			type : "component",
-			componentName : "newTab",
-			title : "New Tab"
-		});
-		var code = $('#cm'+codeMirrorIndex+' > .CodeMirror')[0];		
-		
-		var editor = CodeMirror.fromTextArea(code, {
-			lineNumbers : true,
-			mode : 'text/x-java',
-			theme : 'panda-syntax',
-			matchBrackets : true
-		});	
-		currentEditor = editor;
-		
-		codeMirrorIndex++;
-
-	});
 	
 	myLayout.init();
+	var glCm = document.getElementsByClassName("lm_root")[0];
+	glCm.style = "";
+	
+	var glCm2 = document.getElementsByClassName("lm_stack")[0];
+	glCm2.style = "";
+	
+	var glCm3 = document.getElementsByClassName("lm_items")[0];
+	glCm3.style = "";
+	
+	var glCm4 = document.getElementsByClassName("lm_item_container")[0];
+	glCm4.style = "";
+	
+	var glCm5 = document.getElementsByClassName("lm_content")[0];
+	glCm5.style = "";
  	
  	
  	
  	
- 	
+	
+	
  	
 ////// function 끝부분 	
 });
