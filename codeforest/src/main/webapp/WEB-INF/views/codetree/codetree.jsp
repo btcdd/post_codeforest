@@ -886,7 +886,7 @@ window.onload = function() {
    	el.style = "flex: 0.30788 1.12466 0px;";
    	
    	var el2 = document.getElementById("box_2");
-   	el2.style = "flex: 0.0724909 1.13257 auto;";
+   	el2.style = "flex: 0.157611 0.91488 auto;";
    	
    	var el4 = document.getElementById("box_4");
    	el4.style = "flex: 0.461282 1.08793 0px;";
