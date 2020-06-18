@@ -693,12 +693,13 @@ $(function() {
 				console.log("response  compileResult>>>>",compileResult);
 				console.log("selected.examOutput>>>",typeof selected.examOutput);
 				console.log("response  compileResult[0]>>>>",typeof compileResult[0]);
-				/* if(selected.examOutput.equals(compileResult[0])){
+				var examOutput = selected.examOutput;
+				if(examOutput.equals(compileResult[0])){
 					alert("정답입니다");
 					return;
 				}else{
 					alert("오답입니다");
-				} */
+				}
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
