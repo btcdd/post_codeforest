@@ -215,7 +215,7 @@ public class CodeTreeController {
 			compileError = false;
 		}
 		
-		if(compileResult2 != null) {
+		if(compileResult2.equals("")) {
 			compileResult = false;
 			compileError = true;
 		}
