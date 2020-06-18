@@ -255,7 +255,7 @@
 	</select>		
 	<insert id="insertAttempt" parameterType="long">
 		<![CDATA[
-			insert into try_count values(#{submitNo}, 1);
+			insert into try_count values(#{submitNo}, 1)
 		]]>		
 	</insert>	
 
