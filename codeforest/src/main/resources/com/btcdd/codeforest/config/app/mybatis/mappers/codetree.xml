@@ -101,6 +101,7 @@
 				 and s.problem_no = p.no
 				 and p.kind_no = k.no
 				 and p.state ='y'
+				 and p.privacy = 'y'
 				 order by s.no desc
 				 limit #{displayPost}, #{postNum}			
 				]]>
@@ -113,7 +114,8 @@
 				 and s.user_no = u.no
 				 and s.problem_no = p.no
 				 and p.kind_no = k.no 
-				 and p.state ='y'                    
+				 and p.state ='y'
+				 and p.privacy = 'y'                    
                 and (p.title like '%${keyword}%' or u.nickname like '%${keyword}%' or k.name like '%${keyword}%' )
                 order by s.no desc
                limit #{displayPost}, #{postNum}			 	
