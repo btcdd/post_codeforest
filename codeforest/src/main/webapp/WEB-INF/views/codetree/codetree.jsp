@@ -695,9 +695,17 @@ $(function() {
 				console.log("response  compileResult[0]>>>>",typeof compileResult[0]);
 				console.log("selected.examOutput>>>",selected.examOutput);
 				console.log("response  compileResult[0]>>>>",compileResult[0]);
-				if(selected.examOutput==compileResult[0]){
+				var examOutput = selected.examOutput;
+				var compileResult = compileResult[0];
+				console.log("examOutput>>>>",examOutput);
+				console.log("compileResult>>>>",compileResult);
+				if(examOutput==compileResult){
 					alert("정답입니다");
+					console.log("==");
 					return;
+				}else if(examOutput===compileResult){
+					alert("정답입니다");
+					console.log("===");
 				}else{
 					alert("오답입니다");
 				}
