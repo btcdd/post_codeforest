@@ -714,6 +714,7 @@ $(function() {
 				}
 				*/
 				
+				/*
 				if(compileError == true) {
 					alert("컴파일 오류입니다.");
 					return;
@@ -724,6 +725,17 @@ $(function() {
 				} else {
 					alert("오답입니다.");
 					return;
+				}
+				*/
+				
+				if(compileError == true) {
+					alert("컴파일 오류입니다.");
+					return;
+				} else if(compileResult == true) {
+					alert("정답입니다.");
+					return;
+				} else {
+					alert("오답입니다.");
 				}
 			},
 			error: function(xhr, status, e) {

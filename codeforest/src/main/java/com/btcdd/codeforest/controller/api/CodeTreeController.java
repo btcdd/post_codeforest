@@ -222,22 +222,20 @@ public class CodeTreeController {
 		}
 		*/
 		
-		
-		
  		
 		Map<String, Object> map = new HashMap<>();
+		
+		if(compileResult2 != null || compileResult2.equals("") == false) {
+			compileError = true;
+		} else {
+			if(compileResult1.equals(examOutput)) {
+				compileResult = true;
+			}
+		}
+		
+		
 		map.put("compileResult", compileResult);
 		map.put("compileError", compileError);
-		
-		  if(!compileResult2.equals("")) { //컴파일 오류일 경우
-		     compileError = true;
-		     return JsonResult.success(map);
-		  }
-		  
-		  if(examOutput.equals(compileResult1)) { //코드가 정상일 경우
-		     compileResult = true;
-		  }
-
 		
 		return JsonResult.success(map);
 	}		
