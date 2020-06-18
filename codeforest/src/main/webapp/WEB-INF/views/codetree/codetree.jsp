@@ -600,8 +600,12 @@ $(function() {
 				console.log(response.data.result);
 				compileResult = response.data.result;
 				console.log("run compileResult>>>>",compileResult);
+				console.log(typeof compileResult.indexOf(9));
 				console.log(typeof compileResult.indexOf(10));
+				console.log(typeof compileResult.indexOf(11));
+				console.log("console.log(typeof compileResult.indexOf(9));>>",compileResult.indexOf(9));
 				console.log("console.log(typeof compileResult.indexOf(10));>>",compileResult.indexOf(10));
+				console.log("console.log(typeof compileResult.indexOf(11));>>",compileResult.indexOf(11));
 				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
 				}
