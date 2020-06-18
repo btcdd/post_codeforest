@@ -172,6 +172,17 @@ public class CodeTreeRepository {
 		return sqlSession.update("codetree.updateAttempt", submitNo);
 	}
 
+	public int updateSubProblem(Long authUserNo, Long subProblemNo, String codeValue, String answer, String language) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("authUserNo", authUserNo);
+		map.put("codeValue", codeValue);
+		map.put("answer", answer);
+		map.put("subProblemNo", subProblemNo);
+		map.put("language", language);
+		
+		return sqlSession.update("codetree.updateSubProblem", map);
+	}
+
 
 
 //	public int getTotalCount(String keyword) {

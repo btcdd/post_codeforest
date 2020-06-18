@@ -225,7 +225,7 @@
 	
 	<insert id="submitSubProblem" parameterType="hashmap">
 		<![CDATA[
-			insert into submit values(null, #{codeValue}, answer = '#{answer}', #{subProblemNo}, #{authUserNo}, null, #{language})
+			insert into submit values(null, #{codeValue}, answer = #{answer}, #{subProblemNo}, #{authUserNo}, null, #{language})
 		]]>		
 	</insert>
 	
@@ -266,5 +266,15 @@
 			where submit_no = #{submitNo}
 		]]>	
 	</update>	
+	
+	<update id="updateSubProblem" parameterType="map">
+		<![CDATA[
+			update submit 
+				set code = #{codeValue }, answer = #{answer }				
+			where subproblem_no = #{subProblemNo }
+			  and user_no = #{authUserNo }
+			  and lang = #{language }
+		]]>	
+	</update>
 	
 </mapper>

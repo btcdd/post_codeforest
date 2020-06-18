@@ -195,7 +195,16 @@ public class CodeTreeService {
 			answer = "n";
 		}
 		
-		return codetreeRepository.submitSubProblem(authUserNo,subProblemNo,codeValue,language, answer) == 1;
+		SubmitVo submitVo = codetreeRepository.findSubmitNoBySubProblem(authUserNo,subProblemNo);
+		
+		System.out.println(submitVo);
+		
+		if(submitVo == null) {
+			return codetreeRepository.submitSubProblem(authUserNo,subProblemNo,codeValue,language, answer) == 1;
+		} else {
+			return codetreeRepository.updateSubProblem(submitVo.getNo(), subProblemNo, codeValue, answer, language) == 1;
+		}
+		
 		
 	}
 

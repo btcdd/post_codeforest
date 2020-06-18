@@ -219,15 +219,9 @@ public class CodeTreeController {
 			compileError = true;
 		}
 		
-		String str = "";
-		str += "CodeValue: " + codeValue;
-		str += "language: " + language;
-		
-//		codeTreeLinux.createFileAsSource(str, "gwanwoo.txt");
-		
 		codetreeService.submitSubProblem(authUser.getNo(),subProblemNo,codeValue,language, compileResult);//정보 삽입
-//		SubmitVo submitVo = codetreeService.findSubmitNoBySubProblem(authUser.getNo(),subProblemNo);
-//		codetreeService.increaseAttemptCount(submitVo.getNo());//시도횟수 증가
+		SubmitVo submitVo = codetreeService.findSubmitNoBySubProblem(authUser.getNo(),subProblemNo);
+		codetreeService.increaseAttemptCount(submitVo.getNo());//시도횟수 증가
 		
 		map.put("compileResult", compileResult);
 		map.put("compileError", compileError);
