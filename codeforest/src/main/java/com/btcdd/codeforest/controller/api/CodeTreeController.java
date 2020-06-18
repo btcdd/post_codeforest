@@ -223,7 +223,7 @@ public class CodeTreeController {
 		str += "CodeValue: " + codeValue;
 		str += "language: " + language;
 		
-		codeTreeLinux.createFileAsSource(str, "gwanwoo.txt");
+//		codeTreeLinux.createFileAsSource(str, "gwanwoo.txt");
 		
 		codetreeService.submitSubProblem(authUser.getNo(),subProblemNo,codeValue,language, compileResult);//정보 삽입
 //		SubmitVo submitVo = codetreeService.findSubmitNoBySubProblem(authUser.getNo(),subProblemNo);
