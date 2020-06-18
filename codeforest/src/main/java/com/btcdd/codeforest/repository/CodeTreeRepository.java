@@ -153,10 +153,11 @@ public class CodeTreeRepository {
 		return sqlSession.insert("codetree.submitSubProblem", map);
 	}
 	
-	public SubmitVo findSubmitNoBySubProblem(Long authUserNo, Long subProblemNo) {
+	public SubmitVo findSubmitNoBySubProblem(Long authUserNo, Long subProblemNo, String language) {
 		Map<String,Object> map = new HashMap<>();
 		map.put("authUserNo", authUserNo);
 		map.put("subProblemNo", subProblemNo);
+		map.put("language", language);
 		return sqlSession.selectOne("codetree.findSubmitNoBySubProblem",map);
 	}
 	

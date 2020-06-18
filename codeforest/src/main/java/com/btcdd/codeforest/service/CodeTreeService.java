@@ -195,7 +195,7 @@ public class CodeTreeService {
 			answer = "n";
 		}
 		
-		SubmitVo submitVo = codetreeRepository.findSubmitNoBySubProblem(authUserNo,subProblemNo);
+		SubmitVo submitVo = codetreeRepository.findSubmitNoBySubProblem(authUserNo,subProblemNo, language);
 		
 		System.out.println(submitVo);
 		
@@ -208,8 +208,8 @@ public class CodeTreeService {
 		
 	}
 
-	public SubmitVo findSubmitNoBySubProblem(Long authUserNo, Long subProblemNo) {
-		return codetreeRepository.findSubmitNoBySubProblem(authUserNo,subProblemNo);
+	public SubmitVo findSubmitNoBySubProblem(Long authUserNo, Long subProblemNo, String language) {
+		return codetreeRepository.findSubmitNoBySubProblem(authUserNo,subProblemNo, language);
 	}
 	
 	public boolean increaseAttemptCount(Long submitNo) {
