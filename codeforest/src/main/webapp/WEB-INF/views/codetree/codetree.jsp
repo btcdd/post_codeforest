@@ -654,9 +654,16 @@ $(function() {
 		}); 		
  	}); 
    	$(document).on("click","#Submit",function(){
-   		var list = '<c:out value="${subProblemList}"/>';
-   		console.log(typeof list);
-   		console.log("list>>>",list);
+   		var result = new Array();
+   		<c:forEach items="${subProblemList}" var="info">
+   			var json = new Object();
+   			json.no = "${info.no}";
+   			json.examOutput = "${info.examOutput}";
+   			result.push(json);
+   		</c:forEach>
+   		console.log("result>>>>",result);
+   		console.log("JSON.stringify(result)>>",JSON.stringify(result));
+   		
    		var subProblemList = "${subProblemList}";
    		console.log('tempFile.data("subproblem-no")>>',tempFile.data("subproblem-no"));
    		console.log("subProblemList>>",subProblemList);
