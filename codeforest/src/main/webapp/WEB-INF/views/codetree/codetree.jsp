@@ -566,7 +566,7 @@ $(function() {
 				'packagePath' : packagePath
 			},
 			success: function(response) {
-				editor.setValue(response.data);				
+				currentEditor.setValue(response.data);				
 				console.log("code : " + response.data);
 			},
 			error: function(xhr, status, e) {
