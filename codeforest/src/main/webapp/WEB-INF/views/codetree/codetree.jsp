@@ -678,13 +678,6 @@ $(function() {
  	
  	
 ////// function 끝부분 	
-
-// $('.test').remove();
-// var str = '<div id="box_1" class="box" style="flex: 1 1 1">';
-
-// $('.horizontal').append(str);
-
-
 });
 
 	
