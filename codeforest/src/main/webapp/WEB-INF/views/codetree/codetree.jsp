@@ -691,6 +691,12 @@ $(function() {
 				console.log("ok");
 				console.log("response  selected>>>>",selected);
 				console.log("response  compileResult>>>>",compileResult);
+				if(selected.examOutput == compileResult[0]){
+					alert("정답입니다");
+					return;
+				}else{
+					alert("오답입니다");
+				}
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
