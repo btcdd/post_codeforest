@@ -809,6 +809,15 @@ window.onload = function() {
     new Resizer(document.querySelector('[name=resizerH1]'), 'H');
     new Resizer(document.querySelector('[name=resizerH2]'), 'H');
     new Resizer(document.querySelector('[name=resizerV1]'), 'V');
+    
+   	var el = document.getElementById("box_1");
+   	el.style = "flex: 0.30788 1.12466 0px;";
+   	
+   	var el2 = document.getElementById("box_2");
+   	el2.style = "flex: 0.0724909 1.13257 auto;";
+   	
+   	var el4 = document.getElementById("box_4");
+   	el4.style = "flex: 0.461282 1.08793 0px;";
   };
   
 
@@ -855,10 +864,10 @@ window.onload = function() {
 
 	<div class="frame horizontal">
 	  
-	    <div id="box_1" class="box">
+	    <div id="box_1" class="box" style="flex: 1 1 1">
 	    	<c:import url="/WEB-INF/views/codetree/problem-list.jsp"></c:import>
 	    </div>
-	
+	    
 	  <div name="resizerH1"></div>
 	  
 	  <div class="frame vertical" id="code-mirror">
