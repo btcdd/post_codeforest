@@ -561,7 +561,7 @@ $(function() {
  		var packagePath = $(this).data("package-path");
  		fileNo = $(this).data("no");
  		
- 		if($("#cm"+fileNo).length == 0) {
+ 		if($("#cm"+fileNo).length == 0) { // 켜진 창이 중복되서 안켜지도록 함
 	 		var root = myLayout.root.contentItems[0] || myLayout.root;
 	
 			root.addChild({
