@@ -578,7 +578,7 @@ $(function() {
  	var compileResult = null;
  	$(document).on("click","#Run",function(){
  		$(this).addClass( "onclic", 250, validate);
- 		console.log("editor.getValue()>>>>>>",editor.getValue());
+ 		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
  		var problemNo = "${saveVo.problemNo }";
  		$("#Run").blur();
  		$.ajax({
