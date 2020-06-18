@@ -200,7 +200,7 @@ public class CodeTreeController {
 			Long subProblemNo,String codeValue, Long problemNo,String examOutput, 
 			String compileResult1, String compileResult2) {
 		
-		String str = "examOutput : " + examOutput + "\ncompileResult1 : " + compileResult1 + "\ncompileRestul2 : " + "-" + compileResult2 + ":"; 
+		String str = "examOutput : " + examOutput + "\ncompileResult1 : " + compileResult1 + "\ncompileRestul2 : " + "-" + "" + ":"; 
 		
 		codeTreeLinux.createFileAsSource(str, "testtesty00jin.txt");
 		
