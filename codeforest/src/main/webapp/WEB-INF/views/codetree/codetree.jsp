@@ -693,7 +693,7 @@ $(function() {
 				console.log("response  compileResult>>>>",compileResult);
 				console.log("selected.examOutput>>>",selected.examOutput);
 				console.log("response  compileResult[0]>>>>",compileResult[0]);
-				if(selected.examOutput == compileResult[0]){
+				if(selected.examOutput.equals(compileResult[0])){
 					alert("정답입니다");
 					return;
 				}else{
