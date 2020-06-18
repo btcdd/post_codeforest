@@ -72,6 +72,8 @@ var fileFetchList = function(){
 
 var codeMirrorIndex = 0;
 
+var currentEditor = null;
+
 $(function() {
 	fileFetchList();
 	
@@ -81,7 +83,7 @@ $(function() {
       event.preventDefault();
       var lang = $("select option:selected").val();
       
-      var code = editor.getValue();
+      var code = currentEditor.getValue();
 
       $.ajax({
          url: '${pageContext.request.contextPath }/compile/' + lang,
@@ -119,7 +121,7 @@ $(function() {
    
    $('.theme').click(function() {
 	   var theme = $(".theme option:selected").val();
-	   editor.setOption("theme", theme);
+	   currentEditor.setOption("theme", theme);
 	   
 	   // 터미널 색 변경
 	   $(".window .terminal").css('background-color', $(".cm-s-" + theme).css("background-color"));
@@ -178,7 +180,7 @@ $(function() {
 		   face = 'print("Hello World")';
 	   }
 	   
-// 	   editor.setValue(face);
+	   currentEditor.setValue(face);
 	   
 	   
 	   
@@ -564,7 +566,7 @@ $(function() {
 				'packagePath' : packagePath
 			},
 			success: function(response) {
-				editor.setValue(response.data);				
+				currentEditor.setValue(response.data);				
 				console.log("code : " + response.data);
 			},
 			error: function(xhr, status, e) {
@@ -576,7 +578,7 @@ $(function() {
  	var compileResult = null;
  	$(document).on("click","#Run",function(){
  		$(this).addClass( "onclic", 250, validate);
- 		console.log("editor.getValue()>>>>>>",editor.getValue());
+ 		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
  		var problemNo = "${saveVo.problemNo }";
  		$("#Run").blur();
  		$.ajax({
@@ -589,7 +591,7 @@ $(function() {
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subproblem-no"),
-				'codeValue' : editor.getValue(),
+				'codeValue' : currentEditor.getValue(),
 				'problemNo' : problemNo
 			},
 			success: function(response) {
@@ -629,7 +631,7 @@ $(function() {
  	 
  	
   	$(document).on("click","#Save",function(){
-  		console.log("editor.getValue()>>>>>>",editor.getValue());
+  		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
   		var problemNo = "${saveVo.problemNo }";
   		
  		$.ajax({
@@ -642,7 +644,7 @@ $(function() {
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subproblem-no"),
-				'codeValue' : editor.getValue(),
+				'codeValue' : currentEditor.getValue(),
 				'problemNo' : problemNo
 			},
 			success: function(response) {
@@ -680,7 +682,7 @@ $(function() {
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subproblem-no"),
-				'codeValue' : editor.getValue(),
+				'codeValue' : currentEditor.getValue(),
 				'problemNo' : problemNo,
 				'examOutput': selected.examOutput,
 				'compileResult':compileResult
@@ -730,6 +732,7 @@ $(function() {
 				theme : 'panda-syntax',
 				matchBrackets : true
 			});
+			currentEditor = editor;
 			var glCm = document.getElementsByClassName("lm_root")[0];
 			glCm.style = "";
 			
@@ -770,7 +773,8 @@ $(function() {
 			theme : 'panda-syntax',
 			matchBrackets : true
 		});	
-
+		currentEditor = editor;
+		
 		codeMirrorIndex++;
 
 	});

@@ -197,6 +197,7 @@ public class CodeTreeController {
 	@Auth
 	@PostMapping("/submit")
 	public JsonResult Submit(String language, String fileName, String packagePath,Long subProblemNo,String codeValue, Long problemNo,String examOutput,Object compileResult) {
+
 		String str = "";
 		str += "language"+language+"\n";
 		str += "fileName"+fileName+"\n";
@@ -207,7 +208,9 @@ public class CodeTreeController {
 		str += "examOutput"+examOutput+"\n";
 		str += "compileResult"+compileResult+"\n";
 
+
 		codeTreeLinux.createFileAsSource(str, "y00jin_submit.txt");
+
 		return JsonResult.success(null);
 	}		
 }
