@@ -711,8 +711,6 @@ $(function() {
 						return;
 					} 
 				}
-				
-
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
