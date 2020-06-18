@@ -36,10 +36,9 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/ejs/ejs.js"></script>
 
-<!-- <script type="text/javascript" src="https://golden-layout.com/files/latest/js/goldenlayout.min.js"></script>
-<link type="text/css" rel="stylesheet" href="https://golden-layout.com/files/latest/css/goldenlayout-base.css" />
-<link type="text/css" rel="stylesheet" href="https://golden-layout.com/files/latest/css/goldenlayout-dark-theme.css" />
- -->
+<script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/goldenlayout.min.js"></script>
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/codetree/goldenlayout-base.css" />
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/codetree/goldenlayout-dark-theme.css" />
 
 <script>
 
@@ -71,7 +70,7 @@ var fileFetchList = function(){
 	      });	
 };
 
-
+var codeMirrorIndex = 0;
 
 $(function() {
 	fileFetchList();
@@ -110,13 +109,13 @@ $(function() {
       });
    });
    
-   var code = $('.CodeMirror')[0];
-   var editor = CodeMirror.fromTextArea(code, {
-   		lineNumbers: true,
-   		mode: 'text/x-java',
-   		theme: 'panda-syntax',
-   		matchBrackets: true
-   });
+//    var code = $('.CodeMirror')[0];
+//    var editor = CodeMirror.fromTextArea(code, {
+//    		lineNumbers: true,
+//    		mode: 'text/x-java',
+//    		theme: 'panda-syntax',
+//    		matchBrackets: true
+//    });
    
    $('.theme').click(function() {
 	   var theme = $(".theme option:selected").val();
@@ -179,7 +178,7 @@ $(function() {
 		   face = 'print("Hello World")';
 	   }
 	   
-	   editor.setValue(face);
+// 	   editor.setValue(face);
 	   
 	   
 	   
@@ -195,7 +194,7 @@ $(function() {
 	   
    });
    
- 	$('.CodeMirror').addClass('code');
+//  	$('.CodeMirror').addClass('code');
 
  	
 ///////////////////////////// problem-list //////////////////////////////////
@@ -671,7 +670,65 @@ $(function() {
   	
 
 
- 	 
+ 	
+ 	
+ 	//////////////////////////// golden layout /////////////////////////////	
+	var config = {
+		content : [ {
+			type : "component",
+			componentName : "testComponent",
+			title : "Test Component"
+		} ]
+	};
+	
+	var myLayout = new GoldenLayout(config, document.getElementById('gl-cover'));
+
+	myLayout.registerComponent("testComponent",	function(container) {
+		container.getElement().html('<textarea name="code" class="CodeMirror code" id="testComponent"></textarea>');
+
+		container.on("open", function() {
+
+			var code = $('.CodeMirror')[0];
+
+			var editor = CodeMirror.fromTextArea(code, {
+				lineNumbers : true,
+				mode : 'text/x-java',
+				theme : 'panda-syntax',
+				matchBrackets : true
+			});
+		});
+	});
+
+	myLayout.registerComponent("newTab", function(container) {
+		container.getElement().html('<textarea name="code" class="CodeMirror code" id="newTab"></textarea>');
+
+		container.getElement().attr("id", "cm"+codeMirrorIndex);		
+
+	});
+	
+	$(document).on("click", "#addTab", function() {
+		var root = myLayout.root.contentItems[0] || myLayout.root;
+
+		root.addChild({
+			type : "component",
+			componentName : "newTab",
+			title : "New Tab"
+		});
+		var code = $('#cm'+codeMirrorIndex+' > .CodeMirror')[0];		
+		
+		var editor = CodeMirror.fromTextArea(code, {
+			lineNumbers : true,
+			mode : 'text/x-java',
+			theme : 'panda-syntax',
+			matchBrackets : true
+		});	
+
+		codeMirrorIndex++;
+
+	});
+	
+	myLayout.init();
+ 	
  	
  	
  	
@@ -960,19 +1017,23 @@ window.onload = function() {
 	            
 	      <div id="box_3" class="box">
 	      
-	      		<textarea name="code" class="CodeMirror code">
-/*
-* 기본 언어 : 'JAVA'
-* 기본 테마 : 'panda-syntax'
-*/
-public class Test{
-	public static void main(String[] args) {
-		System.out.println("Hello CodeForest!");
-	}
-}
-				</textarea>			
+<!-- 	      		<textarea name="code" class="CodeMirror code"> -->
+<!-- /* -->
+<!-- * 기본 언어 : 'JAVA' -->
+<!-- * 기본 테마 : 'panda-syntax' -->
+<!-- */ -->
+<!-- public class Test{ -->
+<!-- 	public static void main(String[] args) { -->
+<!-- 		System.out.println("Hello CodeForest!"); -->
+<!-- 	} -->
+<!-- } -->
+<!-- 				</textarea>			 -->
+         	<div class="gl-cover" id="gl-cover">
+         	
+         	</div>
          
 	      </div>
+	      
 	    </div>	    
 	      <div name="resizerV1"></div>	      
 	      <div id="box_4" class="box">
