@@ -606,7 +606,8 @@ $(function() {
 				console.log("4>>",typeof compileResult[0].charAt(10));
 				console.log("5>>",typeof compileResult[0].charAt(9));
 				console.log("6>>",typeof compileResult[0].charAt(11));
-				
+				var bbbbb =compileResult[0].replace(/(\s*)/g,"");
+				console.log("bbbbb>>>>>",bbbbb);
 				
 				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
