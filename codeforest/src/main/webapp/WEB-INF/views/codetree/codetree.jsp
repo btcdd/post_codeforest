@@ -671,7 +671,7 @@ $(function() {
    				selected = result[i];
    			}
    		}
-   				
+   		console.log("------------------------------compileResult : " + compileResult);	
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,

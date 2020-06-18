@@ -207,6 +207,7 @@ public class CodeTreeController {
 		str += "codeValue : "+codeValue+"\n";
 		str += "problemNo : "+problemNo+"\n";
 		str += "examOutput : "+examOutput+"\n";
+		str += "compileResult : "+compileResult +"\n";
 		str += "compileResult : "+compileResult.get("result") +"\n";
 
 
