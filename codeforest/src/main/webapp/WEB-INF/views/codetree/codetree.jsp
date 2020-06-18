@@ -659,28 +659,6 @@ $(function() {
 		}); 		
  	}); 
   	
-  	
-  	
-  	$(document).on("click","#Submit",function(){
-  		$.ajax({
-			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
-			async: true,
-			type: 'post',
-			dataType:'json',
-			data: {
-				
-			},
-			success: function(response) {
-				
-			},
-			error: function(xhr, status, e) {
-				console.error(status + ":" + e);
-			}							
-		});
-  	});
-  	
-  	
-  	/*
    	$(document).on("click","#Submit",function(){
    		var problemNo = "${saveVo.problemNo }";
    		var subProblemNo = tempFile.data("subproblem-no");
@@ -731,8 +709,6 @@ $(function() {
 			}							
 		});
  	});    	
-  	*/
-
 
  	
  	
