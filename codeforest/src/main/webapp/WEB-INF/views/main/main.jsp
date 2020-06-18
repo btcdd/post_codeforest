@@ -158,6 +158,7 @@ $(function() {
  		               console.error(response.message);
  		               return;
  		            }
+ 		            $('#result').val(response.data.readbuffer);
  		         },
  		         error: function(xhr, status, e) {
  		            console.error(status + ":" + e);

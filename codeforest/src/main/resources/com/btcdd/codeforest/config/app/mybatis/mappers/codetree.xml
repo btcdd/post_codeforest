@@ -103,7 +103,7 @@
 				 and p.state ='y'
 				 and p.privacy = 'y'
 				 order by s.no desc
-				 limit #{displayPost}, #{postNum}			
+				 limit #{displayPost}, #{postNum}
 				]]>
 			</when>
 			<otherwise>
