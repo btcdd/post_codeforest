@@ -672,6 +672,8 @@ $(function() {
    			}
    		}
    		console.log("------------------------------compileResult : " + compileResult);	
+   		console.log("------------------------------compileResult : " + typeof compileResult);	
+   		
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
