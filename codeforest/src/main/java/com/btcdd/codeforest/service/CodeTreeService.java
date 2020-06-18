@@ -13,6 +13,7 @@ import com.btcdd.codeforest.vo.CodeVo;
 import com.btcdd.codeforest.vo.SavePathVo;
 import com.btcdd.codeforest.vo.SaveVo;
 import com.btcdd.codeforest.vo.SubProblemVo;
+import com.btcdd.codeforest.vo.SubmitVo;
 import com.btcdd.codeforest.vo.UserVo;
 
 @Service
@@ -184,6 +185,37 @@ public class CodeTreeService {
 	public String getExamOutput(Long subProblemNo) {
 		return codetreeRepository.getExamOutput(subProblemNo);
 	}
+//  추가한 부분
+	public boolean submitSubProblem(Long authUserNo, Long subProblemNo, String codeValue, String language, boolean compileResult) {
+		String answer = "";
+		
+		if(compileResult) {
+			answer = "y";
+		} else {
+			answer = "n";
+		}
+		
+		return codetreeRepository.submitSubProblem(authUserNo,subProblemNo,codeValue,language, answer) == 1;
+		
+	}
+
+	public SubmitVo findSubmitNoBySubProblem(Long authUserNo, Long subProblemNo) {
+		return codetreeRepository.findSubmitNoBySubProblem(authUserNo,subProblemNo);
+	}
+	
+	public boolean increaseAttemptCount(Long submitNo) {
+		boolean exist = codetreeRepository.existAttempt(submitNo) != null;//false면 존재하지 않고 true면 존재한다
+		if(!exist) {//기존에 존재하지 않는다면
+			//시도는 1로 삽입
+			return codetreeRepository.insertAttempt(submitNo) == 1;
+		}else {
+			//기존에 존재하면 시도 update
+			return codetreeRepository.updateAttempt(submitNo)==1;
+		}
+		
+	}
+
+	
 
 
 	
