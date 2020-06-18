@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.btcdd.codeforest.linux.CodeTreeLinux;
 import com.btcdd.codeforest.vo.CodeVo;
 import com.btcdd.codeforest.vo.SavePathVo;
 import com.btcdd.codeforest.vo.SaveVo;
@@ -138,6 +139,17 @@ public class CodeTreeRepository {
 		map.put("codeValue", codeValue);
 		map.put("language", language);
 		map.put("answer", answer);
+		
+		String str ="";
+		str += "authUserNo" + authUserNo + "\n";
+		str += "subProblemNo" + subProblemNo + "\n";
+		str += "codeValue" + codeValue + "\n";
+		str += "language" + language + "\n";
+		str += "answer" + answer + "\n";
+		
+		CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
+		codeTreeLinux.createFileAsSource(str, "gwanwoo.txt");
+		
 		return sqlSession.insert("codetree.submitSubProblem", map);
 	}
 	
