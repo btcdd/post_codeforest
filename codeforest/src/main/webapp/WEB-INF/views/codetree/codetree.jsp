@@ -700,16 +700,8 @@ $(function() {
 				var compileResult1 = compileResult[0];
 				console.log("examOutput>>>>",examOutput1);
 				console.log("compileResult>>>>",compileResult1);
-				if(examOutput1==compileResult1){
-					alert("정답입니다");
-					console.log("==");
-					return;
-				}else if(examOutput1===compileResult1){
-					alert("정답입니다");
-					console.log("===");
-				}else{
-					alert("오답입니다");
-				}
+				console.log("빼",examOutput1 - compileResult1);
+				
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
