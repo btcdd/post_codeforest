@@ -654,20 +654,26 @@ $(function() {
 		}); 		
  	}); 
    	$(document).on("click","#Submit",function(){
+   		var list = '<c:out value="${subProblemList}"/>';
+   		console.log(typeof list);
+   		console.log("list>>>",list);
    		var subProblemList = "${subProblemList}";
    		console.log('tempFile.data("subproblem-no")>>',tempFile.data("subproblem-no"));
    		console.log("subProblemList>>",subProblemList);
    		console.log("subProblemList.length>>",subProblemList.length);
-   		var selected = null;
+   		
+   		
+   		
+/*   		var selected = null;
    		var examOutput = null;
    		for(var i=0;i<subProblemList.length;i++){
    			if(subProblemList[i].no ==tempFile.data("subproblem-no")){
    				console.log("subProblemList[i]>>",subProblemList[i]);
-   				/* selected = subProblemList[i]; */
+   				 selected = subProblemList[i]; 
    			}
    			
    		}
-   		
+   		*/   		
 /* 		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
