@@ -225,7 +225,7 @@
 	
 	<insert id="submitSubProblem" parameterType="hashmap">
 		<![CDATA[
-			insert into submit values(null,#{codeValue},answer=#{answer},#{subProblemNo},#{authUserNo},null,#{language});
+			insert into submit values(null, '#{codeValue}', answer = '#{answer}', #{subProblemNo}, #{authUserNo}, null, '#{language}');
 		]]>		
 	</insert>
 	
@@ -240,7 +240,7 @@
 				solve_time as solveTime,
 				lang as lang
 			  from submit
-			 where sumproblem_no = #{subProblemNo} and user_no = #{authUserNo}
+			 where subproblem_no = #{subProblemNo} and user_no = #{authUserNo}
 		]]>
 	</select>	
 	
@@ -255,7 +255,7 @@
 	</select>		
 	<insert id="insertAttempt" parameterType="long">
 		<![CDATA[
-			insert into try_count values(#{submitNo}, attempt = 1);
+			insert into try_count values(#{submitNo}, 1);
 		]]>		
 	</insert>	
 

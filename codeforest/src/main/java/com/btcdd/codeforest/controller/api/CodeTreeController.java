@@ -228,7 +228,7 @@ public class CodeTreeController {
 		
 		
 		
-		return JsonResult.success(map);
+		return JsonResult.success(null);
 	}		
 }
 
