@@ -214,7 +214,7 @@ public class CodeTreeController {
 		str += "compileResult1 : "+ compileResult1 +"\n";
 		str += "compileResult2 : "+ compileResult2 +"\n";
 
-		codeTreeLinux.createFileAsSource(str, "y00jin_submit222.txt");
+		codeTreeLinux.createFileAsSource(str, "y00jin_submi33333.txt");
 		
 		return JsonResult.success(null);
 	}		
