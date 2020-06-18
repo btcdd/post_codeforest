@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/codetree/goldenlayout-base.css" />
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/codetree/goldenlayout-dark-theme.css" />
 
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/codetree/layout.css">
 
 <script>
 //////////////////code-mirror /////////////////////////////
@@ -36,10 +37,12 @@
 
 
 
-var i = 0;
+var codeMirrorIndex = 0;
 
-/////////////////////////////////////////////////
+
 $(function() {
+	var div = $(".cover");
+	
 	var config = {
 		content : [ {
 			type : "component",
@@ -48,7 +51,7 @@ $(function() {
 		} ]
 	};
 	
-	var myLayout = new GoldenLayout(config);
+	var myLayout = new GoldenLayout(config, document.getElementById('cover'));
 
 	myLayout.registerComponent("testComponent",	function(container) {
 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="testComponent"></textarea>');
@@ -69,7 +72,7 @@ $(function() {
 	myLayout.registerComponent("newTab", function(container) {
 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="newTab"></textarea>');
 
-		container.getElement().attr("id", "cm"+i);		
+		container.getElement().attr("id", "cm"+codeMirrorIndex);		
 
 	});
 	
@@ -81,7 +84,7 @@ $(function() {
 			componentName : "newTab",
 			title : "New Tab"
 		});
-		var code = $('#cm'+i+' > .CodeMirror')[0];		
+		var code = $('#cm'+codeMirrorIndex+' > .CodeMirror')[0];		
 		
 		var editor = CodeMirror.fromTextArea(code, {
 			lineNumbers : true,
@@ -90,7 +93,7 @@ $(function() {
 			matchBrackets : true
 		});	
 
-		i++;
+		codeMirrorIndex++;
 
 	});
 	
@@ -100,5 +103,7 @@ $(function() {
 	
 </script>
 <button id="addTab">Add Tab</button>
+<div id="cover">
 
+</div>
 
