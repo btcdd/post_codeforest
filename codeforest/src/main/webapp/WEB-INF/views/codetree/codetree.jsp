@@ -695,40 +695,6 @@ $(function() {
 				var compileResult = response.data.compileResult;
 				var compileError = response.data.compileError;
 				
-				console.log("compileResult : " + compileResult);
-				console.log("compileResult1 : " + compileResult1);
-				console.log("compileResult2 : " + compileResult2);
-				console.log("compileError : " + compileError);
-				
-				/*
-				if(compileError == true) {
-					alert("컴파일 오류입니다");
-					return;
-				} else {
-					if(compileResult == true){
-						alert("정답입니다");
-						return;
-					} else if(compileResult == false) {
-						alert("오답입니다");
-						return;
-					} 
-				}
-				*/
-				
-				/*
-				if(compileError == true) {
-					alert("컴파일 오류입니다.");
-					return;
-				}
-				if(compileResult == true) {
-					alert("정답입니다.");
-					return;
-				} else {
-					alert("오답입니다.");
-					return;
-				}
-				*/
-				
 				if(compileError == true) {
 					alert("컴파일 오류입니다.");
 					return;

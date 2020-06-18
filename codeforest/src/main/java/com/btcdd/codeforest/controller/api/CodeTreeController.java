@@ -206,42 +206,19 @@ public class CodeTreeController {
 		boolean compileResult = false;
 		boolean compileError = false;
 		codeTreeLinux.createFileAsSource(str, "970730.txt");
-		
-		/*
-		if(compileResult2 != null || !(compileResult2.equals(""))) {
-			compileResult = false;
-			compileError = true;
-		} else {
-			if(examOutput.equals(compileResult1)) {
-				compileResult = true;
-				compileError = false;
-			} else if(!examOutput.equals(compileResult1)){
-				compileResult = false;
-				compileError = false;
-			}
-		}
-		*/
-		
  		
 		Map<String, Object> map = new HashMap<>();
-//		
+
 		if(compileResult2 == null || compileResult2.equals("")) {
 			if(compileResult1.equals(examOutput)) {
-				compileResult2 = "바보다바보";
+//				compileResult2 = "바보다바보";
 				compileResult = true;
 			}
 		} else {
 			compileError = true;
-			compileResult2 = "엘스다엘스";
+//			compileResult2 = "엘스다엘스";
 		}
 		
-		
-		
-		
-		
-		
-		map.put("compileResult1", compileResult1);
-		map.put("compileResult2", compileResult2);
 		map.put("compileResult", compileResult);
 		map.put("compileError", compileError);
 		
