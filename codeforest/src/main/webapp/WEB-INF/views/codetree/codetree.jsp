@@ -699,12 +699,8 @@ $(function() {
 				var examOutput1 = selected.examOutput;
 				var compileResult1 = compileResult[0];
 				
-				var res_split = [];
-				for (i in compileResult1) {
-				  res_split.push(compileResult1[i].split(/(\r\n|\n|\r)/gm));
-				}
-				console.log("res_split>>>",res_split);
-				
+				var newcompileResult = compileResult1.split("\n");
+				console.log("newcompileResult>>>",newcompileResult);
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
