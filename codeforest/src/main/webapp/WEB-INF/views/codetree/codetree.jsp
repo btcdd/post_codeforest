@@ -704,13 +704,7 @@ $(function() {
 					alert("오답입니다");
 					return;
 				}
- 		)
-/* 				var newCompileResult =compileResult[0].replace(/(\s*)/g,"");
-	
-				if(newCompileResult == selected.examOutput){
-					alert("정답입니다");
-					return;
-				} */
+
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
