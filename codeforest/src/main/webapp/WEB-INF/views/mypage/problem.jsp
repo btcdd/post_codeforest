@@ -80,12 +80,15 @@ var fetchList = function() {
    
    var str = "";
    var codingTestStr = "";
+   var fileDownloadStr = "";
    str += '<tbody id="problem-tbody">';
    for(var i = 0; i < map.list.length; i++){
 	   if(map.list[i].startTime <= getTimeStamp() && map.list[i].endTime >= getTimeStamp()) {
 		   codingTestStr = '<td><button class="blinking" id="modify-btn" style="padding: 2px 9px; background-color: #fc9303; border: 1px solid #fc9303; outline: none; cursor: default" >진행중</button></a></td>';
+		   fileDownloadStr = '<td><i class="list-none fas fa-file-download"></i></td>';
 	   } else {
 		   codingTestStr = '<td><a href="${pageContext.servletContext.contextPath }/training/modify/' + map.list[i].no + '"><button id="modify-btn">수정</button></a></td>';
+		   fileDownloadStr = '<td><i data-no="' + map.list[i].no + '" data-title="' + map.list[i].title + '" type="button" alt="list" class="list fas fa-file-download"></i></td>';
 	   }
        str += '<tr class="list-contents" id="list-contents" data-no="' + map.list[i].no + '">' + 
                 '<td><a data-no="' + map.list[i].no + '">' + map.list[i].no + '</a></td>' + 
@@ -93,7 +96,7 @@ var fetchList = function() {
                   '<td>' + map.list[i].hit + '</td>' + 
                   '<td>' + map.list[i].recommend + '</td>' + 
                   codingTestStr + 
-                   '<td><i data-no="' + map.list[i].no + '" data-title="' + map.list[i].title + '" type="button" alt="list" class="list fas fa-file-download"></i></td>' + 
+                  fileDownloadStr + 
                   '<td><i data-no="' + map.list[i].no + '" alt="delete" class="delete fas fa-minus-circle"></i></td>' + 
                 '</tr>' + 
              '<tr class="sub-problem-contents' + map.list[i].no + '">' + 
