@@ -267,11 +267,11 @@
 		]]>	
 	</update>	
 	
-	<update id="updateSubProblem" parameterType="map">
+	<update id="updateSubProblem" parameterType="hashmap">
 		<![CDATA[
 			update submit 
 				set code = #{codeValue }, answer = #{answer }				
-			where and no = #{submitNo }
+			where no = #{submitNo }
 		]]>	
 	</update>
 	

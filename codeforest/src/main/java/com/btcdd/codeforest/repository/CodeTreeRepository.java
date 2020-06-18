@@ -169,8 +169,7 @@ public class CodeTreeRepository {
 		map.put("submitNo", submitNo);
 		map.put("codeValue", codeValue);
 		map.put("answer", answer);
-		
-		
+
 		
 		return sqlSession.update("codetree.updateSubProblem", map);
 	}
