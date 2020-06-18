@@ -46,7 +46,7 @@ body {
 	flex: 0.30788 1.12466 0px;
 }
 #box_2 {
-	
+	width: 0;
 }
 #box_3 {
 	overflow: hidden;
@@ -183,6 +183,7 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 
 .lm_content {
 	height: 500px;
+	max-width: 100%;
 }
 
 /* ---------------------- file-list ------------------------- */
