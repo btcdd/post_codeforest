@@ -43,15 +43,25 @@ var codeMirrorIndex = 0;
 $(function() {
 	var div = $(".cover");
 	
-	var config = {
-		content : [ {
-			type : "component",
-			componentName : "testComponent",
-			title : "Test Component"
-		} ]
-	};
+// 	var config = {
+// 		content : [ {
+// 			type : "component",
+// 			componentName : "testComponent",
+// 			title : "Test Component"
+// 		} ]
+
+// 	};
+var config = {
+    content: [
+      {
+        type: 'stack',
+      	isClosable: false,
+        content: [
+        ]
+    }]
+};
 	
-	var myLayout = new GoldenLayout(config, document.getElementById('cover'));
+	var myLayout = new GoldenLayout(config, $('#cover'));
 
 	myLayout.registerComponent("testComponent",	function(container) {
 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="testComponent"></textarea>');
@@ -96,11 +106,15 @@ $(function() {
 		codeMirrorIndex++;
 
 	});
-	
 	myLayout.init();
+// 	$(".lm_tab").remove();
+//  	$(".lm_active").remove();
+// 	$(".lm_item_container").remove();
+// 	$(".lm_header").remove();
+// 	$(".lm_items").remove();
 
 });
-	
+
 </script>
 <button id="addTab">Add Tab</button>
 <div id="cover">

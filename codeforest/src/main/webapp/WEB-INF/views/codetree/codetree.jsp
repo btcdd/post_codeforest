@@ -70,7 +70,7 @@ var fileFetchList = function(){
 	      });	
 };
 
-var codeMirrorIndex = 0;
+
 
 var currentEditor = null;
 
@@ -248,7 +248,7 @@ $(function() {
  	
  	
  	
-////////////////파일 추가////////////////////
+////////////////파일 추가/////////////////////
  	
  	var savePathNo = null;
  	var subProblemNo = null;
@@ -549,30 +549,60 @@ $(function() {
 			
  	});
  	
+ 	
+ 	
+ 	
  	var tempFile = null;
- 	$(document).on("dblclick", ".file", function() {
+ 	var fileNo = null
+ 	$(document).on("dblclick", ".file", function() {		
  		tempFile = $(this);
  		var language = $(this).data("language");
  		var fileName = $(this).data("file-name");
  		var packagePath = $(this).data("package-path");
- 		$.ajax({
-			url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
-			async: true,
-			type: 'post',
-			dataType:'json',
-			data: {
-				'language' : language,
-				'fileName' : fileName,
-				'packagePath' : packagePath
-			},
-			success: function(response) {
-				currentEditor.setValue(response.data);				
-				console.log("code : " + response.data);
-			},
-			error: function(xhr, status, e) {
-				console.error(status + ":" + e);
-			}							
-		});
+ 		fileNo = $(this).data("no");
+ 		console.log($("#cm"+fileNo).length);
+ 		if($("#cm"+fileNo).length < 1) { // 켜진 창이 중복되서 안켜지도록 함
+	 		var root = myLayout.root.contentItems[0] || myLayout.root;
+	
+			root.addChild({
+				type : "component",
+				componentName : "newTab",
+				title : fileName,
+				id : "layout"+fileNo
+			});
+			var code = $('#cm'+fileNo+' > .CodeMirror')[0];		
+			
+			var editor = CodeMirror.fromTextArea(code, {
+				lineNumbers : true,
+				mode : 'text/x-java',
+				theme : 'panda-syntax',
+				matchBrackets : true
+			});	
+			currentEditor = editor;
+			
+	
+	 		
+	 		
+	 		
+	 		$.ajax({
+				url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
+				async: true,
+				type: 'post',
+				dataType:'json',
+				data: {
+					'language' : language,
+					'fileName' : fileName,
+					'packagePath' : packagePath
+				},
+				success: function(response) {
+					currentEditor.setValue(response.data);				
+					console.log("code : " + response.data);
+				},
+				error: function(xhr, status, e) {
+					console.error(status + ":" + e);
+				}							
+			});
+ 		}
  	});
 
  	var compileResult1 = "";
@@ -715,82 +745,45 @@ $(function() {
  	
  	//////////////////////////// golden layout /////////////////////////////	
 	var config = {
-		content : [ {
-			type : "component",
-			componentName : "testComponent",
-			title : "Test Component"
-		} ]
+    content: [
+	      {
+	        type: 'stack',
+	      	isClosable: false,
+	        content: [
+	        ]
+	    }]
 	};
 	
-	var myLayout = new GoldenLayout(config, document.getElementById('gl-cover'));
-
-	myLayout.registerComponent("testComponent",	function(container) {
-		container.getElement().html('<textarea name="code" class="CodeMirror code" id="testComponent"></textarea>');
-		
-
-		container.on("open", function() {
-
-			var code = $('.CodeMirror')[0];
-
-			var editor = CodeMirror.fromTextArea(code, {
-				lineNumbers : true,
-				mode : 'text/x-java',
-				theme : 'panda-syntax',
-				matchBrackets : true
-			});
-			currentEditor = editor;
-			var glCm = document.getElementsByClassName("lm_root")[0];
-			glCm.style = "";
-			
-			var glCm2 = document.getElementsByClassName("lm_stack")[0];
-			glCm2.style = "";
-			
-			var glCm3 = document.getElementsByClassName("lm_items")[0];
-			glCm3.style = "";
-			
-			var glCm4 = document.getElementsByClassName("lm_item_container")[0];
-			glCm4.style = "";
-			
-			var glCm5 = document.getElementsByClassName("lm_content")[0];
-			glCm5.style = "";
-		});
-	});
+	var myLayout = new GoldenLayout(config, $('#gl-cover'));
 
 	myLayout.registerComponent("newTab", function(container) {
 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="newTab"></textarea>');
 
-		container.getElement().attr("id", "cm"+codeMirrorIndex);		
+		container.getElement().attr("id", "cm"+fileNo);		
 		
-	});
-	
-	$(document).on("click", "#addTab", function() {
-		var root = myLayout.root.contentItems[0] || myLayout.root;
-
-		root.addChild({
-			type : "component",
-			componentName : "newTab",
-			title : "New Tab"
-		});
-		var code = $('#cm'+codeMirrorIndex+' > .CodeMirror')[0];		
-		
-		var editor = CodeMirror.fromTextArea(code, {
-			lineNumbers : true,
-			mode : 'text/x-java',
-			theme : 'panda-syntax',
-			matchBrackets : true
-		});	
-		currentEditor = editor;
-		
-		codeMirrorIndex++;
-
 	});
 	
 	myLayout.init();
+	var glCm = document.getElementsByClassName("lm_root")[0];
+	glCm.style = "";
+	
+	var glCm2 = document.getElementsByClassName("lm_stack")[0];
+	glCm2.style = "";
+	
+	var glCm3 = document.getElementsByClassName("lm_items")[0];
+	glCm3.style = "";
+	
+	var glCm4 = document.getElementsByClassName("lm_item_container")[0];
+	glCm4.style = "";
+	
+	var glCm5 = document.getElementsByClassName("lm_content")[0];
+	glCm5.style = "";
  	
  	
  	
  	
- 	
+	
+	
  	
 ////// function 끝부분 	
 });
