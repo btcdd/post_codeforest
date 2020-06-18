@@ -139,17 +139,8 @@ public class CodeTreeRepository {
 		map.put("codeValue", codeValue);
 		map.put("language", language);
 		map.put("answer", answer);
-		
-		String str ="";
-		str += "authUserNo" + authUserNo + "\n";
-		str += "subProblemNo" + subProblemNo + "\n";
-		str += "codeValue" + codeValue + "\n";
-		str += "language" + language + "\n";
-		str += "answer" + answer + "\n";
-		
-		CodeTreeLinux codeTreeLinux = new CodeTreeLinux();
-		codeTreeLinux.createFileAsSource(str, "gwanwoo.txt");
-		
+
+
 		return sqlSession.insert("codetree.submitSubProblem", map);
 	}
 	
@@ -173,13 +164,13 @@ public class CodeTreeRepository {
 		return sqlSession.update("codetree.updateAttempt", submitNo);
 	}
 
-	public int updateSubProblem(Long authUserNo, Long subProblemNo, String codeValue, String answer, String language) {
+	public int updateSubProblem(Long submitNo,String codeValue, String answer) {
 		Map<String, Object> map = new HashMap<>();
-		map.put("authUserNo", authUserNo);
+		map.put("submitNo", submitNo);
 		map.put("codeValue", codeValue);
 		map.put("answer", answer);
-		map.put("subProblemNo", subProblemNo);
-		map.put("language", language);
+		
+		
 		
 		return sqlSession.update("codetree.updateSubProblem", map);
 	}
