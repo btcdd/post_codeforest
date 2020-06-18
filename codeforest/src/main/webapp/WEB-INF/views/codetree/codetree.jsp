@@ -697,6 +697,8 @@ $(function() {
 				var compileError = response.data.compileError;
 				
 				console.log("compileResult : " + compileResult);
+				console.log("compileResult1 : " + compileResult1);
+				console.log("compileResult2 : " + compileResult2);
 				console.log("compileError : " + compileError);
 				
 				/*

@@ -225,18 +225,20 @@ public class CodeTreeController {
 		compileResult2 = "afsdf";
  		
 		Map<String, Object> map = new HashMap<>();
-		
-		if(compileResult2 != null || compileResult2.equals("") == false || compileResult2.isEmpty() || compileResult2.length() == 0) {
-			compileError = true;
-		} else {
-			if(compileResult1.equals(examOutput)) {
-				compileResult = true;
-			}
-		}
-		
-		
+//		
+//		if(compileResult2 != null || compileResult2.equals("") == false || compileResult2.isEmpty() || compileResult2.length() == 0) {
+//			compileError = true;
+//		} else {
+//			if(compileResult1.equals(examOutput)) {
+//				compileResult = true;
+//			}
+//		}
 		
 		
+		
+		
+		map.put("compileResult1", compileResult1);
+		map.put("compileResult2", compileResult2);
 		map.put("compileResult", compileResult);
 		map.put("compileError", compileError);
 		
