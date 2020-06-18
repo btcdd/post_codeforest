@@ -666,7 +666,8 @@ $(function() {
    		<c:forEach items="${subProblemList}" var="info">
    			var json = new Object();
    			json.no = "${info.no}";
-   			json.examOutput = replace("${info.examOutput}",char(10),'<br>');
+   			json.examOutput = "${info.examOutput}".replaceAll("\n", "<BR>");
+   			
    			result.push(json);
    		</c:forEach>
    		var selected = null;
