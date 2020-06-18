@@ -112,7 +112,7 @@ public class CompileControllerJava {
 							// 콘솔로 부터 엔터가 포함되면 input String 변수로 값이 입력됩니다.
 //							String input = scan.nextLine();
 							// 콘솔에서 \n가 포함되어야 실행된다.(엔터의 의미인듯 싶습니다.)
-							contents += "\n";
+//							contents += "\n";
 							writer.write(contents);
 							// Process로 명령어 입력
 							writer.flush();
