@@ -550,22 +550,25 @@ $(function() {
  	});
  	
  	
-	$(document).on("click", "#addTab", function() {
-		
-	});
- 	
  	
  	
  	var tempFile = null;
- 	$(document).on("dblclick", ".file", function() {
+ 	var fileNo = null
+ 	$(document).on("dblclick", ".file", function() {		
+ 		tempFile = $(this);
+ 		var language = $(this).data("language");
+ 		var fileName = $(this).data("file-name");
+ 		var packagePath = $(this).data("package-path");
+ 		fileNo = $(this).data("no");
+ 		
  		var root = myLayout.root.contentItems[0] || myLayout.root;
 
 		root.addChild({
 			type : "component",
 			componentName : "newTab",
-			title : "New Tab"
+			title : fileName
 		});
-		var code = $('#cm'+codeMirrorIndex+' > .CodeMirror')[0];		
+		var code = $('#cm'+fileNo+' > .CodeMirror')[0];		
 		
 		var editor = CodeMirror.fromTextArea(code, {
 			lineNumbers : true,
@@ -576,11 +579,9 @@ $(function() {
 		currentEditor = editor;
 		
 		codeMirrorIndex++;
-
- 		tempFile = $(this);
- 		var language = $(this).data("language");
- 		var fileName = $(this).data("file-name");
- 		var packagePath = $(this).data("package-path");
+ 		
+ 		
+ 		
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
 			async: true,
@@ -752,33 +753,12 @@ $(function() {
 	
 	var myLayout = new GoldenLayout(config, $('#gl-cover'));
 
-// 	myLayout.registerComponent("testComponent",	function(container) {
-// 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="testComponent"></textarea>');
-		
-
-// 		container.on("open", function() {
-
-// 			var code = $('.CodeMirror')[0];
-
-// 			var editor = CodeMirror.fromTextArea(code, {
-// 				lineNumbers : true,
-// 				mode : 'text/x-java',
-// 				theme : 'panda-syntax',
-// 				matchBrackets : true
-// 			});
-// 			currentEditor = editor;
-
-// 		});
-// 	});
-
 	myLayout.registerComponent("newTab", function(container) {
 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="newTab"></textarea>');
 
-		container.getElement().attr("id", "cm"+codeMirrorIndex);		
+		container.getElement().attr("id", "cm"+fileNo);		
 		
 	});
-	
-
 	
 	myLayout.init();
 	var glCm = document.getElementsByClassName("lm_root")[0];
