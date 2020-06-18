@@ -70,7 +70,7 @@ var fileFetchList = function(){
 	      });	
 };
 
-var codeMirrorIndex = 0;
+
 
 var currentEditor = null;
 
@@ -561,45 +561,48 @@ $(function() {
  		var packagePath = $(this).data("package-path");
  		fileNo = $(this).data("no");
  		
- 		var root = myLayout.root.contentItems[0] || myLayout.root;
-
-		root.addChild({
-			type : "component",
-			componentName : "newTab",
-			title : fileName
-		});
-		var code = $('#cm'+fileNo+' > .CodeMirror')[0];		
-		
-		var editor = CodeMirror.fromTextArea(code, {
-			lineNumbers : true,
-			mode : 'text/x-java',
-			theme : 'panda-syntax',
-			matchBrackets : true
-		});	
-		currentEditor = editor;
-		
-		codeMirrorIndex++;
- 		
- 		
- 		
- 		$.ajax({
-			url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
-			async: true,
-			type: 'post',
-			dataType:'json',
-			data: {
-				'language' : language,
-				'fileName' : fileName,
-				'packagePath' : packagePath
-			},
-			success: function(response) {
-				currentEditor.setValue(response.data);				
-				console.log("code : " + response.data);
-			},
-			error: function(xhr, status, e) {
-				console.error(status + ":" + e);
-			}							
-		});
+ 		if($("#cm"+fileNo).length == 0) {
+	 		var root = myLayout.root.contentItems[0] || myLayout.root;
+	
+			root.addChild({
+				type : "component",
+				componentName : "newTab",
+				title : fileName,
+				id : layout+"fileNo"
+			});
+			var code = $('#cm'+fileNo+' > .CodeMirror')[0];		
+			
+			var editor = CodeMirror.fromTextArea(code, {
+				lineNumbers : true,
+				mode : 'text/x-java',
+				theme : 'panda-syntax',
+				matchBrackets : true
+			});	
+			currentEditor = editor;
+			
+	
+	 		
+	 		
+	 		
+	 		$.ajax({
+				url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
+				async: true,
+				type: 'post',
+				dataType:'json',
+				data: {
+					'language' : language,
+					'fileName' : fileName,
+					'packagePath' : packagePath
+				},
+				success: function(response) {
+					currentEditor.setValue(response.data);				
+					console.log("code : " + response.data);
+				},
+				error: function(xhr, status, e) {
+					console.error(status + ":" + e);
+				}							
+			});
+ 		}
  	});
  	
  	var compileResult = null;
