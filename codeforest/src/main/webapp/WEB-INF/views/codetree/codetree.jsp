@@ -696,15 +696,15 @@ $(function() {
 				console.log("response  compileResult[0]>>>>",typeof compileResult[0]);
 				console.log("selected.examOutput>>>",selected.examOutput);
 				console.log("response  compileResult[0]>>>>",compileResult[0]);
-				var examOutput = selected.examOutput;
-				var compileResult = compileResult[0];
-				console.log("examOutput>>>>",examOutput);
-				console.log("compileResult>>>>",compileResult);
-				if(examOutput==compileResult){
+				var examOutput1 = selected.examOutput;
+				var compileResult1 = compileResult[0];
+				console.log("examOutput>>>>",examOutput1);
+				console.log("compileResult>>>>",compileResult1);
+				if(examOutput1==compileResult1){
 					alert("정답입니다");
 					console.log("==");
 					return;
-				}else if(examOutput===compileResult){
+				}else if(examOutput1===compileResult1){
 					alert("정답입니다");
 					console.log("===");
 				}else{
