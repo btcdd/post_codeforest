@@ -207,7 +207,7 @@ public class CodeTreeController {
 		boolean compileResult = false;
 		boolean compileError = false;
 		
-		if(compileResult2 != null || compileResult2 != "") {
+		if(compileResult2 != null || !compileResult2.equals("")) {
 			compileResult = false;
 			compileError = true;
 		} else {
