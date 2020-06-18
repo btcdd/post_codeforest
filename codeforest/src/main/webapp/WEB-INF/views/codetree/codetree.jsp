@@ -683,7 +683,8 @@ $(function() {
 				'subProblemNo':tempFile.data("subproblem-no"),
 				'codeValue' : editor.getValue(),
 				'problemNo' : problemNo,
-				'examOutput': selected.examOutput
+				'examOutput': selected.examOutput,
+				'compileResult':compileResult
 			},
 			success: function(response) {
 				console.log("ok");
