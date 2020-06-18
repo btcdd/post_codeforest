@@ -193,7 +193,19 @@ public class CodeTreeController {
 		
 		//////////
 		return JsonResult.success(null);
-	}	
+	}
+	@Auth
+	@PostMapping("/submit")
+	public JsonResult Submit(String language, String fileName, String packagePath,Long subProblemNo,String codeValue, Long problemNo) {
+		System.out.println("language"+language);
+		System.out.println("fileName"+fileName);
+		System.out.println("packagePath"+packagePath);
+		System.out.println("subProblemNo"+subProblemNo);
+		System.out.println("codeValue"+codeValue);
+		System.out.println("problemNo"+problemNo);
+		
+		return JsonResult.success(null);
+	}		
 }
 
 

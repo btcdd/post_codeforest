@@ -672,34 +672,29 @@ $(function() {
    		}
    		console.log("selected>>>>",selected);
 
-   		
-   		
-   		
-/*   		var selected = null;
-   		var examOutput = null;
-   		for(var i=0;i<subProblemList.length;i++){
-   			if(subProblemList[i].no ==tempFile.data("subproblem-no")){
-   				console.log("subProblemList[i]>>",subProblemList[i]);
-   				 selected = subProblemList[i]; 
-   			}
-   			
-   		}
-   		*/   		
-/* 		$.ajax({
+   				
+ 		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
 			type: 'post',
 			dataType:'json',
 			data: {
-				
+				'language' : tempFile.data("language"),
+				'fileName' : tempFile.data("file-name"),
+				'packagePath' : tempFile.data("package-path"),
+				'subProblemNo':tempFile.data("subproblem-no"),
+				'codeValue' : editor.getValue(),
+				'problemNo' : problemNo				
 			},
 			success: function(response) {
 				console.log("ok");
+				console.log("response  selected>>>>",selected);
+				console.log("response  compileResult>>>>",compileResult);
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
 			}							
-		});*/ 		
+		});		
  	});    	
   	
 
