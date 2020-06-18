@@ -29,6 +29,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/codemirror/mode/clike.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script>
+
 $(function() {
 	$(window).scroll(function() {
         if ($(this).scrollTop() > 500) {
@@ -139,6 +140,32 @@ $(function() {
    });
    
  	$('.CodeMirror').addClass('code');
+ 	
+ 	$('#result').keydown(function(key) {
+		
+ 		if (key.keyCode == 13) {
+			var content = $('#result').val();
+ 			$('#result').val('');
+ 			
+ 			$.ajax({
+ 		         url: '${pageContext.request.contextPath }/compile/test',
+ 		         async: true,
+ 		         type: 'post',
+ 		         dataType: 'json',
+ 		         data: {content: content},
+ 		         success: function(response){
+ 		            if(response.result != "success") {
+ 		               console.error(response.message);
+ 		               return;
+ 		            }
+ 		         },
+ 		         error: function(xhr, status, e) {
+ 		            console.error(status + ":" + e);
+ 		         }
+ 		      });
+ 		}
+	});
+ 	
 });
 
 </script>
@@ -212,7 +239,7 @@ public class Test{
 }</textarea>
                   </td>
                   <td>
-                     <textarea name="" id="result" readonly></textarea>
+                     <textarea name="" id="result"></textarea>
                   </td>
                </tr>
             </table>

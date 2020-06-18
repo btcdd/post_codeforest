@@ -136,6 +136,8 @@ public class TrainingController {
 		problemVo.setNo(problemNo);
 		trainingService.modifyProblem(problemVo);
 		
+		System.out.println(subProblemList);
+		
 		List<SubProblemVo> list = subProblemList.getSubProblemList();
 
 		for(int i = 0; i < list.size(); i++) {
