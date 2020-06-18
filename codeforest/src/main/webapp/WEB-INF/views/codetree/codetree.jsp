@@ -690,7 +690,6 @@ $(function() {
 				'codeValue' : currentEditor.getValue(),
 				'problemNo' : problemNo,
 				'examOutput': selected.examOutput,
-				'compileResult':compileResult,
 				'compileResult1':compileResult1,
 				'compileResult2':compileResult2
 			},

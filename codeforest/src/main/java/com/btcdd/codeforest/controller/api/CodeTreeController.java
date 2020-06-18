@@ -198,10 +198,8 @@ public class CodeTreeController {
 	@PostMapping("/submit")
 	public JsonResult Submit(String language, String fileName, String packagePath,
 			Long subProblemNo,String codeValue, Long problemNo,String examOutput, 
-			Object compileResult, String compileResult1, String compileResult2) {
+			String compileResult1, String compileResult2) {
 		
-		String[] test = (String[]) compileResult;
-
 		String str = "";
 		str += "language : "+language+"\n";
 		str += "fileName : "+fileName+"\n";
@@ -210,7 +208,6 @@ public class CodeTreeController {
 		str += "codeValue : "+codeValue+"\n";
 		str += "problemNo : "+problemNo+"\n";
 		str += "examOutput : "+examOutput+"\n";
-		str += "compileResult : "+ test[0] +"\n";
 		str += "compileResult1 : "+ compileResult1 +"\n";
 		str += "compileResult2 : "+ compileResult2 +"\n";
 
