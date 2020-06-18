@@ -698,9 +698,9 @@ $(function() {
 				console.log("response  compileResult[0]>>>>",compileResult[0]);
 				var examOutput1 = selected.examOutput;
 				var compileResult1 = compileResult[0];
-				console.log("examOutput>>>>",examOutput1);
-				console.log("compileResult>>>>",compileResult1);
-				console.log("examOutput1.equals(compileResult1)>>",compileResult1.equals(examOutput1));
+				console.log("examOutput.toString()>>>>",examOutput1.toString());
+				console.log("compileResult.toString()>>>>",compileResult1.toString());
+				console.log("examOutput1.equals(compileResult1)>>",compileResult1.toString().equals(examOutput1.toString()));
 				
 			},
 			error: function(xhr, status, e) {
