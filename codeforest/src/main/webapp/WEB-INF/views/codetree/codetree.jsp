@@ -72,6 +72,8 @@ var fileFetchList = function(){
 
 var codeMirrorIndex = 0;
 
+var currentEditor = null;
+
 $(function() {
 	fileFetchList();
 	
@@ -119,7 +121,7 @@ $(function() {
    
    $('.theme').click(function() {
 	   var theme = $(".theme option:selected").val();
-	   editor.setOption("theme", theme);
+	   currentEditor.setOption("theme", theme);
 	   
 	   // 터미널 색 변경
 	   $(".window .terminal").css('background-color', $(".cm-s-" + theme).css("background-color"));
@@ -178,7 +180,7 @@ $(function() {
 		   face = 'print("Hello World")';
 	   }
 	   
-// 	   editor.setValue(face);
+	   currentEditor.setValue(face);
 	   
 	   
 	   
@@ -730,6 +732,7 @@ $(function() {
 				theme : 'panda-syntax',
 				matchBrackets : true
 			});
+			currentEditor = editor;
 			var glCm = document.getElementsByClassName("lm_root")[0];
 			glCm.style = "";
 			
@@ -770,7 +773,8 @@ $(function() {
 			theme : 'panda-syntax',
 			matchBrackets : true
 		});	
-
+		currentEditor = editor;
+		
 		codeMirrorIndex++;
 
 	});
