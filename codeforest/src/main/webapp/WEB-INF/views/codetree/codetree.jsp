@@ -576,6 +576,9 @@ $(function() {
  	});
  	
  	var compileResult = null;
+ 	var compileResult1 = "";
+ 	var compileResult2 = "";
+ 	
  	$(document).on("click","#Run",function(){
  		$(this).addClass( "onclic", 250, validate);
  		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
@@ -599,7 +602,8 @@ $(function() {
 				console.log("ok");
 				
 				console.log(response.data.result);
-				compileResult = response.data.result;
+				compileResult1 = response.data.result[0];
+				compileResult2 = response.data.result[1];
 				
 				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
@@ -671,7 +675,8 @@ $(function() {
    				selected = result[i];
    			}
    		}
-   				
+   		console.log("------------------------------compileResult : " + compileResult);	
+   		console.log("------------------------------compileResult : " + typeof compileResult);	
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
@@ -685,7 +690,8 @@ $(function() {
 				'codeValue' : currentEditor.getValue(),
 				'problemNo' : problemNo,
 				'examOutput': selected.examOutput,
-				'compileResult':compileResult
+				'compileResult1':compileResult1,
+				'compileResult2':compileResult2
 			},
 			success: function(response) {
 				console.log("ok");
