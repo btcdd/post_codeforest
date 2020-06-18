@@ -701,6 +701,10 @@ $(function() {
 				
 				var newcompileResult = compileResult1.split("\n");
 				console.log("newcompileResult>>>",newcompileResult);
+				if(newcompileResult == examOutput1){
+					alert("정답입니다");
+					return;
+				}
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
