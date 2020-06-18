@@ -200,23 +200,17 @@ public class CodeTreeController {
 			Long subProblemNo,String codeValue, Long problemNo,String examOutput, 
 			String compileResult1, String compileResult2) {
 		
-		String str = "examOutput : " + examOutput + "\ncompileResult1 : " + compileResult1 + "\ncompileRestul2 : " + "-" + compileResult2 + ":"; 
-		
-		
 		boolean compileResult = false;
 		boolean compileError = false;
-		codeTreeLinux.createFileAsSource(str, "970730.txt");
  		
 		Map<String, Object> map = new HashMap<>();
 
 		if(compileResult2 == null || compileResult2.equals("")) {
 			if(compileResult1.equals(examOutput)) {
-//				compileResult2 = "바보다바보";
 				compileResult = true;
 			}
 		} else {
 			compileError = true;
-//			compileResult2 = "엘스다엘스";
 		}
 		
 		map.put("compileResult", compileResult);
