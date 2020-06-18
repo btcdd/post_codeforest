@@ -81,6 +81,12 @@ ul {
 	color: #747474;
 }
 
+.list-none {
+    color: #c8c8c8;
+    cursor: default;
+    font-size: 1.3em;
+}
+
 .delete {
 	cursor: pointer;
 	color: #E2848C
