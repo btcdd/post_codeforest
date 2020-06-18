@@ -600,12 +600,12 @@ $(function() {
 				console.log(response.data.result);
 				compileResult = response.data.result;
 				console.log("run compileResult>>>>",compileResult);
-				console.log("1>>",compileResult.charAt(9));
-				console.log("2>>",compileResult.charAt(10));
-				console.log("3>>",compileResult.charAt(11));
-				console.log("4>>",typeof compileResult.charAt(10));
-				console.log("5>>",typeof compileResult.charAt(9));
-				console.log("6>>",typeof compileResult.charAt(11));
+				console.log("1>>",compileResult[0].charAt(9));
+				console.log("2>>",compileResult[0].charAt(10));
+				console.log("3>>",compileResult[0].charAt(11));
+				console.log("4>>",typeof compileResult[0].charAt(10));
+				console.log("5>>",typeof compileResult[0].charAt(9));
+				console.log("6>>",typeof compileResult[0].charAt(11));
 				
 				
 				if(response.data.result[1] == "") {
