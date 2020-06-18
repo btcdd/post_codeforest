@@ -204,7 +204,7 @@ public class CodeTreeController {
 		
 		codeTreeLinux.createFileAsSource(str, "testtesty00jin.txt");
 		
-		boolean compileResult = true;
+		boolean compileResult = false;
 		
 		if(examOutput.equals(compileResult1)) {
 			compileResult = true;
