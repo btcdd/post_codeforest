@@ -197,7 +197,6 @@ public class CodeTreeService {
 		
 		SubmitVo submitVo = codetreeRepository.findSubmitNoBySubProblem(authUserNo,subProblemNo, language);
 		
-		System.out.println(submitVo);
 		
 		if(submitVo == null) {
 			return codetreeRepository.submitSubProblem(authUserNo,subProblemNo,codeValue,language, answer) == 1;
