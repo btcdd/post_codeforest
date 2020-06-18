@@ -599,7 +599,7 @@ $(function() {
 				
 				console.log(response.data.result);
 				compileResult = response.data.result;
-				console.log("run compileResult>>>>",compileResult);
+/* 				console.log("run compileResult>>>>",compileResult);
 				console.log("1>>",compileResult[0].charAt(9));
 				console.log("2>>",compileResult[0].charAt(10));
 				console.log("3>>",compileResult[0].charAt(11));
@@ -609,7 +609,8 @@ $(function() {
 				var bbbbb =compileResult[0].replace(/(\s*)/g,"");
 				console.log("bbbbb>>>>>",bbbbb);
 				var cccccc = new String(bbbbb);
-				console.log("cccccc>>>>>",cccccc);
+				console.log("cccccc>>>>>",cccccc); */
+				
 				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
 				}
@@ -707,12 +708,10 @@ $(function() {
 				console.log("selected.examOutput>>>",selected.examOutput);
 				console.log("response  compileResult[0]>>>>",compileResult[0]);
 				var examOutput1 = selected.examOutput;
-				var compileResult1 = compileResult[0];
 				
-				var newcompileResult = compileResult1.split("\n");
-				console.log("newcompileResult>>>",newcompileResult);
-				console.log("examOutput1>>>",examOutput1);
-				if(newcompileResult == examOutput1){
+				var newCompileResult =compileResult[0].replace(/(\s*)/g,"");
+	
+				if(newCompileResult == examOutput1){
 					alert("정답입니다");
 					return;
 				}
