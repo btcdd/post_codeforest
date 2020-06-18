@@ -226,13 +226,15 @@ public class CodeTreeController {
  		
 		Map<String, Object> map = new HashMap<>();
 		
-		if(compileResult2 != null || compileResult2.equals("") == false || compileResult2.isEmpty()) {
+		if(compileResult2 != null || compileResult2.equals("") == false || compileResult2.isEmpty() || compileResult2.length() == 0) {
 			compileError = true;
 		} else {
 			if(compileResult1.equals(examOutput)) {
 				compileResult = true;
 			}
 		}
+		
+		
 		
 		
 		map.put("compileResult", compileResult);
