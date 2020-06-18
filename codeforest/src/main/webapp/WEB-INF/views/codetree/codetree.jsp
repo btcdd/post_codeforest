@@ -83,7 +83,7 @@ $(function() {
       event.preventDefault();
       var lang = $("select option:selected").val();
       
-      var code = editor.getValue();
+      var code = currentEditor.getValue();
 
       $.ajax({
          url: '${pageContext.request.contextPath }/compile/' + lang,
@@ -591,7 +591,7 @@ $(function() {
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subproblem-no"),
-				'codeValue' : editor.getValue(),
+				'codeValue' : currentEditor.getValue(),
 				'problemNo' : problemNo
 			},
 			success: function(response) {
@@ -631,7 +631,7 @@ $(function() {
  	 
  	
   	$(document).on("click","#Save",function(){
-  		console.log("editor.getValue()>>>>>>",editor.getValue());
+  		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
   		var problemNo = "${saveVo.problemNo }";
   		
  		$.ajax({
@@ -644,7 +644,7 @@ $(function() {
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subproblem-no"),
-				'codeValue' : editor.getValue(),
+				'codeValue' : currentEditor.getValue(),
 				'problemNo' : problemNo
 			},
 			success: function(response) {
@@ -682,7 +682,7 @@ $(function() {
 				'fileName' : tempFile.data("file-name"),
 				'packagePath' : tempFile.data("package-path"),
 				'subProblemNo':tempFile.data("subproblem-no"),
-				'codeValue' : editor.getValue(),
+				'codeValue' : currentEditor.getValue(),
 				'problemNo' : problemNo,
 				'examOutput': selected.examOutput,
 				'compileResult':compileResult
