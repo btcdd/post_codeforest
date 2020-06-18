@@ -608,7 +608,8 @@ $(function() {
 				console.log("6>>",typeof compileResult[0].charAt(11));
 				var bbbbb =compileResult[0].replace(/(\s*)/g,"");
 				console.log("bbbbb>>>>>",bbbbb);
-				
+				var cccccc = new String(bbbbb);
+				console.log("cccccc>>>>>",cccccc);
 				if(response.data.result[1] == "") {
 					$(".terminal").append("<p>"+response.data.result[0]+"</p>");
 				}
