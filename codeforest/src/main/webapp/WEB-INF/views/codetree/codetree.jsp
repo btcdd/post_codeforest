@@ -700,8 +700,11 @@ $(function() {
 				if(compileResult == true){
 					alert("정답입니다");
 					return;
-				} else {
+				} else if(compileResult == false) {
 					alert("오답입니다");
+					return;
+				} else if(compileError == true) {
+					alert("컴파일 오류입니다");
 					return;
 				}
 
