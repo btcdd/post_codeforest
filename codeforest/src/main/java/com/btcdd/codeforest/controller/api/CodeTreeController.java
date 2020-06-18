@@ -200,20 +200,17 @@ public class CodeTreeController {
 			Long subProblemNo,String codeValue, Long problemNo,String examOutput, 
 			String compileResult1, String compileResult2) {
 		
-		String str = "";
-		str += "language : "+language+"\n";
-		str += "fileName : "+fileName+"\n";
-		str += "packagePath : "+packagePath+"\n";
-		str += "subProblemNo : "+subProblemNo+"\n";
-		str += "codeValue : "+codeValue+"\n";
-		str += "problemNo : "+problemNo+"\n";
-		str += "examOutput : "+examOutput+"\n";
-		str += "compileResult1 : "+ compileResult1 +"\n";
-		str += "compileResult2 : "+ compileResult2 +"\n";
-
-		codeTreeLinux.createFileAsSource(str, "y00jin_submi33333.txt");
+		boolean compileResult = false;
 		
-		return JsonResult.success(null);
+		if(compileResult2 != null) {
+			compileResult = false;
+		} else if(examOutput.equals(compileResult1)) {
+			compileResult = true;
+		} else {
+			compileResult = false;
+		}
+		
+		return JsonResult.success(compileResult);
 	}		
 }
 
