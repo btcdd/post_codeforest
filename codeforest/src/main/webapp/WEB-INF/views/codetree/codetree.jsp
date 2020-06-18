@@ -700,7 +700,7 @@ $(function() {
 				var compileResult1 = compileResult[0];
 				console.log("examOutput>>>>",examOutput1);
 				console.log("compileResult>>>>",compileResult1);
-				console.log("빼",examOutput1 - compileResult1);
+				console.log("examOutput1.equals(compileResult1)>>",examOutput1.equals(compileResult1));
 				
 			},
 			error: function(xhr, status, e) {
