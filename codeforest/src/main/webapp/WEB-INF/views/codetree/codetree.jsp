@@ -685,6 +685,7 @@ $(function() {
 
 	myLayout.registerComponent("testComponent",	function(container) {
 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="testComponent"></textarea>');
+		
 
 		container.on("open", function() {
 
@@ -696,6 +697,20 @@ $(function() {
 				theme : 'panda-syntax',
 				matchBrackets : true
 			});
+			var glCm = document.getElementsByClassName("lm_root")[0];
+			glCm.style = "";
+			
+			var glCm2 = document.getElementsByClassName("lm_stack")[0];
+			glCm2.style = "";
+			
+			var glCm3 = document.getElementsByClassName("lm_items")[0];
+			glCm3.style = "";
+			
+			var glCm4 = document.getElementsByClassName("lm_item_container")[0];
+			glCm4.style = "";
+			
+			var glCm5 = document.getElementsByClassName("lm_content")[0];
+			glCm5.style = "";
 		});
 	});
 
@@ -703,7 +718,7 @@ $(function() {
 		container.getElement().html('<textarea name="code" class="CodeMirror code" id="newTab"></textarea>');
 
 		container.getElement().attr("id", "cm"+codeMirrorIndex);		
-
+		
 	});
 	
 	$(document).on("click", "#addTab", function() {
