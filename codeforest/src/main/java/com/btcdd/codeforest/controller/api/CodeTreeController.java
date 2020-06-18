@@ -212,6 +212,10 @@ public class CodeTreeController {
 			compileResult = false;
 		}
 		
+		if(compileResult2 != null) {
+			compileResult = false;
+		}
+ 		
 		return JsonResult.success(compileResult);
 	}		
 }
