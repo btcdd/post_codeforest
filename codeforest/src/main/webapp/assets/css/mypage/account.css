@@ -7,6 +7,22 @@ body {
 	padding: 0;
 }
 
+.wrong {
+    position: absolute;
+    width: 100vw;
+    background-color: #414141;
+    color: #fff;
+    height: 65px;
+    top: 0;
+    z-index: 102;
+}
+
+.wrong-ptag {
+	margin: 0;
+    text-align: center;
+    line-height: 65px;
+}
+
 .container {
 	width: 820px;
     margin: auto;
@@ -207,10 +223,11 @@ button {
 }
 
 .nickname-input {
-   margin-left: 0.6em;
+    margin-left: 0.6em;
     width: 68%;
     padding-bottom: 4px;
     outline: none;
+    border: 1px solid #bebebe;
 }
 
 .password-pre {
@@ -219,17 +236,18 @@ button {
 }
 
 .password-input {
-	width: 13em;
-	margin-left: 0.6em;
-	margin-bottom: 0.7em;
-	outline: none;
-	
+    width: 13em;
+    margin-left: 0.6em;
+    margin-bottom: 0.7em;
+    outline: none;
+    padding-bottom: 4px;
 }
 
 .password-input2 {
-	width: 13em;
-	margin-left: 0.6em;
-	outline: none;
+    width: 13em;
+    margin-left: 0.6em;
+    outline: none;
+    padding-bottom: 4px;
 }
 
 .password-fieldset {
@@ -252,5 +270,45 @@ button {
 
 .delete-input {
 	width: 13em;
-	outline: none;
+    outline: none;
+    margin-left: 0.6em;
+    padding-bottom: 4px;
+}
+
+
+.error-password-pattern {
+    position: fixed;
+    width: 230px;
+    top: 390px;
+    left: 1072px;
+    border-radius: .3em;
+    background-color: #fae3e4;
+    padding: 5px 10px;
+    border: 0.5px solid #cea0a5;
+    color: #bf0000;
+}
+
+.error-password-pattern:before, .error-password-pattern:after {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.error-password-pattern:after {
+	border-color: rgba(250, 227, 228, 0);
+	border-top-color: #fae3e4;
+	left: 10%;
+	border-width: 7px;
+	margin-left: -7px;
+}
+.error-password-pattern:before {
+	border-color: rgba(191, 0, 0, 0);
+	border-top-color: #cea0a5;
+	left: 10%;
+	border-width: 8px;
+	margin-left: -8px;
 }

@@ -45,7 +45,6 @@ $(function(){
 		}
 		if( $('#password').val() != $('#passwordcheck').val() ){
 			alert('비밀번호가 다릅니다');
-			console.log("다름");
 			return;
 		}
 		this.submit();
@@ -59,7 +58,6 @@ $(function(){
 			$('#password').css('background-image', 'none');
 			$('#password-warning').hide();
 			password_pandan = false;			
-			console.log('1');
 		} else {
 			if(checkPasswordPattern(password) == false) {
 				$('.error-password-pattern').show();
@@ -67,7 +65,6 @@ $(function(){
 				$('#password').css('background-position', '275px');
 				$('#password').css('background-repeat', 'no-repeat');
 				password_pandan = false;
-				console.log('2');
 			}
 			
 			if(checkPasswordPattern(password) == true) {
