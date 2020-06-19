@@ -610,54 +610,32 @@ $(function() {
 			console.log("editor : " + editor);
 			currentEditor = editor;
 	 		
-	 		
-	 		$.ajax({
-				url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
-				async: true,
-				type: 'post',
-				dataType:'json',
-				data: {
-					'language' : language,
-					'fileName' : fileName,
-					'packagePath' : packagePath
-				},
-				success: function(response) {
-					currentEditor.setValue(response.data);				
-					console.log("code : " + response.data);
-				},
-				error: function(xhr, status, e) {
-					console.error(status + ":" + e);
-				}							
-			});
  		}
  		else {
  			layoutId = "layout"+fileNo;
 			tempLayout = root.getItemsById(layoutId)[0];
 			console.log("tempLayout",tempLayout);
- 			root.setActiveContentItem(tempLayout);
- 			
-	 		$.ajax({
-				url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
-				async: true,
-				type: 'post',
-				dataType:'json',
-				data: {
-					'language' : language,
-					'fileName' : fileName,
-					'packagePath' : packagePath
-				},
-				success: function(response) {
-					currentEditor.setValue(response.data);				
-					console.log("code : " + response.data);
-				},
-				error: function(xhr, status, e) {
-					console.error(status + ":" + e);
-				}							
-			});
-
-			
-			
+ 			root.setActiveContentItem(tempLayout);			
  		}
+ 		
+ 		$.ajax({
+			url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
+			async: true,
+			type: 'post',
+			dataType:'json',
+			data: {
+				'language' : language,
+				'fileName' : fileName,
+				'packagePath' : packagePath
+			},
+			success: function(response) {
+				currentEditor.setValue(response.data);				
+				console.log("code : " + response.data);
+			},
+			error: function(xhr, status, e) {
+				console.error(status + ":" + e);
+			}							
+		});
  	});
 
  	var compileResult1 = "";
