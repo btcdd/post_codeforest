@@ -782,13 +782,16 @@ $(function() {
  	
  	//////////////////////////// golden layout /////////////////////////////	
 	var config = {
-    content: [
-	      {
-	        type: 'stack',
-	      	isClosable: false,
-	        content: [
-	        ]
-	    }]
+ 		settings: {
+ 			selectionEnabled: true
+ 		},
+	    content: [
+		      {
+		        type: 'stack',
+		      	isClosable: false,
+		        content: [
+		        ]
+		    }]
 	};
 	
 	var myLayout = new GoldenLayout(config, $('#gl-cover'));
