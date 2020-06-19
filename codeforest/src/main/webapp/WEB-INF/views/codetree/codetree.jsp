@@ -579,6 +579,8 @@ $(function() {
  	var compileResult2 = "";
  	
  	$(document).on("click","#Run",function(){
+ 		$("#Save").trigger("click");
+ 		
  		$(this).addClass( "onclic", 250, validate);
  		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
  		var problemNo = "${saveVo.problemNo }";
@@ -661,7 +663,33 @@ $(function() {
  	}); 
   	
   	var trueSubmit = function() {
-  		var problemNo = "${saveVo.problemNo }";
+  		
+  	}
+  	
+  	
+   	$(document).on("click","#Submit",function(){
+   		$("#Save").trigger("click");
+   		
+//    		setTimeout(function() {
+//    			trueSubmit();
+//    		}, 5000);
+   		
+/* 		var subProblemNo = tempFile.data("subproblem-no");
+  		var result = new Array();
+   		<c:forEach items="${subProblemList}" var="info">
+   			var json = new Object();
+   			json.no = "${info.no}";
+   			
+   			result.push(json);
+   		</c:forEach>
+   		var selected = null;
+   		for(var i=0;i<result.length;i++){
+   			if(result[i].no == subProblemNo){
+   				selected = result[i];
+   			}
+   		} */
+   		
+   		var problemNo = "${saveVo.problemNo }";
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
@@ -695,30 +723,6 @@ $(function() {
 				console.error(status + ":" + e);
 			}							
 		});
-  	}
-  	
-  	
-   	$(document).on("click","#Submit",function(){
-   		$("#Save").trigger("click");
-   		
-   		setTimeout(function() {
-   			trueSubmit();
-   		}, 5000);
-   		
-/* 		var subProblemNo = tempFile.data("subproblem-no");
-  		var result = new Array();
-   		<c:forEach items="${subProblemList}" var="info">
-   			var json = new Object();
-   			json.no = "${info.no}";
-   			
-   			result.push(json);
-   		</c:forEach>
-   		var selected = null;
-   		for(var i=0;i<result.length;i++){
-   			if(result[i].no == subProblemNo){
-   				selected = result[i];
-   			}
-   		} */
    		
  	});    	
 
