@@ -735,7 +735,6 @@ $(function() {
   	
   	
    	$(document).on("click","#Submit",function(){
-   		$("#Run").trigger("click");
 /* 		var subProblemNo = tempFile.data("subproblem-no");
   		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
