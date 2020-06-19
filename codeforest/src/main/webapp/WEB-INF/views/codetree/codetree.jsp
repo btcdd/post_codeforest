@@ -735,6 +735,46 @@ $(function() {
   	
   	
    	$(document).on("click","#Submit",function(){
+   		$("#Run").trigger("click");
+   		
+   		setTimeout(function(){
+
+   	   		var problemNo = "${saveVo.problemNo }";
+   	 		$.ajax({
+   				url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
+   				async: true,
+   				type: 'post',
+   				dataType:'json',
+   				data: {
+   					'language' : tempFile.data("language"),
+   					'fileName' : tempFile.data("file-name"),
+   					'packagePath' : tempFile.data("package-path"),
+   					'subProblemNo':tempFile.data("subproblem-no"),
+   					'codeValue' : currentEditor.getValue(),
+   					'problemNo' : problemNo,
+   					'compileResult1':compileResult1,
+   					'compileResult2':compileResult2
+   				},
+   				success: function(response) {
+   					var compileResult = response.data.compileResult;
+   					var compileError = response.data.compileError;
+   					 
+   					if(compileError == true) {
+   						alert("컴파일 오류입니다.");
+   						return;
+   					} else if(compileResult == true) {
+   						alert("정답입니다.");
+   						return;
+   					} else {
+   						alert("오답입니다.");
+   					}
+   				},
+   				error: function(xhr, status, e) {
+   					console.error(status + ":" + e);
+   				}							
+   			});   			
+   			
+   		},5000);
 /* 		var subProblemNo = tempFile.data("subproblem-no");
   		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
@@ -750,40 +790,7 @@ $(function() {
    			}
    		} */
    		
-   		var problemNo = "${saveVo.problemNo }";
- 		$.ajax({
-			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
-			async: true,
-			type: 'post',
-			dataType:'json',
-			data: {
-				'language' : tempFile.data("language"),
-				'fileName' : tempFile.data("file-name"),
-				'packagePath' : tempFile.data("package-path"),
-				'subProblemNo':tempFile.data("subproblem-no"),
-				'codeValue' : currentEditor.getValue(),
-				'problemNo' : problemNo,
-				'compileResult1':compileResult1,
-				'compileResult2':compileResult2
-			},
-			success: function(response) {
-				var compileResult = response.data.compileResult;
-				var compileError = response.data.compileError;
-				 
-				if(compileError == true) {
-					alert("컴파일 오류입니다.");
-					return;
-				} else if(compileResult == true) {
-					alert("정답입니다.");
-					return;
-				} else {
-					alert("오답입니다.");
-				}
-			},
-			error: function(xhr, status, e) {
-				console.error(status + ":" + e);
-			}							
-		});
+
    		
  	});    	
 
