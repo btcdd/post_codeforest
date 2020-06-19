@@ -183,8 +183,7 @@ public class CodeTreeController {
 		
 		switch(language) {
 		case "c": 
-			codeTreeLinux.cCompile(fileName, packagePath, language);
-			
+			map = codeTreeLinux.cCompile(fileName, packagePath, language);
 			break;
 		case "cpp": 
 			break;
