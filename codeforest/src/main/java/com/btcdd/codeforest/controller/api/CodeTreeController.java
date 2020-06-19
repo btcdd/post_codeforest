@@ -195,8 +195,10 @@ public class CodeTreeController {
 			map = codeTreeLinux.javaCompile(fileName, packagePath, language);
 			break;
 		case "js": 
+			map = codeTreeLinux.jsCompile(fileName, packagePath, language);
 			break;
 		case "py": 
+			map = codeTreeLinux.pyCompile(fileName, packagePath, language);
 			break;
 		}
 		
