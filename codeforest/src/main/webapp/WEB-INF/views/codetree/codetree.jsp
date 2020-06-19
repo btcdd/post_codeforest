@@ -648,7 +648,7 @@ $(function() {
  		
  		
  	});
-	$(document).on("click", ".lm_tab", function() {
+	$(document).on("click", ".lm_tab", ".lm_title", function() {
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);
 		
 	});
