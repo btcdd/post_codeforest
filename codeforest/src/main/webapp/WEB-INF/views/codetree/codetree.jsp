@@ -635,7 +635,16 @@ $(function() {
 			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);
  			var a = $('#cm'+fileNo+' > .CodeMirror')[0];
+			var code2 = $('#cm'+fileNo+' > .CodeMirror')[0];		
+			
+			var editor2 = CodeMirror.fromTextArea(code2, {
+				lineNumbers : true,
+				mode : 'text/x-java',
+				theme : theme,
+				matchBrackets : true
+			});	
 			console.log(">>>>",a);
+			currentEditor = editor2;
  		}
  	});
 
