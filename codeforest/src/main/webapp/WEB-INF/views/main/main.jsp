@@ -30,6 +30,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script>
 
+var result = '';
+
 $(function() {
 	$(window).scroll(function() {
         if ($(this).scrollTop() > 500) {
@@ -142,10 +144,13 @@ $(function() {
  	$('.CodeMirror').addClass('code');
  	
  	$('#result').keydown(function(key) {
-		
+ 		
+ 		result += String.fromCharCode(key.keyCode);
+ 		
  		if (key.keyCode == 13) {
-			var content = $('#result').val();
-//  			$('#result').val('');
+ 			
+ 			content = result;
+ 			result = '';
  			
  			$.ajax({
  		         url: '${pageContext.request.contextPath }/compile/test',
@@ -164,6 +169,7 @@ $(function() {
  		            console.error(status + ":" + e);
  		         }
  		      });
+ 			
  		}
 	});
  	
