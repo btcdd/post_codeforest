@@ -47,15 +47,15 @@ public class CompileControllerJava {
 	@ResponseBody
 	@PostMapping("/test")
 	public JsonResult javaTest(@RequestParam String content) {
-		System.out.println(content.replace("\n", ""));
 		
 		Map<String, Object> map = new HashMap<>();
-		
+		StringBuffer readBuffer = new StringBuffer();
 		try {
 			// Linux의 경우는 /bin/bash
-			Process process = Runtime.getRuntime().exec(content);
-//			Process process = Runtime.getRuntime().exec("cmd");
-			
+//			 Process process = Runtime.getRuntime().exec(content);
+			Process process = Runtime.getRuntime().exec("cmd");
+			System.out.println(content);
+      
 			// Process의 각 stream을 받는다.
 			// process의 입력 stream3
 			OutputStream stdin = process.getOutputStream();
@@ -64,7 +64,7 @@ public class CompileControllerJava {
 			// process의 출력 stream
 			InputStream stdout = process.getInputStream();
 			
-			StringBuffer readBuffer = new StringBuffer();
+			StringBuffer readBuffer2 = new StringBuffer();
 			
 			// 쓰레드 풀을 이용해서 3개의 stream을 대기시킨다.
 			// 출력 stream을 BufferedReader로 받아서 라인 변경이 있을 경우 console 화면에 출력시킨다.
@@ -73,14 +73,17 @@ public class CompileControllerJava {
 				// InputStreamReader(stdout, "euc-kr")
 				// try (BufferedReader reader = new BufferedReader(new InputStreamReader(stdout,
 				// "euc-kr"))) {
-				try (BufferedReader reader = new BufferedReader(new InputStreamReader(stdout, "utf-8"))) {
+				try (BufferedReader reader = new BufferedReader(new InputStreamReader(stdout, "euc-kr"))) {
+//				try (BufferedReader reader = new BufferedReader(new InputStreamReader(stdout, "utf-8"))) {
 					
 					String line;
 					while ((line = reader.readLine()) != null) {
 						readBuffer.append(line);
 						readBuffer.append("\n");
+						System.out.println("readBuffer > " + readBuffer.toString());
+						System.out.println("input > " + line);
 					}
-					map.put("readbuffer", readBuffer.toString());
+//					map.put("readbuffer", readBuffer.toString());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -91,13 +94,15 @@ public class CompileControllerJava {
 				// InputStreamReader(stdout, "euc-kr")
 				// try (BufferedReader reader = new BufferedReader(new InputStreamReader(stderr,
 				// "euc-kr"))) {
-				try (BufferedReader reader = new BufferedReader(new InputStreamReader(stderr, "utf-8"))) {
+				try (BufferedReader reader = new BufferedReader(new InputStreamReader(stderr, "euc-kr"))) {
+//				try (BufferedReader reader = new BufferedReader(new InputStreamReader(stderr, "utf-8"))) {
 					String line;
 					while ((line = reader.readLine()) != null) {
-						readBuffer.append(line);
-						readBuffer.append("\n");
+						readBuffer2.append(line);
+						readBuffer2.append("\n");
+						System.out.println("err > " + line);
 					}
-					map.put("readbuffer", readBuffer.toString());
+					map.put("readbuffer2", readBuffer2.toString());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -108,18 +113,20 @@ public class CompileControllerJava {
 				// Scanner 클래스는 콘솔로 부터 입력을 받기 위한 클래스 입니다.
 				try (Scanner scan = new Scanner(System.in)) {
 					try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin))) {
-						while (true) {
-							// 콘솔로 부터 엔터가 포함되면 input String 변수로 값이 입력됩니다.
-//							String input = scan.nextLine();
-							// 콘솔에서 \n가 포함되어야 실행된다.(엔터의 의미인듯 싶습니다.)
-//							contents += "\n";
+						System.out.println("contents >>> " + contents);
+							contents += "\n";
 							writer.write(contents);
 							// Process로 명령어 입력
+							System.out.println("outputStreamWriter");
+//							if(contents != null) {
+//							}
 							writer.flush();
-							// exit 명령어가 들어올 경우에는 프로그램을 종료합니다.
-							if ("exit\n".equals(contents)) {
-								System.exit(0);
-							}
+						// 콘솔로 부터 엔터가 포함되면 input String 변수로 값이 입력됩니다.
+//							String input = scan.nextLine();
+						// 콘솔에서 \n가 포함되어야 실행된다.(엔터의 의미인듯 싶습니다.)
+						// exit 명령어가 들어올 경우에는 프로그램을 종료합니다.
+						if ("exit\n".equals(contents)) {
+							System.exit(0);
 						}
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -128,8 +135,12 @@ public class CompileControllerJava {
 			});
 		} catch (Throwable e) {
 			e.printStackTrace();
+		} finally {
+			map.put("readbuffer", readBuffer);
 		}
-		
+
+		readBuffer.delete(0,readBuffer.length());
+		readBuffer.trimToSize();
 		return JsonResult.success(map);
 	}
 }

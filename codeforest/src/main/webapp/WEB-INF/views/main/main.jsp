@@ -148,8 +148,8 @@ $(function() {
  		result += String.fromCharCode(key.keyCode);
  		
  		if (key.keyCode == 13) {
- 			
- 			content = result;
+
+      content = result;
  			result = '';
  			
  			$.ajax({
@@ -163,7 +163,13 @@ $(function() {
  		               console.error(response.message);
  		               return;
  		            }
+					console.log('content : ' + content);
+					console.log('response : ' + response.data.readbuffer);
+					console.log('response2 : ' + response.data.readbuffer2);
+//  		            $('#result').keyUp();
  		            $('#result').val(content + "\n" + "> " + response.data.readbuffer);
+ 		            
+ 		            return;
  		         },
  		         error: function(xhr, status, e) {
  		            console.error(status + ":" + e);
