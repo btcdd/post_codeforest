@@ -609,6 +609,8 @@ $(function() {
  	var compileResult2 = "";
  	
  	$(document).on("click","#Run",function(){
+ 		$("#Save").trigger("click");
+ 		
  		$(this).addClass( "onclic", 250, validate);
  		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
  		var problemNo = "${saveVo.problemNo }";
@@ -663,6 +665,7 @@ $(function() {
   	    }
  	 
  	
+  	    
   	$(document).on("click","#Save",function(){
   		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
   		var problemNo = "${saveVo.problemNo }";
@@ -689,8 +692,9 @@ $(function() {
 		}); 		
  	}); 
   	
+  	
    	$(document).on("click","#Submit",function(){
-   		var problemNo = "${saveVo.problemNo }";
+   		$("#Save").trigger("click");
 /* 		var subProblemNo = tempFile.data("subproblem-no");
   		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
@@ -705,6 +709,8 @@ $(function() {
    				selected = result[i];
    			}
    		} */
+   		
+   		var problemNo = "${saveVo.problemNo }";
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
@@ -738,6 +744,7 @@ $(function() {
 				console.error(status + ":" + e);
 			}							
 		});
+   		
  	});    	
 
  	
