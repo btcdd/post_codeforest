@@ -579,13 +579,16 @@ $(function() {
  	var fileNo = null
  	var root = null;
 	var HashMap = new Map();
- 	
+ 	var fileMap = new Map();
+	
  	$(document).on("dblclick", ".file", function() {		
  		tempFile = $(this);
  		var language = $(this).data("language");
  		var fileName = $(this).data("file-name");
  		var packagePath = $(this).data("package-path");
  		fileNo = $(this).data("no");
+ 		
+ 		fileMap.set(fileNo+"", tempFile);
  		console.log($("#cm"+fileNo).length);
  		
  		if($("#cm"+fileNo).length < 1) { // 켜진 창이 중복되서 안켜지도록 함
@@ -653,7 +656,9 @@ $(function() {
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id);
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[0]);
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);
-		
+		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
+ 		tempFile = fileMap.get(tabFileNo+"");
+ 		console.log("mousedown tempFile>>>>>>>",tempFile);
 	});
  	
  	
@@ -719,6 +724,10 @@ $(function() {
  	
   	    
   	$(document).on("click","#Save",function(){
+  		console.log("Save tempFile>>>>>>>",tempFile);
+  		
+  		
+  		
   		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
   		var problemNo = "${saveVo.problemNo }";
   		
