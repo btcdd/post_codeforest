@@ -114,15 +114,15 @@ public class CompileControllerJava {
 				try (Scanner scan = new Scanner(System.in)) {
 					try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin))) {
 						System.out.println("contents >>> " + contents);
-							contents += "\n";
-							writer.write(contents);
+						String input = scan.nextLine();
+							input += "\n";
+							writer.write(input);
 							// Process로 명령어 입력
 							System.out.println("outputStreamWriter");
 //							if(contents != null) {
 //							}
 							writer.flush();
 						// 콘솔로 부터 엔터가 포함되면 input String 변수로 값이 입력됩니다.
-//							String input = scan.nextLine();
 						// 콘솔에서 \n가 포함되어야 실행된다.(엔터의 의미인듯 싶습니다.)
 						// exit 명령어가 들어올 경우에는 프로그램을 종료합니다.
 						if ("exit\n".equals(contents)) {

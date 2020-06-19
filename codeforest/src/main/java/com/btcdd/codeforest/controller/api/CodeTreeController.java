@@ -179,8 +179,23 @@ public class CodeTreeController {
 							HttpSession session) {
 		// 관우 유진 코드
 		/////////////////////
+		Map<String, Object> map = new HashMap<>();
 		
-		Map<String, Object> map = codeTreeLinux.javaCompile(fileName, packagePath, language);
+		switch(language) {
+		case "c": 
+			break;
+		case "cpp": 
+			break;
+		case "cs": 
+			break;
+		case "java": 
+			map = codeTreeLinux.javaCompile(fileName, packagePath, language);
+			break;
+		case "js": 
+			break;
+		case "py": 
+			break;
+		}
 		
 		//////////////////////
 		

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class RunJava {
 	
@@ -13,6 +14,7 @@ public class RunJava {
 	private Process process;
 	private BufferedReader bufferedReader;
 	private BufferedReader bufferedReader2;
+	private BufferedWriter bufferedWriter;
 	private StringBuffer readBuffer;
 	
 	private File file;
@@ -88,6 +90,7 @@ public class RunJava {
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			bufferedReader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+			bufferedWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
 						
 			String line = null;
 			readBuffer = new StringBuffer();
