@@ -17,6 +17,7 @@ import java.util.Map;
 
 import com.btcdd.codeforest.runlanguage.RunCLinux;
 import com.btcdd.codeforest.runlanguage.RunCppLinux;
+import com.btcdd.codeforest.runlanguage.RunCsLinux;
 import com.btcdd.codeforest.runlanguage.RunJavaLinux;
 
 public class CodeTreeLinux {
@@ -227,11 +228,11 @@ public class CodeTreeLinux {
 	
 	public Map<String, Object> csCompile(String fileName, String packagePath, String language) {
 
-		RunCppLinux runCppLinux = new RunCppLinux(fileName, packagePath, language);
+		RunCsLinux runCsLinux = new RunCsLinux(fileName, packagePath, language);
 		
-		runCppLinux.execCompile();
-		String result = runCppLinux.execCommand();
-		String errorResult = runCppLinux.execCompile();
+		runCsLinux.execCompile();
+		String result = runCsLinux.execCommand();
+		String errorResult = runCsLinux.execCompile();
 		
 		String[] res = new String[2];
 		res[0] = result;
