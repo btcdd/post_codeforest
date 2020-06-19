@@ -538,6 +538,7 @@ $(function() {
 							success: function(response) {
 							 	layoutId = "layout"+codeNo;
 								tempLayout = root.getItemsById(layoutId);
+								console.log(tempLayout);
 								tempLayout.setTitle(fileName);
 								
  								if(response.data.result == 'no'){
