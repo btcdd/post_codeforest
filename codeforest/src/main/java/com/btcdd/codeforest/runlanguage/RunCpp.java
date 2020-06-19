@@ -92,7 +92,7 @@ public class RunCpp {
 	private String runClass() {
 		buffer = new StringBuffer();
 		
-		buffer.append("./cppTest.exe");
+		buffer.append("timeout 2s ./cppTest.exe");
 		
 		return buffer.toString();
 	}

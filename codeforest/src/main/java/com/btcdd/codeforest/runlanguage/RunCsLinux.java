@@ -56,7 +56,7 @@ public class RunCsLinux {
 		try {
 			
 			process = Runtime.getRuntime().exec(
-					"mcs " + packagePath + "/" + language + "/Test.cs");	
+					"mcs " + packagePath + "/" + language + "/Test.cs");
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 			String line = null;
@@ -104,7 +104,7 @@ public class RunCsLinux {
 	public String runClass() {
 		buffer = new StringBuffer();
 		
-		buffer.append("mono " + packagePath + "/" + language + "/Test.exe");
+		buffer.append("timeout 2s mono " + packagePath + "/" + language + "/Test.exe");
 		
 		return buffer.toString();
 	}

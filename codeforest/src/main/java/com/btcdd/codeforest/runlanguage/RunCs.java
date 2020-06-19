@@ -92,7 +92,7 @@ public class RunCs {
 	private String runClass() {
 		buffer = new StringBuffer();
 		
-		buffer.append("mono testCs.exe");
+		buffer.append("timeout 2s mono testCs.exe");
 		
 		return buffer.toString();
 	}
