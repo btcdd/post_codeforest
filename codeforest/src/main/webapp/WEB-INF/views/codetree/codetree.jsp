@@ -583,6 +583,7 @@ $(function() {
  		var packagePath = $(this).data("package-path");
  		fileNo = $(this).data("no");
  		console.log($("#cm"+fileNo).length);
+ 		
  		if($("#cm"+fileNo).length < 1) { // 켜진 창이 중복되서 안켜지도록 함
 	 		root = myLayout.root.contentItems[0] || myLayout.root;
 	
@@ -634,17 +635,28 @@ $(function() {
 			tempLayout = root.getItemsById(layoutId)[0];
 			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);
- 			var a = $('#cm'+fileNo+' > .CodeMirror')[0];
-			var code2 = $('#cm'+fileNo+' > .CodeMirror')[0];		
+ 			
+	 		$.ajax({
+				url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
+				async: true,
+				type: 'post',
+				dataType:'json',
+				data: {
+					'language' : language,
+					'fileName' : fileName,
+					'packagePath' : packagePath
+				},
+				success: function(response) {
+					currentEditor.setValue(response.data);				
+					console.log("code : " + response.data);
+				},
+				error: function(xhr, status, e) {
+					console.error(status + ":" + e);
+				}							
+			});
+
 			
-			var editor2 = CodeMirror.fromTextArea(code2, {
-				lineNumbers : true,
-				mode : 'text/x-java',
-				theme : theme,
-				matchBrackets : true
-			});	
-			console.log(">>>>",a);
-			currentEditor = editor2;
+			
  		}
  	});
 
