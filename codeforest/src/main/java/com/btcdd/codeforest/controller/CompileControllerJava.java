@@ -52,8 +52,8 @@ public class CompileControllerJava {
 		StringBuffer readBuffer = new StringBuffer();
 		try {
 			// Linux의 경우는 /bin/bash
-//			 Process process = Runtime.getRuntime().exec(content);
-			Process process = Runtime.getRuntime().exec("cmd");
+			 Process process = Runtime.getRuntime().exec(content);
+//			Process process = Runtime.getRuntime().exec("cmd");
 			System.out.println(content);
 			// Process의 각 stream을 받는다.
 			// process의 입력 stream3
