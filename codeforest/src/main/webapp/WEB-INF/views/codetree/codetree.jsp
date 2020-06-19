@@ -595,7 +595,7 @@ $(function() {
 				type : "component",
 				componentName : "newTab",
 				title : fileName,
-				id : "layout"+fileNo
+				id : "layout-"+fileNo
 			});
 			
 			
