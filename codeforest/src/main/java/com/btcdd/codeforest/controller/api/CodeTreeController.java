@@ -189,6 +189,7 @@ public class CodeTreeController {
 			map = codeTreeLinux.cppCompile(fileName, packagePath, language);
 			break;
 		case "cs": 
+			map = codeTreeLinux.csCompile(fileName, packagePath, language);
 			break;
 		case "java": 
 			map = codeTreeLinux.javaCompile(fileName, packagePath, language);
