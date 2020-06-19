@@ -636,7 +636,7 @@ $(function() {
 	
  		}
  		else {
- 			layoutId = "layout"+fileNo;
+ 			layoutId = "layout-"+fileNo;
 			tempLayout = root.getItemsById(layoutId)[0];
 			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);	
@@ -649,7 +649,8 @@ $(function() {
  		
  	});
 	$(document).on("click", ".lm_tab", function() {
-		console.log("getActiveContentItem()>>",root.getActiveContentItem());
+		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);
+		
 	});
  	
  	
