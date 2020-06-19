@@ -71,8 +71,10 @@ var fileFetchList = function(){
 };
 
 
-
 var currentEditor = null;
+
+var editorArray = new Array();
+var editorArrayIndex = 0;
 
 $(function() {
 	fileFetchList();
@@ -119,9 +121,12 @@ $(function() {
 //    		matchBrackets: true
 //    });
    
+   var theme = 'panda-syntax';
    $('.theme').click(function() {
-	   var theme = $(".theme option:selected").val();
-	   currentEditor.setOption("theme", theme);
+	   theme = $(".theme option:selected").val();
+	   if(currentEditor != null) {
+		   currentEditor.setOption("theme", theme);
+	   }	   
 	   
 	   // 터미널 색 변경
 	   $(".window .terminal").css('background-color', $(".cm-s-" + theme).css("background-color"));
@@ -180,7 +185,10 @@ $(function() {
 		   face = 'print("Hello World")';
 	   }
 	   
-	   currentEditor.setValue(face);
+	   if(currentEditor != null) {
+		   currentEditor.setValue(face);
+	   }	
+	   
 	   
 	   
 	   
@@ -258,6 +266,9 @@ $(function() {
  	$(".contextmenu").append(str);
  	var str2='<div><li id="userfile-delete">파일 삭제</li><li id="userfile-update">이름변경</li></div>';
  	$(".userfile-menu").append(str2);
+ 	
+ 	
+ 	
  	
 
 	$(document).on('mouseenter','#folder',function() {
@@ -495,7 +506,9 @@ $(function() {
 			close:function(){}
  	}); 	
  	
- 	
+ 	var layoutId = null;
+ 	var tempLayout = null;
+
  	$(document).on("click", "#userfile-update", function() {
  		var lang = $(".lang option:selected").val();
  		var fileName = null;
@@ -526,7 +539,13 @@ $(function() {
 								'prevFileName':prevFileName
 							},
 							success: function(response) {
-											
+								if(root != null) {
+								 	layoutId = "layout"+codeNo;
+									tempLayout = root.getItemsById(layoutId)[0];
+									console.log(tempLayout);
+									tempLayout.setTitle(fileName);
+								}
+								
  								if(response.data.result == 'no'){
 									alert("이미 파일이 존재합니다.");//메시지 처리 필요
 									return;
@@ -534,6 +553,8 @@ $(function() {
 								$(".file-tree__subtree").remove();
 
 								fileFetchList(); 
+								
+								
 								
 							},
 							error: function(xhr, status, e) {
@@ -556,36 +577,46 @@ $(function() {
  	// 파일을 더블클릭 하면...
  	var tempFile = null;
  	var fileNo = null
+ 	var root = null;
+	var HashMap = new Map();
+ 	var fileMap = new Map();
+	
  	$(document).on("dblclick", ".file", function() {		
  		tempFile = $(this);
  		var language = $(this).data("language");
  		var fileName = $(this).data("file-name");
  		var packagePath = $(this).data("package-path");
  		fileNo = $(this).data("no");
+ 		
+ 		fileMap.set(fileNo+"", tempFile);
  		console.log($("#cm"+fileNo).length);
+ 		
  		if($("#cm"+fileNo).length < 1) { // 켜진 창이 중복되서 안켜지도록 함
-	 		var root = myLayout.root.contentItems[0] || myLayout.root;
+	 		root = myLayout.root.contentItems[0] || myLayout.root;
 	
 			root.addChild({
 				type : "component",
 				componentName : "newTab",
 				title : fileName,
-				id : "layout"+fileNo
+				id : "layout-"+fileNo
 			});
+			
+			
+			
 			var code = $('#cm'+fileNo+' > .CodeMirror')[0];		
 			
 			var editor = CodeMirror.fromTextArea(code, {
 				lineNumbers : true,
 				mode : 'text/x-java',
-				theme : 'panda-syntax',
+				theme : theme,
 				matchBrackets : true
-			});	
+			});			
 			
 			console.log("editor : " + editor);
 			currentEditor = editor;
-	 		
-	 		
-	 		$.ajax({
+			HashMap.set("editor"+fileNo, editor);
+			
+			$.ajax({
 				url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
 				async: true,
 				type: 'post',
@@ -603,14 +634,36 @@ $(function() {
 					console.error(status + ":" + e);
 				}							
 			});
+			
+			
+	
  		}
  		else {
-//  			$("lm_tab").
-//  			$(".lm_item_container").hide();
-//  			$("#cm"+fileNo).parent().show();
+ 			layoutId = "layout-"+fileNo;
+			tempLayout = root.getItemsById(layoutId)[0];
+			console.log("tempLayout",tempLayout);
+ 			root.setActiveContentItem(tempLayout);	
+ 			
+ 			currentEditor = HashMap.get("editor"+fileNo);
+ 			
+ 			console.log("map>>>",HashMap.get("editor"+fileNo));
  		}
+ 		
+ 		
  	});
-
+	$(document).on("mousedown", ".lm_title", function() {
+		console.log("getActiveContentItem()>>",root.getActiveContentItem());
+		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id);
+		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[0]);
+		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);
+		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
+ 		tempFile = fileMap.get(tabFileNo+"");
+ 		console.log("mousedown tempFile>>>>>>>",tempFile.data("fileName"));
+ 		currentEditor = HashMap.get("editor"+tabFileNo);
+ 		 
+	});
+ 	
+ 	
  	var compileResult1 = "";
  	var compileResult2 = "";
  	
@@ -673,6 +726,10 @@ $(function() {
  	
   	    
   	$(document).on("click","#Save",function(){
+  		console.log("Save tempFile>>>>>>>",tempFile.data("fileName"));
+  		
+  		
+  		
   		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
   		var problemNo = "${saveVo.problemNo }";
   		
@@ -700,7 +757,46 @@ $(function() {
   	
   	
    	$(document).on("click","#Submit",function(){
-   		$("#Save").trigger("click");
+   		$("#Run").trigger("click");
+   		
+   		setTimeout(function(){
+
+   	   		var problemNo = "${saveVo.problemNo }";
+   	 		$.ajax({
+   				url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
+   				async: true,
+   				type: 'post',
+   				dataType:'json',
+   				data: {
+   					'language' : tempFile.data("language"),
+   					'fileName' : tempFile.data("file-name"),
+   					'packagePath' : tempFile.data("package-path"),
+   					'subProblemNo':tempFile.data("subproblem-no"),
+   					'codeValue' : currentEditor.getValue(),
+   					'problemNo' : problemNo,
+   					'compileResult1':compileResult1,
+   					'compileResult2':compileResult2
+   				},
+   				success: function(response) {
+   					var compileResult = response.data.compileResult;
+   					var compileError = response.data.compileError;
+   					 
+   					if(compileError == true) {
+   						alert("컴파일 오류입니다.");
+   						return;
+   					} else if(compileResult == true) {
+   						alert("정답입니다.");
+   						return;
+   					} else {
+   						alert("오답입니다.");
+   					}
+   				},
+   				error: function(xhr, status, e) {
+   					console.error(status + ":" + e);
+   				}							
+   			});   			
+   			
+   		},1500);
 /* 		var subProblemNo = tempFile.data("subproblem-no");
   		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
@@ -716,40 +812,7 @@ $(function() {
    			}
    		} */
    		
-   		var problemNo = "${saveVo.problemNo }";
- 		$.ajax({
-			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
-			async: true,
-			type: 'post',
-			dataType:'json',
-			data: {
-				'language' : tempFile.data("language"),
-				'fileName' : tempFile.data("file-name"),
-				'packagePath' : tempFile.data("package-path"),
-				'subProblemNo':tempFile.data("subproblem-no"),
-				'codeValue' : currentEditor.getValue(),
-				'problemNo' : problemNo,
-				'compileResult1':compileResult1,
-				'compileResult2':compileResult2
-			},
-			success: function(response) {
-				var compileResult = response.data.compileResult;
-				var compileError = response.data.compileError;
-				 
-				if(compileError == true) {
-					alert("컴파일 오류입니다.");
-					return;
-				} else if(compileResult == true) {
-					alert("정답입니다.");
-					return;
-				} else {
-					alert("오답입니다.");
-				}
-			},
-			error: function(xhr, status, e) {
-				console.error(status + ":" + e);
-			}							
-		});
+
    		
  	});    	
 
@@ -757,13 +820,16 @@ $(function() {
  	
  	//////////////////////////// golden layout /////////////////////////////	
 	var config = {
-    content: [
-	      {
-	        type: 'stack',
-	      	isClosable: false,
-	        content: [
-	        ]
-	    }]
+ 		settings: {
+ 			selectionEnabled: true
+ 		},
+	    content: [
+		      {
+		        type: 'stack',
+		      	isClosable: false,
+		        content: [
+		        ]
+		    }]
 	};
 	
 	var myLayout = new GoldenLayout(config, $('#gl-cover'));
