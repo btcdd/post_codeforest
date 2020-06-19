@@ -661,6 +661,8 @@ $(function() {
   	
    	$(document).on("click","#Submit",function(){
    		var problemNo = "${saveVo.problemNo }";
+   		$("#Save").trigger("click");
+   		
 /* 		var subProblemNo = tempFile.data("subproblem-no");
   		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
