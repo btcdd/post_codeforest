@@ -634,7 +634,8 @@ $(function() {
 			tempLayout = root.getItemsById(layoutId)[0];
 			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);
-
+ 			var a = $('#cm'+fileNo+' > .CodeMirror')[0];
+			console.log(">>>>",a);
  		}
  	});
 
