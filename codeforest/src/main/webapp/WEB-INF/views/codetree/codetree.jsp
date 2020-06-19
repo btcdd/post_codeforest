@@ -659,6 +659,7 @@ $(function() {
 		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
  		tempFile = fileMap.get(tabFileNo+"");
  		console.log("mousedown tempFile>>>>>>>",tempFile.data("fileName"));
+ 		currentEditor = HashMap.get("editor"+tabFileNo);
  		
 	});
  	
