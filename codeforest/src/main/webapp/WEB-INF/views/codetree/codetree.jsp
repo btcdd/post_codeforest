@@ -630,6 +630,8 @@ $(function() {
 			});
  		}
  		else {
+ 			layoutId = "layout"+codeNo;
+			tempLayout = root.getItemsById(layoutId)[0];
  			tempLayout.select();
  		}
  	});
