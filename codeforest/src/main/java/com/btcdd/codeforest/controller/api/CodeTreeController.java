@@ -106,6 +106,7 @@ public class CodeTreeController {
 	@Auth
 	@PostMapping("/fileUpdate")
 	public JsonResult fileUpdate(Long savePathNo,Long codeNo,String fileName,Long subProblemNo,String prevFileName) {
+		System.out.println("savePathNo>>"+savePathNo);
 		System.out.println("codeNo>>"+codeNo);
 		System.out.println("fileName>>"+fileName);
 		System.out.println("prevFileName"+prevFileName);
