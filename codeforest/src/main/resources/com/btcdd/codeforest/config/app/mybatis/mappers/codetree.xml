@@ -155,7 +155,7 @@
 	</select>
 	<insert id="insertFile" parameterType="hashmap" useGeneratedKeys="true" keyProperty="id">
 		<![CDATA[
-			insert into code values(null,#{savePathNo},#{language},#{fileName});
+			insert into code values(null,#{savePathNo},#{language},binary(#{fileName}));
 		]]>
 	</insert>
 
@@ -181,7 +181,7 @@
 		<![CDATA[
 			select no
 			  from code
-			 where save_path_no = #{savePathNo} and file_name like #{fileName}
+			 where save_path_no = #{savePathNo} and file_name = binary(#{fileName})
 		]]>
 	</select>
 	
