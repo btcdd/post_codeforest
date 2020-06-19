@@ -660,7 +660,7 @@ $(function() {
  		tempFile = fileMap.get(tabFileNo+"");
  		console.log("mousedown tempFile>>>>>>>",tempFile.data("fileName"));
  		currentEditor = HashMap.get("editor"+tabFileNo);
- 		
+ 		 
 	});
  	
  	
