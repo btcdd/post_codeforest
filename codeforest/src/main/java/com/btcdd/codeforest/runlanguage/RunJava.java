@@ -90,7 +90,7 @@ public class RunJava {
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			bufferedReader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-			bufferedWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+//			bufferedWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
 						
 			String line = null;
 			readBuffer = new StringBuffer();
