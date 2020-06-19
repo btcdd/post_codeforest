@@ -703,7 +703,7 @@ $(function() {
    		
    		setTimeout(function() {
    			trueSubmit();
-   		}, 1000);
+   		}, 5000);
    		
 /* 		var subProblemNo = tempFile.data("subproblem-no");
   		var result = new Array();
