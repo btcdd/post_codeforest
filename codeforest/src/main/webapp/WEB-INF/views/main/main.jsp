@@ -144,12 +144,12 @@ $(function() {
  	$('.CodeMirror').addClass('code');
  	
  	$('#result').keydown(function(key) {
- 		
- 		result += String.fromCharCode(key.keyCode);
+ 		var keyCode = typeof key.which === "number" ? key.which : key.keyCode;
+ 		result += String.fromCharCode(keyCode);
  		
  		if (key.keyCode == 13) {
 
-      content = result;
+     	 content = result;
  			result = '';
  			
  			$.ajax({
