@@ -503,7 +503,9 @@ $(function() {
 			close:function(){}
  	}); 	
  	
- 	
+ 	var layoutId = null;
+ 	var tempLayout = null;
+
  	$(document).on("click", "#userfile-update", function() {
  		var lang = $(".lang option:selected").val();
  		var fileName = null;
@@ -534,7 +536,10 @@ $(function() {
 								'prevFileName':prevFileName
 							},
 							success: function(response) {
-											
+							 	layoutId = "layout"+codeNo;
+								tempLayout = root.getItemsById(layoutId);
+								tempLayout.setTitle(fileName);
+								
  								if(response.data.result == 'no'){
 									alert("이미 파일이 존재합니다.");//메시지 처리 필요
 									return;
@@ -542,6 +547,8 @@ $(function() {
 								$(".file-tree__subtree").remove();
 
 								fileFetchList(); 
+								
+								
 								
 							},
 							error: function(xhr, status, e) {
@@ -564,6 +571,8 @@ $(function() {
  	// 파일을 더블클릭 하면...
  	var tempFile = null;
  	var fileNo = null
+ 	var root = null;
+
  	$(document).on("dblclick", ".file", function() {		
  		tempFile = $(this);
  		var language = $(this).data("language");
@@ -572,7 +581,7 @@ $(function() {
  		fileNo = $(this).data("no");
  		console.log($("#cm"+fileNo).length);
  		if($("#cm"+fileNo).length < 1) { // 켜진 창이 중복되서 안켜지도록 함
-	 		var root = myLayout.root.contentItems[0] || myLayout.root;
+	 		root = myLayout.root.contentItems[0] || myLayout.root;
 	
 			root.addChild({
 				type : "component",
@@ -580,6 +589,9 @@ $(function() {
 				title : fileName,
 				id : "layout"+fileNo
 			});
+			
+			
+			
 			var code = $('#cm'+fileNo+' > .CodeMirror')[0];		
 			
 			var editor = CodeMirror.fromTextArea(code, {
