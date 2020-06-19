@@ -265,7 +265,7 @@ $(function() {
 		$(document).on('mousedown','#folder',function(e) {
 			$(".userfile-menu").hide();
 			if(e.which == 3){
-
+				tempFile = $(this);
 				savePathNo = $(this).data("no");
 	 			subProblemNo = $(this).data("no2");
 	 		    //Get window size:
@@ -323,6 +323,7 @@ $(function() {
 			$(".contextmenu").hide();
 			
 			if(e.which == 3){
+				tempFile = $(this);
 				codeNo = $(this).data("no");
 				prevFileName = $(this).data("file-name");
 	 		    //Get window size:
@@ -511,6 +512,7 @@ $(function() {
 							return;
 						}
 						fileName = filename2;
+						console.log("fileName>>>>>>>>>>>>>>>>>",fileName);
 						$.ajax({
 							url: '${pageContext.servletContext.contextPath }/api/codetree/fileUpdate',
 							async: true,
