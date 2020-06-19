@@ -267,6 +267,9 @@ $(function() {
  	var str2='<div><li id="userfile-delete">파일 삭제</li><li id="userfile-update">이름변경</li></div>';
  	$(".userfile-menu").append(str2);
  	
+ 	
+ 	
+ 	
 
 	$(document).on('mouseenter','#folder',function() {
 		console.log("hi");
@@ -645,7 +648,11 @@ $(function() {
  		
  		
  	});
-
+	$(document).on("click", ".lm_tab", function() {
+		console.log("getActiveContentItem()>>",root.getActiveContentItem());
+	});
+ 	
+ 	
  	var compileResult1 = "";
  	var compileResult2 = "";
  	
