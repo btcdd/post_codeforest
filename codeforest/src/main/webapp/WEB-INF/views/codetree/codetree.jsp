@@ -575,7 +575,8 @@ $(function() {
  	var tempFile = null;
  	var fileNo = null
  	var root = null;
-
+	var HashMap = null;
+ 	
  	$(document).on("dblclick", ".file", function() {		
  		tempFile = $(this);
  		var language = $(this).data("language");
@@ -603,39 +604,46 @@ $(function() {
 				mode : 'text/x-java',
 				theme : theme,
 				matchBrackets : true
-			});	
-			
-	
+			});			
 			
 			console.log("editor : " + editor);
 			currentEditor = editor;
-	 		
+			HashMap.put("editor"+fileNo, editor);
+			
+			$.ajax({
+				url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
+				async: true,
+				type: 'post',
+				dataType:'json',
+				data: {
+					'language' : language,
+					'fileName' : fileName,
+					'packagePath' : packagePath
+				},
+				success: function(response) {
+					currentEditor.setValue(response.data);				
+					console.log("code : " + response.data);
+				},
+				error: function(xhr, status, e) {
+					console.error(status + ":" + e);
+				}							
+			});
+			
+			
+	
  		}
  		else {
  			layoutId = "layout"+fileNo;
 			tempLayout = root.getItemsById(layoutId)[0];
 			console.log("tempLayout",tempLayout);
- 			root.setActiveContentItem(tempLayout);			
+ 			root.setActiveContentItem(tempLayout);	
+ 			
+ 			currentEditor = HashMap.get("editor"+fileNo);
+ 			
+ 			console.log("map>>>",HashMap.get("editor"+fileNo));
  		}
  		
- 		$.ajax({
-			url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
-			async: true,
-			type: 'post',
-			dataType:'json',
-			data: {
-				'language' : language,
-				'fileName' : fileName,
-				'packagePath' : packagePath
-			},
-			success: function(response) {
-				currentEditor.setValue(response.data);				
-				console.log("code : " + response.data);
-			},
-			error: function(xhr, status, e) {
-				console.error(status + ":" + e);
-			}							
-		});
+ 		
  	});
 
  	var compileResult1 = "";
