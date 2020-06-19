@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.btcdd.codeforest.vo.CodeVo;
 
-public class RunJavaLinux {
+public class RunCLinux {
 	
 	private String fileName;
 	private String language;
@@ -26,7 +26,7 @@ public class RunJavaLinux {
 	private BufferedWriter bufferWriter;
 	
 	
-	public RunJavaLinux(String fileName, String packagePath, String language) {
+	public RunCLinux(String fileName, String packagePath, String language) {
 		this.fileName = fileName;
 		this.packagePath = packagePath;
 		this.language = language;
@@ -56,7 +56,7 @@ public class RunJavaLinux {
 		try {
 			
 			process = Runtime.getRuntime().exec(
-					"javac -cp " + packagePath + "/" + language + "/ " + packagePath + "/" + language + "/" + fileName);	
+					"gcc -o " + packagePath + "/" + language + "/Test.exe " + packagePath + "/" + language + "/Test.c");	
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 			String line = null;
@@ -104,9 +104,7 @@ public class RunJavaLinux {
 	public String runClass() {
 		buffer = new StringBuffer();
 		
-		String[] split = fileName.split("\\.");
-		
-		buffer.append("java -cp " + packagePath + "/" + language + "/ " + split[0]);
+		buffer.append(packagePath + "/" + language + "/Test.exe");
 		
 		return buffer.toString();
 	}
