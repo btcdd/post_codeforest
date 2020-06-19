@@ -575,7 +575,7 @@ $(function() {
  	var tempFile = null;
  	var fileNo = null
  	var root = null;
-	var HashMap = null;
+	var HashMap = new Map();
  	
  	$(document).on("dblclick", ".file", function() {		
  		tempFile = $(this);
@@ -608,7 +608,7 @@ $(function() {
 			
 			console.log("editor : " + editor);
 			currentEditor = editor;
-			HashMap.put("editor"+fileNo, editor);
+			HashMap.set("editor"+fileNo, editor);
 			
 			$.ajax({
 				url: '${pageContext.servletContext.contextPath }/api/codetree/find-code',
