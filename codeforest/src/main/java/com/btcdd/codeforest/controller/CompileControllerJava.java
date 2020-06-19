@@ -55,6 +55,7 @@ public class CompileControllerJava {
 //			 Process process = Runtime.getRuntime().exec(content);
 			Process process = Runtime.getRuntime().exec("cmd");
 			System.out.println(content);
+      
 			// Process의 각 stream을 받는다.
 			// process의 입력 stream3
 			OutputStream stdin = process.getOutputStream();

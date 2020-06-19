@@ -265,7 +265,7 @@ $(function() {
 		$(document).on('mousedown','#folder',function(e) {
 			$(".userfile-menu").hide();
 			if(e.which == 3){
-
+				tempFile = $(this);
 				savePathNo = $(this).data("no");
 	 			subProblemNo = $(this).data("no2");
 	 		    //Get window size:
@@ -323,6 +323,7 @@ $(function() {
 			$(".contextmenu").hide();
 			
 			if(e.which == 3){
+				tempFile = $(this);
 				codeNo = $(this).data("no");
 				prevFileName = $(this).data("file-name");
 	 		    //Get window size:
@@ -511,6 +512,7 @@ $(function() {
 							return;
 						}
 						fileName = filename2;
+						console.log("fileName>>>>>>>>>>>>>>>>>",fileName);
 						$.ajax({
 							url: '${pageContext.servletContext.contextPath }/api/codetree/fileUpdate',
 							async: true,
@@ -551,7 +553,7 @@ $(function() {
  	
  	
  	
- 	
+ 	// 파일을 더블클릭 하면...
  	var tempFile = null;
  	var fileNo = null
  	$(document).on("dblclick", ".file", function() {		
@@ -579,9 +581,6 @@ $(function() {
 				matchBrackets : true
 			});	
 			currentEditor = editor;
-			
-	
-	 		
 	 		
 	 		
 	 		$.ajax({
@@ -603,12 +602,17 @@ $(function() {
 				}							
 			});
  		}
+ 		else {
+ 			
+ 		}
  	});
 
  	var compileResult1 = "";
  	var compileResult2 = "";
  	
  	$(document).on("click","#Run",function(){
+ 		$("#Save").trigger("click");
+ 		
  		$(this).addClass( "onclic", 250, validate);
  		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
  		var problemNo = "${saveVo.problemNo }";
@@ -663,6 +667,7 @@ $(function() {
   	    }
  	 
  	
+  	    
   	$(document).on("click","#Save",function(){
   		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
   		var problemNo = "${saveVo.problemNo }";
@@ -688,10 +693,12 @@ $(function() {
 			}							
 		}); 		
  	}); 
+  	
+  	
    	$(document).on("click","#Submit",function(){
-   		var problemNo = "${saveVo.problemNo }";
-   		var subProblemNo = tempFile.data("subproblem-no");
-   		var result = new Array();
+   		$("#Save").trigger("click");
+/* 		var subProblemNo = tempFile.data("subproblem-no");
+  		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
    			var json = new Object();
    			json.no = "${info.no}";
@@ -703,7 +710,9 @@ $(function() {
    			if(result[i].no == subProblemNo){
    				selected = result[i];
    			}
-   		}
+   		} */
+   		
+   		var problemNo = "${saveVo.problemNo }";
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
@@ -722,7 +731,7 @@ $(function() {
 			success: function(response) {
 				var compileResult = response.data.compileResult;
 				var compileError = response.data.compileError;
-				
+				 
 				if(compileError == true) {
 					alert("컴파일 오류입니다.");
 					return;
@@ -736,10 +745,9 @@ $(function() {
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
 			}							
-		});		
+		});
+   		
  	});    	
-  	
-
 
  	
  	
@@ -936,37 +944,38 @@ window.onload = function() {
 
 
 
-<div class="header">
-    <div class='logo'>
-        Code Tree
+<nav role="navigation" class='main-nav'>
+    <div class="main-nav-wrapper">
+      <div class="logo">
+        
+      </div>
+      <div class="menu-cool-container">
+        <ul>
+          <li><a>Home</a></li>
+          <li><a>Web Apps</a>
+            <ul class="sub-menu">
+              <li><a>AngularJS</a></li>
+              <li><a>ActionScript</a></li>
+            </ul>
+          </li>
+          <li><a>Mobile Apps</a>
+            <ul class="sub-menu">
+              <li><a>Cordova/PhoneGap</a></li>
+              <li><a>Ionic Framework</a></li>
+            </ul>
+          </li>
+          <li><a>Video</a>
+            <ul class="sub-menu">
+              <li><a>After Effects</a></li>
+              <li><a>Adobe Premiere Pro</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
     </div>
-    <div class='menu'>
-        <div class='dropdown'>
-            <button class='dropbtn'>FILE</button>
-            <div class='dropdown-content'>
-                <a href="#">File</a>
-            </div>
-        </div>
-        <div class='dropdown'>
-            <button class='dropbtn'>EDIT</button>
-            <div class='dropdown-content'>
-                <a href="#">File</a>
-            </div>
-        </div>
-        <div class='dropdown'>
-            <button class='dropbtn'>RUN</button>
-            <div class='dropdown-content'>
-                <a href="#">File</a>
-            </div>
-        </div>
-        <div class='dropdown'>
-            <button class='dropbtn'>HELP</button>
-            <div class='dropdown-content'>
-                <a href="#">File</a>
-            </div>
-        </div>                                   
-    </div>
-</div>
+ </nav>
+
 
 <div class="container">
 

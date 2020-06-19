@@ -8,10 +8,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.btcdd.codeforest.linux.CodeTreeLinux;
 import com.btcdd.codeforest.vo.CodeVo;
 import com.btcdd.codeforest.vo.SavePathVo;
 import com.btcdd.codeforest.vo.SaveVo;
 import com.btcdd.codeforest.vo.SubProblemVo;
+import com.btcdd.codeforest.vo.SubmitVo;
 
 @Repository
 public class CodeTreeRepository {
@@ -129,6 +131,50 @@ public class CodeTreeRepository {
 	public String getExamOutput(Long subProblemNo) {
 		return sqlSession.selectOne("codetree.getExamOutput", subProblemNo);
 	}
+// 추가한 부분
+	public int submitSubProblem(Long authUserNo, Long subProblemNo, String codeValue, String language, String answer) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("authUserNo", authUserNo);
+		map.put("subProblemNo", subProblemNo);
+		map.put("codeValue", codeValue);
+		map.put("language", language);
+		map.put("answer", answer);
+
+
+		return sqlSession.insert("codetree.submitSubProblem", map);
+	}
+	
+	public SubmitVo findSubmitNoBySubProblem(Long authUserNo, Long subProblemNo, String language) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("authUserNo", authUserNo);
+		map.put("subProblemNo", subProblemNo);
+		map.put("language", language);
+		return sqlSession.selectOne("codetree.findSubmitNoBySubProblem",map);
+	}
+	
+	public SubmitVo existAttempt(Long submitNo) {
+		return sqlSession.selectOne("codetree.existAttempt",submitNo);
+	}
+
+	public int insertAttempt(Long submitNo) {
+		return sqlSession.insert("codetree.insertAttempt", submitNo);
+	}
+
+	public int updateAttempt(Long submitNo) {
+		return sqlSession.update("codetree.updateAttempt", submitNo);
+	}
+
+	public int updateSubProblem(Long submitNo,String codeValue, String answer) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("submitNo", submitNo);
+		map.put("codeValue", codeValue);
+		map.put("answer", answer);
+
+		
+		return sqlSession.update("codetree.updateSubProblem", map);
+	}
+
+
 
 //	public int getTotalCount(String keyword) {
 //		return sqlSession.selectOne("codetree.totalCount",keyword);
