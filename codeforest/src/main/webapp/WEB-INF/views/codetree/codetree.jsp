@@ -630,7 +630,7 @@ $(function() {
 			});
  		}
  		else {
- 			layoutId = "layout"+codeNo;
+ 			layoutId = "layout"+fileNo;
 			tempLayout = root.getItemsById(layoutId);
 			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);
