@@ -688,10 +688,11 @@ $(function() {
 			}							
 		}); 		
  	}); 
+  	
    	$(document).on("click","#Submit",function(){
    		var problemNo = "${saveVo.problemNo }";
-   		var subProblemNo = tempFile.data("subproblem-no");
-   		var result = new Array();
+/* 		var subProblemNo = tempFile.data("subproblem-no");
+  		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
    			var json = new Object();
    			json.no = "${info.no}";
@@ -703,7 +704,7 @@ $(function() {
    			if(result[i].no == subProblemNo){
    				selected = result[i];
    			}
-   		}
+   		} */
  		$.ajax({
 			url: '${pageContext.servletContext.contextPath }/api/codetree/submit',
 			async: true,
@@ -722,7 +723,7 @@ $(function() {
 			success: function(response) {
 				var compileResult = response.data.compileResult;
 				var compileError = response.data.compileError;
-				
+				 
 				if(compileError == true) {
 					alert("컴파일 오류입니다.");
 					return;
@@ -736,10 +737,8 @@ $(function() {
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
 			}							
-		});		
+		});
  	});    	
-  	
-
 
  	
  	

@@ -225,5 +225,56 @@
 		]]>
 	</select>
 	
+	<insert id="submitSubProblem" parameterType="hashmap">
+		<![CDATA[
+			insert into submit values(null, #{codeValue}, answer = #{answer}, #{subProblemNo}, #{authUserNo}, null, #{language})
+		]]>		
+	</insert>
+	
+	<select id="findSubmitNoBySubProblem" parameterType="hashmap" resultType="submitvo">
+		<![CDATA[
+			select 
+				no,
+				code as code,
+				answer as answer,
+				subproblem_no as subproblemNo,
+				user_no as userNo,
+				solve_time as solveTime,
+				lang as lang
+			  from submit
+			 where subproblem_no = #{subProblemNo} and user_no = #{authUserNo} and lang = #{language }
+		]]>
+	</select>	
+	
+	<select id="existAttempt" parameterType="long" resultType="submitvo">
+		<![CDATA[
+			select 
+				submit_no as no,
+				attempt as tryCount
+			from try_count 
+			where submit_no = #{submitNo}
+		]]>
+	</select>		
+	<insert id="insertAttempt" parameterType="long">
+		<![CDATA[
+			insert into try_count values(#{submitNo}, 1)
+		]]>		
+	</insert>	
+
+	<update id="updateAttempt" parameterType="long">
+		<![CDATA[
+			update try_count 
+				set attempt = attempt + 1				
+			where submit_no = #{submitNo}
+		]]>	
+	</update>	
+	
+	<update id="updateSubProblem" parameterType="hashmap">
+		<![CDATA[
+			update submit 
+				set code = #{codeValue }, answer = #{answer }				
+			where no = #{submitNo }
+		]]>	
+	</update>
 	
 </mapper>

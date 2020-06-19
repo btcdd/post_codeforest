@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.btcdd.codeforest.dto.JsonResult;
 import com.btcdd.codeforest.linux.CodeTreeLinux;
-import com.btcdd.codeforest.linux.TrainingLinux;
 import com.btcdd.codeforest.service.CodeTreeService;
 import com.btcdd.codeforest.vo.CodeVo;
 import com.btcdd.codeforest.vo.SavePathVo;
 import com.btcdd.codeforest.vo.SaveVo;
 import com.btcdd.codeforest.vo.SubProblemVo;
+import com.btcdd.codeforest.vo.SubmitVo;
 import com.btcdd.codeforest.vo.UserVo;
 import com.btcdd.security.Auth;
 
@@ -187,6 +187,8 @@ public class CodeTreeController {
 	@Auth
 	@PostMapping("/save")
 	public JsonResult Save(String language, String fileName, String packagePath,Long subProblemNo,String codeValue, Long problemNo) {
+		//db에 저장 필요
+		
 		// 관우 유진 코드
 		//////////
 		codeTreeLinux.createFileAsSource(codeValue, packagePath + "/" + language + "/" + fileName);
@@ -198,7 +200,9 @@ public class CodeTreeController {
 	@PostMapping("/submit")
 	public JsonResult Submit(String language, String fileName, String packagePath,
 			Long subProblemNo,String codeValue, Long problemNo,
-			String compileResult1, String compileResult2) {
+			String compileResult1, String compileResult2,HttpSession session) {
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser");	
 		
 		String examOutput = codetreeService.getExamOutput(subProblemNo);
 		
@@ -214,9 +218,15 @@ public class CodeTreeController {
 		} else {
 			compileError = true;
 		}
+		 
+		codetreeService.submitSubProblem(authUser.getNo(),subProblemNo,codeValue,language, compileResult);//정보 삽입
+		SubmitVo submitVo = codetreeService.findSubmitNoBySubProblem(authUser.getNo(),subProblemNo, language);
+		codetreeService.increaseAttemptCount(submitVo.getNo());//시도횟수 증가
 		
 		map.put("compileResult", compileResult);
 		map.put("compileError", compileError);
+		
+		
 		
 		return JsonResult.success(map);
 	}		
