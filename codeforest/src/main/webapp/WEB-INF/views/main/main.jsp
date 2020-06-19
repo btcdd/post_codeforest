@@ -146,6 +146,7 @@ $(function() {
  		if (key.keyCode == 13) {
 			var content = $('#result').val();
 //  			$('#result').val('');
+			console.log('content : ' + content);
  			
  			$.ajax({
  		         url: '${pageContext.request.contextPath }/compile/test',
@@ -158,7 +159,13 @@ $(function() {
  		               console.error(response.message);
  		               return;
  		            }
+					console.log('content : ' + content);
+					console.log('response : ' + response.data.readbuffer);
+					console.log('response2 : ' + response.data.readbuffer2);
+//  		            $('#result').keyUp();
  		            $('#result').val(content + "\n" + "> " + response.data.readbuffer);
+ 		            
+ 		            return;
  		         },
  		         error: function(xhr, status, e) {
  		            console.error(status + ":" + e);
