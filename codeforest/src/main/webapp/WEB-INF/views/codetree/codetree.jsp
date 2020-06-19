@@ -662,18 +662,9 @@ $(function() {
 		}); 		
  	}); 
   	
-  	var trueSubmit = function() {
-  		
-  	}
-  	
   	
    	$(document).on("click","#Submit",function(){
    		$("#Save").trigger("click");
-   		
-//    		setTimeout(function() {
-//    			trueSubmit();
-//    		}, 5000);
-   		
 /* 		var subProblemNo = tempFile.data("subproblem-no");
   		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
