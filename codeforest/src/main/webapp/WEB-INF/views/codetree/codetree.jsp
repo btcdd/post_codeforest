@@ -71,8 +71,10 @@ var fileFetchList = function(){
 };
 
 
-
 var currentEditor = null;
+
+var editorArray = new Array();
+var editorArrayIndex = 0;
 
 $(function() {
 	fileFetchList();
@@ -119,9 +121,12 @@ $(function() {
 //    		matchBrackets: true
 //    });
    
+   var theme = 'panda-syntax';
    $('.theme').click(function() {
-	   var theme = $(".theme option:selected").val();
-	   currentEditor.setOption("theme", theme);
+	   theme = $(".theme option:selected").val();
+	   if(currentEditor != null) {
+		   currentEditor.setOption("theme", theme);
+	   }	   
 	   
 	   // 터미널 색 변경
 	   $(".window .terminal").css('background-color', $(".cm-s-" + theme).css("background-color"));
@@ -577,9 +582,11 @@ $(function() {
 			var editor = CodeMirror.fromTextArea(code, {
 				lineNumbers : true,
 				mode : 'text/x-java',
-				theme : 'panda-syntax',
+				theme : theme,
 				matchBrackets : true
 			});	
+			
+			editorArray[editorArrayIndex]
 			
 			console.log("editor : " + editor);
 			currentEditor = editor;
