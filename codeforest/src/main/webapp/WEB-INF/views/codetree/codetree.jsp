@@ -651,7 +651,8 @@ $(function() {
 	$(document).on("click", ".lm_tab", ".lm_title", function() {
 		console.log("getActiveContentItem()>>",root.getActiveContentItem());
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id);
-		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-"));
+		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[0]);
+		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);
 		
 	});
  	
