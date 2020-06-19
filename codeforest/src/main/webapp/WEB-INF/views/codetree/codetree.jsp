@@ -632,6 +632,7 @@ $(function() {
  		else {
  			layoutId = "layout"+codeNo;
 			tempLayout = root.getItemsById(layoutId);
+			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);
 
  		}
