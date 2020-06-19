@@ -631,7 +631,7 @@ $(function() {
  		}
  		else {
  			layoutId = "layout"+fileNo;
-			tempLayout = root.getItemsById(layoutId);
+			tempLayout = root.getItemsById(layoutId)[0];
 			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);
 
