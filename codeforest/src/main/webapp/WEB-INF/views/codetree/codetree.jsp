@@ -604,7 +604,7 @@ $(function() {
 				matchBrackets : true
 			});	
 			
-			editorArray[editorArrayIndex]
+	
 			
 			console.log("editor : " + editor);
 			currentEditor = editor;
@@ -630,9 +630,7 @@ $(function() {
 			});
  		}
  		else {
-//  			$("lm_tab").
-//  			$(".lm_item_container").hide();
-//  			$("#cm"+fileNo).parent().show();
+ 			tempLayout.select();
  		}
  	});
 
