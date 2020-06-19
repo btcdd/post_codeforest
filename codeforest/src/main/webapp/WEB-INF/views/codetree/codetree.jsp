@@ -580,6 +580,8 @@ $(function() {
 				theme : 'panda-syntax',
 				matchBrackets : true
 			});	
+			
+			console.log("editor : " + editor);
 			currentEditor = editor;
 	 		
 	 		
@@ -603,7 +605,9 @@ $(function() {
 			});
  		}
  		else {
- 			
+//  			$("lm_tab").
+//  			$(".lm_item_container").hide();
+//  			$("#cm"+fileNo).parent().show();
  		}
  	});
 
