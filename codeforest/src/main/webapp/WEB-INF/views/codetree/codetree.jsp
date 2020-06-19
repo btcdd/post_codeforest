@@ -185,7 +185,10 @@ $(function() {
 		   face = 'print("Hello World")';
 	   }
 	   
-	   currentEditor.setValue(face);
+	   if(currentEditor != null) {
+		   currentEditor.setValue(face);
+	   }	
+	   
 	   
 	   
 	   
