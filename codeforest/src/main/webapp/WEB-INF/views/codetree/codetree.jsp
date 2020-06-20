@@ -644,6 +644,7 @@ $(function() {
  			layoutId = "layout-"+fileNo;
  			tempFile = fileMap.get(fileNo+"");
 			tempLayout = root.getItemsById(layoutId)[0];
+			console.log("tempLayout.getActiveContentItem()>>",tempLayout.getActiveContentItem()); 
 			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);	
  			
