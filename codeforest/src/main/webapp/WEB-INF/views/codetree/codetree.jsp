@@ -655,6 +655,8 @@ $(function() {
  		
  	});
 	$(document).on("mousedown", ".lm_title", function() {
+		$(document).removeClass("lm_active");
+		$(this).parent().addClass("lm_active");
 		console.log("title>>>",$(this));
 		console.log("getActiveContentItem()>>",root.getActiveContentItem());
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id);
@@ -664,6 +666,7 @@ $(function() {
  		tempFile = fileMap.get(tabFileNo+"");
  		console.log("mousedown tempFile>>>>>>>",tempFile.data("fileName"));
  		currentEditor = HashMap.get("editor"+tabFileNo);
+ 		
  		 
 	});
 	
