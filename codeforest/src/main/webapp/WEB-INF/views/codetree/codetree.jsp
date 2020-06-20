@@ -777,7 +777,7 @@ $(function() {
   	
    	$(document).on("click","#Submit",function(){
    		$("#Run").trigger("click");
-   		
+   		var problemNo = "${saveVo.problemNo }";
    		setTimeout(function(){
 
    	   		var problemNo = "${saveVo.problemNo }";
