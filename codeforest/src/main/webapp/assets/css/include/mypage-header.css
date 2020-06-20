@@ -61,6 +61,8 @@ body {
 }
 
 .menu-user {
+	font-family: 'Raleway', Arial, sans-serif;
+	font-weight: 500;
 	float: right;
 	font-size: 1em;
 	margin-top: 2px;
