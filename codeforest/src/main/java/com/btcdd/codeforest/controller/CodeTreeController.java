@@ -51,10 +51,10 @@ public class CodeTreeController {
 		List<SubProblemVo> subProblemList = codeTreeService.findSubProblemList(saveVo.getProblemNo());
 		
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser.getNo() != saveVo.getUserNo()) {
-			return "redirect:/main-in";
-		}
 		
+		if(!(authUser.getNo()+"").equals((saveVo.getUserNo()+""))) {
+			return "redirect:/main";
+		}
 		
 		model.addAttribute("saveVo", saveVo);
 		model.addAttribute("savePathList", savePathList);
