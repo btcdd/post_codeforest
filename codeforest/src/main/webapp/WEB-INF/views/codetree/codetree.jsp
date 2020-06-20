@@ -799,7 +799,8 @@ $(function() {
    				success: function(response) {
    					var compileResult = response.data.compileResult;
    					var compileError = response.data.compileError;
-   					 
+   					console.log("compileResult>>>>",compileResult);
+   					console.log("compileError>>>>",compileError);
    					if(compileError == true) {
    						alert("컴파일 오류입니다.");
    						return;
@@ -815,7 +816,7 @@ $(function() {
    				}							
    			});   			
    			
-   		},3000);
+   		},1500);
 /* 		var subProblemNo = tempFile.data("subproblem-no");
   		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
