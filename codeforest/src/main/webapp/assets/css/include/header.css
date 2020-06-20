@@ -90,6 +90,10 @@ body {
 	border-radius: 0.5rem
 }
 
+.menu-item:hover .menu-item-child {
+	color: #2C2C2C;
+}
+
 .menulist a {
 	text-decoration: none;
 	color: #3C3C3C;
