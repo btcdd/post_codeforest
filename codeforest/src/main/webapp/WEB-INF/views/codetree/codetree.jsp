@@ -593,7 +593,7 @@ $(function() {
  		
  		if($("#cm"+fileNo).length < 1) { // 켜진 창이 중복되서 안켜지도록 함
 	 		root = myLayout.root.contentItems[0] || myLayout.root;
-	
+			console.log("root>>>>>>>>>>",root);
 			root.addChild({
 				type : "component",
 				componentName : "newTab",
