@@ -668,7 +668,7 @@ $(function() {
  		console.log("mousedown tempFile>>>>>>>",tempFile.data("fileName"));
  		currentEditor = HashMap.get("editor"+tabFileNo);
  		
- 		  
+ 		    
 	});
 	
 	$(document).on("click", ".CodeMirror-scroll", function() {
