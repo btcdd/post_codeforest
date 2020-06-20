@@ -593,7 +593,7 @@ $(function() {
  		
  		if($("#cm"+fileNo).length < 1) { // 켜진 창이 중복되서 안켜지도록 함
 	 		root = myLayout.root.contentItems[0] || myLayout.root;
-			console.log("root>>>>>>>>>>",root);
+			
 			root.addChild({
 				type : "component",
 				componentName : "newTab",
@@ -668,6 +668,7 @@ $(function() {
 	});
 	
 	$(document).on("click", ".CodeMirror-scroll", function() {
+		console.log("root>>>>>>>>>>",root);
 		console.log("클릭한곳:", $(this));
 		console.log("this.parent()>>",$(this).parent());
 		console.log("this.parent().parent>>",$(this).parent().parent().attr("id"));
