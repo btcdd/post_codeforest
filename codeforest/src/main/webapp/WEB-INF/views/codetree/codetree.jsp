@@ -643,7 +643,7 @@ $(function() {
  	
  			layoutId = "layout-"+fileNo;
  			tempFile = fileMap.get(fileNo+"");
-			tempLayout = $(document).getItemsById(layoutId)[0];
+			tempLayout = document.getItemsById(layoutId)[0];
 			 
 			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);	
