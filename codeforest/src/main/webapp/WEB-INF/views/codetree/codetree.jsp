@@ -663,11 +663,12 @@ $(function() {
  		 
 	});
 	
-	$(document).on("mousedown", ".CodeMirror-scroll", function() {
-		console.log("this.parent().parent>>",$(this).parent().parent().attr("id").split("cm")[0]);
- 		var cmNo = $(this).parent().parent().attr("id").split("cm")[0]
- 		tempFile = fileMap.get(cmNo+"");
- 		currentEditor = HashMap.get("editor"+cmNo);
+	$(document).on("click", ".CodeMirror-scroll", function() {
+		console.log("클릭한곳:", $(this));
+// 		console.log("this.parent().parent>>",$(this).parent().parent().attr("id").split("cm")[0]);
+//  		var cmNo = $(this).parent().parent().attr("id").split("cm")[0]
+//  		tempFile = fileMap.get(cmNo+"");
+//  		currentEditor = HashMap.get("editor"+cmNo);
  		 
 	});
  	
