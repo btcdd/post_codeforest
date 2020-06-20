@@ -47,6 +47,13 @@ var problemAdd = function() {
 	buttonStr = '<li id="' + index + '" class="tablinks">' + (index + 1) + '<span class="delete" style="display: none" ><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>';
 }
 
+var setStyle = function(index2) {
+	setTimeout(function() {
+		var ckeContents2 = document.getElementsByClassName("cke_contents")[index2];
+		ckeContents2.style = "height: 400px";
+	}, 50);
+}
+
 $(function() {
 	
 	$('#addSubProblem').click(function() {
@@ -58,17 +65,20 @@ $(function() {
 		$(".prob" + (index - 1)).after(str);
 		$('.prob' + (index - 1)).hide();
 		
-		$('li[name=selected]').removeAttr('name');
-		$('#' + index).attr('name', 'selected');
-
 		// 추가된 문제에 CKEditor 적용
 		CKEDITOR.replace('prob-content-text' + index);
-
+		
+		$('li[name=selected]').removeAttr('name');
+		$('#' + index).attr('name', 'selected');
+		$('#' + index).trigger('click');
+		
 		$('#' + index).hover(function() {
 			$(this).children().show();
 		}, function() {
-			$(this).children().eq(1).hide();
+			$(this).children().hide();
 		});
+		
+		setStyle(index);
 		
 		index++;
 	});
@@ -147,30 +157,17 @@ $(function() {
 	$('#0').hover(function() {
 		$(this).children().show();
 	}, function() {
-		$(this).children().eq(1).hide();
+		$(this).children().hide();
 	});
 	
 	CKEDITOR.replace('prob-content-text0');
-	CKEDITOR.addStylesSet( 'mystyleslist',
-    [
-       {id : 'cke_1_contents', element : 'div',
-          attributes :
-          {
-          'style' : 'height: 400px',
-          }
-       }
-    ]);
-         
-    CKEDITOR.config.stylesCombo_stylesSet = 'mystyleslist';
-// 	CKEDITOR.addCss('.cke_contents { height: 400px; }');
-	
 });
-window.onload = function(){
-// 	var glCm = document.getElementsByClassName("cke_contents")[0];
-// 	console.log(glCm);
 
-	console.log($('.sub-prob-content'));
-	console.log('asdf');
+window.onload = function(){
+	setTimeout(function() {
+		var ckeContents = document.getElementsByClassName("cke_contents")[0];
+		ckeContents.style = "height: 400px";
+	}, 50);
 };
 
 function captureReturnKey(e) { 

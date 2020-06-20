@@ -79,18 +79,6 @@ $(function() {
 <body>
     <c:import url="/WEB-INF/views/include/main-header.jsp" />
 	    <div class="statistics-container">
-		    <div class="side">
-		        <nav>
-		            <ul>
-		            	<c:forEach items='${subProblemList }' var='vo' step='1' varStatus='status'>
-			                <li class="problem-list" title="${vo.title }">문제 ${status.index + 1} - ${vo.title }</li>
-			            </c:forEach>
-		            </ul>
-		        </nav>
-		    </div>
-	    	<div class="chart-div">
-	            <canvas class="chart" id="chart" width="400" height="400"></canvas>
-	        </div>
 	        <div class="quizlist">
 	            <div class="line">
 	                <h4>문제 통계</h4>
@@ -162,6 +150,9 @@ $(function() {
 	                    </tr>
 	                </tbody>
 	            </table>
+	        </div>
+	        <div class="chart-div">
+	            <canvas class="chart" id="chart" width="400" height="400"></canvas>
 	        </div>
 	    </div>
 	    <c:import url="/WEB-INF/views/include/footer.jsp" />

@@ -106,7 +106,6 @@ select {
 	margin-left: 0;
     width: 100%;
     height: 220px;
-    background-color: #fff;
     font-size: 1em;
     color: #2C2C2E;
     outline: none;
@@ -114,6 +113,7 @@ select {
     background-color: #fafafa;
     font-family: arial;
     margin-top: 0.8em;
+    resize: none;
 }
 
 #ex-input-text::placeholder, #ex-output-text::placeholder{
@@ -220,7 +220,7 @@ td {
 	padding: 0 2% 0 2%;
 	width: 70%;
 	height: 700px;
-	margin-bottom: 5em;
+	margin-bottom: 15em;
 }
 
 ul {

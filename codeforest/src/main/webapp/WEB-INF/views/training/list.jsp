@@ -53,9 +53,7 @@ var originList = function(page, kwd, category) {
 			}
 			map = response.data;
 			
-			if(page == '1') {
-				endPageTrueNum = map.endPageNum;
-			}
+			endPageTrueNum = parseInt(map.count / 12 + 1);
 			
 			fetchList();
 		},

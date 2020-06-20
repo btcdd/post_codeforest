@@ -38,24 +38,24 @@ var problemAdd = function() {
 
 	str = '<div class="prob' + index + '">'
 			+ '<div class="sub-title">'
-			+ '<input class="sub-problem-title" type="text" name="subProblemList[' + index + '].title" required autocomplete="off"/>'
+			+ '<input class="sub-problem-title" type="text" name="subProblemList[' + index + '].title" placeholder="문제 제목을 입력하세요" required autocomplete="off"/>'
 			+ '</div>'
 			+ '<div class="sub-prob-content">'
-			+ '<textarea class="content" id="prob-content-text' + index + '" name="subProblemList[' + index + '].contents" required autocomplete="off"></textarea>'
+			+ '<textarea class="content" id="prob-content-text' + index + '" name="subProblemList[' + index + '].contents" placeholder="내용을 입력하세요" required autocomplete="off"></textarea>'
 			+ '</div>'
 			+ '<br>'
 			+ '<div class="ex-input">'
 			+ '<div class="ex-input-title">입력 예제</div>'
-			+ '<textarea id="ex-input-text" name="subProblemList[' + index + '].examInput" autocomplete="off"></textarea>'
+			+ '<textarea id="ex-input-text" name="subProblemList[' + index + '].examInput" placeholder="입력 예제를 작성하세요" autocomplete="off"></textarea>'
 			+ '</div>'
 			+ '<div class="ex-output">'
 			+ '<div class="ex-output-title">출력 예제</div>'
-			+ '<textarea id="ex-output-text" name="subProblemList[' + index + '].examOutput" required autocomplete="off"></textarea>'
+			+ '<textarea id="ex-output-text" name="subProblemList[' + index + '].examOutput" placeholder="출력 예제를 작성하세요" required autocomplete="off"></textarea>'
 			+ '</div>'
 			+ '<div class="answer-code' + index + '">'
 			+ '</div></div>';
 
-	buttonStr = '<li id="' + index + '" class="tablinks">문제 ' + (index + 1) + '<span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>';
+	buttonStr = '<li id="' + index + '" class="tablinks">' + (index + 1) + '<span class="delete" style="display: none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>';
 }
 
 var fetchList = function() {
@@ -98,28 +98,44 @@ var fetchList = function() {
 	$('#0').attr('name', 'selected');
 }
 
+var setStyle = function(index2) {
+	setTimeout(function() {
+		var ckeContents2 = document.getElementsByClassName("cke_contents")[index2];
+		ckeContents2.style = "height: 400px";
+	}, 50);
+}
+
 $(function() {
 	
 	fetchList();
 	
-	// 추가된 문제에 코드 미러 적용
-	var code = $('#code0')[0];
+	for(var i = 0; i < index; i++) {
+		CKEDITOR.replace('prob-content-text' + i);
+	}
 	
 	$('#addSubProblem').click(function() {
 		event.preventDefault();
 
-		console.log('asdf');
 		problemAdd();
 
 		$("#" + (index - 1)).after(buttonStr);
 		$(".prob" + (index - 1)).after(str);
 		$('.prob' + (index - 1)).hide();
 		
-		$('li[name=selected]').removeAttr('name');
-		$('#' + index).attr('name', 'selected');
-
 		// 추가된 문제에 CKEditor 적용
 		CKEDITOR.replace('prob-content-text' + index);
+		
+		$('#' + index).hover(function() {
+			$(this).children().show();
+		}, function() {
+			$(this).children().hide();
+		});
+		
+		$('li[name=selected]').removeAttr('name');
+		$('#' + index).attr('name', 'selected');
+		$('#' + index).trigger('click');
+		
+		setStyle(index);
 
 		index++;
 	});
@@ -172,9 +188,9 @@ $(function() {
 		for(var i = 0; i < index; i++) {
 			if(!($('#' + i).attr('id'))) {
 				for(var j = i + 1; j < index; j++) {
-					$('#' + j).text('문제 ' + j.toString() + ' ');
-					$('#' + j).append('<span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span>');
-					$('.prob' + j + ' h3').text('문제 ' + j.toString());
+					$('#' + j).text(j.toString() + ' ');
+					$('#' + j).append('<span class="delete" style="display: none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span>');
+					$('.prob' + j + ' h3').text(j.toString());
 					
 					// li id 설정
 					$('#' + j).attr('id', (j-1).toString());
@@ -211,7 +227,25 @@ $(function() {
 	for(var i = 1; i < index; i++) {
 		$('.prob' + i).hide();
 	}
+	
+	for(var i = 0; i < index; i++) {
+		$('#' + i).hover(function() {
+			$(this).children().show();
+		}, function() {
+			$(this).children().hide();
+		});
+	}
 });
+
+window.onload = function(){
+	setTimeout(function() {
+		for(var i = 0; i < index; i++) {
+			var ckeContents = document.getElementsByClassName("cke_contents")[i];
+			ckeContents.style = "height: 400px";
+		}
+	}, 50);
+};
+
 </script>
 </head>
 <body>
@@ -252,7 +286,7 @@ $(function() {
 				<div class="tab">
 					<ul>
 						<c:forEach items="${list }" var="item" varStatus="status" begin="0">
-							<li id="${status.index }" class="tablinks" value="${item.no }">문제 ${status.index + 1} <span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>
+							<li id="${status.index }" class="tablinks" value="${item.no }">${status.index + 1}<span class="delete" style="display: none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>
 						</c:forEach>
 						<li id="addSubProblem">+</li>
 					</ul>
@@ -265,21 +299,21 @@ $(function() {
 						<div class="prob${index }">
 							<input type="hidden" name="subProblemList[${index }].no" value="${item.no }" />
 							<div class="sub-title">
-								<input class="sub-problem-title" type="text" name="subProblemList[${index }].title" value="${item.title }"required autocomplete="off" />
+								<input class="sub-problem-title" type="text" name="subProblemList[${index }].title" value="${item.title }" placeholder="문제 제목을 입력하세요" required autocomplete="off" />
 							</div>
 							<div class="sub-prob-content">
-								<textarea class="ckeditor content" id="prob-content-text${index }" name="subProblemList[${index }].contents" required autocomplete="off">${fn:replace(item.contents, "<br />", newLine)}</textarea>
+								<textarea class="content" id="prob-content-text${index }" name="subProblemList[${index }].contents" placeholder="내용을 입력하세요" required autocomplete="off">${fn:replace(item.contents, "<br />", newLine)}</textarea>
 							</div>
 							<br />
 	
 							<div class="ex-input">
 								<div class="ex-input-title">예제 입력</div>
-								<textarea id="ex-input-text" name="subProblemList[${index }].examInput" autocomplete="off">${item.examInput }</textarea>
+								<textarea id="ex-input-text" name="subProblemList[${index }].examInput" placeholder="입력 예제를 작성하세요" autocomplete="off">${item.examInput }</textarea>
 							</div>
 	
 							<div class="ex-output">
 								<div class="ex-output-title">예제 출력</div>
-								<textarea id="ex-output-text" name="subProblemList[${index }].examOutput" required autocomplete="off">${item.examOutput }</textarea>
+								<textarea id="ex-output-text" name="subProblemList[${index }].examOutput" placeholder="출력 예제를 작성하세요" required autocomplete="off">${item.examOutput }</textarea>
 							</div>
 						</div> <!--  prob0 -->
 					</c:forEach>
