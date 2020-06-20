@@ -98,20 +98,20 @@ $(function() {
 	// 코딩테스트 체크박스를 체크하면, 비밀번호와 시작 일자, 마감 일자를 설정할 수 있는 칸이 나타난다.
 	$('.codingtest').click(function() {
 		if ($(this).prop("checked")) {
-			var passwordStr = '<div class="password">비밀번호 <input class="password-input" type="password" name="password" required></div>';
-			var privacyStr = '<div class="privacy-check"><p>코딩테스트가 끝난 뒤 문제를 공개하시려면 선택하세요</p> 공개여부 <input type="checkbox" name="privacy"></div>';
-			var startDateStr = '<div class="start-date">시작일자 <input type="datetime-local" name="startTime" required></div>';
-			var endDateStr = '<div class="end-date">마감일자 <input type="datetime-local" name="endTime" required></div>';
+			var passwordStr = '<div class="password"><div class="password-title">코딩 테스트 입력 코드</div><div class="password-input-div"><input class="password-input" type="text" name="password" required></div></div>';
+// 			var privacyStr = '<div class="privacy-check"><div>문제 공개 여부</div><div><input type="checkbox" name="privacy"></div></div>';
+			var privacyStr = '<div class="privacy"><div class="privacy-check-title">문제 공개 여부</div><div><input type="radio" name="privacy" checked="checked">공개<input class="privacy-check-radio" type="radio" name="privacy">비공개</div></div>';
+			var startDateStr = '<div class="date"><div class="start-date"><div class="start-date-title">시작 일자</div><input class="input-date" type="datetime-local" name="startTime" required></div><div class="end-date"><div class="end-date-title">종료 일자</div><input class="input-date" type="datetime-local" name="endTime" required></div></div>';
 
-			$(".privateAndPassword").append(passwordStr);
-			$(".privacy").append(privacyStr);
-			$(".date").append(startDateStr);
-			$(".date").append(endDateStr);
+			$(".privateAndPassword").append(passwordStr).append(privacyStr).append(startDateStr);
+// 			$(".privateAndPassword").append(passwordStr);
+// 			$(".privacy").append(privacyStr);
+// 			$(".date").append(startDateStr);
+// 			$(".date").append(endDateStr);
 		} else {
 			$(".privateAndPassword .password").remove();
-			$(".privacy-check").remove();
-			$(".date .start-date").remove();
-			$(".date .end-date").remove();
+			$(".privacy").remove();
+			$(".date").remove();
 		}
 	});
 
@@ -182,35 +182,38 @@ function captureReturnKey(e) {
 	<form method="post"
 		action="${pageContext.servletContext.contextPath }/training/write" onkeydown="return captureReturnKey(event)">
 		<div class="regist">
-			<pre>코딩 테스트를 진행할 문제를 등록하려면 아래의 체크 버튼을 눌러주세요</pre>
+			<pre class="make-coding-test-problem-info"><i class="fas fa-info-circle info"></i>  새로운 코딩 테스트 문제를 만들기 위해서는 아래의 체크 버튼을 눌러주세요</pre>
 			<div class="codingtest-div">
 				<div class="privateAndPassword">
 					<div class="private">
-						<input class="codingtest" type="checkbox">코딩테스트
+						<input class="codingtest" type="checkbox">새 코딩 테스트 만들기
 					</div>
 					<!-- <div class="password">비밀번호 <input type="password"></div> -->
-				</div>
-				<div class="privacy">
-					<!-- 코딩테스트가 끝난 뒤 문제를 공개하시려면 선택하세요<div class="privacy">공개여부 <input type="checkbox" name="privacy" required></div> -->
-				</div>
-				<div class="date">
-					<!-- <div class="start-date">시작일자 <input type="datetime-local"></div> -->
-					<!-- <div class="end-date">마감일자 <input type="datetime-local"></div> -->
+<!-- 					<div class="privacy"> -->
+						<!-- 코딩테스트가 끝난 뒤 문제를 공개하시려면 선택하세요<div class="privacy">공개여부 <input type="checkbox" name="privacy" required></div> -->
+<!-- 					</div> -->
+<!-- 					<div class="date"> -->
+						<!-- <div class="start-date">시작일자 <input type="datetime-local"></div> -->
+						<!-- <div class="end-date">마감일자 <input type="datetime-local"></div> -->
+<!-- 					</div> -->
 				</div>
 			</div>
 
-			<div class="divisionAndLanguage">
-				<div class="division">
-					분류 <select name="kindNo">
-							<option value="5" selected="selected">기타</option>
-							<option value="1">기업</option>
-							<option value="2">개인</option>
-							<option value="3">학원</option>
-							<option value="4">학교</option>
-					</select>
-				</div>
+			<div class="division">
+				<div class="division-radio-title-div"><span class="division-radio-title">분류</span></div>
+				<input type="radio" checked="checked"/>기타
+				<input type="radio" />기업
+				<input type="radio" />개인
+				<input type="radio" />학원
+				<input type="radio" />학교
+<!-- 				<select name="kindNo"> -->
+<!-- 						<option value="5" selected="selected">기타</option> -->
+<!-- 						<option value="1">기업</option> -->
+<!-- 						<option value="2">개인</option> -->
+<!-- 						<option value="3">학원</option> -->
+<!-- 						<option value="4">학교</option> -->
+<!-- 				</select> -->
 			</div>
-			<br />
 			<div class="title">
 				<input id="title-text" type="text" name="title" placeholder="문제집 제목을 입력하세요" autocomplete="off"/>
 				<a id="btn-cancel"
