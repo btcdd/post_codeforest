@@ -662,6 +662,14 @@ $(function() {
  		currentEditor = HashMap.get("editor"+tabFileNo);
  		 
 	});
+	
+	$(document).on("mousedown", ".CodeMirror-scroll", function() {
+		console.log("this.parent().parent>>",$(this).parent().parent().attr("id").split("cm")[0]);
+ 		var cmNo = $(this).parent().parent().attr("id").split("cm")[0]
+ 		tempFile = fileMap.get(cmNo+"");
+ 		currentEditor = HashMap.get("editor"+cmNo);
+ 		 
+	});
  	
  	
  	var compileResult1 = "";
