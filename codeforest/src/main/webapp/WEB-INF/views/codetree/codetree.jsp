@@ -593,7 +593,7 @@ $(function() {
  		
  		if($("#cm"+fileNo).length < 1) { // 켜진 창이 중복되서 안켜지도록 함
 	 		root = myLayout.root.contentItems[0] || myLayout.root;
-	
+			
 			root.addChild({
 				type : "component",
 				componentName : "newTab",
@@ -639,8 +639,12 @@ $(function() {
 	
  		}
  		else {
+ 			
+ 	
  			layoutId = "layout-"+fileNo;
+ 			tempFile = fileMap.get(fileNo+"");
 			tempLayout = root.getItemsById(layoutId)[0];
+			 
 			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);	
  			
@@ -652,14 +656,30 @@ $(function() {
  		
  	});
 	$(document).on("mousedown", ".lm_title", function() {
+
+		console.log("title>>>",$(this));
 		console.log("getActiveContentItem()>>",root.getActiveContentItem());
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id);
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[0]);
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);
 		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
  		tempFile = fileMap.get(tabFileNo+"");
+// 		$(this).parent().attr("id", "tab"+tabFileNo);
  		console.log("mousedown tempFile>>>>>>>",tempFile.data("fileName"));
  		currentEditor = HashMap.get("editor"+tabFileNo);
+ 		
+ 		 
+	});
+	
+	$(document).on("click", ".CodeMirror-scroll", function() {
+		console.log("root>>>>>>>>>>",root);
+		console.log("클릭한곳:", $(this));
+		console.log("this.parent()>>",$(this).parent());
+		console.log("this.parent().parent>>",$(this).parent().parent().attr("id"));
+		console.log("this.parent().parent>>",$(this).parent().parent().attr("id").split("cm"));
+ 		var cmNo = $(this).parent().parent().attr("id").split("cm")[1];
+ 		tempFile = fileMap.get(cmNo+"");
+ 		currentEditor = HashMap.get("editor"+cmNo);
  		 
 	});
  	
