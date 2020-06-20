@@ -1,7 +1,35 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #fafafa;
+}
+
+.codingtest-div {
+	background-color: #fff;
+	width: 77%;
+	padding: 1em 2em;
+	margin-bottom: 1em;
+	border-radius: 0.5em;
+}
+
+.codingtest {
+	margin-right: 1em;
+}
+
+.password-input {
+	outline: none;
+}
+
+select {
+	outline: none;
+    width: 75px;
+    height: 35px;
+    font-family: inherit;
+    font-size: 1em;
+    background: no-repeat 95% 50%;
+    background-color: #fff;
+    border: 1px solid #999;
+    border-radius: 0px;
+    margin: auto;
 }
 
 .regist {
@@ -12,11 +40,10 @@ body {
 }
 
 .private {
-	float: left;
 }
 
 .password {
-	margin-left: 100px;
+	margin-top: 1em;
 }
 
 .start-date {
@@ -29,6 +56,7 @@ body {
 
 .division {
 	float: left;
+	margin-left: 8px;
 }
 
 .language-select {
@@ -52,7 +80,7 @@ body {
 
 .content {
 	width: 100%;
-    height: 250px;
+    height: 1000px;
     outline: none;
     border: none;
     background-color: #fafafa;
@@ -78,7 +106,6 @@ body {
 	margin-left: 0;
     width: 100%;
     height: 220px;
-    background-color: #fff;
     font-size: 1em;
     color: #2C2C2E;
     outline: none;
@@ -86,6 +113,7 @@ body {
     background-color: #fafafa;
     font-family: arial;
     margin-top: 0.8em;
+    resize: none;
 }
 
 #ex-input-text::placeholder, #ex-output-text::placeholder{
@@ -162,7 +190,7 @@ td {
 /* Style the tab */
 .tab {
 	float: left;
-    width: 6%;
+    width: 9%;
     height: 100%;
 }
 
@@ -192,7 +220,7 @@ td {
 	padding: 0 2% 0 2%;
 	width: 70%;
 	height: 700px;
-	margin-bottom: 5em;
+	margin-bottom: 15em;
 }
 
 ul {
@@ -201,14 +229,13 @@ ul {
 }
 
 .tablinks {
-	padding: 20px;
-	background-color: #E7E7E7;
-	border: 1px solid #bbb;
+	padding: 17px 9px;
 	cursor: pointer;
+	border: 1px solid #bebebe;
 }
 
 .tablinks:hover {
-	background-color: #c4b5af;
+	background-color: #ebebeb;
 }
 
 #addSubProblem {
@@ -273,12 +300,15 @@ li[name=selected] {
 }
 
 .delete {
-	margin-left: 20px;
+	margin-left: 8px;
 }
 
 img {
 	width: 24%;
-	height: 15%;
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    margin-top: -5px;
 }
 
 img:hover {
@@ -340,8 +370,23 @@ img:hover {
 
 .sub-prob-content {
 	margin-top: 1.5em;
+    height: 455px;
+}
+
+.cke_1 {
+	height: 442px;
+}
+
+.cke_contents {
+	height: 400px;
 }
 
 .content::placeholder {
 	color: #bebebe;
+}
+
+.problem-img {
+	margin-right: 5px;
+    margin-left: 9px;
+    color: #244c1e;
 }

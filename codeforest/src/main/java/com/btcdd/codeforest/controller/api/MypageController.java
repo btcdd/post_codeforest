@@ -34,7 +34,7 @@ public class MypageController {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		authUser.setNickname(vo.getNickname());
 		session.setAttribute("authUser", authUser);
-		return JsonResult.success(result);
+		return JsonResult.success(authUser.getNickname());
 	}
 
 	@Auth
