@@ -647,7 +647,7 @@ $(function() {
 			 
 			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);	
- 			
+ 			   
  			currentEditor = HashMap.get("editor"+fileNo);
  			
  			console.log("map>>>",HashMap.get("editor"+fileNo));
