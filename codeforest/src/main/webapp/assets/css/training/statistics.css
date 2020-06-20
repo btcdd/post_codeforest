@@ -18,16 +18,6 @@ body {
     display: inline-block;
 }
 
-.problem-list {
-    margin: 5px;
-    padding: 10px 0px;
-    overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	width: 200px;
-	height: 20px;
-}
-
 .quizlist {
     margin-bottom: 30px;
     float: left;
