@@ -640,11 +640,9 @@ $(function() {
  		}
  		else {
  			
- 			var currentRoot = $("#tab"+fileNo).parent().parent().parnet();
- 			console.log("currentROOT>>>>>>", currentRoot);
  			layoutId = "layout-"+fileNo;
  			tempFile = fileMap.get(fileNo+"");
-			tempLayout = currentRoot.getItemsById(layoutId)[0];
+			tempLayout = root.getItemsById(layoutId)[0];
 			 
 			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);	
