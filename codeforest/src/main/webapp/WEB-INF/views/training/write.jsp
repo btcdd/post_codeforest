@@ -182,6 +182,7 @@ function captureReturnKey(e) {
 	<form method="post"
 		action="${pageContext.servletContext.contextPath }/training/write" onkeydown="return captureReturnKey(event)">
 		<div class="regist">
+			<pre>코딩 테스트를 진행할 문제를 등록하려면 아래의 체크 버튼을 눌러주세요</pre>
 			<div class="codingtest-div">
 				<div class="privateAndPassword">
 					<div class="private">
