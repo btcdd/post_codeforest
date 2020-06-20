@@ -668,9 +668,9 @@ $(function() {
 		console.log("this.parent()>>",$(this).parent());
 		console.log("this.parent().parent>>",$(this).parent().parent().attr("id"));
 		console.log("this.parent().parent>>",$(this).parent().parent().attr("id").split("cm"));
-//  		var cmNo = $(this).parent().parent().attr("id").split("cm")[0]
-//  		tempFile = fileMap.get(cmNo+"");
-//  		currentEditor = HashMap.get("editor"+cmNo);
+ 		var cmNo = $(this).parent().parent().attr("id").split("cm")[1];
+ 		tempFile = fileMap.get(cmNo+"");
+ 		currentEditor = HashMap.get("editor"+cmNo);
  		 
 	});
  	
