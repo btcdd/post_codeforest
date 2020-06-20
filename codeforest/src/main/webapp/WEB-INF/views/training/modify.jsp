@@ -119,7 +119,7 @@ $(function() {
 		$('#' + index).attr('name', 'selected');
 
 		// 추가된 문제에 CKEditor 적용
-// 		CKEDITOR.replace('prob-content-text' + index);
+		CKEDITOR.replace('prob-content-text' + index);
 
 		index++;
 	});
@@ -135,8 +135,6 @@ $(function() {
 		
 		$('.prob' + (ind)).show();
 	});
-
-	// CKEDITOR.replace('contents');
 
 	// 코딩테스트 체크박스를 체크하면, 비밀번호와 시작 일자, 마감 일자를 설정할 수 있는 칸이 나타난다.
 	$('.codingtest').click(function() {
@@ -270,7 +268,7 @@ $(function() {
 								<input class="sub-problem-title" type="text" name="subProblemList[${index }].title" value="${item.title }"required autocomplete="off" />
 							</div>
 							<div class="sub-prob-content">
-								<textarea class="content" id="prob-content-text${index }" name="subProblemList[${index }].contents" required autocomplete="off">${fn:replace(item.contents, "<br />", newLine)}</textarea>
+								<textarea class="ckeditor content" id="prob-content-text${index }" name="subProblemList[${index }].contents" required autocomplete="off">${fn:replace(item.contents, "<br />", newLine)}</textarea>
 							</div>
 							<br />
 	

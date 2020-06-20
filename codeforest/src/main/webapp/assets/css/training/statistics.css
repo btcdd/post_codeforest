@@ -5,27 +5,20 @@ body {
 
 .side {
 	width: 250px;
-	height: 300px;
-	margin-left: 300px;
+    height: 300px;
     left: 300px;
-    margin-top: 100px;
+    float: left;
+    display: inline-block;
 }
 
 .statistics-container {
-    width: 700px;
-    margin-left: 1200px;
-    margin-top: -300px;
+    width: 80vw;
+    margin-left: 100px;
+    margin-top: 6%;
+    display: inline-block;
 }
 
-ul {
-    list-style: none;
-    margin-left: 20px;
-    margin-right: 30px;
-    padding-left: 0px;
-    height: 600px;
-}
-
-.menulist {
+.problem-list {
     margin: 5px;
     padding: 10px 0px;
     overflow: hidden;
@@ -37,11 +30,13 @@ ul {
 
 .quizlist {
     margin-bottom: 30px;
+    float: left;
+    margin-left: 12em;
+    overflow: auto;
 }
 
 .line {
     margin-bottom: 10px;
-    padding: 10px;
     font-weight: bold;
     vertical-align: top;
     color: #167426;
@@ -77,4 +72,12 @@ th, td {
 	text-align: center;
 	border-top: 1px solid #BFBFBf;
 	margin-top: 120px;
+}
+
+.chart-div {
+	float: left;
+	margin-left: 6em;
+	margin-top: 6em;
+}
+.chart {
 }

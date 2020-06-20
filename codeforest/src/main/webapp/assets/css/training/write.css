@@ -80,7 +80,7 @@ select {
 
 .content {
 	width: 100%;
-    height: 250px;
+    height: 1000px;
     outline: none;
     border: none;
     background-color: #fafafa;
@@ -370,6 +370,15 @@ img:hover {
 
 .sub-prob-content {
 	margin-top: 1.5em;
+    height: 455px;
+}
+
+.cke_1 {
+	height: 442px;
+}
+
+.cke_contents {
+	height: 400px;
 }
 
 .content::placeholder {
