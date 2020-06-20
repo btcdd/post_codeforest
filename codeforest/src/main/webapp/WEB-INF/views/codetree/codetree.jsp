@@ -580,7 +580,8 @@ $(function() {
  	var root = null;
 	var HashMap = new Map();
  	var fileMap = new Map();
-	
+ 	var rootMap = new Map();
+ 	
  	$(document).on("dblclick", ".file", function() {		
  		tempFile = $(this);
  		var language = $(this).data("language");
@@ -594,6 +595,7 @@ $(function() {
  		if($("#cm"+fileNo).length < 1) { // 켜진 창이 중복되서 안켜지도록 함
 	 		root = myLayout.root.contentItems[0] || myLayout.root;
 			
+ 		
 			root.addChild({
 				type : "component",
 				componentName : "newTab",
@@ -601,6 +603,9 @@ $(function() {
 				id : "layout-"+fileNo
 			});
 			
+			if(root == myLayout.root) {
+				rootMap.set("fileNo", root);
+ 			}
 			
 			
 			var code = $('#cm'+fileNo+' > .CodeMirror')[0];		
@@ -640,13 +645,13 @@ $(function() {
  		}
  		else {
  			
- 	
+ 			var currentRoot = rootMap.get(fileNo+"");
  			layoutId = "layout-"+fileNo;
  			tempFile = fileMap.get(fileNo+"");
-			tempLayout = root.getItemsById(layoutId)[0];
-			console.log("tempLayout.getActiveContentItem()>>",tempLayout.getActiveContentItem()); 
+			tempLayout = currentRoot.getItemsById(layoutId)[0];
+			 
 			console.log("tempLayout",tempLayout);
- 			root.setActiveContentItem(tempLayout);	
+			currentRoot.setActiveContentItem(tempLayout);	
  			
  			currentEditor = HashMap.get("editor"+fileNo);
  			
@@ -664,7 +669,7 @@ $(function() {
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);
 		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
  		tempFile = fileMap.get(tabFileNo+"");
-		$(this).parent().attr("id", "tab"+tabFileNo);
+// 		$(this).parent().attr("id", "tab"+tabFileNo);
  		console.log("mousedown tempFile>>>>>>>",tempFile.data("fileName"));
  		currentEditor = HashMap.get("editor"+tabFileNo);
  		
