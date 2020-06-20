@@ -24,6 +24,7 @@ $(function() {
 
 
 <div class="accordion">
+  <h1 class="accordion__title">${saveVo.no }</h1>
   <h1 class="accordion__title">${saveVo.title }</h1>
   <c:forEach items='${subProblemList }' var='subproblemvo' varStatus='status'>
 	  <h2 class="accordion__items">문제 0${status.index + 1}</h2>
