@@ -14,14 +14,14 @@ body {
 .statistics-container {
     width: 80vw;
     margin-left: 100px;
-    margin-top: 6%;
+    margin-top: 8.5%;
     display: inline-block;
 }
 
 .quizlist {
     margin-bottom: 30px;
     float: left;
-    margin-left: 12em;
+    margin-left: 15em;
     overflow: auto;
 }
 
@@ -66,8 +66,7 @@ th, td {
 
 .chart-div {
 	float: left;
-	margin-left: 6em;
+	margin-left: 10em;
 	margin-top: 6em;
 }
-.chart {
-}
+
