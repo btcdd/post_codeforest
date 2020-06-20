@@ -62,7 +62,7 @@ $(function() {
 		$('#' + index).attr('name', 'selected');
 
 		// 추가된 문제에 CKEditor 적용
-// 		CKEDITOR.replace('prob-content-text' + index);
+		CKEDITOR.replace('prob-content-text' + index);
 
 		$('#' + index).hover(function() {
 			$(this).children().show();
@@ -84,8 +84,6 @@ $(function() {
 		
 		$('.prob' + (ind)).show();
 	});
-
-	// CKEDITOR.replace('contents');
 
 	// 코딩테스트 체크박스를 체크하면, 비밀번호와 시작 일자, 마감 일자를 설정할 수 있는 칸이 나타난다.
 	$('.codingtest').click(function() {
@@ -152,11 +150,22 @@ $(function() {
 		$(this).children().eq(1).hide();
 	});
 	
+	CKEDITOR.replace('prob-content-text0');
+	
+// 	CKEDITOR.addCss('.cke_contents { height: 400px; }');
+	
 });
+window.onload = function(){
+// 	var glCm = document.getElementsByClassName("cke_contents")[0];
+// 	console.log(glCm);
+
+	console.log($('.sub-prob-content'));
+	console.log('asdf');
+};
 
 function captureReturnKey(e) { 
     if(e.keyCode==13 && e.srcElement.type != 'textarea') 
-    return false; 
+    return false;
 }
 
 </script>

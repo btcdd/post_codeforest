@@ -6,32 +6,35 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
-public class RunCs {
+import com.btcdd.codeforest.vo.CodeVo;
+
+public class RunCsLinux {
+	
+	private String fileName;
+	private String language;
+	private String packagePath;
 	
 	private StringBuffer buffer;
 	private Process process;
 	private BufferedReader bufferedReader;
+	private BufferedReader bufferedReader2;
 	private StringBuffer readBuffer;
 	
 	private File file;
 	private BufferedWriter bufferWriter;
 	
-	private final String FILENAME = "testCs.cs";
 	
-	public String inputSource() {
-		
-		buffer = new StringBuffer();
-		
-		buffer.append("mcs testCs.cs");
-		
-		return buffer.toString();
+	public RunCsLinux(String fileName, String packagePath, String language) {
+		this.fileName = fileName;
+		this.packagePath = packagePath;
+		this.language = language;
 	}
-	
-	public void createFileAsSource(String source) {
+
+	public void createFileAsSource(String source, String fileName) {
 		try {
-			file = new File(FILENAME);
-			bufferWriter = new BufferedWriter(new FileWriter(file, false));
+			bufferWriter = new BufferedWriter(new FileWriter(fileName, false));
 			
 			bufferWriter.write(source);
 			bufferWriter.flush();
@@ -44,14 +47,17 @@ public class RunCs {
 				file = null;
 			} catch (IOException e) {
 				e.printStackTrace();
-				System.exit(1);;
+				System.exit(1);
 			}
 		}
 	}
 	
 	public String execCompile() {
 		try {
-			process = Runtime.getRuntime().exec(inputSource());
+			
+			process = Runtime.getRuntime().exec(
+					"mcs " + packagePath + "/" + language + "/Test.cs");
+			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 			String line = null;
 			readBuffer = new StringBuffer();
@@ -68,12 +74,14 @@ public class RunCs {
 		return null;
 	}
 	
-	
 	public String execCommand() {
 		try {
+			
 			process = Runtime.getRuntime().exec(runClass());
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			bufferedReader2 = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+						
 			String line = null;
 			readBuffer = new StringBuffer();
 			
@@ -81,7 +89,11 @@ public class RunCs {
 				readBuffer.append(line);
 				readBuffer.append("\n");
 			}
-			return readBuffer.toString();
+			while((line = bufferedReader2.readLine()) != null) {
+				readBuffer.append(line);
+				readBuffer.append("\n");
+			}
+			return readBuffer.substring(0, readBuffer.length() - 1).toString();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -89,10 +101,10 @@ public class RunCs {
 		return null;
 	}
 	
-	private String runClass() {
+	public String runClass() {
 		buffer = new StringBuffer();
 		
-		buffer.append("timeout 2s mono testCs.exe");
+		buffer.append("timeout 2s mono " + packagePath + "/" + language + "/Test.exe");
 		
 		return buffer.toString();
 	}

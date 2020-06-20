@@ -91,7 +91,7 @@ public class RunC {
 	private String runClass() {
 		buffer = new StringBuffer();
 		
-		buffer.append("./test.exe");
+		buffer.append("timeout 2s ./test.exe");
 		
 		return buffer.toString();
 	}

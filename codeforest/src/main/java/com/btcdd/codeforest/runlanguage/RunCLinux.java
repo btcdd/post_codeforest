@@ -104,7 +104,7 @@ public class RunCLinux {
 	public String runClass() {
 		buffer = new StringBuffer();
 		
-		buffer.append(packagePath + "/" + language + "/Test.exe");
+		buffer.append("timeout 2s " + packagePath + "/" + language + "/Test.exe");
 		
 		return buffer.toString();
 	}

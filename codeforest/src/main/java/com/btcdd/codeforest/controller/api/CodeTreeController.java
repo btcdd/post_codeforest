@@ -183,19 +183,22 @@ public class CodeTreeController {
 		
 		switch(language) {
 		case "c": 
-			codeTreeLinux.cCompile(fileName, packagePath, language);
-			
+			map = codeTreeLinux.cCompile(fileName, packagePath, language);
 			break;
 		case "cpp": 
+			map = codeTreeLinux.cppCompile(fileName, packagePath, language);
 			break;
 		case "cs": 
+			map = codeTreeLinux.csCompile(fileName, packagePath, language);
 			break;
 		case "java": 
 			map = codeTreeLinux.javaCompile(fileName, packagePath, language);
 			break;
 		case "js": 
+			map = codeTreeLinux.jsCompile(fileName, packagePath, language);
 			break;
 		case "py": 
+			map = codeTreeLinux.pyCompile(fileName, packagePath, language);
 			break;
 		}
 		

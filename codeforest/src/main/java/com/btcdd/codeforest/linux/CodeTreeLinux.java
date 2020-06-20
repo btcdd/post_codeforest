@@ -16,7 +16,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.btcdd.codeforest.runlanguage.RunCLinux;
+import com.btcdd.codeforest.runlanguage.RunCppLinux;
+import com.btcdd.codeforest.runlanguage.RunCsLinux;
 import com.btcdd.codeforest.runlanguage.RunJavaLinux;
+import com.btcdd.codeforest.runlanguage.RunJsLinux;
+import com.btcdd.codeforest.runlanguage.RunPyLinux;
 
 public class CodeTreeLinux {
 	
@@ -195,6 +199,78 @@ public class CodeTreeLinux {
 		runCLinux.execCompile();
 		String result = runCLinux.execCommand();
 		String errorResult = runCLinux.execCompile();
+		
+		String[] res = new String[2];
+		res[0] = result;
+		res[1] = errorResult;
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("result", res);
+		
+		return map;
+	}
+	
+	public Map<String, Object> cppCompile(String fileName, String packagePath, String language) {
+
+		RunCppLinux runCppLinux = new RunCppLinux(fileName, packagePath, language);
+		
+		runCppLinux.execCompile();
+		String result = runCppLinux.execCommand();
+		String errorResult = runCppLinux.execCompile();
+		
+		String[] res = new String[2];
+		res[0] = result;
+		res[1] = errorResult;
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("result", res);
+		
+		return map;
+	}
+	
+	public Map<String, Object> csCompile(String fileName, String packagePath, String language) {
+
+		RunCsLinux runCsLinux = new RunCsLinux(fileName, packagePath, language);
+		
+		runCsLinux.execCompile();
+		String result = runCsLinux.execCommand();
+		String errorResult = runCsLinux.execCompile();
+		
+		String[] res = new String[2];
+		res[0] = result;
+		res[1] = errorResult;
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("result", res);
+		
+		return map;
+	}
+	
+	public Map<String, Object> jsCompile(String fileName, String packagePath, String language) {
+
+		RunJsLinux runJsLinux = new RunJsLinux(fileName, packagePath, language);
+		
+		runJsLinux.execCompile();
+		String result = runJsLinux.execCommand();
+		String errorResult = runJsLinux.execCompile();
+		
+		String[] res = new String[2];
+		res[0] = result;
+		res[1] = errorResult;
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("result", res);
+		
+		return map;
+	}
+	
+	public Map<String, Object> pyCompile(String fileName, String packagePath, String language) {
+
+		RunPyLinux runPyLinux = new RunPyLinux(fileName, packagePath, language);
+		
+		runPyLinux.execCompile();
+		String result = runPyLinux.execCommand();
+		String errorResult = runPyLinux.execCompile();
 		
 		String[] res = new String[2];
 		res[0] = result;
