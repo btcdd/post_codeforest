@@ -640,10 +640,11 @@ $(function() {
  		}
  		else {
  			
- 	
+ 			var currentRoot = $("#tab"+fileNo).parent().parent().parnet();
+ 			console.log("currentROOT>>>>>>", currentRoot);
  			layoutId = "layout-"+fileNo;
  			tempFile = fileMap.get(fileNo+"");
-			tempLayout = document.getItemsById(layoutId)[0];
+			tempLayout = currentRoot.getItemsById(layoutId)[0];
 			 
 			console.log("tempLayout",tempLayout);
  			root.setActiveContentItem(tempLayout);	
@@ -664,7 +665,7 @@ $(function() {
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);
 		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
  		tempFile = fileMap.get(tabFileNo+"");
-// 		$(this).parent().attr("id", "tab"+tabFileNo);
+		$(this).parent().attr("id", "tab"+tabFileNo);
  		console.log("mousedown tempFile>>>>>>>",tempFile.data("fileName"));
  		currentEditor = HashMap.get("editor"+tabFileNo);
  		
