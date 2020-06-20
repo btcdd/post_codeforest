@@ -151,7 +151,17 @@ $(function() {
 	});
 	
 	CKEDITOR.replace('prob-content-text0');
-	
+	CKEDITOR.addStylesSet( 'mystyleslist',
+    [
+       {id : 'cke_1_contents', element : 'div',
+          attributes :
+          {
+          'style' : 'height: 400px',
+          }
+       }
+    ]);
+         
+    CKEDITOR.config.stylesCombo_stylesSet = 'mystyleslist';
 // 	CKEDITOR.addCss('.cke_contents { height: 400px; }');
 	
 });
