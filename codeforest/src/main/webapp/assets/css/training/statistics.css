@@ -13,7 +13,7 @@ body {
 
 .statistics-container {
     width: 80vw;
-    margin-left: 100px;
+    margin-left: 3em;
     margin-top: 8.5%;
     display: inline-block;
 }
@@ -23,9 +23,11 @@ body {
     float: left;
     margin-left: 15em;
     overflow: auto;
+    max-width: 740px;
 }
 
 .line {
+	width: 740px;
     margin-bottom: 10px;
     font-weight: bold;
     vertical-align: top;
@@ -36,7 +38,8 @@ body {
 table {
     border: 0.3px solid lightgray;
     border-collapse: collapse;
-    margin-left: 40px;
+    margin-left: 20px;
+    margin-bottom: 2em;	
 }
 
 th, td {
@@ -65,8 +68,12 @@ th, td {
 }
 
 .chart-div {
-	float: left;
-	margin-left: 10em;
-	margin-top: 6em;
+	position: fixed;
+    left: 65em;
+    float: left;
+    margin-left: 7em;
+    margin-top: 6em;
+    background-color: #fff;
+    padding: 2em;
 }
 

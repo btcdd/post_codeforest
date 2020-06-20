@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/include/footer.css">
 <link href="${pageContext.servletContext.contextPath }/assets/css/include/header.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
@@ -20,8 +21,6 @@
 
 $(function() {
 	var tableWidth = $('#statistics-table').width();
-	
-	$('.line').css('width', tableWidth + 64 + 'px');
 	
 	var title = [];
 	var rate = [];
