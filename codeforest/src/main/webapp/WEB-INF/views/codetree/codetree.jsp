@@ -654,7 +654,7 @@ $(function() {
  		
  		
  	});
-	$(document).on("mousedown", ".lm_title", function() {
+	$(document).on("mousedown", function() {
 		console.log("title>>>",$(this));
 		console.log("getActiveContentItem()>>",root.getActiveContentItem());
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id);
