@@ -39,12 +39,6 @@ ul {
     margin: 0;
 }
 
-.menu-item {
-	float: left;
-	margin: 3px 10px 0 0;
-	padding: 8px 10px
-}
-
 .menu-user {
 	float: right;
 	font-size: 1em;
