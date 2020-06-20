@@ -86,6 +86,8 @@ body {
 
 .menu-item:hover {
 	color: #2C2C2C;
+	background-color: rgba(235,235,235,0.5);
+	border-radius: 0.5rem
 }
 
 .menulist a {
@@ -97,10 +99,6 @@ body {
 	color: #AEAEAE;
 }
 
-/* .menu a:hover { */
-/* 	text-decoration: none; */
-/* 	color: #3C3C3C */
-/* } */
 .menu-user a {
 	text-decoration: none;
 	color: #3C3C3C;
@@ -113,7 +111,6 @@ body {
 .menu-user a:hover {
 	text-decoration: none;
 	color: #2C2C2C;
-	border-bottom: 2px solid #2c2c2c
 }
 
 #code-tree a {
