@@ -815,7 +815,7 @@ $(function() {
    				}							
    			});   			
    			
-   		},1500);
+   		},3000);
 /* 		var subProblemNo = tempFile.data("subproblem-no");
   		var result = new Array();
    		<c:forEach items="${subProblemList}" var="info">
