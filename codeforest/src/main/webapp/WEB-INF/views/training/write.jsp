@@ -41,8 +41,7 @@ var problemAdd = function() {
 			+ '<div class="ex-output-title">출력 예제</div>'
 			+ '<textarea id="ex-output-text" name="subProblemList[' + index + '].examOutput" placeholder="출력 예제를 작성하세요" required autocomplete="off"></textarea>'
 			+ '</div>'
-			+ '<div class="answer-code' + index + '">'
-			+ '</div></div>';
+			+ '</div>';
 
 	buttonStr = '<li id="' + index + '" class="tablinks">' + (index + 1) + '<span class="delete" style="display: none" ><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>';
 }
@@ -133,12 +132,16 @@ $(function() {
 					// prob class 설정
 					$('.prob' + j).attr('class', 'prob' + (j-1).toString());
 					$('#prob-content-text' + j).attr('id', 'prob-content-text' + (j-1).toString());
-					$('#prob-content-text' + j).attr('name', 'subProblemList[' + (j-1).toString() + '].contents');
+					$('#prob-content-text' + (j-1).toString()).attr('name', 'subProblemList[' + (j-1).toString() + '].contents');
+					$('input[name=subProblemList[' + j + '].examInput]').attr('name', 'subProblemList[' + (j-1).toString() + '].examInput]');
+					$('input[name=subProblemList[' + j + '].examOutput]').attr('name', 'subProblemList[' + (j-1).toString() + '].examOutput]');
 				}
 			}
 		}
 		
 		index--;
+		
+		$('#' + (index-1)).trigger('click');
 	});
 	
 	$('#fake-submit').click(function() {

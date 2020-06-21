@@ -215,6 +215,8 @@ $(function() {
 					$('#' + j).attr('id', (j-1).toString());
 					// prob class 설정
 					$('.prob' + j).attr('class', 'prob' + (j-1).toString());
+					$('#prob-content-text' + j).attr('id', 'prob-content-text' + (j-1).toString());
+					$('#prob-content-text' + (j-1).toString()).attr('name', 'subProblemList[' + (j-1).toString() + '].contents');
 				}
 			}
 		}
