@@ -207,7 +207,8 @@ $(window).bind('keydown', function(event) {
         switch (String.fromCharCode(event.which).toLowerCase()) {
         case 's':
             event.preventDefault();
-            $("#Save").trigger("click");
+            /* $("#Save").trigger("click"); */
+            $("#Run").trigger("click");
             alert('ctrl-s');
             break;
         case 'f':
