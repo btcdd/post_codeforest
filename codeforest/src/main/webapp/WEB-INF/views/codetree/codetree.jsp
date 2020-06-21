@@ -211,21 +211,11 @@ $(function() {
 	            event.preventDefault();
 	            /* $("#Save").trigger("click"); */
 	            $("#Run").trigger("click");
-	            
-/* 	    		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
-	     		tempFile = fileMap.get(tabFileNo+"");
-	    		$(".lm_title").html("<span class='star'>"+tempFile.data("fileName")+"</span>"); */	                    
-	            /* alert('ctrl-s'); */
-	            
-/* 			layoutId = "layout-"+fileNo;
- 			tempFile = fileMap.get(fileNo+"");
-			tempLayout = root.getItemsById(layoutId)[0]; */
-			tempLayout.setTitle(tempFile.data("fileName"));	            
-	            
-	            break;
+				tempLayout.setTitle(tempFile.data("fileName"));	            
+	            return;
 	        } 
 	     }
- }); 	
+    }); 	
  	
  	
 ////////////////파일 추가/////////////////////
