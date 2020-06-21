@@ -686,12 +686,10 @@ $(function() {
  		currentEditor = HashMap.get("editor"+cmNo);
  		
 		
-	}).on("keydown",".CodeMirror-scroll",function(){
-		console.log("change!!!!");	
+	}).on("propertychange change keyup paste",function(){
+		console.log("change!!!!");
 	});
-	$(document).on("propertychange change keyup paste",".CodeMirror-sizer",function(){
-		console.log("change!!!!");	
-	});
+	
 
  	var compileResult1 = "";
  	var compileResult2 = "";
