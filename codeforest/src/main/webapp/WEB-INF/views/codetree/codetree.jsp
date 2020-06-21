@@ -211,6 +211,7 @@ $(function() {
 	            event.preventDefault();
 	            /* $("#Save").trigger("click"); */
 	            $("#Run").trigger("click");
+	            $(".lm_title .star").remove();	            
 	            /* alert('ctrl-s'); */
 	            break;
 	        } 
@@ -688,7 +689,7 @@ $(function() {
 		
 	}).on("propertychange change keyup paste",function(){
 		console.log("change!!!!");
-		$(".lm_title").append("* ");
+		$(".lm_title").append("<span class='star'>* </span>");
 	});
 	
 
