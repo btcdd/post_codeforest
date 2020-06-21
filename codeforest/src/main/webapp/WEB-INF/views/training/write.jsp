@@ -74,8 +74,10 @@ $(function() {
 		
 		$('#' + index).hover(function() {
 			$(this).children().show();
+			$(this).addClass('hover-tablinks');
 		}, function() {
 			$(this).children().hide();
+			$(this).removeClass('hover-tablinks');
 		});
 		
 		setStyle(index);
@@ -123,7 +125,7 @@ $(function() {
 		for(var i = 0; i < index; i++) {
 			if(!($('#' + i).attr('id'))) {
 				for(var j = i + 1; j < index; j++) {
-					$('#' + j).text('문제 ' + j.toString());
+					$('#' + j).text(j.toString());
 					$('#' + j).append('<span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span>');
 					$('.prob' + j + ' h3').text('문제 ' + j.toString());
 					
@@ -151,8 +153,10 @@ $(function() {
 	
 	$('#0').hover(function() {
 		$(this).children().show();
+		$(this).addClass('hover-tablinks');
 	}, function() {
 		$(this).children().hide();
+		$(this).removeClass('hover-tablinks');
 	});
 	
 	CKEDITOR.replace('prob-content-text0');
@@ -204,14 +208,12 @@ function captureReturnKey(e) {
 			<br />
 
 			<div class="write-container">
-				<div class="tab">
-					<ul class="tab-ul">
-						<li id="0" class="tablinks" name="selected">1<span class="delete" style="display: none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>
-						<li id="addSubProblem">+</li>
-					</ul>
-					
-				</div>
-
+			<div class="tab">
+				<ul class="tab-ul">
+					<li id="0" class="tablinks" name="selected">1<span class="delete" style="display: none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>
+					<li id="addSubProblem">+</li>
+				</ul>
+			</div>
 				<div id="problem" class="tabcontent">
 					<div class="prob0">
 						<div class="sub-title">
