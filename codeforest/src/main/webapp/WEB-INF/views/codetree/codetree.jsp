@@ -678,6 +678,7 @@ $(function() {
 	$(document).on("click", ".CodeMirror-scroll", function() {
 		console.log("root>>>>>>>>>>",root);
 		console.log("클릭한곳:", $(this));
+		var _this = $(this);
 		console.log("this.parent()>>",$(this).parent());
 		console.log("this.parent().parent>>",$(this).parent().parent().attr("id"));
 		console.log("this.parent().parent>>",$(this).parent().parent().attr("id").split("cm"));
@@ -685,9 +686,9 @@ $(function() {
  		tempFile = fileMap.get(cmNo+"");
  		currentEditor = HashMap.get("editor"+cmNo);
  		
-		
-	}).on("propertychange change keyup paste",function(){
-		console.log("change!!!!");
+		$(document).on("propertychange change keyup paste",_this,function(){
+			console.log("change!!!!");
+		});
 	});
 	
 
