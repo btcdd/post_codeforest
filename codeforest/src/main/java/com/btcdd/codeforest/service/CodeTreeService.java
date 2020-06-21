@@ -189,7 +189,7 @@ public class CodeTreeService {
 	public boolean submitSubProblem(Long authUserNo, Long subProblemNo, String codeValue, String language, boolean compileResult) {
 		String answer = "";
 		
-		if(compileResult==true) {
+		if(compileResult) {
 			answer = "y";
 		}else{
 			answer = "n";
@@ -199,10 +199,11 @@ public class CodeTreeService {
 		
 		
 		if(submitVo == null) {
-//			return 1==1;
-			return codetreeRepository.submitSubProblem(authUserNo,subProblemNo,codeValue,language, answer) == 1;
+			return 1==1;
+//			return codetreeRepository.submitSubProblem(authUserNo,subProblemNo,codeValue,language, answer) == 1;
 		} else {
-			return codetreeRepository.updateSubProblem(submitVo.getNo(), codeValue, answer) == 1;
+			return 1==1;
+//			return codetreeRepository.updateSubProblem(submitVo.getNo(), codeValue, answer) == 1;
 		}
 		
 		
