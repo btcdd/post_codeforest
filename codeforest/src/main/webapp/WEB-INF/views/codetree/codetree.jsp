@@ -690,7 +690,9 @@ $(function() {
 	$(document).on("propertychange change keyup paste",".cm-variable",function(){
 		console.log("change!!!!");	
 	});	
- 	
+	$(document).on("change",".CodeMirror-lines",function(){
+		console.log("1231231 change!!!!");	
+	});	
  	var compileResult1 = "";
  	var compileResult2 = "";
  	
