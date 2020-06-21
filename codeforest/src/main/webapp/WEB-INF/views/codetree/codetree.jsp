@@ -684,7 +684,7 @@ $(function() {
 	            $("#Save").trigger("click");
 	            /* $("#Run").trigger("click"); */
 				
-				tempLayout.setTitle("*"+tempFile.data("fileName"));
+				tempLayout.setTitle(tempFile.data("fileName"));
 				console.log("tempLayout ",tempLayout);
 	            return;
 	        } 
