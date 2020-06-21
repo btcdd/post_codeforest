@@ -673,6 +673,7 @@ $(function() {
  		currentEditor = HashMap.get("editor"+cmNo);
  		
 		if(e.target.nodeName == "TEXTAREA"){
+			console.log("!!!!!!!!!!!!!");
 			$(this).on("propertychange change keyup paste",function(){
 				layoutId = "layout-"+fileNo;
 	 			tempFile = fileMap.get(fileNo+"");
