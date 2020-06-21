@@ -683,7 +683,7 @@ $(function() {
 	            event.preventDefault();
 	            $("#Save").trigger("click");
 	            /* $("#Run").trigger("click"); */
-				console.log("tempLayout getTitle",tempLayout.getTitle());	            
+				console.log("tempLayout ",tempLayout);	            
 	            return;
 	        } 
 	     }
