@@ -690,13 +690,20 @@ $(function() {
     });
 	
 	$(document).on("propertychange change keyup paste",function(e){
+		if(e.ctrlKey || e.metaKey){
+			switch (String.fromCharCode(e.which).toLowerCase()) {
+			case 's':
+				tempLayout.setTitle(tempFile.data("fileName"));
+				return;
+			}
+		}
 		if(e.target.nodeName == "TEXTAREA") {
 			layoutId = "layout-"+fileNo;
  			tempFile = fileMap.get(fileNo+"");
 			tempLayout = root.getItemsById(layoutId)[0];
 			tempLayout.setTitle("*"+tempFile.data("fileName"));
 		}
-		tempLayout.setTitle(tempFile.data("fileName"));
+		
 	});
 	
 	
