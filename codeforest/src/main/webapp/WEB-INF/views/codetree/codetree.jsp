@@ -212,9 +212,9 @@ $(function() {
 	            /* $("#Save").trigger("click"); */
 	            $("#Run").trigger("click");
 	            
-	    		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
+/* 	    		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
 	     		tempFile = fileMap.get(tabFileNo+"");
-	    		$(".lm_title").html("<span class='star'>"+tempFile.data("fileName")+"</span>");	                    
+	    		$(".lm_title").html("<span class='star'>"+tempFile.data("fileName")+"</span>"); */	                    
 	            /* alert('ctrl-s'); */
 	            break;
 	        } 
@@ -692,14 +692,14 @@ $(function() {
 		
 	}).on("propertychange change keyup paste",function(){
 		console.log("change!!!!");
-		console.log("getActiveContentItem()>>",root.getActiveContentItem());
+/* 		console.log("getActiveContentItem()>>",root.getActiveContentItem());
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id);
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[0]);
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);
 		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
  		tempFile = fileMap.get(tabFileNo+"");
  		console.log("propertychange change keyup paste tempFile>>>>>>>",tempFile.data("fileName"));
-		$(".lm_title").html("<span class='star'>* "+tempFile.data("fileName")+"</span>");
+		$(".lm_title").html("<span class='star'>* "+tempFile.data("fileName")+"</span>"); */
 	});
 	
 
