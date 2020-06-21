@@ -581,7 +581,7 @@ $(function() {
 				   }
 				   else {
 					   var face = '';
-					   if(fimeName.split(".")[0] == "Test") {
+					   if(fileName.split(".")[0] == "Test") {
 						   if(language === 'c') {
 							   face = '#include <stdio.h>\n\n' + 
 								   'int main() {\n' + 
