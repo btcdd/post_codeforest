@@ -125,11 +125,9 @@ $(function() {
    $('.theme').click(function() {
 	   theme = $(".theme option:selected").val();
 	   if(currentEditor != null) {
-		   currentEditor.setOption("theme", theme);
-		   for (var v of Object.values(HashMap)) {
-			   console.log("value:",v.value); // John, 30
-			   console.log("key:",v.key);
-			   console.log("v:",v);
+// 		   currentEditor.setOption("theme", theme);
+		   for (var i = 0; i < editorArray.length; i++ ) {
+			   editorArray[i].setOption("theme", theme);
 			}
 	   }	   
 	   
@@ -569,7 +567,7 @@ $(function() {
 				theme : theme,
 				matchBrackets : true
 			});			
-			
+			editorArray[editorArrayIndex++]=editor;
 			console.log("editor : " + editor);
 			currentEditor = editor;
 			HashMap.set("editor"+fileNo, editor);
