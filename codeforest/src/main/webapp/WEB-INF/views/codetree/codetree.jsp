@@ -687,7 +687,7 @@ $(function() {
  		
 		
 	});
-	$(document).on("propertychange change keyup paste",".cm-comment",function(){
+	$(document).on("propertychange change keyup paste",".CodeMirror-gutter-wrapper",function(){
 		console.log("change!!!!");	
 	});	
  	
