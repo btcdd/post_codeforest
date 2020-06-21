@@ -22,6 +22,7 @@ function onKeyDown() {
 	if(event.keyCode == 13) {
 		var kwd = $('#kwd').val();
 		originList('1', kwd);
+		$('span b').trigger('click');
 	}
 }
 
@@ -162,7 +163,8 @@ $(function() {
 	$(document).on("click", ".page", function() {
 	      page = $(this).attr('id');
 	      
-	      originList(page);
+	      var kwd = $('#kwd').val();
+		  originList(page, kwd);
 	      nextRemove();
 	   });
 	   
@@ -171,7 +173,8 @@ $(function() {
 	      var prevNo = parseInt(page) - 1;
 	      page = String(prevNo);
 	      
-	      originList(page);
+	      var kwd = $('#kwd').val();
+		  originList(page, kwd);
 	      nextRemove();
 	   });
 	   
@@ -180,7 +183,8 @@ $(function() {
 	      var prevNo = parseInt(page) + 1;
 	      page = String(prevNo);
 	      
-	      originList(page);
+	      var kwd = $('#kwd').val();
+		  originList(page, kwd);
 	      nextRemove();
 	   });
 	
@@ -390,9 +394,9 @@ $(function() {
 	});
 	
 	$('#search').on('click', function() {
-		page = '1';
 		var kwd = $('#kwd').val();
 		originList('1', kwd);
+		$('span b').trigger('click');
 	});
 });
 </script>
