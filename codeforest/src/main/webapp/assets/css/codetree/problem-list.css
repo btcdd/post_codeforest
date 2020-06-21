@@ -82,7 +82,7 @@
   transition: opacity 0.3s ease 0.6s, transform 0.3s ease 0.6s;
   transform: scaleY(0);
   margin-bottom: 30px;
-  color: #a99;
+  color: #D0CECE;
   opacity: 0;
 }
 
