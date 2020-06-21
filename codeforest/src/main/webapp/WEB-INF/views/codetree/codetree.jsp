@@ -211,7 +211,7 @@ $(function() {
 	            event.preventDefault();
 	            /* $("#Save").trigger("click"); */
 	            $("#Run").trigger("click");
-	            $(".lm_title .star").remove();	            
+	            $(".lm_title").removeClass("star");	            
 	            /* alert('ctrl-s'); */
 	            break;
 	        } 
