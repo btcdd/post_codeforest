@@ -157,7 +157,7 @@ var nextRemove = function() {
 
 $(function() {
 	
-	originList('1');
+	originList('1', '');
 	
 	$(document).on("click", ".page", function() {
 	      page = $(this).attr('id');
