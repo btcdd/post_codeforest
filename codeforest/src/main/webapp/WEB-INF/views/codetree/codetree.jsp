@@ -126,6 +126,11 @@ $(function() {
 	   theme = $(".theme option:selected").val();
 	   if(currentEditor != null) {
 		   currentEditor.setOption("theme", theme);
+		   for (var v of Object.values(HashMap)) {
+			   console.log("value:",v.value); // John, 30
+			   console.log("key:",v.key);
+			   console.log("v:",v);
+			}
 	   }	   
 	   
 	   // 터미널 색 변경
