@@ -693,6 +693,7 @@ $(function() {
 		if(e.ctrlKey || e.metaKey){
 			switch (String.fromCharCode(e.which).toLowerCase()) {
 			case 's':
+				console.log('tempLayout.setTitle(tempFile.data("fileName"))>>>>',tempLayout.setTitle(tempFile.data("fileName")));
 				tempLayout.setTitle(tempFile.data("fileName"));
 				return;
 			}
