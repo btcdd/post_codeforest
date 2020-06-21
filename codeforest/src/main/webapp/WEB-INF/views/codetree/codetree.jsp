@@ -703,7 +703,8 @@ $(function() {
 			var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
 			console.log('tabFileNo>>',tabFileNo);
 /* 	 		tempFile = fileMap.get(tabFileNo+""); */
-			if(currentEditor.getValue() != SavedCode.get(fileNo+"") && tabFileNo ==fileMap.get(tabFileNo+"") ){
+            tempFile = fileMap.get(tabFileNo+"");
+			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
 				layoutId = "layout-"+fileNo;
 				tempLayout = root.getItemsById(layoutId)[0];
 				tempLayout.setTitle("*"+tempFile.data("fileName"));
