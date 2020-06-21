@@ -204,7 +204,7 @@ $(function() {
 	});
 	
 ////////////////키보드 입력//////////////////////////// 	
-	$(window).bind('keydown', function(event) {
+	$(document).keydown(function(event) {
 	    if (event.ctrlKey || event.metaKey) {
 	        switch (String.fromCharCode(event.which).toLowerCase()) {
 	        case 's':
