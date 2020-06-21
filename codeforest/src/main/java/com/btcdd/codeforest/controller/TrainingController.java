@@ -115,6 +115,7 @@ public class TrainingController {
 		}
 
 		map.put("problemVo", problemVo);
+		System.out.println(problemVo.getEndTime());
 		
 		map.put("list", list);
 		
