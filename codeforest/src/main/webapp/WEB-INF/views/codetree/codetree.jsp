@@ -685,11 +685,11 @@ $(function() {
  		tempFile = fileMap.get(cmNo+"");
  		currentEditor = HashMap.get("editor"+cmNo);
  		
- 		$(document).on("change",".CodeMirror-scroll",function(){
- 			console.log("change!!!!");
- 		});
+		
+	}).on("propertychange change keyup paste",".CodeMirror-scroll",function(){
+		console.log("change!!!!");
 	});
- 	
+		
  	
  	var compileResult1 = "";
  	var compileResult2 = "";
