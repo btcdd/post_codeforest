@@ -685,7 +685,7 @@ $(function() {
  		tempFile = fileMap.get(cmNo+"");
  		currentEditor = HashMap.get("editor"+cmNo);
  		
-		$(document).on("propertychange change keyup paste",function(){
+		$(document).on("propertychange change keyup paste",".CodeMirror-scroll",function(){
 			console.log("change!!!!");	
 		});
 	});
