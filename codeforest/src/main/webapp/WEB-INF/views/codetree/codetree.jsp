@@ -699,10 +699,10 @@ $(window).bind('keydown', function(event) {
  		tempFile = fileMap.get(cmNo+"");
  		currentEditor = HashMap.get("editor"+cmNo);
  		
+ 		$(document).on("change",".CodeMirror-scroll",function(){
+ 			console.log("change!!!!");	
+ 		});
  		
- 		
-	}).on("change",".CodeMirror-scroll",function(){
-		console.log("change!!!");
 	});
  	
  	
