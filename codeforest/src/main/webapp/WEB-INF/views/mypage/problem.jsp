@@ -99,13 +99,18 @@ var fetchList = function() {
 	   if(map.list[i].startTime <= getTimeStamp() && map.list[i].endTime >= getTimeStamp()) {
 		   codingTestStr = '<td><button class="blinking" id="modify-btn" style="padding: 2px 9px; background-color: #fc9303; border: 1px solid #fc9303; outline: none; cursor: default" >진행중</button></a></td>';
 		   fileDownloadStr = '<td><i class="list-none fas fa-file-download"></i></td>';
+		   titleStr = map.list[i].title;
+	   } else if(map.list[i].startTime > getTimeStamp()) {
+		   titleStr = map.list[i].title + '<span class="blinking" id="expected" style="color: #fff; background-color: #3e91b5; border: 1px solid #3e91b5; border-radius: 0.5rem; padding: 0 1em; margin-left: 1em; font-size: 0.8em; margin-top: 2px;outline: none; cursor: default" >예정</span>';
+		   fileDownloadStr = '<td><i class="list-none fas fa-file-download"></i></td>';
 	   } else {
+		   titleStr = map.list[i].title;
 		   codingTestStr = '<td><a href="${pageContext.servletContext.contextPath }/training/modify/' + map.list[i].no + '"><button id="modify-btn">수정</button></a></td>';
 		   fileDownloadStr = '<td><i data-no="' + map.list[i].no + '" data-title="' + map.list[i].title + '" type="button" alt="list" class="list fas fa-file-download"></i></td>';
 	   }
        str += '<tr class="list-contents" id="list-contents" data-no="' + map.list[i].no + '">' + 
                 '<td><a data-no="' + map.list[i].no + '">' + map.list[i].no + '</a></td>' + 
-                  '<td class="problem-title" data-no="' + map.list[i].no + '" style="text-align: left">' + map.list[i].title + '</td>' + 
+                  '<td class="problem-title" data-no="' + map.list[i].no + '" style="text-align: left">' + titleStr + '</td>' + 
                   '<td>' + map.list[i].hit + '</td>' + 
                   '<td>' + map.list[i].recommend + '</td>' + 
                   codingTestStr + 
@@ -314,7 +319,7 @@ $(function() {
 	});
 	
 	// ------------------------------------------- 서브 문제 출력 -------------------------------------------------------
-	$(".problem-title").on('click', function() { 
+	$(document).on('click', ".problem-title", function() { 
     	var no = $(this).data('no');
     	
     	if($("." + no).css('display') == 'none') {
@@ -331,12 +336,18 @@ $(function() {
 				if(response.data.length == 0) {
 					return;
 				}
-				var tr = "";				
+				var tr = "";
+				deleteStr = "";
+				
+				var expected = $(".problem-title[data-no='" + no + "']").children().attr('id');
 				for(var i in response.data) {
-					tr += '<tr id="sub-problem' + response.data[i].no + '"><td class="sub-problem-padding1">' + response.data[i].no +'</td>' + 
-						'<td class="sub-problem-padding2">' + response.data[i].title + '</td>' + 
-						'<td><i data-no="' + response.data[i].no + '" type="button" alt="delete" class="sp-delete fas fa-minus-circle"></i></td></tr>'
-
+					if(expected == "expected") {
+						deleteStr = '<td><i data-no="' + response.data[i].no + '" type="button" alt="delete" class="sp-delete fas fa-minus-circle"></i></td>';
+					} else {
+						deleteStr = '<td></td>';
+					}
+					tr += '<tr id="sub-problem' + response.data[i].no + '"><td class="sub-problem-padding1"># ' + response.data[i].no +'</td>' + 
+						'<td class="sub-problem-padding2">' + response.data[i].title + '</td>' + deleteStr + '</tr>'
 				}			
 				$("." + no + " .sub-problem-tbody").append(tr);
 				$("." + no).toggle();
