@@ -127,12 +127,13 @@ $(function() {
 				for(var j = i + 1; j < index; j++) {
 					$('#' + j).text(j.toString());
 					$('#' + j).append('<span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span>');
-					$('.prob' + j + ' h3').text('문제 ' + j.toString());
 					
 					// li id 설정
 					$('#' + j).attr('id', (j-1).toString());
 					// prob class 설정
 					$('.prob' + j).attr('class', 'prob' + (j-1).toString());
+					$('#prob-content-text' + j).attr('id', 'prob-content-text' + (j-1).toString());
+					$('#prob-content-text' + j).attr('name', 'subProblemList[' + (j-1).toString() + '].contents');
 				}
 			}
 		}
