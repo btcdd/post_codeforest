@@ -207,11 +207,11 @@ $(window).bind('keydown', function(event) {
         switch (String.fromCharCode(event.which).toLowerCase()) {
         case 's':
             event.preventDefault();
-            /* $("#Save").trigger("click"); */
-            $("#Run").trigger("click");
-            alert('ctrl-s');
+            $("#Save").trigger("click");
+            /* $("#Run").trigger("click"); */
+            /* alert('ctrl-s'); */
             break;
-        case 'f':
+        /* case 'f':
             event.preventDefault();
             alert('ctrl-f');
             break;
@@ -219,7 +219,7 @@ $(window).bind('keydown', function(event) {
             event.preventDefault();
             alert('ctrl-g');
             break;
-        }
+        } */
     }
 }); 	
  	
@@ -698,7 +698,11 @@ $(window).bind('keydown', function(event) {
  		var cmNo = $(this).parent().parent().attr("id").split("cm")[1];
  		tempFile = fileMap.get(cmNo+"");
  		currentEditor = HashMap.get("editor"+cmNo);
- 		 
+ 		
+ 		
+ 		
+	}).on("change",".CodeMirror-scroll",function(){
+		console.log("change!!!");
 	});
  	
  	
