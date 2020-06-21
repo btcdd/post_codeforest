@@ -220,8 +220,9 @@ $(window).bind('keydown', function(event) {
             alert('ctrl-g');
             break;
         } */
-    }
-}); 	
+     }
+});
+ 	
  	
  	
 ////////////////파일 추가/////////////////////
