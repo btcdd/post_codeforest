@@ -207,14 +207,14 @@ $(function() {
 		for(var i = 0; i < index; i++) {
 			if(!($('#' + i).attr('id'))) {
 				for(var j = i + 1; j < index; j++) {
-					$('#' + j).text(j.toString() + ' ');
-					$('#' + j).append('<span class="delete" style="display: none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span>');
-					$('.prob' + j + ' h3').text(j.toString());
+					$('#' + j).text(j.toString());
+					$('#' + j).append('<span class="delete" style="display:none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span>');
 					
 					// li id 설정
 					$('#' + j).attr('id', (j-1).toString());
 					// prob class 설정
 					$('.prob' + j).attr('class', 'prob' + (j-1).toString());
+					$('#prob-content-text' + j).attr('id', 'prob-content-text' + (j-1).toString());
 				}
 			}
 		}
