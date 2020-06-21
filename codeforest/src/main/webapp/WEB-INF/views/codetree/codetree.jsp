@@ -695,7 +695,7 @@ $(function() {
  	
 	$(document).on("propertychange change keyup paste",function(e){
 		
-		
+		 
 		if(e.target.nodeName == "TEXTAREA"){
 
 			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
