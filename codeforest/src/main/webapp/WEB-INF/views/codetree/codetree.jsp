@@ -694,7 +694,7 @@ $(function() {
     });
  	
 	$(document).on("propertychange change keyup paste",function(e){
-		
+		console.log("key press tempFile>>>",tempFile);
 		 
 		if(e.target.nodeName == "TEXTAREA"){
 			
