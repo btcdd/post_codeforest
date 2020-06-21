@@ -39,7 +39,11 @@ var originList = function(page2) {
          }
          map = response.data;
          
-         endPageTrueNum = parseInt(map.count / 10 + 1);
+         if(map.count / 10 % 1 == 0) {
+        	 endPageTrueNum = map.count / 10;
+         } else {
+	         endPageTrueNum = parseInt(map.count / 10 + 1);
+         }
         
          fetchList();
       },

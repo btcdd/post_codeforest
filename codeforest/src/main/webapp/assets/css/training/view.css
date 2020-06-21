@@ -171,6 +171,10 @@ body {
     font-family: consolas;
 }
 
+.explain a {
+	color: #00f;
+}
+
 .pro button {
 /* 	float: left; */
 }
