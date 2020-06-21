@@ -675,46 +675,27 @@ $(function() {
 		
 	});
 	
-
+	////////////////키보드 입력//////////////////////////// 	
+	$(document).keydown(function(event) {
+	    if (event.ctrlKey || event.metaKey) {
+	        switch (String.fromCharCode(event.which).toLowerCase()) {
+	        case 's':
+	            event.preventDefault();
+	            /* $("#Save").trigger("click"); */
+	            /* $("#Run").trigger("click"); */
+				tempLayout.setTitle(tempFile.data("fileName"));	            
+	            return;
+	        } 
+	     }
+    });
+	
 	$(document).on("propertychange change keyup paste",function(e){
-
-		////////////////키보드 입력//////////////////////////// 	
-		$(document).keydown(function(event) {
-		    if (event.ctrlKey || event.metaKey) {
-		        switch (String.fromCharCode(event.which).toLowerCase()) {
-		        case 's':
-		            event.preventDefault();
-		            /* $("#Save").trigger("click"); */
-		            $("#Run").trigger("click");
-					tempLayout.setTitle(tempFile.data("fileName"));	            
-		            return;
-		        } 
-		     }
-	    });
-		
 		if(e.target.nodeName == "TEXTAREA") {
 			layoutId = "layout-"+fileNo;
  			tempFile = fileMap.get(fileNo+"");
 			tempLayout = root.getItemsById(layoutId)[0];
 			tempLayout.setTitle("*"+tempFile.data("fileName"));
 		}
-		
-// 	    var currentVal = $(this).val();
-// 	    console.log("currentVal>>",currentVal);
-	 /*    if(currentVal == oldVal) {
-	        return;
-	    }
-	 
-	    oldVal = currentVal;
-	    alert("changed!"); */
-/* 		console.log("getActiveContentItem()>>",root.getActiveContentItem());
-		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id);
-		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[0]);
-		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);
-		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
- 		tempFile = fileMap.get(tabFileNo+"");
- 		console.log("propertychange change keyup paste tempFile>>>>>>>",tempFile.data("fileName"));
-		$(".lm_title").html("<span class='star'>* "+tempFile.data("fileName")+"</span>"); */
 	});
 	
 
