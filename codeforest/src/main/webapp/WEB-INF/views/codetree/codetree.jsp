@@ -690,9 +690,16 @@ $(function() {
  		currentEditor = HashMap.get("editor"+cmNo);
  		
 		
-	}).on("propertychange change keyup paste",".CodeMirror-scroll",function(){
-	    var currentVal = $(this).val();
-	    console.log("currentVal>>",currentVal);
+	}).on("propertychange change keyup paste",function(e){
+		if(e.target.nodeName == "TEXTAREA") {
+			layoutId = "layout-"+fileNo;
+ 			tempFile = fileMap.get(fileNo+"");
+			tempLayout = root.getItemsById(layoutId)[0];
+			tempLayout.setTitle("*"+tempFile.data("fileName"));
+		}
+		
+// 	    var currentVal = $(this).val();
+// 	    console.log("currentVal>>",currentVal);
 	 /*    if(currentVal == oldVal) {
 	        return;
 	    }
