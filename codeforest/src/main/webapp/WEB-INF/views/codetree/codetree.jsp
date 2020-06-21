@@ -522,7 +522,7 @@ $(function() {
 	var HashMap = new Map();
  	var fileMap = new Map();
 	
- 	/* var SavedCode = new Map(); */
+ 	var SavedCode = new Map();
  	
  	$(document).on("dblclick", ".file", function() {		
  		tempFile = $(this);
@@ -623,7 +623,7 @@ $(function() {
 					   }	
 				   }
 					console.log("code : " + response.data);
-					/* SavedCode.set(fileNo+"",response.data); */
+					SavedCode.set(fileNo+"",response.data);
 				},
 				error: function(xhr, status, e) {
 					console.error(status + ":" + e);
@@ -695,14 +695,16 @@ $(function() {
  	
 	$(document).on("propertychange change keyup paste",function(e){
 		
-
+		
 		if(e.target.nodeName == "TEXTAREA"){
 
-			if(currentEditor.getValue() != SavedprevValue){
+			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
 				layoutId = "layout-"+fileNo;
 	 			tempFile = fileMap.get(fileNo+"");
 				tempLayout = root.getItemsById(layoutId)[0];
 				tempLayout.setTitle("*"+tempFile.data("fileName"));
+			}else{
+				tempLayout.setTitle(tempFile.data("fileName"));
 			}			
 		}
 
@@ -794,6 +796,7 @@ $(function() {
 				'problemNo' : problemNo
 			},
 			success: function(response) {
+				SavedCode.set(fileNo+"", currentEditor.getValue());
 				console.log("ok");
 			},
 			error: function(xhr, status, e) {
