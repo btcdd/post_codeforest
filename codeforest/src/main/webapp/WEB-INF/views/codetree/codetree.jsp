@@ -683,7 +683,9 @@ $(function() {
 	            event.preventDefault();
 	            $("#Save").trigger("click");
 	            /* $("#Run").trigger("click"); */
-				
+				layoutId = "layout-"+fileNo;
+ 				tempFile = fileMap.get(fileNo+"");
+				tempLayout = root.getItemsById(layoutId)[0];				
 				tempLayout.setTitle(tempFile.data("fileName"));
 				console.log("tempLayout ",tempLayout);
 	            return;
