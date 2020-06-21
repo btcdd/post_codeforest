@@ -685,9 +685,9 @@ $(function() {
  		tempFile = fileMap.get(cmNo+"");
  		currentEditor = HashMap.get("editor"+cmNo);
  		
- 		
-	}).on("change",".CodeMirror-scroll",function(){
-		console.log("change!!!!");
+ 		$(document).on("change",".CodeMirror-scroll",function(){
+ 			console.log("change!!!!");
+ 		});
 	});
  	
  	
