@@ -225,7 +225,7 @@ $(function() {
 		$(document).on('mousedown','#folder',function(e) {
 			$(".userfile-menu").hide();
 			if(e.which == 3){
-				tempFile = $(this);
+				//tempFile = $(this);
 				savePathNo = $(this).data("no");
 	 			subProblemNo = $(this).data("no2");
 	 		    //Get window size:
@@ -283,7 +283,7 @@ $(function() {
 			$(".contextmenu").hide();
 			
 			if(e.which == 3){
-				tempFile = $(this);
+				//tempFile = $(this);
 				codeNo = $(this).data("no");
 				prevFileName = $(this).data("file-name");
 	 		    //Get window size:
@@ -537,10 +537,14 @@ $(function() {
  		var packagePath = $(this).data("package-path");
  		fileNo = $(this).data("no");
  		
- 		fileMap.set(fileNo+"", tempFile);
- 		console.log($("#cm"+fileNo).length);
+ 	
  		
  		if($("#cm"+fileNo).length < 1) { // 켜진 창이 중복되서 안켜지도록 함
+ 			
+ 			
+ 	 		fileMap.set(fileNo+"", tempFile);
+ 	 		console.log($("#cm"+fileNo).length);
+ 			
 	 		root = myLayout.root.contentItems[0] || myLayout.root;
 			
 			root.addChild({
