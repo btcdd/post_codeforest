@@ -39,11 +39,13 @@ public class MypageRepository {
 		sqlSession.update("mypage.foreignKeyChecks", 0L);
 	}
 
-	public List<ProblemVo> selectProblemList(int displayPost, int postNum, Long userNo) {
+	public List<ProblemVo> selectProblemList(int displayPost, int postNum, Long userNo, String keyword) {
 		Map<String,Object> map = new HashMap<>();
 		map.put("displayPost",displayPost);
 		map.put("postNum",postNum);	
-		map.put("userNo",userNo);		
+		map.put("userNo",userNo);
+		map.put("keyword", keyword);
+		
 		List<ProblemVo> list = sqlSession.selectList("mypage.selectProblemList",map);
 		return list;
 	}
