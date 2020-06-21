@@ -697,15 +697,15 @@ $(function() {
 		
 		 
 		if(e.target.nodeName == "TEXTAREA"){
-			/* tempFile = fileMap.get(fileNo+""); */
-			console.log("root.getActiveContentItem()>>>",root.getActiveContentItem().config.id.split("-")[1]);
+			
+			/* console.log("root.getActiveContentItem()>>>",root.getActiveContentItem().config.id.split("-")[1]);
 			console.log('tempFile.data("no")>>',tempFile.data("no"));
 			var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
 			console.log('tabFileNo>>',tabFileNo);
-/* 	 		tempFile = fileMap.get(tabFileNo+""); */
-            tempFile = fileMap.get(tabFileNo+"");
+            tempFile = fileMap.get(tabFileNo+""); */
 			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
 				layoutId = "layout-"+fileNo;
+				tempFile = fileMap.get(fileNo+"");
 				tempLayout = root.getItemsById(layoutId)[0];
 				tempLayout.setTitle("*"+tempFile.data("fileName"));
 			}else{
