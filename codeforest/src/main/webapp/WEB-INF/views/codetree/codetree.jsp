@@ -692,12 +692,13 @@ $(function() {
 		
 	}).on("propertychange change keyup paste",function(){
 	    var currentVal = $(this).val();
-	    if(currentVal == oldVal) {
+	    console.log("currentVal>>",currentVal);
+	 /*    if(currentVal == oldVal) {
 	        return;
 	    }
 	 
 	    oldVal = currentVal;
-	    alert("changed!");
+	    alert("changed!"); */
 /* 		console.log("getActiveContentItem()>>",root.getActiveContentItem());
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id);
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[0]);
