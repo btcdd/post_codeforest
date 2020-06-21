@@ -368,20 +368,18 @@ $(function() {
 						</div>
 						
 						<div class="open${status.index + 1}" style="display:none">
-							<div class="explain">
-								<pre>${vo.contents }</pre>
-							</div>
+							<div class="explain">${vo.contents }</div>
 							<div class="example">
 								<div class="input">
 									<fieldset>
 										<legend class="example-division">예제 입력</legend>
-										<div class="input-content" id="input${status.index + 1 }"><pre>${vo.examInput }</pre></div>
+										<div class="input-content" id="input${status.index + 1 }">${vo.examInput }</div>
 									</fieldset>
 								</div>
 								<div class="result">
 									<fieldset>
 										<legend class="example-division">예제 출력</legend>
-										<div class="result-content" id="output${status.index + 1 }"><pre>${vo.examOutput }</pre></div>
+										<div class="result-content" id="output${status.index + 1 }">${vo.examOutput }</div>
 									</fieldset>
 								</div>
 							</div>
