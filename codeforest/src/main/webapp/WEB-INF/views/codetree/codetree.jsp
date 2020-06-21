@@ -851,7 +851,7 @@ $(function() {
 		        ]
 		    }]
 	};
-	
+	 
 	var myLayout = new GoldenLayout(config, $('#gl-cover'));
 
 	myLayout.registerComponent("newTab", function(container) {
