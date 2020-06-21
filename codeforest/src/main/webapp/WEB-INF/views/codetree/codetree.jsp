@@ -696,10 +696,12 @@ $(function() {
 	$(document).on("propertychange change keyup paste",function(e){
 		
 		if(e.target.nodeName == "TEXTAREA") {
+			console.log("여기>>",tempLayout);
 			layoutId = "layout-"+fileNo;
  			tempFile = fileMap.get(fileNo+"");
 			tempLayout = root.getItemsById(layoutId)[0];
 			tempLayout.setTitle("*"+tempFile.data("fileName"));
+			
 			return;
 		}
 		
