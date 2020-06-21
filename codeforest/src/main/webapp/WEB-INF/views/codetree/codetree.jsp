@@ -144,57 +144,6 @@ $(function() {
    
    $('.lang').change(function() {
 	  
-	   var lang = $(".lang option:selected").val();
-	   var face = '';
-	   
-	   if(lang === 'c') {
-		   face = '#include <stdio.h>\n\n' + 
-			   'int main() {\n' + 
-			   	'\tprintf("Hello CodeForest!\\n");\n\n' + 
-			   	'\treturn 0;\n' + 
-			   '}';
-	   } else if(lang === 'cpp') {
-		   face = '#include <iostream>\n\n' + 
-			   		'using namespace std;\n\n' + 
-			   'int main()\n' + 
-			   '{\n' + 
-			       '\tcout << "Hello CodeForest!" << endl;\n\n' + 
-			       '\treturn 0;\n' + 
-			   '}';
-	   } else if(lang === 'cs') {
-		   face = 'using System;\n\n' + 
-			   		'class HelloWorld {\n\n' + 
-			     	'\tstatic void Main() {\n' +  
-			       '\t\tConsole.WriteLine("Hello CodeForest");\n' + 
-			     '\t}\n' + 
-			   '}';
-	   } else if(lang === 'java') {
-		   face = '/*\n' + 
-	   		"* 기본 언어 : 'JAVA'\n" + 
-		   "* 기본 테마 : 'panda-syntax'\n" + 
-		   '*/\n' + 
-		  'public class Test{\n' + 
-		  		'\tpublic static void main(String[] args) {\n' + 
-		      		'\t\tSystem.out.println("Hello CodeForest!");\n' + 
-		      '\t}\n' + 
-		  '}\n';
-	   } else if(lang === 'js') {
-		   face = 'var str = "Hello CodeForest";\n\n' + 
-		   			'console.log(str);';
-	   } else if(lang === 'py') {
-		   face = 'print("Hello World")';
-	   }
-	   
-	   if(currentEditor != null) {
-		   currentEditor.setValue(face);
-	   }	
-	   
-	   
-	   
-	   
-	   ////////////////////////////////////////////////////////////////////
-	   ////////////////////////////
-	   ///////////////////////////////////해야할곳////
 	   
  	   $(".file-tree__subtree").remove();
 	   fileFetchList();
@@ -276,7 +225,7 @@ $(function() {
 		$(document).on('mousedown','#folder',function(e) {
 			$(".userfile-menu").hide();
 			if(e.which == 3){
-				tempFile = $(this);
+				//tempFile = $(this);
 				savePathNo = $(this).data("no");
 	 			subProblemNo = $(this).data("no2");
 	 		    //Get window size:
@@ -334,7 +283,7 @@ $(function() {
 			$(".contextmenu").hide();
 			
 			if(e.which == 3){
-				tempFile = $(this);
+				//tempFile = $(this);
 				codeNo = $(this).data("no");
 				prevFileName = $(this).data("file-name");
 	 		    //Get window size:
@@ -588,10 +537,14 @@ $(function() {
  		var packagePath = $(this).data("package-path");
  		fileNo = $(this).data("no");
  		
- 		fileMap.set(fileNo+"", tempFile);
- 		console.log($("#cm"+fileNo).length);
+ 	
  		
  		if($("#cm"+fileNo).length < 1) { // 켜진 창이 중복되서 안켜지도록 함
+ 			
+ 			
+ 	 		fileMap.set(fileNo+"", tempFile);
+ 	 		console.log($("#cm"+fileNo).length);
+ 			
 	 		root = myLayout.root.contentItems[0] || myLayout.root;
 			
 			root.addChild({
@@ -626,8 +579,55 @@ $(function() {
 					'fileName' : fileName,
 					'packagePath' : packagePath
 				},
-				success: function(response) {
-					currentEditor.setValue(response.data);				
+				success: function(response) {	   				   
+				   if(response.data != "") {
+					currentEditor.setValue(response.data);
+				   }
+				   else {
+					   var face = '';
+					   if(fileName.split(".")[0] == "Test") {
+						   if(language === 'c') {
+							   face = '#include <stdio.h>\n\n' + 
+								   'int main() {\n' + 
+								   	'\tprintf("Hello CodeForest!\\n");\n\n' + 
+								   	'\treturn 0;\n' + 
+								   '}';
+						   } else if(language === 'cpp') {
+							   face = '#include <iostream>\n\n' + 
+								   		'using namespace std;\n\n' + 
+								   'int main()\n' + 
+								   '{\n' + 
+								       '\tcout << "Hello CodeForest!" << endl;\n\n' + 
+								       '\treturn 0;\n' + 
+								   '}';
+						   } else if(language === 'cs') {
+							   face = 'using System;\n\n' + 
+								   		'class HelloWorld {\n\n' + 
+								     	'\tstatic void Main() {\n' +  
+								       '\t\tConsole.WriteLine("Hello CodeForest");\n' + 
+								     '\t}\n' + 
+								   '}';
+						   } else if(language === 'java') {
+							   face = '/*\n' + 
+						   		"* 기본 언어 : 'JAVA'\n" + 
+							   "* 기본 테마 : 'panda-syntax'\n" + 
+							   '*/\n' + 
+							  'public class Test{\n' + 
+							  		'\tpublic static void main(String[] args) {\n' + 
+							      		'\t\tSystem.out.println("Hello CodeForest!");\n' + 
+							      '\t}\n' + 
+							  '}\n';
+						   } else if(language === 'js') {
+							   face = 'var str = "Hello CodeForest";\n\n' + 
+							   			'console.log(str);';
+						   } else if(language === 'py') {
+							   face = 'print("Hello World")';
+						   }
+					   }
+					   if(currentEditor != null) {
+						   currentEditor.setValue(face);
+					   }	
+				   }
 					console.log("code : " + response.data);
 				},
 				error: function(xhr, status, e) {
