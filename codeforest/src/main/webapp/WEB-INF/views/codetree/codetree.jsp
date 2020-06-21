@@ -76,27 +76,7 @@ var currentEditor = null;
 var editorArray = new Array();
 var editorArrayIndex = 0;
 
-////////////////키보드 입력//////////////////////////// 	
-$(window).bind('keydown', function(event) {
-    if (event.ctrlKey || event.metaKey) {
-        switch (String.fromCharCode(event.which).toLowerCase()) {
-        case 's':
-            event.preventDefault();
-            $("#Save").trigger("click");
-            /* $("#Run").trigger("click"); */
-            /* alert('ctrl-s'); */
-            break;
-        /* case 'f':
-            event.preventDefault();
-            alert('ctrl-f');
-            break;
-        case 'g':
-            event.preventDefault();
-            alert('ctrl-g');
-            break;
-        } */
-     }
-});
+
 
 $(function() {
 	fileFetchList();
@@ -223,7 +203,19 @@ $(function() {
 		$(".CodeMirror").css("font-size", fontSize);
 	});
 	
- 	
+////////////////키보드 입력//////////////////////////// 	
+	$(window).bind('keydown', function(event) {
+	    if (event.ctrlKey || event.metaKey) {
+	        switch (String.fromCharCode(event.which).toLowerCase()) {
+	        case 's':
+	            event.preventDefault();
+	            $("#Save").trigger("click");
+	            /* $("#Run").trigger("click"); */
+	            /* alert('ctrl-s'); */
+	            break;
+	        } 
+	     }
+}); 	
  	
  	
 ////////////////파일 추가/////////////////////
