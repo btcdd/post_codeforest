@@ -61,6 +61,7 @@ var problemAdd = function() {
 var fetchList = function() {
 	
 	if(password !== '') {
+		console.log(password);
 		
 		var sd = '${problemVo.startTime}';
 		var startDate = sd.substring(0, 10);
@@ -75,20 +76,15 @@ var fetchList = function() {
 		var privateStr = '<div class="private">코딩테스트 <input class="codingtest" type="checkbox" checked></div>';
 		
 		if('${problemVo.privacy}' == 'y') {
-			var privacyStr = '<div class="privacy-check"><p>코딩테스트가 끝난 뒤 문제를 공개하시려면 선택하세요</p> 공개여부 <input type="checkbox" name="privacy" checked></div>';
+			var privacyStr = '<div class="privacy"><div class="privacy-check-title">문제 공개 여부</div><div><input type="radio" name="privacy" value="hi">공개<input class="privacy-check-radio" type="radio" name="privacy" value="on" checked="checked">비공개</div></div>';
 		} else {
-			var privacyStr = '<div class="privacy-check"><p>코딩테스트가 끝난 뒤 문제를 공개하시려면 선택하세요</p> 공개여부 <input type="checkbox" name="privacy" ></div>';
+			var privacyStr = '<div class="privacy"><div class="privacy-check-title">문제 공개 여부</div><div><input type="radio" name="privacy" value="hi" checked="checked">공개<input class="privacy-check-radio" type="radio" name="privacy" value="on">비공개</div></div>';
 		}
 		
-		var passwordStr = '<div class="password">비밀번호 <input type="password" name="password" value="${problemVo.password}" required></div>';
-		var startDateStr = '<div class="start-date">시작일자 <input type="datetime-local" name="startTime" value="' + startDate + '" required></div>';
-		var endDateStr = '<div class="end-date">마감일자 <input type="datetime-local" name="endTime" value="' + endDate + '" required></div>';
+		var passwordStr = '<div class="password"><div class="password-title">코딩 테스트 입력 코드</div><div class="password-input-div"><input class="password-input" type="text" name="password" value="${problemVo.password}" required></div></div>';
+		var startDateStr = '<div class="date"><div class="start-date"><div class="start-date-title">시작 일자</div><input class="input-date" type="datetime-local" name="startTime" value="' + startDate + '" required></div><div class="end-date"><div class="end-date-title">종료 일자</div><input class="input-date" type="datetime-local" name="endTime" value="' + endDate + '" required></div></div>';
 		
-		$(".privateAndPassword").append(privateStr);
-		$(".privateAndPassword").append(passwordStr);
-		$(".privacy").append(privacyStr);
-		$(".date").append(startDateStr);
-		$(".date").append(endDateStr);
+		$(".privateAndPassword").append(privateStr).append(passwordStr).append(privacyStr).append(startDateStr);
 	} else {
 		var privateStr = '<div class="private">코딩테스트 <input class="codingtest" type="checkbox"></div>';
 		$(".privateAndPassword").append(privateStr);
@@ -155,20 +151,15 @@ $(function() {
 	// 코딩테스트 체크박스를 체크하면, 비밀번호와 시작 일자, 마감 일자를 설정할 수 있는 칸이 나타난다.
 	$('.codingtest').click(function() {
 		if ($(this).prop("checked")) {
-			var passwordStr = '<div class="password">비밀번호 <input type="password" name="password" required></div>';
-			var privacyStr = '<div class="privacy-check"><p>코딩테스트가 끝난 뒤 문제를 공개하시려면 선택하세요</p> 공개여부 <input type="checkbox" name="privacy"></div>';
-			var startDateStr = '<div class="start-date">시작일자 <input type="datetime-local" name="startTime" required></div>';
-			var endDateStr = '<div class="end-date">마감일자 <input type="datetime-local" name="endTime" required></div>';
-	
-			$(".privateAndPassword").append(passwordStr);
-			$(".privacy").append(privacyStr);
-			$(".date").append(startDateStr);
-			$(".date").append(endDateStr);
+			var passwordStr = '<div class="password"><div class="password-title">코딩 테스트 입력 코드</div><div class="password-input-div"><input class="password-input" type="text" name="password" required></div></div>';
+			var privacyStr = '<div class="privacy"><div class="privacy-check-title">문제 공개 여부</div><div><input type="radio" name="privacy" value="hi" checked="checked">공개<input class="privacy-check-radio" type="radio" name="privacy" value="on">비공개</div></div>';
+			var startDateStr = '<div class="date"><div class="start-date"><div class="start-date-title">시작 일자</div><input class="input-date" type="datetime-local" name="startTime" required></div><div class="end-date"><div class="end-date-title">종료 일자</div><input class="input-date" type="datetime-local" name="endTime" required></div></div>';
+
+			$(".privateAndPassword").append(passwordStr).append(privacyStr).append(startDateStr);
 		} else {
 			$(".privateAndPassword .password").remove();
-			$(".privacy-check").remove();
-			$(".date .start-date").remove();
-			$(".date .end-date").remove();
+			$(".privacy").remove();
+			$(".date").remove();
 		}
 	});
 	
@@ -252,28 +243,19 @@ window.onload = function(){
 	<c:import url="/WEB-INF/views/include/main-header.jsp" />
 	<form method="post" action="${pageContext.servletContext.contextPath }/training/modify/${problemVo.no }">
 		<div class="regist">
+		<div class="codingtest-div">
 			<div class="privateAndPassword">
 			</div>
-			<div class="privacy">
-				<!-- 코딩테스트가 끝난 뒤 문제를 공개하시려면 선택하세요<div class="privacy">공개여부 <input type="checkbox" name="privacy" required></div> -->
+		</div>
+			
+			<div class="division">
+				<div class="division-radio-title-div"><span class="division-radio-title">분류</span></div>
+				<input name="kindNo" value="5" type="radio" checked="checked"/>기타
+				<input name="kindNo" value="1" type="radio" />기업
+				<input name="kindNo" value="2" type="radio" />개인
+				<input name="kindNo" value="3" type="radio" />학원
+				<input name="kindNo" value="4" type="radio" />학교
 			</div>
-			<div class="date">
-				<!-- <div class="start-date">시작일자 <input type="datetime-local"></div> -->
-				<!-- <div class="end-date">마감일자 <input type="datetime-local"></div> -->
-			</div>
-
-			<div class="divisionAndLanguage">
-				<div class="division">
-					분류 <select name="kindNo">
-							<option value="5" selected="selected">기타</option>
-							<option value="1">기업</option>
-							<option value="2">개인</option>
-							<option value="3">학원</option>
-							<option value="4">학교</option>
-					</select>
-				</div>
-			</div>
-			<br />
 			<div class="title">
 				<input id="title-text" type="text" name="title" value="${problemVo.title }" placeholder="문제집 제목을 입력하세요" required autocomplete="off"/>
 				<a id="btn-cancel"
