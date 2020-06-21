@@ -672,15 +672,7 @@ $(function() {
  		tempFile = fileMap.get(cmNo+"");
  		currentEditor = HashMap.get("editor"+cmNo);
  		
-		if(e.target.nodeName == "TEXTAREA"){
-			console.log("!!!!!!!!!!!!!");
-			$(this).on("propertychange change keyup paste",function(){
-				layoutId = "layout-"+fileNo;
-	 			tempFile = fileMap.get(fileNo+"");
-				tempLayout = root.getItemsById(layoutId)[0];
-				tempLayout.setTitle("*"+tempFile.data("fileName"));				
-			});
-		}
+
 	});
 	
 	////////////////키보드 입력//////////////////////////// 	
@@ -691,12 +683,12 @@ $(function() {
 	            event.preventDefault();
 	            $("#Save").trigger("click");
 	            /* $("#Run").trigger("click"); */
-					            
+				console.log("tempLayout getTitle",tempLayout.getTitle());	            
 	            return;
 	        } 
 	     }
     });
-/* 	
+ 	
 	$(document).on("propertychange change keyup paste",function(e){
 		
 		if(e.target.nodeName == "TEXTAREA") {
@@ -706,7 +698,7 @@ $(function() {
 			tempLayout.setTitle("*"+tempFile.data("fileName"));
 		}
 		
-	}); */
+	}); 
 	
 	
 
