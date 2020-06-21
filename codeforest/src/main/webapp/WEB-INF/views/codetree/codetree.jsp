@@ -164,16 +164,21 @@ $(function() {
 	   // 터미널 색 변경
 // 	   $(".window .terminal").css('background-color', $(".cm-s-" + theme).css("background-color"));
 	   $(".window .terminal").css('background-color', backgroundColor);
-	   $("ui__sidebar").css('background-color', backgroundColor);
+	   $(".ui__sidebar").css('background-color', backgroundColor);
+	  
 	   if($('.theme option:selected').parent().attr('label') == "white") {
 		   $(".window .terminal").css('color', "#000000");
 		   $(".window .terminal .prompt").css('color', "#004000");
 		   $(".window .terminal .path").css('color', "#1f0d98");
+		   $(".folder--open").css('color', "#000000");
+		   $(".folder").css('color', "#000000");
 	   }
 	   else {
 		   $(".window .terminal").css('color', "#FFFFFF");
 		   $(".prompt").css('color', "#bde371");
 		   $(".path").css('color', "#5ed7ff");
+		   $(".folder--open").css('color', "#FFFFFF");
+		   $(".folder").css('color', "#FFFFFF");
 	   }
    });
    
