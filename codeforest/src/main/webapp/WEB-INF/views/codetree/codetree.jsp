@@ -662,7 +662,7 @@ $(function() {
  		     
 	});
 	
-	$(document).on("click", ".CodeMirror-scroll", function() {
+	$(document).on("click", ".CodeMirror-scroll", function(e) {
 		console.log("root>>>>>>>>>>",root);
 		console.log("클릭한곳:", $(this));
 		console.log("this.parent()>>",$(this).parent());
@@ -672,7 +672,14 @@ $(function() {
  		tempFile = fileMap.get(cmNo+"");
  		currentEditor = HashMap.get("editor"+cmNo);
  		
-		
+		if(e.target.nodeName == "TEXTAREA"){
+			$(this).on("propertychange change keyup paste",function(){
+				layoutId = "layout-"+fileNo;
+	 			tempFile = fileMap.get(fileNo+"");
+				tempLayout = root.getItemsById(layoutId)[0];
+				tempLayout.setTitle("*"+tempFile.data("fileName"));				
+			});
+		}
 	});
 	
 	////////////////키보드 입력//////////////////////////// 	
@@ -688,16 +695,9 @@ $(function() {
 	        } 
 	     }
     });
-	
+/* 	
 	$(document).on("propertychange change keyup paste",function(e){
-		if(e.ctrlKey || e.metaKey){
-			switch (String.fromCharCode(e.which).toLowerCase()) {
-			case 's':
-				console.log('tempLayout.setTitle(tempFile.data("fileName"))>>>>',tempLayout.setTitle(tempFile.data("fileName")));
-				tempLayout.setTitle(tempFile.data("fileName"));
-				return;
-			}
-		}
+		
 		if(e.target.nodeName == "TEXTAREA") {
 			layoutId = "layout-"+fileNo;
  			tempFile = fileMap.get(fileNo+"");
@@ -705,7 +705,7 @@ $(function() {
 			tempLayout.setTitle("*"+tempFile.data("fileName"));
 		}
 		
-	});
+	}); */
 	
 	
 
