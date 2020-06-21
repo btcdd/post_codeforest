@@ -696,9 +696,10 @@ $(function() {
 	$(document).on("propertychange change keyup paste",function(e){
 		
 		 
-		if(e.target.nodeName == "TEXTAREA" && root.getActiveContentItem().config.id.split("-")[1] == tempFile.data("no")){
-
-			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
+		if(e.target.nodeName == "TEXTAREA"){
+			console.log("root.getActiveContentItem().config.id.split("-")[1]>>>",root.getActiveContentItem().config.id.split("-")[1]);
+			console.log('tempFile.data("no")',tempFile.data("no"));
+			if(currentEditor.getValue() != SavedCode.get(fileNo+"") &&  root.getActiveContentItem().config.id.split("-")[1] == tempFile.data("no") ){
 				layoutId = "layout-"+fileNo;
 	 			tempFile = fileMap.get(fileNo+"");
 				tempLayout = root.getItemsById(layoutId)[0];
