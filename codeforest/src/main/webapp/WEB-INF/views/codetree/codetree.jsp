@@ -76,6 +76,28 @@ var currentEditor = null;
 var editorArray = new Array();
 var editorArrayIndex = 0;
 
+////////////////키보드 입력//////////////////////////// 	
+$(window).bind('keydown', function(event) {
+    if (event.ctrlKey || event.metaKey) {
+        switch (String.fromCharCode(event.which).toLowerCase()) {
+        case 's':
+            event.preventDefault();
+            $("#Save").trigger("click");
+            /* $("#Run").trigger("click"); */
+            /* alert('ctrl-s'); */
+            break;
+        /* case 'f':
+            event.preventDefault();
+            alert('ctrl-f');
+            break;
+        case 'g':
+            event.preventDefault();
+            alert('ctrl-g');
+            break;
+        } */
+     }
+});
+
 $(function() {
 	fileFetchList();
 	
@@ -201,27 +223,6 @@ $(function() {
 		$(".CodeMirror").css("font-size", fontSize);
 	});
 	
-////////////////키보드 입력//////////////////////////// 	
-$(window).bind('keydown', function(event) {
-    if (event.ctrlKey || event.metaKey) {
-        switch (String.fromCharCode(event.which).toLowerCase()) {
-        case 's':
-            event.preventDefault();
-            $("#Save").trigger("click");
-            /* $("#Run").trigger("click"); */
-            /* alert('ctrl-s'); */
-            break;
-        /* case 'f':
-            event.preventDefault();
-            alert('ctrl-f');
-            break;
-        case 'g':
-            event.preventDefault();
-            alert('ctrl-g');
-            break;
-        } */
-     }
-});
  	
  	
  	
@@ -288,20 +289,12 @@ $(window).bind('keydown', function(event) {
 	 		    }).show();
 	 		    //Prevent browser default contextmenu.
 	 		    return false;					
-				
-				
-			}
-			
-		
+			}		
 		});
 
 		
 		$(document).on('mousedown','.userFile',function(e){
-			
-
-			
 			$(".contextmenu").hide();
-			
 			if(e.which == 3){
 				//tempFile = $(this);
 				codeNo = $(this).data("no");
@@ -700,10 +693,9 @@ $(window).bind('keydown', function(event) {
  		tempFile = fileMap.get(cmNo+"");
  		currentEditor = HashMap.get("editor"+cmNo);
  		
- 		$(document).on("change",".CodeMirror-scroll",function(){
- 			console.log("change!!!!");	
- 		});
  		
+	}).on("change",".CodeMirror-scroll",function(){
+		console.log("change!!!!");
 	});
  	
  	
