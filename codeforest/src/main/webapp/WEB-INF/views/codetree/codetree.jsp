@@ -687,7 +687,7 @@ $(function() {
  		
 		
 	});
-	$(document).on("propertychange change keyup paste",".CodeMirror-lines",function(){
+	$(document).on("propertychange change keyup paste",".CodeMirror-line",function(){
 		console.log("change!!!!");	
 	});	
  	
