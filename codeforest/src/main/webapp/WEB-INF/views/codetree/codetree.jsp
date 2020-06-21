@@ -683,7 +683,7 @@ $(function() {
 	            event.preventDefault();
 	            /* $("#Save").trigger("click"); */
 	            /* $("#Run").trigger("click"); */
-				tempLayout.setTitle(tempFile.data("fileName"));	            
+					            
 	            return;
 	        } 
 	     }
