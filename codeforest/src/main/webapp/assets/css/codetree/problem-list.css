@@ -85,6 +85,11 @@
   color: #a99;
   opacity: 0;
 }
+
+.accordion__content__txt a {
+	color: #2490BF;
+}
+
 .accordion__content.open {
   height: auto;
 /*   overflow-y: scroll; */
