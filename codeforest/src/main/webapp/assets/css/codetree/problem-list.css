@@ -93,6 +93,7 @@
 .accordion__content.open .accordion__content__caption {
   opacity: 1;
   transform: scaleY(1);
+  font-size: 1em;
 }
 .accordion__content.open .accordion__content__txt {
   opacity: 1;
