@@ -697,6 +697,7 @@ $(function() {
 		
 		 
 		if(e.target.nodeName == "TEXTAREA"){
+			tempFile = fileMap.get(fileNo+"");
 			console.log("root.getActiveContentItem()>>>",root.getActiveContentItem().config.id.split("-")[1]);
 			console.log('tempFile.data("no")',tempFile.data("no"));
 			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
