@@ -696,7 +696,7 @@ $(function() {
 	$(document).on("propertychange change keyup paste",function(e){
 		
 		 
-		if(e.target.nodeName == "TEXTAREA"){
+		if(e.target.nodeName == "TEXTAREA" && root.getActiveContentItem().config.id.split("-")[1] == tempFile.data("no")){
 
 			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
 				layoutId = "layout-"+fileNo;
