@@ -581,45 +581,45 @@ $(function() {
 				   }
 				   else {
 					   var face = '';
-					   
-					   if(language === 'c') {
-						   face = '#include <stdio.h>\n\n' + 
-							   'int main() {\n' + 
-							   	'\tprintf("Hello CodeForest!\\n");\n\n' + 
-							   	'\treturn 0;\n' + 
-							   '}';
-					   } else if(language === 'cpp') {
-						   face = '#include <iostream>\n\n' + 
-							   		'using namespace std;\n\n' + 
-							   'int main()\n' + 
-							   '{\n' + 
-							       '\tcout << "Hello CodeForest!" << endl;\n\n' + 
-							       '\treturn 0;\n' + 
-							   '}';
-					   } else if(language === 'cs') {
-						   face = 'using System;\n\n' + 
-							   		'class HelloWorld {\n\n' + 
-							     	'\tstatic void Main() {\n' +  
-							       '\t\tConsole.WriteLine("Hello CodeForest");\n' + 
-							     '\t}\n' + 
-							   '}';
-					   } else if(language === 'java') {
-						   face = '/*\n' + 
-					   		"* 기본 언어 : 'JAVA'\n" + 
-						   "* 기본 테마 : 'panda-syntax'\n" + 
-						   '*/\n' + 
-						  'public class Test{\n' + 
-						  		'\tpublic static void main(String[] args) {\n' + 
-						      		'\t\tSystem.out.println("Hello CodeForest!");\n' + 
-						      '\t}\n' + 
-						  '}\n';
-					   } else if(language === 'js') {
-						   face = 'var str = "Hello CodeForest";\n\n' + 
-						   			'console.log(str);';
-					   } else if(language === 'py') {
-						   face = 'print("Hello World")';
+					   if(fimeName.split(".")[0] == "Test") {
+						   if(language === 'c') {
+							   face = '#include <stdio.h>\n\n' + 
+								   'int main() {\n' + 
+								   	'\tprintf("Hello CodeForest!\\n");\n\n' + 
+								   	'\treturn 0;\n' + 
+								   '}';
+						   } else if(language === 'cpp') {
+							   face = '#include <iostream>\n\n' + 
+								   		'using namespace std;\n\n' + 
+								   'int main()\n' + 
+								   '{\n' + 
+								       '\tcout << "Hello CodeForest!" << endl;\n\n' + 
+								       '\treturn 0;\n' + 
+								   '}';
+						   } else if(language === 'cs') {
+							   face = 'using System;\n\n' + 
+								   		'class HelloWorld {\n\n' + 
+								     	'\tstatic void Main() {\n' +  
+								       '\t\tConsole.WriteLine("Hello CodeForest");\n' + 
+								     '\t}\n' + 
+								   '}';
+						   } else if(language === 'java') {
+							   face = '/*\n' + 
+						   		"* 기본 언어 : 'JAVA'\n" + 
+							   "* 기본 테마 : 'panda-syntax'\n" + 
+							   '*/\n' + 
+							  'public class Test{\n' + 
+							  		'\tpublic static void main(String[] args) {\n' + 
+							      		'\t\tSystem.out.println("Hello CodeForest!");\n' + 
+							      '\t}\n' + 
+							  '}\n';
+						   } else if(language === 'js') {
+							   face = 'var str = "Hello CodeForest";\n\n' + 
+							   			'console.log(str);';
+						   } else if(language === 'py') {
+							   face = 'print("Hello World")';
+						   }
 					   }
-					   
 					   if(currentEditor != null) {
 						   currentEditor.setValue(face);
 					   }	
