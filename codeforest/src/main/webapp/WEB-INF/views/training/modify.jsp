@@ -58,9 +58,39 @@ var problemAdd = function() {
 	buttonStr = '<li id="' + index + '" class="tablinks">' + (index + 1) + '<span class="delete" style="display: none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>';
 }
 
+function leadingZeros(n, digits) {
+	  var zero = '';
+	  n = n.toString();
+
+	  if (n.length < digits) {
+	    for (i = 0; i < digits - n.length; i++)
+	      zero += '0';
+	  }
+	  return zero + n;
+}
+
+function getTimeStamp() {
+	  var d = new Date();
+	  var s =
+	    leadingZeros(d.getFullYear(), 4) + '-' +
+	    leadingZeros(d.getMonth() + 1, 2) + '-' +
+	    leadingZeros(d.getDate(), 2) + ' ' +
+
+	    leadingZeros(d.getHours(), 2) + ':' +
+	    leadingZeros(d.getMinutes(), 2) + ':' +
+	    leadingZeros(d.getSeconds(), 2);
+
+	  return s;
+}
+
 var fetchList = function() {
+	var endTime = '${problemVo.endTime}';
+	console.log(endTime);
+	console.log(getTimeStamp());
 	
-	if(password !== '') {
+	if(endTime !== '' && endTime < getTimeStamp()) {
+		$('.codingtest-div').remove();
+	} else if(password !== '') {
 		
 		var sd = '${problemVo.startTime}';
 		var startDate = sd.substring(0, 10);
@@ -75,17 +105,16 @@ var fetchList = function() {
 		var privateStr = '<div class="private">코딩테스트 <input class="codingtest" type="checkbox" checked></div>';
 		
 		if('${problemVo.privacy}' == 'y') {
-			var privacyStr = '<div class="privacy"><div class="privacy-check-title">문제 공개 여부</div><div><input type="radio" name="privacy" value="hi">공개<input class="privacy-check-radio" type="radio" name="privacy" value="on" checked="checked">비공개</div></div>';
-		} else {
 			var privacyStr = '<div class="privacy"><div class="privacy-check-title">문제 공개 여부</div><div><input type="radio" name="privacy" value="hi" checked="checked">공개<input class="privacy-check-radio" type="radio" name="privacy" value="on">비공개</div></div>';
+		} else {
+			var privacyStr = '<div class="privacy"><div class="privacy-check-title">문제 공개 여부</div><div><input type="radio" name="privacy" value="hi">공개<input class="privacy-check-radio" type="radio" name="privacy" value="on" checked="checked">비공개</div></div>';
 		}
 		
 		var passwordStr = '<div class="password"><div class="password-title">코딩 테스트 입력 코드</div><div class="password-input-div"><input class="password-input" type="text" name="password" value="${problemVo.password}" required></div></div>';
 		var startDateStr = '<div class="date"><div class="start-date"><div class="start-date-title">시작 일자</div><input class="input-date" type="datetime-local" name="startTime" value="' + startDate + '" required></div><div class="end-date"><div class="end-date-title">종료 일자</div><input class="input-date" type="datetime-local" name="endTime" value="' + endDate + '" required></div></div>';
 		
 		$(".privateAndPassword").append(privateStr).append(passwordStr).append(privacyStr).append(startDateStr);
-	}
-	else {
+	} else {
 		$('.codingtest-div').remove();
 	}
 	
