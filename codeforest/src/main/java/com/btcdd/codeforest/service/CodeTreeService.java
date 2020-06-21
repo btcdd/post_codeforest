@@ -199,7 +199,8 @@ public class CodeTreeService {
 		
 		
 		if(submitVo == null) {
-			return codetreeRepository.submitSubProblem(authUserNo,subProblemNo,codeValue,language, answer) == 1;
+			return 1==1;
+//			return codetreeRepository.submitSubProblem(authUserNo,subProblemNo,codeValue,language, answer) == 1;
 		} else {
 			return codetreeRepository.updateSubProblem(submitVo.getNo(), codeValue, answer) == 1;
 		}
