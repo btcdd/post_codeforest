@@ -211,7 +211,10 @@ $(function() {
 	            event.preventDefault();
 	            /* $("#Save").trigger("click"); */
 	            $("#Run").trigger("click");
-	            $(".lm_title").removeClass("star");	            
+	            
+	    		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
+	     		tempFile = fileMap.get(tabFileNo+"");
+	    		$(".lm_title").html("<span class='star'>"+tempFile.data("fileName")+"</span>");	                    
 	            /* alert('ctrl-s'); */
 	            break;
 	        } 
