@@ -688,6 +688,7 @@ $(function() {
 		
 	}).on("propertychange change keyup paste",function(){
 		console.log("change!!!!");
+		$(".lm_title").append("* ");
 	});
 	
 
