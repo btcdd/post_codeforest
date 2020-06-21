@@ -690,6 +690,9 @@ $(function() {
 	}).on("propertychange change keyup paste",function(){
 		console.log("change!!!!");
 		console.log("getActiveContentItem()>>",root.getActiveContentItem());
+		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id);
+		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[0]);
+		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);		
 		/* $(".lm_title").html("<span class='star'>*</span>"); */
 	});
 	
