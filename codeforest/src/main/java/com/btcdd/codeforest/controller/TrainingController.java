@@ -133,12 +133,8 @@ public class TrainingController {
 			@RequestParam(value = "array", required = true, defaultValue = "") Long[] array,
 			HttpSession session) {
 
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
 		problemVo.setNo(problemNo);
 		trainingService.modifyProblem(problemVo);
-		
-		System.out.println(subProblemList);
 		
 		List<SubProblemVo> list = subProblemList.getSubProblemList();
 
@@ -154,10 +150,6 @@ public class TrainingController {
 		if(list.size() > 0) {
 			trainingService.modify(subProblemList, problemNo);
 		}
-		
-//		List<Long> subProblemNoList = trainingService.findSubProblemNo(problemNo); 
-//		TrainingLinux trainingLinux = new TrainingLinux();
-//		trainingLinux.modifyFile(authUser.getNo(), list, array, problemNo, subProblemNoList);
 		
 		return "redirect:/training/view/" + problemNo;
 	}

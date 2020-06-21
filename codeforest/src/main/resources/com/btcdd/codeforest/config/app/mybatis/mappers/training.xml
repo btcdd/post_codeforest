@@ -149,8 +149,7 @@
 		</foreach>
 	</insert>
 
-	<insert id="modify" parameterType="hashmap"
-		useGeneratedKeys="true" keyProperty="id">
+	<insert id="modify" parameterType="hashmap" useGeneratedKeys="true" keyProperty="id">
 		<![CDATA[
 			insert 
 			  into sub_problem (no, title, contents, exam_input, exam_output, problem_no, state)
@@ -171,7 +170,7 @@
 				]]>
 			</if>
 			<![CDATA[
-				, "${item.title }", "${item.contents }", "${item.examInput }", "${item.examOutput }", #{problemNo },"y")
+				, "${item.title }", '${item.contents }', "${item.examInput }", "${item.examOutput }", #{problemNo },"y")
 			]]>
 		</foreach>
 		<![CDATA[

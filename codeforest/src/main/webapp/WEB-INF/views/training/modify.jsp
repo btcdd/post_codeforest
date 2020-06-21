@@ -22,7 +22,7 @@
 <script>
 var index = ${listSize };
 
-var array = new Array();
+var array = [];
 var top = 0;
 
 var str;
@@ -84,7 +84,7 @@ var fetchList = function() {
 		var startDateStr = '<div class="date"><div class="start-date"><div class="start-date-title">시작 일자</div><input class="input-date" type="datetime-local" name="startTime" value="' + startDate + '" required></div><div class="end-date"><div class="end-date-title">종료 일자</div><input class="input-date" type="datetime-local" name="endTime" value="' + endDate + '" required></div></div>';
 		
 		$(".privateAndPassword").append(privateStr).append(passwordStr).append(privacyStr).append(startDateStr);
-	} 
+	}
 	else {
 		$('.codingtest-div').remove();
 	}
