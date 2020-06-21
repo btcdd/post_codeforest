@@ -56,8 +56,12 @@ public class MypageRepository {
 		return sqlSession.selectList("mypage.problemSolveList", no);
 	}
 
-	public int getTotalCount(Long userNo) {
-		return sqlSession.selectOne("mypage.totalCount", userNo);
+	public int getTotalCount(Long userNo, String keyword) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("userNo", userNo);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectOne("mypage.totalCount", map);
 	}
 
 	public List<SubProblemVo> findSubProblem(Long no) {

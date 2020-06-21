@@ -46,15 +46,7 @@ public class MypageController {
 	
 	@Auth
 	@RequestMapping(value="/problem", method=RequestMethod.GET)
-	public String problem(
-			@RequestParam(value="p",required=true,defaultValue="1") int currentPage,
-			Model model,
-			HttpSession session) {
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		
-		Map<String,Object> map = mypageService.getContentsList(currentPage, authUser.getNo());
-		
-		model.addAttribute("map",map);
+	public String problem() {
 		
 		return "mypage/problem";
 	}
