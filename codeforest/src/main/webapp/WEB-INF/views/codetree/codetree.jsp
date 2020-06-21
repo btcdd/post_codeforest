@@ -522,6 +522,8 @@ $(function() {
 	var HashMap = new Map();
  	var fileMap = new Map();
 	
+ 	/* var SavedCode = new Map(); */
+ 	
  	$(document).on("dblclick", ".file", function() {		
  		tempFile = $(this);
  		var language = $(this).data("language");
@@ -621,6 +623,7 @@ $(function() {
 					   }	
 				   }
 					console.log("code : " + response.data);
+					/* SavedCode.set(fileNo+"",response.data); */
 				},
 				error: function(xhr, status, e) {
 					console.error(status + ":" + e);
@@ -675,7 +678,7 @@ $(function() {
 
 	});
 	
-	var flag = false;
+	
 	////////////////키보드 입력//////////////////////////// 	
 	$(document).keydown(function(event) {
 	    if (event.ctrlKey || event.metaKey) {
@@ -685,20 +688,22 @@ $(function() {
 	            $("#Save").trigger("click");
 	            /* $("#Run").trigger("click"); */				
 				tempLayout.setTitle(tempFile.data("fileName"));
-				flag = true;
-	            return;
+	            break;
 	        } 
 	     }
     });
  	
 	$(document).on("propertychange change keyup paste",function(e){
-		if(e.target.nodeName == "TEXTAREA" && flag == false){
-			layoutId = "layout-"+fileNo;
- 			tempFile = fileMap.get(fileNo+"");
-			tempLayout = root.getItemsById(layoutId)[0];
-			tempLayout.setTitle("*"+tempFile.data("fileName"));
-		}else if(e.target.nodeName == "TEXTAREA" && flag == true){
-			flag = false;
+		
+
+		if(e.target.nodeName == "TEXTAREA"){
+
+			if(currentEditor.getValue() != SavedprevValue){
+				layoutId = "layout-"+fileNo;
+	 			tempFile = fileMap.get(fileNo+"");
+				tempLayout = root.getItemsById(layoutId)[0];
+				tempLayout.setTitle("*"+tempFile.data("fileName"));
+			}			
 		}
 
 		
