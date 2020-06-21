@@ -102,6 +102,7 @@ var fetchList = function() {
 		   titleStr = map.list[i].title;
 	   } else if(map.list[i].startTime > getTimeStamp()) {
 		   titleStr = map.list[i].title + '<span class="blinking" id="expected" style="color: #fff; background-color: #3e91b5; border: 1px solid #3e91b5; border-radius: 0.5rem; padding: 0 1em; margin-left: 1em; font-size: 0.8em; margin-top: 2px;outline: none; cursor: default" >예정</span>';
+		   codingTestStr = '<td><a href="${pageContext.servletContext.contextPath }/training/modify/' + map.list[i].no + '"><button id="modify-btn">수정</button></a></td>';
 		   fileDownloadStr = '<td><i class="list-none fas fa-file-download"></i></td>';
 	   } else {
 		   titleStr = map.list[i].title;
