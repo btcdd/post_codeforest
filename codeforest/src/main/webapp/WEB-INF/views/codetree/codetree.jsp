@@ -203,20 +203,7 @@ $(function() {
 		$(".CodeMirror").css("font-size", fontSize);
 	});
 	
-////////////////키보드 입력//////////////////////////// 	
-	$(document).keydown(function(event) {
-	    if (event.ctrlKey || event.metaKey) {
-	        switch (String.fromCharCode(event.which).toLowerCase()) {
-	        case 's':
-	            event.preventDefault();
-	            /* $("#Save").trigger("click"); */
-	            $("#Run").trigger("click");
-				tempLayout.setTitle(tempFile.data("fileName"));	            
-	            return;
-	        } 
-	     }
-    }); 	
- 	
+
  	
 ////////////////파일 추가/////////////////////
  	
@@ -688,7 +675,23 @@ $(function() {
 		
 	});
 	
+
 	$(document).on("propertychange change keyup paste",function(e){
+
+		////////////////키보드 입력//////////////////////////// 	
+		$(document).keydown(function(event) {
+		    if (event.ctrlKey || event.metaKey) {
+		        switch (String.fromCharCode(event.which).toLowerCase()) {
+		        case 's':
+		            event.preventDefault();
+		            /* $("#Save").trigger("click"); */
+		            $("#Run").trigger("click");
+					tempLayout.setTitle(tempFile.data("fileName"));	            
+		            return;
+		        } 
+		     }
+	    });
+		
 		if(e.target.nodeName == "TEXTAREA") {
 			layoutId = "layout-"+fileNo;
  			tempFile = fileMap.get(fileNo+"");
