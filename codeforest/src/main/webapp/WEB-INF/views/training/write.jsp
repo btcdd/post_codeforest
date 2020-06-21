@@ -125,16 +125,13 @@ $(function() {
 			if(!($('#' + i).attr('id'))) {
 				for(var j = i + 1; j < index; j++) {
 					$('#' + j).text(j.toString());
-					$('#' + j).append('<span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span>');
+					$('#' + j).append('<span class="delete" style="display:none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span>');
 					
 					// li id 설정
 					$('#' + j).attr('id', (j-1).toString());
 					// prob class 설정
 					$('.prob' + j).attr('class', 'prob' + (j-1).toString());
 					$('#prob-content-text' + j).attr('id', 'prob-content-text' + (j-1).toString());
-					$('#prob-content-text' + (j-1).toString()).attr('name', 'subProblemList[' + (j-1).toString() + '].contents');
-					$('input[name=subProblemList[' + j + '].examInput]').attr('name', 'subProblemList[' + (j-1).toString() + '].examInput]');
-					$('input[name=subProblemList[' + j + '].examOutput]').attr('name', 'subProblemList[' + (j-1).toString() + '].examOutput]');
 				}
 			}
 		}
