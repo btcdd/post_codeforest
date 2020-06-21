@@ -68,7 +68,7 @@ th, td {
 }
 
 .chart-div {
-	position: fixed;
+	position: absolute;
     left: 65em;
     float: left;
     margin-left: 7em;
