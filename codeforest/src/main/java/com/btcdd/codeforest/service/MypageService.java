@@ -55,9 +55,10 @@ public class MypageService {
 		return mypageRepository.problemSolveList(no);
 	}
 
-	public Map<String, Object> getContentsList(int currentPage, Long userNo) {
+	public Map<String, Object> getContentsList(int currentPage, Long userNo, String keyword) {
 		//게시물 총 갯수
-		int count = mypageRepository.getTotalCount(userNo);
+		int count = mypageRepository.getTotalCount(userNo, keyword);
+		System.out.println(count);
 		//하단 페이징 번호([게시물 총 갯수 / 한 페이지에 출력할 갯수]의 올림)
 		int pageNum = (int)Math.ceil((double)count/postNum);
 		//출력할 게시물

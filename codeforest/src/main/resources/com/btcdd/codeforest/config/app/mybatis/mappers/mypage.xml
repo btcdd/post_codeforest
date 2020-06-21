@@ -69,7 +69,7 @@
 	</select>
 
 
-	<select id="totalCount" parameterType="long" resultType="integer">
+	<select id="totalCount" parameterType="map" resultType="integer">
 		<![CDATA[
 			select count(*) 
 			  from problem p, user u 
@@ -77,6 +77,11 @@
 			   and u.no = #{userNo }
 			   and p.state = 'y'
 		]]>
+		<if test="keyword != null or keyword != ''">
+			<![CDATA[
+			   and p.title like '%${keyword}%'
+			]]>
+		</if>
 	</select>
 	
 	<select id="findSubProblem" parameterType="long"  resultType="subproblemvo">

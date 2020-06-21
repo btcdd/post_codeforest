@@ -18,10 +18,17 @@
 <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/table2excel.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script>
+function onKeyDown() {
+	if(event.keyCode == 13) {
+		var kwd = $('#kwd').val();
+		originList('1', kwd);
+	}
+}
+
 var page = '1';
 var endPageTrueNum;
 
-var originList = function(page2) {
+var originList = function(page2, keyword) {
 	
    $.ajax({
       url: '${pageContext.request.contextPath }/api/mypage/problem',
@@ -31,6 +38,7 @@ var originList = function(page2) {
       traditional: true,
       data: {
          'page': page2,
+         'keyword': keyword
       },
       success: function(response){
          if(response.result != "success"){
@@ -149,7 +157,7 @@ var nextRemove = function() {
 
 $(function() {
 	
-	originList('1');
+	originList('1', '');
 	
 	$(document).on("click", ".page", function() {
 	      page = $(this).attr('id');
@@ -381,6 +389,11 @@ $(function() {
 		dialogSpDelete.dialog('open');
 	});
 	
+	$('#search').on('click', function() {
+		page = '1';
+		var kwd = $('#kwd').val();
+		originList('1', kwd);
+	});
 });
 </script>
     
@@ -391,6 +404,10 @@ $(function() {
         <div class="quizlist">
             <div class="line">
                 <h4>문제 관리</h4>
+            </div>
+            <div class="search">
+                <input type="text" id="kwd" name="kwd" placeholder="Search.." onKeyDown="onKeyDown();" autoComplete="off">
+                <input type="button" id="search" value="검색" >
             </div>
             <br>
             <table class="quiz-table">

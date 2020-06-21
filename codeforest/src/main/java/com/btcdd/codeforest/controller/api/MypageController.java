@@ -99,11 +99,11 @@ public class MypageController {
 
 	@Auth
 	@PostMapping(value = "/problem")
-	public JsonResult findProblem(String page, HttpSession session) {
+	public JsonResult findProblem(String page, String keyword, HttpSession session) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		int currentPage = Integer.parseInt(page);
-		Map<String, Object> map = mypageService.getContentsList(currentPage, authUser.getNo());
+		Map<String, Object> map = mypageService.getContentsList(currentPage, authUser.getNo(), keyword);
 	
 		return JsonResult.success(map);
 	}
