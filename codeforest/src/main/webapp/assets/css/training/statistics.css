@@ -40,11 +40,12 @@ table {
     border-collapse: collapse;
     margin-left: 20px;
     margin-bottom: 2em;	
+    font-size: 0.9em
 }
 
 th, td {
     border: 0.3px solid lightgray;
-    padding: 10px 35px;
+    padding: 10px 25px;
     text-align: center;
 }
 
@@ -72,7 +73,7 @@ th, td {
     left: 65em;
     float: left;
     margin-left: 7em;
-    margin-top: 6em;
+    margin-top: 3em;
     background-color: #fff;
     padding: 2em;
 }
