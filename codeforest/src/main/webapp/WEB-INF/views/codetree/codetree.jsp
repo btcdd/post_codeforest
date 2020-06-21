@@ -686,28 +686,13 @@ $(function() {
  		currentEditor = HashMap.get("editor"+cmNo);
  		
 		
+	}).on("keydown",".CodeMirror-scroll",function(){
+		console.log("change!!!!");	
 	});
 	$(document).on("propertychange change keyup paste",".CodeMirror-sizer",function(){
 		console.log("change!!!!");	
 	});
-	$(document).on("keydown",".CodeMirror-scroll",function(){
-		console.log("change!!!!");	
-	});
-	$(document).on("propertychange change keyup paste",".cm-variable",function(){
-		console.log("change!!!!");	
-	});
-	$(document).on("change",".CodeMirror-sizer",function(){
-		console.log("1231231 change!!!!");	
-	});	
-	$(document).on("change",".CodeMirror-lines",function(){
-		console.log("1231231 change!!!!");	
-	});
-	$(document).on("change",".CodeMirror-scroll",function(){
-		console.log("1231231 change!!!!");	
-	});
-	$(document).on("change",".cm-variable",function(){
-		console.log("1231231 change!!!!");	
-	});
+
  	var compileResult1 = "";
  	var compileResult2 = "";
  	
