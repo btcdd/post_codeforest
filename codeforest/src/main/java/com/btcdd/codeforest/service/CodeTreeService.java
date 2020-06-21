@@ -189,7 +189,7 @@ public class CodeTreeService {
 	public boolean submitSubProblem(Long authUserNo, Long subProblemNo, String codeValue, String language, boolean compileResult) {
 		String answer = "";
 		
-		if(compileResult) {
+		if(compileResult==true) {
 			answer = "y";
 		}else{
 			answer = "n";
