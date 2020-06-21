@@ -690,7 +690,7 @@ $(function() {
 	$(document).on("propertychange change keyup paste",".CodeMirror-sizer",function(){
 		console.log("change!!!!");	
 	});
-	$(document).on("keydown",".CodeMirror-lines",function(){
+	$(document).on("keydown",".CodeMirror-scroll",function(){
 		console.log("change!!!!");	
 	});
 	$(document).on("propertychange change keyup paste",".cm-variable",function(){
