@@ -187,7 +187,7 @@ public class CodeTreeService {
 	}
 //  추가한 부분
 	public boolean submitSubProblem(Long authUserNo, Long subProblemNo, String codeValue, String language, boolean compileResult) {
-		String answer = "";
+		String answer = "n";
 		
 		if(compileResult) {  
 			answer = "y";
