@@ -778,6 +778,8 @@ $(function() {
    	$(document).on("click","#Submit",function(){
    		$("#Run").trigger("click");
    		var problemNo = "${saveVo.problemNo }";
+   		console.log("currentEditor.getValue()>>>>",currentEditor.getValue());
+   		
    		setTimeout(function(){
 
    	   		var problemNo = "${saveVo.problemNo }";
@@ -851,7 +853,7 @@ $(function() {
 		        ]
 		    }]
 	};
-	
+	 
 	var myLayout = new GoldenLayout(config, $('#gl-cover'));
 
 	myLayout.registerComponent("newTab", function(container) {
