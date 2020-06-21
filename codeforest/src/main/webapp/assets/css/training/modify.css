@@ -1,26 +1,113 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Bigshot+One&family=Pacifico&family=Roboto:wght@300&display=swap')
+	;
+
 body {
 	margin: 0;
 	padding: 0;
 }
 
+.make-coding-test-problem-info {
+	font-family: 'Raleway', Arial, sans-serif;
+	font-weight: 500;
+	margin-left: 1em;
+}
+
 .codingtest-div {
-	background-color: #fff;
-	width: 77%;
-	padding: 1em 2em;
-	margin-bottom: 1em;
-	border-radius: 0.5em;
+    background-color: #fff;
+    width: 77%;
+    padding: 1em 2em;
+    margin-bottom: 1em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 15px rgba(130,130,130,0.3);
 }
 
 .codingtest {
 	margin-right: 1em;
 }
 
-.password-input {
-	outline: none;
+.password {
+    margin-top: 1em;
+    border-top: 1px solid #ebebeb;
+    padding-top: 1em;
 }
 
+.password-title, .privacy-check-title, .start-date-title, .end-date-title {
+    font-weight: bold;
+    color: #4D4D4D;
+    margin-bottom: 1em;
+}
+
+.password-input-div {
+	
+}
+
+.password-input {
+    outline: none;
+    border: 1px solid #bebebe;
+    height: 1.5em;
+    border-radius: 0.5rem;
+    padding: 1em 1em;
+    font-size: 1em;
+    font-family: 'Raleway', Arial, sans-serif;
+	font-weight: 500;
+    box-shadow: inset 0 0 5px rgba(130,130,130,0.2);
+}
+
+.privacy {
+	border-top: 1px solid #ebebeb;
+    margin-top: 1em;
+    padding-top: 1em;
+}
+
+.privacy-check-radio {
+	margin-left: 1.5em;
+}
+
+.date {
+	border-top: 1px solid #ebebeb;
+    margin-top: 1em;
+    padding-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+.start-date {
+	float: left;
+    width: 45%;
+    margin-right: 5%;
+}
+
+.end-date {
+
+}
+
+.input-date {
+	height: 2em;
+    background-color: #F0F0F0;
+    border: none;
+    outline: none;
+    padding: 1em;
+    font-size: 1.1em;
+}
+
+.division {
+	margin-left: 8px;
+	margin-top: 2em;
+}
+
+.division-radio-title-div {
+	font-weight: bold;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #bebebe;
+    width: 76%;
+}
+
+.division-radio-title {
+	padding-left: 0.5em;
+}
+	
 select {
-	outline: none;
     width: 75px;
     height: 35px;
     font-family: inherit;
@@ -39,25 +126,10 @@ select {
 	width: 80%;
 }
 
-.private {
-}
-
 .password {
 	margin-top: 1em;
 }
 
-.start-date {
-	float: left;
-}
-
-.end-date {
-	margin-left: 220px;
-}
-
-.division {
-	float: left;
-	margin-left: 8px;
-}
 
 .language-select {
 	margin-left: 120px;
@@ -190,7 +262,7 @@ td {
 /* Style the tab */
 .tab {
 	float: left;
-    width: 9%;
+    width: 5%;
     height: 100%;
 }
 
@@ -218,7 +290,7 @@ td {
 .tabcontent {
 	float: left;
 	padding: 0 2% 0 2%;
-	width: 70%;
+	width: 74%;
 	height: 700px;
 	margin-bottom: 15em;
 }
@@ -232,6 +304,7 @@ ul {
 	padding: 17px 9px;
 	cursor: pointer;
 	border: 1px solid #bebebe;
+	padding-left: 1.3em;
 }
 
 .tablinks:hover {
@@ -304,7 +377,7 @@ li[name=selected] {
 }
 
 img {
-	width: 24%;
+	width: 16px;
     display: inline-block;
     vertical-align: middle;
     height: 100%;
@@ -315,16 +388,6 @@ img:hover {
 	background: #f00;
 }
 
-.privacy {
-	margin: 10px 10;
-}
-
-.privacy-check {
-	margin: 10px 0;
-	border: 1px #bbb dashed;
-	width: 500px;
-	padding-bottom: 10px;
-}
 
 .tab-ul {
 	margin-top: -1.3px;

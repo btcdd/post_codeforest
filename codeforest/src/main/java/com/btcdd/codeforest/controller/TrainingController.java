@@ -52,7 +52,9 @@ public class TrainingController {
 			ProblemVo problemVo, HttpSession session) {
 		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
+		
+		System.out.println("dd:" + problemVo.getKindNo());
+		
 		trainingService.insert(subProblemList, problemVo, authUser.getNo());
 
 		return "redirect:/training";
