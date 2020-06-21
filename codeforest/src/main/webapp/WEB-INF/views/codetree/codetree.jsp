@@ -690,7 +690,7 @@ $(function() {
  		currentEditor = HashMap.get("editor"+cmNo);
  		
 		
-	}).on("propertychange change keyup paste",function(){
+	}).on("propertychange change keyup paste",".CodeMirror-scroll",function(){
 	    var currentVal = $(this).val();
 	    console.log("currentVal>>",currentVal);
 	 /*    if(currentVal == oldVal) {
