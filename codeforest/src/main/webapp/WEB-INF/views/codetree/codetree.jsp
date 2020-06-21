@@ -675,6 +675,7 @@ $(function() {
 
 	});
 	
+	var flag = false;
 	////////////////키보드 입력//////////////////////////// 	
 	$(document).keydown(function(event) {
 	    if (event.ctrlKey || event.metaKey) {
@@ -682,28 +683,24 @@ $(function() {
 	        case 's':
 	            event.preventDefault();
 	            $("#Save").trigger("click");
-	            /* $("#Run").trigger("click"); */
-				layoutId = "layout-"+fileNo;
- 				tempFile = fileMap.get(fileNo+"");
-				tempLayout = root.getItemsById(layoutId)[0];				
+	            /* $("#Run").trigger("click"); */				
 				tempLayout.setTitle(tempFile.data("fileName"));
-				console.log("tempLayout ",tempLayout);
+				flag = true;
 	            return;
 	        } 
 	     }
     });
  	
 	$(document).on("propertychange change keyup paste",function(e){
-		
-		if(e.target.nodeName == "TEXTAREA") {
-			console.log("여기>>",tempLayout);
+		if(e.target.nodeName == "TEXTAREA" && flag == false){
 			layoutId = "layout-"+fileNo;
  			tempFile = fileMap.get(fileNo+"");
 			tempLayout = root.getItemsById(layoutId)[0];
 			tempLayout.setTitle("*"+tempFile.data("fileName"));
-			
-			return;
+		}else if(e.target.nodeName == "TEXTAREA" && flag == true){
+			flag = false;
 		}
+
 		
 	}); 
 	
