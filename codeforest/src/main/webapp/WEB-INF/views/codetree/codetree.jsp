@@ -691,7 +691,13 @@ $(function() {
  		
 		
 	}).on("propertychange change keyup paste",function(){
-		console.log("change!!!!");
+	    var currentVal = $(this).val();
+	    if(currentVal == oldVal) {
+	        return;
+	    }
+	 
+	    oldVal = currentVal;
+	    alert("changed!");
 /* 		console.log("getActiveContentItem()>>",root.getActiveContentItem());
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id);
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[0]);
