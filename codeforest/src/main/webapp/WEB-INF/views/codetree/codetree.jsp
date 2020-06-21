@@ -164,7 +164,7 @@ $(function() {
 	   // 터미널 색 변경
 // 	   $(".window .terminal").css('background-color', $(".cm-s-" + theme).css("background-color"));
 	   $(".window .terminal").css('background-color', backgroundColor);
-	   $("ui_sidebar").css('background-color', backgroundColor);
+	   $("ui__sidebar").css('background-color', backgroundColor);
 	   if($('.theme option:selected').parent().attr('label') == "white") {
 		   $(".window .terminal").css('color', "#000000");
 		   $(".window .terminal .prompt").css('color', "#004000");
