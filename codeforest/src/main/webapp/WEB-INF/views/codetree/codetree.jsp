@@ -130,9 +130,41 @@ $(function() {
 			   editorArray[i].setOption("theme", theme);
 			}
 	   }	   
-	   
+	   var backgroundColor = null;
+	   if(theme == "abcdef") {
+		   backgroundColor = "#0F0F0F";
+	   }
+	   if(theme == "blackboard") {
+		   backgroundColor = "#0C1021";
+	   }
+	   if(theme == "dracula") {
+		   backgroundColor = "#282A36";
+	   }
+	   if(theme == "moxer") {
+		   backgroundColor = "#090A0F";
+	   }
+	   if(theme == "panda-syntax") {
+		   backgroundColor = "#292A2B";
+	   }
+	   if(theme == "duotone-light") {
+		   backgroundColor = "#FAF8F5";
+	   }
+	   if(theme == "eclipse") {
+		   backgroundColor = "#FFFFFF";
+	   }
+	   if(theme == "neat") {
+		   backgroundColor = "#FFFFFF";
+	   }
+	   if(theme == "ttcn") {
+		   backgroundColor = "#FFFFFF";
+	   }
+	   if(theme == "solarized") {
+		   backgroundColor = "#FFFFFF";
+	   }
 	   // 터미널 색 변경
-	   $(".window .terminal").css('background-color', $(".cm-s-" + theme).css("background-color"));
+// 	   $(".window .terminal").css('background-color', $(".cm-s-" + theme).css("background-color"));
+	   $(".window .terminal").css('background-color', backgroundColor);
+	   $("ui_sidebar").css('background-color', backgroundColor);
 	   if($('.theme option:selected').parent().attr('label') == "white") {
 		   $(".window .terminal").css('color', "#000000");
 		   $(".window .terminal .prompt").css('color', "#004000");
