@@ -689,7 +689,7 @@ $(function() {
 		
 	}).on("propertychange change keyup paste",function(){
 		console.log("change!!!!");
-		$(".lm_title").append("<span class='star'>* </span>");
+		$(".lm_title").prepend("<span class='star'>*</span>");
 	});
 	
 
