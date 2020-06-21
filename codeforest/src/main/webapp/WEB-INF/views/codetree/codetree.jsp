@@ -783,6 +783,7 @@ $(function() {
 			},
 			success: function(response) {
 				console.log("ok");
+				tempLayout.setTitle(tempFile.data("fileName"));
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
