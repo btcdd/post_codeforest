@@ -697,7 +697,7 @@ $(function() {
 		
 		 
 		if(e.target.nodeName == "TEXTAREA"){
-			console.log("root.getActiveContentItem().config.id.split("-")[1]>>>",root.getActiveContentItem().config.id.split("-")[1]);
+			console.log("root.getActiveContentItem()>>>",root.getActiveContentItem().config.id.split("-")[1]);
 			console.log('tempFile.data("no")',tempFile.data("no"));
 			if(currentEditor.getValue() != SavedCode.get(fileNo+"") &&  root.getActiveContentItem().config.id.split("-")[1] == tempFile.data("no") ){
 				layoutId = "layout-"+fileNo;
