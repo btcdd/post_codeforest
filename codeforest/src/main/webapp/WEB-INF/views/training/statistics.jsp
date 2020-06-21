@@ -22,7 +22,7 @@
 $(function() {
 	var tableWidth = $('#statistics-table').width();
 	if(tableWidth >= 740) {
-		$('.line').css("width",tableWidth);
+		$('.line').css("width",tableWidth + 20);
 	}
 	
 	var title = [];
@@ -86,9 +86,6 @@ $(function() {
 	                <h4>문제 통계</h4>
 	            </div>
 	            <br />
-	            <colgroup>
-	            	<col width="" />
-	            </colgroup>
 	            <table id="statistics-table">
 	                <thead>
 	                    <tr>
