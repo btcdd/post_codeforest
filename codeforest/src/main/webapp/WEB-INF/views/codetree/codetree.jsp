@@ -683,7 +683,9 @@ $(function() {
 	            event.preventDefault();
 	            $("#Save").trigger("click");
 	            /* $("#Run").trigger("click"); */
-				console.log("tempLayout ",tempLayout);	            
+				
+				tempLayout.setTitle("*"+tempFile.data("fileName"));
+				console.log("tempLayout ",tempLayout);
 	            return;
 	        } 
 	     }
