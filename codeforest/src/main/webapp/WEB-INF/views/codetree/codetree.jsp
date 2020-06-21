@@ -688,6 +688,7 @@ $(function() {
 	            $("#Save").trigger("click");
 	            /* $("#Run").trigger("click"); */				
 				/* tempLayout.setTitle(tempFile.data("fileName")); */
+				tempFile = fileMap.get(fileNo+"");
 	            break;
 	        } 
 	     }
