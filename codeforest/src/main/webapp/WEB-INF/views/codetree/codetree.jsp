@@ -76,6 +76,8 @@ var currentEditor = null;
 var editorArray = new Array();
 var editorArrayIndex = 0;
 
+
+
 $(function() {
 	fileFetchList();
 	
@@ -241,9 +243,7 @@ $(function() {
 		$(".CodeMirror").css("font-size", fontSize);
 	});
 	
- 	
- 	
- 	
+
  	
 ////////////////파일 추가/////////////////////
  	
@@ -308,20 +308,12 @@ $(function() {
 	 		    }).show();
 	 		    //Prevent browser default contextmenu.
 	 		    return false;					
-				
-				
-			}
-			
-		
+			}		
 		});
 
 		
 		$(document).on('mousedown','.userFile',function(e){
-			
-
-			
 			$(".contextmenu").hide();
-			
 			if(e.which == 3){
 				//tempFile = $(this);
 				codeNo = $(this).data("no");
@@ -570,6 +562,8 @@ $(function() {
 	var HashMap = new Map();
  	var fileMap = new Map();
 	
+ 	var SavedCode = new Map();
+ 	
  	$(document).on("dblclick", ".file", function() {		
  		tempFile = $(this);
  		var language = $(this).data("language");
@@ -669,6 +663,7 @@ $(function() {
 					   }	
 				   }
 					console.log("code : " + response.data);
+					SavedCode.set(fileNo+"",response.data);
 				},
 				error: function(xhr, status, e) {
 					console.error(status + ":" + e);
@@ -710,7 +705,7 @@ $(function() {
  		     
 	});
 	
-	$(document).on("click", ".CodeMirror-scroll", function() {
+	$(document).on("click", ".CodeMirror-scroll", function(e) {
 		console.log("root>>>>>>>>>>",root);
 		console.log("클릭한곳:", $(this));
 		console.log("this.parent()>>",$(this).parent());
@@ -719,10 +714,52 @@ $(function() {
  		var cmNo = $(this).parent().parent().attr("id").split("cm")[1];
  		tempFile = fileMap.get(cmNo+"");
  		currentEditor = HashMap.get("editor"+cmNo);
- 		 
+ 		
+
 	});
- 	
- 	
+	
+	
+	////////////////키보드 입력//////////////////////////// 	
+	$(document).keydown(function(event) {
+	    if (event.ctrlKey || event.metaKey) {
+	        switch (String.fromCharCode(event.which).toLowerCase()) {
+	        case 's':
+	            event.preventDefault();
+	            $("#Save").trigger("click");
+	            /* $("#Run").trigger("click"); */				
+				/* tempLayout.setTitle(tempFile.data("fileName")); */
+				/* tempFile = fileMap.get(fileNo+"");
+				console.log("ctrl+s tempFile[0].dataset>>>",tempFile[0].dataset); */
+	            break;
+	        } 
+	     }
+    });
+ 	 
+	$(document).on("propertychange change keyup paste",function(e){
+		console.log("key press tempFile[0].dataset>>>",tempFile[0].dataset);
+		 
+		if(e.target.nodeName == "TEXTAREA"){
+			
+			/* console.log("root.getActiveContentItem()>>>",root.getActiveContentItem().config.id.split("-")[1]);
+			console.log('tempFile.data("no")>>',tempFile.data("no"));
+			var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
+			console.log('tabFileNo>>',tabFileNo);
+            tempFile = fileMap.get(tabFileNo+""); */
+			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
+				layoutId = "layout-"+fileNo;
+				tempFile = fileMap.get(fileNo+"");
+				tempLayout = root.getItemsById(layoutId)[0];
+				tempLayout.setTitle("*"+tempFile.data("fileName"));
+			}else{
+				tempLayout.setTitle(tempFile.data("fileName"));
+			}			
+		}
+
+		
+	}); 
+	
+	
+
  	var compileResult1 = "";
  	var compileResult2 = "";
  	
@@ -806,6 +843,7 @@ $(function() {
 				'problemNo' : problemNo
 			},
 			success: function(response) {
+				SavedCode.set(fileNo+"", currentEditor.getValue());
 				console.log("ok");
 			},
 			error: function(xhr, status, e) {
