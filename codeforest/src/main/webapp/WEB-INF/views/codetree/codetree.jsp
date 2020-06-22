@@ -697,10 +697,12 @@ $(function() {
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[0]);
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);
 		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
+		fileNo = tabFileNo;
  		tempFile = fileMap.get(tabFileNo+"");
 		$(this).parent().attr("id", "tab"+tabFileNo);
  		console.log("mousedown tempFile>>>>>>>",tempFile.data("fileName"));
  		currentEditor = HashMap.get("editor"+tabFileNo);
+		
  		
  		     
 	});
@@ -712,6 +714,7 @@ $(function() {
 		console.log("this.parent().parent>>",$(this).parent().parent().attr("id"));
 		console.log("this.parent().parent>>",$(this).parent().parent().attr("id").split("cm"));
  		var cmNo = $(this).parent().parent().attr("id").split("cm")[1];
+ 		fileNo = cmNo;
  		tempFile = fileMap.get(cmNo+"");
  		currentEditor = HashMap.get("editor"+cmNo);
  		
@@ -735,7 +738,7 @@ $(function() {
 	     }
     });
  	 
-	$(document).on("propertychange change keyup paste",function(e){
+	$(document).on("propertychange change keyup paste", function(e){
 		console.log("key press tempFile[0].dataset>>>",tempFile[0].dataset);
 		 
 		if(e.target.nodeName == "TEXTAREA"){
