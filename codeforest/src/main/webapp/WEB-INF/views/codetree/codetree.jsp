@@ -754,6 +754,9 @@ $(function() {
 				tempLayout = root.getItemsById(layoutId)[0];
 				tempLayout.setTitle("*"+tempFile.data("fileName"));
 			}else{
+				layoutId = "layout-"+fileNo;
+				tempFile = fileMap.get(fileNo+"");
+				tempLayout = root.getItemsById(layoutId)[0];
 				tempLayout.setTitle(tempFile.data("fileName"));
 			}			
 		}
