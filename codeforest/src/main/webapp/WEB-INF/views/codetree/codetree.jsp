@@ -1132,8 +1132,8 @@ window.onload = function() {
 	  <div class="frame vertical" id="code-mirror">
 
 		  <div class='navigator'>
-              <div class='language-selector'>
-                <select class="lang" name="lang">
+              <div class='language-selector dropdown dropdown-dark'>
+                <select class="lang dropdown-select" name="lang">
                     <option value="c">C</option>
                     <option value="cpp">C++</option>
                     <option value="cs">C#</option>
@@ -1142,8 +1142,9 @@ window.onload = function() {
                     <option value="py">Python</option>
                 </select>
               </div>
-              <div class='theme-selector'>
-                <select class="theme" name="theme">
+              
+              <div class='theme-selector dropdown dropdown-dark'>
+                <select class="theme dropdown-select" name="theme">
                 	<optgroup label="black">
                     <option value="abcdef">abcdef</option>
                     <option value="blackboard">blackboard</option>
@@ -1160,8 +1161,9 @@ window.onload = function() {
                   </optgroup>
                 </select>
               </div>
-              <div class='font-size'>
-                  <select class="size" id="font-size" name="size">
+              
+              <div class='font-size dropdown dropdown-dark'>
+                  <select class="size dropdown-select" id="font-size" name="size">
                     <option value="10px">10px</option>
                     <option value="12px">12px</option>
                     <option value="15px">15px</option>
