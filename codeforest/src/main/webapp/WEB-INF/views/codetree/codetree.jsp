@@ -487,7 +487,7 @@ $(function() {
 				
 								 	layoutId = "layout-"+codeNo;
 									tempLayout = root.getItemsById(layoutId)[0];
-									console.log("tempLayout>>>",tempLayout);
+	
 									if(tempLayout != null) {
 										tempLayout.setTitle(fileName);
 									}
@@ -664,7 +664,7 @@ $(function() {
 		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
 		fileNo = tabFileNo;
  		tempFile = fileMap.get(tabFileNo+"");
-		$(this).parent().attr("id", "tab"+tabFileNo);
+		$(this).parent().attr("id", "tab"+tabFileNo); //dom 분리시 작업 코드 진행중
  		console.log("mousedown tempFile>>>>>>>",tempFile.data("fileName"));
  		currentEditor = HashMap.get("editor"+tabFileNo);
 		
@@ -700,14 +700,8 @@ $(function() {
     });
  	 
 	$(document).on("propertychange change keyup paste", function(e){
-		console.log("key press tempFile[0].dataset>>>",tempFile[0].dataset);
-		console.log("e.target.className:",e.target.className);
 
-		console.log("$(this).className:",$(this).className);
 		if(e.target.nodeName == "TEXTAREA" && e.target.className != "fileName-update"){
-			console.log("들어옴>>>e.target.className:",e.target.className);
-
-			console.log("들어옴>>>$(this).className:",$(this).className);
 			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
 				layoutId = "layout-"+fileNo;
 				tempFile = fileMap.get(fileNo+"");
