@@ -788,7 +788,7 @@ $(function() {
   		},1000);
   		 	this.removeClass("SaveClick");	
   		/*
-  		
+  		 
 .Save:hover{
   color: white;
   background: #1ECD97;	
