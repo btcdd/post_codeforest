@@ -483,6 +483,7 @@ $(function() {
 								'prevFileName':prevFileName
 							},
 							success: function(response) {
+								codeNo = fileNo;
 								if(root != null) {
 								 	layoutId = "layout"+codeNo;
 									tempLayout = root.getItemsById(layoutId)[0];
