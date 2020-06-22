@@ -1,3 +1,9 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Bigshot+One&family=Pacifico&family=Roboto:wght@300&display=swap')
+	;
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800)
+	;
 body {
   margin : 0;
   padding : 0;
@@ -138,6 +144,16 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 /* .dropdown:hover .dropdown-content {display: block;} */
 
 /* .dropdown:hover .dropbtn {background-color: rgba(248,248,248,90%);} */
+
+	
+.header-logo {
+	float: left;
+	display: inline-block;
+	font-family: 'Pacifico', cursive;
+	text-decoration: none;
+	color: #244C1E;
+	font-size: 1.3em;
+}
 .main-nav {
   display: block;
   width: 100%;
@@ -276,15 +292,15 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 }
 
 .language-selector {
-    float: right;
+    float: left;
 }
 
 .theme-selector {
-    float: right;
+    float: left;
 }
 
 .font-size {
-    float: right;
+    float: left;
 } 
 
 
@@ -472,67 +488,54 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 
 
 /* --------------- 실행 버튼 --------------------- */
-.Run {
-  font-family: 'Roboto', sans-serif;
-  text-align: center;
-  outline: none;
-  height: 40px;
-  width: 40px;
-  border-radius: 40px;
-  background: #fff;
-  border: 2px solid #1ECD97;
-  color: #1ECD97;
-  letter-spacing: 1px;
-  text-shadow: 0;
-  font-size: 12px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-.Run:hover {
-  color: white;
-  background: #1ECD97;
-}
-.Run:active {
-  letter-spacing: 2px;
-}
-.Run:after {
-  content: "Run";
-}
-.onclic {
-  font-size: 0px;
-  width: 40px;
-  border-color: #bbbbbb;
-  border-width: 3px;
-  font-size: 0;
-  border-left-color: #1ECD97;
-  animation: rotating 2s 0.25s linear infinite;
-}
-.onclic:after {
-  content: "";
-}
-.onclic:hover {
-  color: #1ECD97;
-  background: white;
-}
-.validate {
-  font-size: 13px;
-  color: white;
-  background: #1ECD97;
-}
-.validate:after {
-  font-family: 'FontAwesome';
-  content: "\f00c";
-}
-@keyframes rotating {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.buttons {
+	float:right;
 }
 
+.animate
+{
+	transition: all 0.1s;
+	-webkit-transition: all 0.1s;
+}
+
+.action-button
+{
+	position: relative;
+	padding: 2.5px 10px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+	border-radius: 10px;
+	font-size: 12px;
+	color: #FFF;
+	text-decoration: none;	
+}
+
+#Save
+{
+	background-color: #E74C3C;
+	border-bottom: 3px solid #BD3E31;
+	text-shadow: 0px -1px #BD3E31;
+}
+
+#Run
+{
+	background-color: #3498DB;
+	border-bottom: 3px solid #2980B9;
+	text-shadow: 0px -1px #2980B9;
+}
+
+#Submit
+{
+	background-color: #82BF56;
+	border-bottom: 3px solid #669644;
+	text-shadow: 0px -1px #669644;
+}
+.action-button:active
+{
+	transform: translate(0px,2px);
+  -webkit-transform: translate(0px,2px);
+	border-bottom: 1px solid;
+}
 
 /* -------------------- golden layout ---------------------- */
 .gl-cover {
