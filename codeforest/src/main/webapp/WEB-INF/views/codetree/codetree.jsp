@@ -784,20 +784,15 @@ $(function() {
   	$(document).on("click","#Save",function(){
   		console.log("Save tempFile>>>>>>>",tempFile.data("fileName"));
   		
+  		setTimeout(function(){
+  			$(this).addClass("SaveClick");	
+  		},1000);
   		
-  		$(this).addClass("SaveClick");	
-  		
-  		
+  		$(this).removeClass("SaveClick");
+  		$(this).addClass("Save");
   		
   		 		
-  		/*
-  		 
-.Save:hover{
-  color: white;
-  background: #1ECD97;	
-  transform: translateY(3px);
-}  		
-  		*/
+
   		
   		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
   		var problemNo = "${saveVo.problemNo }";
@@ -823,7 +818,6 @@ $(function() {
 				tempLayout = root.getItemsById(layoutId)[0];
 				tempLayout.setTitle(tempFile.data("fileName"));
 				
-				$(this).removeClass("SaveClick");
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
