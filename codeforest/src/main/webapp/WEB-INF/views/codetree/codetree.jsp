@@ -784,10 +784,10 @@ $(function() {
   	$(document).on("click","#Save",function(){
   		console.log("Save tempFile>>>>>>>",tempFile.data("fileName"));
   		
-  		setTimeout(function(){
-  			$(this).addClass("SaveClick");	
-  		},500);
-  		$("#Save").removeClass("SaveClick");
+  		
+  		$(this).addClass("SaveClick");	
+  		
+  		
   		
   		 		
   		/*
@@ -822,6 +822,8 @@ $(function() {
 				tempFile = fileMap.get(fileNo+"");
 				tempLayout = root.getItemsById(layoutId)[0];
 				tempLayout.setTitle(tempFile.data("fileName"));
+				
+				$(this).removeClass("SaveClick");
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
