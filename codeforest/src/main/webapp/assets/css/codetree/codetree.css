@@ -226,9 +226,19 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
   border-bottom: 1px dotted #e8e8e8;
   width: 100%;
 }
-
-.sub-menu {
+.sub-menu > li:first-child:hover{
+	cursor:pointer;
+	background-color:#e8e8e8;
 }
+.sub-menu > li + li:hover{
+	cursor:pointer;
+	background-color:#e8e8e8;
+}
+.sub-menu > li:last-child:hover{
+	cursor:pointer;
+	background-color:#e8e8e8;
+}
+
 
 .main-nav ul li:hover ul li ul {
   display: none;
@@ -292,15 +302,21 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 }
 
 .language-selector {
-    float: right;
+    float: left;
+    margin-left:2px;
+    margin-top:1px;
 }
 
 .theme-selector {
-    float: right;
+    float: left;
+    margin-left:2px;
+    margin-top:1px;
 }
 
 .font-size {
-    float: right;
+    float: left;
+    margin-left:2px;
+    margin-top:1px;
 } 
 
 
@@ -488,10 +504,14 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 
 
 /* --------------- 실행 버튼 --------------------- */
-.buttons {
-	float:right;
-}
 
+.buttons{
+	display: inline-block;
+	float: right;
+	margin-right:2%;
+	margin-top: 5px;
+	
+}
 .animate
 {
 	transition: all 0.1s;
@@ -499,21 +519,19 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 }
 
 .action-button
-{
-	display: inline-block;
+{	
 	position: relative;
 	padding: 2.5px 10px;
- 	margin: 5px 10px 10px 0px;
- 	float: left;
+ 	/* margin: 5px 10px 10px 0px; */
+ 	/* float: right; */
 	border-radius: 10px;
 	font-size: 12px;
 	color: #FFF;
 	text-decoration: none;	
-}
+} 
 
 #Save
 {
-	display: inline-block;
 	background-color: #E74C3C;
 	border-bottom: 3px solid #BD3E31;
 	text-shadow: 0px -1px #BD3E31;
@@ -521,7 +539,6 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 
 #Run
 {
-	display: inline-block;
 	background-color: #3498DB;
 	border-bottom: 3px solid #2980B9;
 	text-shadow: 0px -1px #2980B9;
@@ -529,7 +546,6 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 
 #Submit
 {
-	display: inline-block;
 	background-color: #82BF56;
 	border-bottom: 3px solid #669644;
 	text-shadow: 0px -1px #669644;

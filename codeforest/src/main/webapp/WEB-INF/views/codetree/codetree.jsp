@@ -930,8 +930,15 @@ $(function() {
  	
  	
 	
-	
- 	
+	$(document).on("click",".sub-menu > li:first-child",function(){
+		$("#Save").trigger("click");
+	});
+	$(document).on("click",".sub-menu > li + li",function(){
+		$("#Run").trigger("click");
+	});
+	$(document).on("click",".sub-menu > li:last-child",function(){
+		$("#Submit").trigger("click");
+	});
 ////// function 끝부분 	
 });
 
@@ -1088,16 +1095,17 @@ window.onload = function() {
       <div class="header-logo">
         Code Forest
       </div>
-      <div class="menu-cool-container">
+       <div class="menu-cool-container">
         <ul>
           <li><a>Home</a></li>
           <li><a>Web Apps</a>
             <ul class="sub-menu">
-              <li><a>AngularJS</a></li>
-              <li><a>ActionScript</a></li>
+              <li>Save</li>
+              <li>Run</li>
+              <li>Submit</li>              
             </ul>
           </li>
-          <li><a>Mobile Apps</a>
+<!--           <li><a>Mobile Apps</a>
             <ul class="sub-menu">
               <li><a>Cordova/PhoneGap</a></li>
               <li><a>Ionic Framework</a></li>
@@ -1108,19 +1116,10 @@ window.onload = function() {
               <li><a>After Effects</a></li>
               <li><a>Adobe Premiere Pro</a></li>
             </ul>
-          </li>
-          <div class="buttons">
-			  <li><button class="action-button shadow animate" id="Run" class="Run">Run</button></li>
-			  <li><button class="action-button shadow animate" id="Save">Save</button></li>
-			  <li><button class="action-button shadow animate" id="Submit">Submit</button></li>
-		  </div>
+          </li> -->
         </ul>
-              <!-- <div class="buttons">
-              	<button class="action-button shadow animate" id="Run" class="Run">Run</button>	
-              	<button class="action-button shadow animate" id="Run" class="Run">Run</button>
-              	<button class="action-button shadow animate" id="Submit">Submit</button>
-              </div>         -->
-      </div>
+      </div> 
+               
     </div>
  </nav>
 
@@ -1181,7 +1180,11 @@ window.onload = function() {
                     <option value="35px">35px</option>
                 </select>
               </div>
-
+			  <div class="buttons">
+		         	<button class="action-button shadow animate" id="Save" class="Save">Save</button>	
+		           	<button class="action-button shadow animate" id="Run" class="Run">Run</button>
+		           	<button class="action-button shadow animate" id="Submit" class="Submit">Submit</button>
+		      </div>
           </div> 
 
 	    <div class="frame horizontal" id="file-codemirror-cover">	    
