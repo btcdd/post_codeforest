@@ -226,7 +226,7 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
   border-bottom: 1px dotted #e8e8e8;
   width: 100%;
 }
-.sub-menu > li:first-child:hover{
+/* .sub-menu > li:first-child:hover{
 	cursor:pointer;
 	background-color:#e8e8e8;
 }
@@ -237,7 +237,7 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 .sub-menu > li:last-child:hover{
 	cursor:pointer;
 	background-color:#e8e8e8;
-}
+} */
    
 
 .main-nav ul li:hover ul li ul {
