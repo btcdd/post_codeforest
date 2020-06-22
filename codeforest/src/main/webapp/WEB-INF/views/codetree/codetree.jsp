@@ -930,13 +930,13 @@ $(function() {
  	
  	 
 	
-	$(document).on("click",".sub-menu > li:first-child",function(){
+	/* $(document).on("click",".sub-menu > li:first-child",function(){
 		$("#Save").trigger("click");
 	});
 	$(document).on("click",".sub-menu > li + li",function(){
 		$("#Run").trigger("click");
-	});
-	$(document).on("click",".sub-menu > li:last-child",function(){
+	}); */
+	$(document).on("click","menu-cool-container >  ul > li:last-child",function(){
 		$("#Submit").trigger("click");
 	});
 ////// function 끝부분 	
@@ -1098,11 +1098,9 @@ window.onload = function() {
        <div class="menu-cool-container">
         <ul>
           <li><a>Home</a></li>
-          <div class="sub-menu">
-	          <li>Save</li>
-	          <li>Run</li>
-	          <li>Submit</li>
-          </div>
+	      <li>Save</li>
+	      <li>Run</li>
+	      <li>Submit</li>
 <!--           <li><a>Mobile Apps</a>
             <ul class="sub-menu">
               <li><a>Cordova/PhoneGap</a></li>
