@@ -20,10 +20,6 @@
 <script>
 
 $(function() {
-	var tableWidth = $('#statistics-table').width();
-	if(tableWidth >= 740) {
-		$('.line').css("width",tableWidth);
-	}
 	
 	var title = [];
 	var rate = [];
@@ -81,32 +77,28 @@ $(function() {
 <body>
     <c:import url="/WEB-INF/views/include/main-header.jsp" />
 	    <div class="statistics-container">
+            <div class="line">
+                <h4>문제 통계</h4>
+            </div>
 	        <div class="quizlist">
-	            <div class="line">
-	                <h4>문제 통계</h4>
-	            </div>
-	            <br />
-	            <colgroup>
-	            	<col width="" />
-	            </colgroup>
 	            <table id="statistics-table">
 	                <thead>
 	                    <tr>
 	                        <th></th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
-								<th>문제 ${status.index+1 }</th>
+								<th class="problem-title">문제 ${status.index+1 }</th>
 	                        </c:forEach>
 	                    </tr>
 	                </thead>
 	                <tbody>
 	                    <tr>
-	                        <th>맞았습니다</th>
+	                        <th>정답</th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
 								<td>${vo.y }</td>
 	                        </c:forEach>
 	                    </tr>
 	                    <tr>
-	                        <th>틀렸습니다</th>
+	                        <th>오답</th>
 	                        <c:forEach items='${subStatisticsList }' var='vo' step='1' varStatus='status'>
 								<td>${vo.n }</td>
 	                        </c:forEach>

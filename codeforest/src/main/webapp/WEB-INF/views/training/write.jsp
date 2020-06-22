@@ -41,8 +41,7 @@ var problemAdd = function() {
 			+ '<div class="ex-output-title">출력 예제</div>'
 			+ '<textarea id="ex-output-text" name="subProblemList[' + index + '].examOutput" placeholder="출력 예제를 작성하세요" required autocomplete="off"></textarea>'
 			+ '</div>'
-			+ '<div class="answer-code' + index + '">'
-			+ '</div></div>';
+			+ '</div>';
 
 	buttonStr = '<li id="' + index + '" class="tablinks">' + (index + 1) + '<span class="delete" style="display: none" ><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>';
 }
@@ -74,8 +73,10 @@ $(function() {
 		
 		$('#' + index).hover(function() {
 			$(this).children().show();
+			$(this).addClass('hover-tablinks');
 		}, function() {
 			$(this).children().hide();
+			$(this).removeClass('hover-tablinks');
 		});
 		
 		setStyle(index);
@@ -123,19 +124,21 @@ $(function() {
 		for(var i = 0; i < index; i++) {
 			if(!($('#' + i).attr('id'))) {
 				for(var j = i + 1; j < index; j++) {
-					$('#' + j).text('문제 ' + j.toString());
-					$('#' + j).append('<span class="delete"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span>');
-					$('.prob' + j + ' h3').text('문제 ' + j.toString());
+					$('#' + j).text(j.toString());
+					$('#' + j).append('<span class="delete" style="display:none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span>');
 					
 					// li id 설정
 					$('#' + j).attr('id', (j-1).toString());
 					// prob class 설정
 					$('.prob' + j).attr('class', 'prob' + (j-1).toString());
+					$('#prob-content-text' + j).attr('id', 'prob-content-text' + (j-1).toString());
 				}
 			}
 		}
 		
 		index--;
+		
+		$('#' + (index-1)).trigger('click');
 	});
 	
 	$('#fake-submit').click(function() {
@@ -151,8 +154,10 @@ $(function() {
 	
 	$('#0').hover(function() {
 		$(this).children().show();
+		$(this).addClass('hover-tablinks');
 	}, function() {
 		$(this).children().hide();
+		$(this).removeClass('hover-tablinks');
 	});
 	
 	CKEDITOR.replace('prob-content-text0');
@@ -204,14 +209,12 @@ function captureReturnKey(e) {
 			<br />
 
 			<div class="write-container">
-				<div class="tab">
-					<ul class="tab-ul">
-						<li id="0" class="tablinks" name="selected">1<span class="delete" style="display: none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>
-						<li id="addSubProblem">+</li>
-					</ul>
-					
-				</div>
-
+			<div class="tab">
+				<ul class="tab-ul">
+					<li id="0" class="tablinks" name="selected">1<span class="delete" style="display: none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>
+					<li id="addSubProblem">+</li>
+				</ul>
+			</div>
 				<div id="problem" class="tabcontent">
 					<div class="prob0">
 						<div class="sub-title">
