@@ -790,7 +790,7 @@ $(function() {
   		setTimeout(function(){
   			$("#Save").removeClass("SaveClick");
   			$("#Save").addClass("Save");
-  		},1000);
+  		},500);
   		
   		
   		
