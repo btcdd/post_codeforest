@@ -784,13 +784,15 @@ $(function() {
   	$(document).on("click","#Save",function(){
   		console.log("Save tempFile>>>>>>>",tempFile.data("fileName"));
   		
+  		
+  		$(this).addClass("SaveClick");	
+  		
   		setTimeout(function(){
-  			$(this).addClass("SaveClick");	
+  			$("#Save").removeClass("SaveClick");
+  			$("#Save").addClass("Save");
   		},1000);
-  		setTimeout(function(){
-  			$(this).removeClass("SaveClick");
-  	  		$(this).addClass("Save");	
-  		},1000);
+  		
+  		
   		
   		
   		 		
