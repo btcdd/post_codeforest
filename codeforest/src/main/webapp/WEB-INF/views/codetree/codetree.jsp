@@ -456,6 +456,7 @@ $(function() {
  	$(document).on("click", "#userfile-update", function() {
  		var lang = $(".lang option:selected").val();
  		var fileName = null;
+ 		codeNo = fileNo;
  		$('<div> <input type="text" style="z-index:10000" class="fileName-update" placeholder='+'.'+lang+'></div>')
 		    .attr("title","파일 수정")
 		    .dialog({
@@ -483,7 +484,7 @@ $(function() {
 								'prevFileName':prevFileName
 							},
 							success: function(response) {
-								codeNo = fileNo;
+				
 								if(root != null) {
 								 	layoutId = "layout"+codeNo;
 									tempLayout = root.getItemsById(layoutId)[0];
