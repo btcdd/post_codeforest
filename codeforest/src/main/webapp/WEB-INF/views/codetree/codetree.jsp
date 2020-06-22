@@ -699,7 +699,7 @@ $(function() {
 	     }
     });
  	 
-	$(".CodeMirror").on("propertychange change keyup paste", function(e){
+	$(".CodeMirror-scroll").on("propertychange change keyup paste", function(e){
 		console.log("key press tempFile[0].dataset>>>",tempFile[0].dataset);
 		 
 		if(e.target.nodeName == "TEXTAREA"){
