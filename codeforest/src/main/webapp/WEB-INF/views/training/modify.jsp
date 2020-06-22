@@ -292,7 +292,7 @@ window.onload = function(){
 			<br />
 			<div class="write-container">
 				<div class="tab">
-					<ul>
+					<ul class="tab-ul">
 						<c:forEach items="${list }" var="item" varStatus="status" begin="0">
 							<li id="${status.index }" class="tablinks" value="${item.no }">${status.index + 1}<span class="delete" style="display: none"><img src="${pageContext.request.contextPath}/assets/images/training/delete.png"></span></li>
 						</c:forEach>
