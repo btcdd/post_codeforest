@@ -1109,8 +1109,17 @@ window.onload = function() {
               <li><a>Adobe Premiere Pro</a></li>
             </ul>
           </li>
-
+          <div class="buttons">
+			  <li><button class="action-button shadow animate" id="Run" class="Run">Run</button></li>
+			  <li><button class="action-button shadow animate" id="Save">Save</button></li>
+			  <li><button class="action-button shadow animate" id="Submit">Submit</button></li>
+		  </div>
         </ul>
+              <!-- <div class="buttons">
+              	<button class="action-button shadow animate" id="Run" class="Run">Run</button>	
+              	<button class="action-button shadow animate" id="Run" class="Run">Run</button>
+              	<button class="action-button shadow animate" id="Submit">Submit</button>
+              </div>         -->
       </div>
     </div>
  </nav>
@@ -1172,11 +1181,7 @@ window.onload = function() {
                     <option value="35px">35px</option>
                 </select>
               </div>
-              <div class="buttons">
-              	<button class="action-button shadow animate" id="Save">Save</button>
-              	<button class="action-button shadow animate" id="Run" class="Run">Run</button>
-              	<button class="action-button shadow animate" id="Submit">Submit</button>
-              </div>
+
           </div> 
 
 	    <div class="frame horizontal" id="file-codemirror-cover">	    

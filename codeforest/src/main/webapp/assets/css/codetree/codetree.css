@@ -292,15 +292,15 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 }
 
 .language-selector {
-    float: left;
+    float: right;
 }
 
 .theme-selector {
-    float: left;
+    float: right;
 }
 
 .font-size {
-    float: left;
+    float: right;
 } 
 
 
@@ -502,8 +502,8 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 {
 	position: relative;
 	padding: 2.5px 10px;
-  margin: 0px 10px 10px 0px;
-  float: left;
+ 	margin: 5px 10px 10px 0px;
+ 	float: left;
 	border-radius: 10px;
 	font-size: 12px;
 	color: #FFF;
