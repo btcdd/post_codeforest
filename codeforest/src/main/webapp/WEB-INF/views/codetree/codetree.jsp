@@ -784,6 +784,11 @@ $(function() {
   	$(document).on("click","#Save",function(){
   		console.log("Save tempFile>>>>>>>",tempFile.data("fileName"));
   		
+  		$(this).addClass("SaveClick");	
+  		setTimeout(function(){
+  			$("#Save").removeClass("SaveClick");
+  			$("#Save").addClass("Save");
+  		},100);
   		
   		
   		console.log("editor.getValue()>>>>>>",currentEditor.getValue());

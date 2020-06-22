@@ -537,6 +537,12 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 	border-bottom: 1px solid;
 }
 
+.SaveClick{
+	transform: translate(0px,2px);
+  -webkit-transform: translate(0px,2px);
+  border-bottom: 1px solid;	
+}
+
 /* -------------------- golden layout ---------------------- */
 .gl-cover {
 	width: 100%;
