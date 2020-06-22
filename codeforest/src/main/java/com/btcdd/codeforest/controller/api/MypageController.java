@@ -60,8 +60,8 @@ public class MypageController {
 	public JsonResult deleteProblem(@PathVariable("no") Long no) {
 		int result = mypageService.deleteProblem(no);
 		MypageLinux mypageLinux = new MypageLinux();
-		mypageLinux.deleteProblemAllUsers(no);
-		return JsonResult.success(result);
+		String check = mypageLinux.deleteProblemAllUsers(no);
+		return JsonResult.success(check);
 	}
 
 	@Auth

@@ -12,7 +12,7 @@ public class MypageLinux {
 	
 	private Process process;
 	
-	public void deleteProblemAllUsers(Long problemNo) {	
+	public String deleteProblemAllUsers(Long problemNo) {	
 		
 		try {
 			process = Runtime.getRuntime().exec("find . -name 'prob" + problemNo + "' -type d | xargs rm -rf");
@@ -20,5 +20,6 @@ public class MypageLinux {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+		return "lalalal";
 	}
 }
