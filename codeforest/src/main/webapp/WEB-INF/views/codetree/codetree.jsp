@@ -487,7 +487,8 @@ $(function() {
 				
 								 	layoutId = "layout-"+codeNo;
 									tempLayout = root.getItemsById(layoutId)[0];
-									if(tempLayout != "undefined") {
+									console.log("tempLayout>>>",tempLayout);
+									if(tempLayout != null) {
 										tempLayout.setTitle(fileName);
 									}
 								
@@ -495,7 +496,7 @@ $(function() {
 									alert("이미 파일이 존재합니다.");//메시지 처리 필요
 									return;
 								}
-								$(".file-tree__subtree").remove(); 
+								$(".file-tree__subtree").remove();
 
 								fileFetchList(); 
 								
