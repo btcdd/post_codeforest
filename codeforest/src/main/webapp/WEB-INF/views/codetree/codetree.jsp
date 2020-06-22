@@ -918,8 +918,8 @@ $(function() {
 // 	var glCm4 = document.getElementsByClassName("lm_item_container")[0];
 // 	glCm4.style = "";
 	
-	var glCm5 = document.getElementsByClassName("lm_content")[0];
-	glCm5.style = "";
+// 	var glCm5 = document.getElementsByClassName("lm_content")[0];
+// 	glCm5.style = "";
  	
  	
  	
