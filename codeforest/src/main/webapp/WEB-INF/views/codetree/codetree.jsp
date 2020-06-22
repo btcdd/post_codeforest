@@ -783,8 +783,18 @@ $(function() {
   	    
   	$(document).on("click","#Save",function(){
   		console.log("Save tempFile>>>>>>>",tempFile.data("fileName"));
+  		setTimeout(function(){
+  			this.addClass("SaveClick");  			
+  		},1000);
+  		 	this.removeClass("SaveClick");	
+  		/*
   		
-  		
+.Save:hover{
+  color: white;
+  background: #1ECD97;	
+  transform: translateY(3px);
+}  		
+  		*/
   		
   		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
   		var problemNo = "${saveVo.problemNo }";
@@ -1080,9 +1090,9 @@ window.onload = function() {
 
 <nav role="navigation" class='main-nav'>
     <div class="main-nav-wrapper">
-      <div class="logo">
-        
-      </div>
+		<div class="logo-title">
+	        <a class="logo-title" href="${pageContext.servletContext.contextPath }">Code Forest</a>
+	    </div>
       <div class="menu-cool-container">
         <ul>
           <li><a>Home</a></li>
@@ -1124,53 +1134,55 @@ window.onload = function() {
 	  <div class="frame vertical" id="code-mirror">
 
 		  <div class='navigator'>
-              <div class='language-selector'>
-                <select class="lang" name="lang">
-                    <option value="c">C</option>
-                    <option value="cpp">C++</option>
-                    <option value="cs">C#</option>
-                    <option value="java" selected="selected">JAVA</option>
-                    <option value="js">JavaScript</option>
-                    <option value="py">Python</option>
-                </select>
+		  	  <div class="LanguageThemeFont">
+	              <div class='language-selector'>
+	                <select class="lang" name="lang">
+	                    <option value="c">C</option>
+	                    <option value="cpp">C++</option>
+	                    <option value="cs">C#</option>
+	                    <option value="java" selected="selected">JAVA</option>
+	                    <option value="js">JavaScript</option>
+	                    <option value="py">Python</option>
+	                </select>
+	              </div>
+	              <div class='theme-selector'>
+	                <select class="theme" name="theme">
+	                	<optgroup label="black">
+	                    <option value="abcdef">abcdef</option>
+	                    <option value="blackboard">blackboard</option>
+	                    <option value="dracula">dracula</option>
+	                    <option value="moxer">moxer</option>
+	                    <option value="panda-syntax" selected="selected">panda-syntax</option>
+	                  </optgroup>
+	                  <optgroup label="white">
+	                    <option value="duotone-light">duotone-light</option>
+	                    <option value="eclipse">eclipse</option>
+	                    <option value="neat">neat</option>
+	                    <option value="ttcn">ttcn</option>
+	                    <option value="solarized">solarized</option>
+	                  </optgroup>
+	                </select>
+	              </div>
+	              <div class='font-size'>
+	                  <select class="size" id="font-size" name="size">
+	                    <option value="10px">10px</option>
+	                    <option value="12px">12px</option>
+	                    <option value="15px">15px</option>
+	                    <option value="16px" selected="selected">16px</option>
+	                    <option value="17px">17px</option>
+	                    <option value="18px">18px</option>
+	                    <option value="19px">19px</option>
+	                    <option value="20px">20px</option>
+	                    <option value="25px">25px</option>
+	                    <option value="30px">30px</option>
+	                    <option value="35px">35px</option>
+	                </select>
+	              </div>
               </div>
-              <div class='theme-selector'>
-                <select class="theme" name="theme">
-                	<optgroup label="black">
-                    <option value="abcdef">abcdef</option>
-                    <option value="blackboard">blackboard</option>
-                    <option value="dracula">dracula</option>
-                    <option value="moxer">moxer</option>
-                    <option value="panda-syntax" selected="selected">panda-syntax</option>
-                  </optgroup>
-                  <optgroup label="white">
-                    <option value="duotone-light">duotone-light</option>
-                    <option value="eclipse">eclipse</option>
-                    <option value="neat">neat</option>
-                    <option value="ttcn">ttcn</option>
-                    <option value="solarized">solarized</option>
-                  </optgroup>
-                </select>
-              </div>
-              <div class='font-size'>
-                  <select class="size" id="font-size" name="size">
-                    <option value="10px">10px</option>
-                    <option value="12px">12px</option>
-                    <option value="15px">15px</option>
-                    <option value="16px" selected="selected">16px</option>
-                    <option value="17px">17px</option>
-                    <option value="18px">18px</option>
-                    <option value="19px">19px</option>
-                    <option value="20px">20px</option>
-                    <option value="25px">25px</option>
-                    <option value="30px">30px</option>
-                    <option value="35px">35px</option>
-                </select>
-              </div>
-              <div>
-              	<button id="Save">Save</button>
+              <div class="SaveRunSubmit">
+              	<button id="Save" class="Save"></button>
               	<button id="Run" class="Run"></button>
-              	<button id="Submit">제출</button>
+              	<button id="Submit" class="Submit"></button>
               </div>
           </div> 
 
