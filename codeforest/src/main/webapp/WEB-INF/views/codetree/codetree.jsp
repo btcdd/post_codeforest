@@ -1098,7 +1098,7 @@ window.onload = function() {
        <div class="menu-cool-container">
         <ul>
           <li><a>Home</a></li>
-          <li>Play
+          <li><a>Web Apps</a>
             <ul class="sub-menu">
               <li>Save</li>
               <li>Run</li>
