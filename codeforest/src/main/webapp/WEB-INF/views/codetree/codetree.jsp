@@ -701,10 +701,11 @@ $(function() {
  	 
 	$(document).on("propertychange change keyup paste", function(e){
 		console.log("key press tempFile[0].dataset>>>",tempFile[0].dataset);
-		 
+		console.log("e.target.className:",e.target.className);
+		console.log("e.className:",e.className);
+		console.log("$(this).className:",$(this).className);
 		if(e.target.nodeName == "TEXTAREA" && e.target.className != "fileName-update"){
-			console.log("e.target.className:",e.target.className);
-			console.log("e.className:",e.className);
+			
 			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
 				layoutId = "layout-"+fileNo;
 				tempFile = fileMap.get(fileNo+"");
