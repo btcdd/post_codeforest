@@ -786,7 +786,7 @@ $(function() {
   		setTimeout(function(){
   			$(this).addClass("SaveClick");  			
   		},1000);
-  		 	$(this).removeClass("SaveClick");	
+  		 		
   		/*
   		 
 .Save:hover{
