@@ -689,6 +689,7 @@ $(function() {
 	            /* $("#Run").trigger("click"); */				
 				/* tempLayout.setTitle(tempFile.data("fileName")); */
 				tempFile = fileMap.get(fileNo+"");
+				console.log("ctrl+s tempFile[0].dataset>>>",tempFile[0].dataset);
 	            break;
 	        } 
 	     }
