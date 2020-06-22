@@ -82,46 +82,40 @@ $(function() {
 	fileFetchList();
 	
 ////////////////// code-mirror /////////////////////////////
-   var save = false;
-   $(".codeTest").submit(function(event) {
-      event.preventDefault();
-      var lang = $("select option:selected").val();
+//    var save = false;
+//    $(".codeTest").submit(function(event) {
+//       event.preventDefault();
+//       var lang = $("select option:selected").val();
       
-      var code = currentEditor.getValue();
+//       var code = currentEditor.getValue();
 
-      $.ajax({
-         url: '${pageContext.request.contextPath }/compile/' + lang,
-         async: true,
-         type: 'post',
-         dataType: 'json',
-         data: {code:code},
-         success: function(response){
-            if(response.result != "success") {
-               console.error(response.message);
-               return;
-            }
-            if(response.data[1] != "") {
-               console.log("data[1]\n" + response.data[1]);
-               $("#result").val(response.data[1]);
-            } else {
-               console.log("data[0]\n" + response.data[0]);
-               $('#result').val(response.data[0]);
-            }
+//       $.ajax({
+//          url: '${pageContext.request.contextPath }/compile/' + lang,
+//          async: true,
+//          type: 'post',
+//          dataType: 'json',
+//          data: {code:code},
+//          success: function(response){
+//             if(response.result != "success") {
+//                console.error(response.message);
+//                return;
+//             }
+//             if(response.data[1] != "") {
+//                console.log("data[1]\n" + response.data[1]);
+//                $("#result").val(response.data[1]);
+//             } else {
+//                console.log("data[0]\n" + response.data[0]);
+//                $('#result').val(response.data[0]);
+//             }
          
-         },
-         error: function(xhr, status, e) {
-            console.error(status + ":" + e);
-         }
-      });
-   });
-   
-//    var code = $('.CodeMirror')[0];
-//    var editor = CodeMirror.fromTextArea(code, {
-//    		lineNumbers: true,
-//    		mode: 'text/x-java',
-//    		theme: 'panda-syntax',
-//    		matchBrackets: true
+//          },
+//          error: function(xhr, status, e) {
+//             console.error(status + ":" + e);
+//          }
+//       });
 //    });
+   
+
    
    var theme = 'panda-syntax';
    $('.theme').click(function() {
@@ -729,10 +723,6 @@ $(function() {
 	        case 's':
 	            event.preventDefault();
 	            $("#Save").trigger("click");
-	            /* $("#Run").trigger("click"); */				
-				/* tempLayout.setTitle(tempFile.data("fileName")); */
-				/* tempFile = fileMap.get(fileNo+"");
-				console.log("ctrl+s tempFile[0].dataset>>>",tempFile[0].dataset); */
 	            break;
 	        } 
 	     }
@@ -742,12 +732,6 @@ $(function() {
 		console.log("key press tempFile[0].dataset>>>",tempFile[0].dataset);
 		 
 		if(e.target.nodeName == "TEXTAREA"){
-			
-			/* console.log("root.getActiveContentItem()>>>",root.getActiveContentItem().config.id.split("-")[1]);
-			console.log('tempFile.data("no")>>',tempFile.data("no"));
-			var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
-			console.log('tabFileNo>>',tabFileNo);
-            tempFile = fileMap.get(tabFileNo+""); */
 			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
 				layoutId = "layout-"+fileNo;
 				tempFile = fileMap.get(fileNo+"");
