@@ -784,6 +784,11 @@ $(function() {
   	$(document).on("click","#Save",function(){
   		console.log("Save tempFile>>>>>>>",tempFile.data("fileName"));
   		
+  		$(this).addClass("SaveClick");	
+  		setTimeout(function(){
+  			$("#Save").removeClass("SaveClick");
+  			$("#Save").addClass("Save");
+  		},100);
   		
   		
   		console.log("editor.getValue()>>>>>>",currentEditor.getValue());
@@ -923,10 +928,17 @@ $(function() {
  	
  	
  	
- 	
+ 	 
 	
-	
- 	
+	$(document).on("click",".sub-menu > li:first-child",function(){
+		$("#Save").trigger("click");
+	});
+	$(document).on("click",".sub-menu > li + li",function(){
+		$("#Run").trigger("click");
+	});
+	$(document).on("click",".sub-menu > li:last-child",function(){
+		$("#Submit").trigger("click");
+	});
 ////// function 끝부분 	
 });
 
@@ -1083,16 +1095,23 @@ window.onload = function() {
       <div class="header-logo">
         Code Forest
       </div>
-      <div class="menu-cool-container">
+       <div class="menu-cool-container">
         <ul>
           <li><a>Home</a></li>
-          <li><a>Web Apps</a>
+          <li><a>File</a>
             <ul class="sub-menu">
-              <li><a>AngularJS</a></li>
-              <li><a>ActionScript</a></li>
+              <li>Save</li>
+              <li>Run</li>
+              <li>Submit</li>              
             </ul>
           </li>
-          <li><a>Mobile Apps</a>
+          <li>
+          	<a>Mobile Apps</a>
+          </li>
+          <li>
+          	<a>About Us</a>
+          </li>          
+<!--           <li><a>Mobile Apps</a>
             <ul class="sub-menu">
               <li><a>Cordova/PhoneGap</a></li>
               <li><a>Ionic Framework</a></li>
@@ -1103,10 +1122,10 @@ window.onload = function() {
               <li><a>After Effects</a></li>
               <li><a>Adobe Premiere Pro</a></li>
             </ul>
-          </li>
-
+          </li> -->
         </ul>
-      </div>
+      </div> 
+               
     </div>
  </nav>
 
@@ -1167,13 +1186,13 @@ window.onload = function() {
                     <option value="35px">35px</option>
                 </select>
               </div>
-              <div class="buttons">
-              	<button class="action-button shadow animate" id="Save">Save</button>
-              	<button class="action-button shadow animate" id="Run" class="Run">Run</button>
-              	<button class="action-button shadow animate" id="Submit">Submit</button>
-              </div>
+			  <div class="buttons">
+		         	<button class="action-button shadow animate" id="Save" class="Save">Save</button>	
+		           	<button class="action-button shadow animate" id="Run" class="Run">Run</button>
+		           	<button class="action-button shadow animate" id="Submit" class="Submit">Submit</button>
+		      </div>
           </div> 
-
+  
 	    <div class="frame horizontal" id="file-codemirror-cover">	    
 	      <div id="box_2" class="box" style="display:flex;flex-direction:column">
 
