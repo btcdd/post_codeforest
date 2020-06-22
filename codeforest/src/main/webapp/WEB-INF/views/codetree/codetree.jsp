@@ -784,9 +784,9 @@ $(function() {
   	$(document).on("click","#Save",function(){
   		console.log("Save tempFile>>>>>>>",tempFile.data("fileName"));
   		setTimeout(function(){
-  			this.addClass("SaveClick");  			
+  			$(this).addClass("SaveClick");  			
   		},1000);
-  		 	this.removeClass("SaveClick");	
+  		 	$(this).removeClass("SaveClick");	
   		/*
   		 
 .Save:hover{
