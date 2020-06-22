@@ -81,40 +81,7 @@ var editorArrayIndex = 0;
 $(function() {
 	fileFetchList();
 	
-////////////////// code-mirror /////////////////////////////
-//    var save = false;
-//    $(".codeTest").submit(function(event) {
-//       event.preventDefault();
-//       var lang = $("select option:selected").val();
-      
-//       var code = currentEditor.getValue();
-
-//       $.ajax({
-//          url: '${pageContext.request.contextPath }/compile/' + lang,
-//          async: true,
-//          type: 'post',
-//          dataType: 'json',
-//          data: {code:code},
-//          success: function(response){
-//             if(response.result != "success") {
-//                console.error(response.message);
-//                return;
-//             }
-//             if(response.data[1] != "") {
-//                console.log("data[1]\n" + response.data[1]);
-//                $("#result").val(response.data[1]);
-//             } else {
-//                console.log("data[0]\n" + response.data[0]);
-//                $('#result').val(response.data[0]);
-//             }
-         
-//          },
-//          error: function(xhr, status, e) {
-//             console.error(status + ":" + e);
-//          }
-//       });
-//    });
-   
+////////////////// code-mirror /////////////////////////////   
 
    
    var theme = 'panda-syntax';
@@ -168,6 +135,7 @@ $(function() {
 		   $(".window .terminal .path").css('color', "#1f0d98");
 		   $(".folder--open").css('color', "#000000");
 		   $(".folder").css('color', "#000000");
+		   $(".ui__sidebar").css('color', "#2c2c2c");
 	   }
 	   else {
 		   $(".window .terminal").css('color', "#FFFFFF");
@@ -175,6 +143,7 @@ $(function() {
 		   $(".path").css('color', "#5ed7ff");
 		   $(".folder--open").css('color', "#FFFFFF");
 		   $(".folder").css('color', "#FFFFFF");
+		   $(".ui__sidebar").css('color', "#FFFFFF");
 	   }
    });
    
