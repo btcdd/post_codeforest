@@ -500,6 +500,7 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 
 .action-button
 {
+	display: inline-block;
 	position: relative;
 	padding: 2.5px 10px;
  	margin: 5px 10px 10px 0px;
