@@ -835,6 +835,10 @@ $(function() {
 			success: function(response) {
 				SavedCode.set(fileNo+"", currentEditor.getValue());
 				console.log("ok");
+				layoutId = "layout-"+fileNo;
+				tempFile = fileMap.get(fileNo+"");
+				tempLayout = root.getItemsById(layoutId)[0];
+				tempLayout.setTitle(tempFile.data("fileName"));
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
