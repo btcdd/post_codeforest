@@ -59,13 +59,13 @@ body {
   flex: 0 0 auto;
 }
 .resizer[data-resizer-type=H] {
-  width: 3px;
+  width: 5px;
   background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% transparent;
   cursor: col-resize;
   box-shadow: 1px 0px 0px #6E6E6E inset, 2px 0px 2px rgba(0, 0, 0, 0.4);
 }
 .resizer[data-resizer-type=V] {
-  height: 3px;
+  height: 5px;
 /*   background: linear-gradient(to bottom, #505050, #383838) repeat scroll 0% 0% transparent; */
 background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% transparent;
   cursor: row-resize;
