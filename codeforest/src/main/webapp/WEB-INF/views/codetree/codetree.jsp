@@ -930,15 +930,15 @@ $(function() {
  	
  	 
 	
-	/* $(document).on("click",".sub-menu > li:first-child",function(){
+/* 	$(document).on("click",".sub-menu > li:first-child",function(){
 		$("#Save").trigger("click");
-	});
-	$(document).on("click",".sub-menu > li + li",function(){
-		$("#Run").trigger("click");
 	}); */
-	$(document).on("click","menu-cool-container >  ul > li:last-child",function(){
+	$(document).on("click",".menu-cool-container > ul > li + li",function(){
+		$("#Save").trigger("click");
+	}); 
+/* 	$(document).on("click","menu-cool-container >  ul > li:last-child",function(){
 		$("#Submit").trigger("click");
-	});
+	}); */
 ////// function 끝부분 	
 });
 
