@@ -213,7 +213,7 @@ $(function() {
  	        t.addClass("folder--open");
  	        tree.addClass("file-tree__item--open");
  	    }
-
+ 
  	    // Close all siblings
  	    /*
  	    tree
