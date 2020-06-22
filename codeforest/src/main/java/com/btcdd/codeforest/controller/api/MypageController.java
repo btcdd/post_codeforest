@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.btcdd.codeforest.dto.JsonResult;
+import com.btcdd.codeforest.linux.MypageLinux;
 import com.btcdd.codeforest.service.MypageService;
 import com.btcdd.codeforest.vo.SubProblemVo;
 import com.btcdd.codeforest.vo.SubmitVo;
@@ -58,7 +59,8 @@ public class MypageController {
 	@DeleteMapping(value = "/problem/delete/{no}")
 	public JsonResult deleteProblem(@PathVariable("no") Long no) {
 		int result = mypageService.deleteProblem(no);
-
+		MypageLinux mypageLinux = new MypageLinux();
+		mypageLinux.deleteProblemAllUsers(no);
 		return JsonResult.success(result);
 	}
 
@@ -66,7 +68,7 @@ public class MypageController {
 	@DeleteMapping(value = "/sub-problem/delete/{no}")
 	public JsonResult deleteSubProblem(@PathVariable("no") Long no) {
 		int result = mypageService.deleteSubProblem(no);
-
+		
 		return JsonResult.success(result);
 	}
 
