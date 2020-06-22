@@ -513,6 +513,7 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 
 #Save
 {
+	display: inline-block;
 	background-color: #E74C3C;
 	border-bottom: 3px solid #BD3E31;
 	text-shadow: 0px -1px #BD3E31;
@@ -520,6 +521,7 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 
 #Run
 {
+	display: inline-block;
 	background-color: #3498DB;
 	border-bottom: 3px solid #2980B9;
 	text-shadow: 0px -1px #2980B9;
@@ -527,6 +529,7 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 
 #Submit
 {
+	display: inline-block;
 	background-color: #82BF56;
 	border-bottom: 3px solid #669644;
 	text-shadow: 0px -1px #669644;
