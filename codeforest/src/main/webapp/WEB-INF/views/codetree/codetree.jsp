@@ -699,10 +699,10 @@ $(function() {
 	     }
     });
  	 
-	$(".CodeMirror.cm-s-"+theme+".CodeMirror-focused").on("propertychange change keyup paste", function(e){
+	$(document).on("propertychange change keyup paste", function(e){
 		console.log("key press tempFile[0].dataset>>>",tempFile[0].dataset);
 		 
-		if(e.target.nodeName == "TEXTAREA"){
+		if(e.target.nodeName == "TEXTAREA" && e.target.nodeName != "INPUT"){
 			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
 				layoutId = "layout-"+fileNo;
 				tempFile = fileMap.get(fileNo+"");
