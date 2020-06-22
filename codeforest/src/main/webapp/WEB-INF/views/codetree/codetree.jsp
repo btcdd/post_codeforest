@@ -1080,8 +1080,8 @@ window.onload = function() {
 
 <nav role="navigation" class='main-nav'>
     <div class="main-nav-wrapper">
-      <div class="logo">
-        
+      <div class="header-logo">
+        Code Forest
       </div>
       <div class="menu-cool-container">
         <ul>
@@ -1167,10 +1167,10 @@ window.onload = function() {
                     <option value="35px">35px</option>
                 </select>
               </div>
-              <div>
-              	<button id="Save">Save</button>
-              	<button id="Run" class="Run"></button>
-              	<button id="Submit">제출</button>
+              <div class="buttons">
+              	<button class="action-button shadow animate" id="Save">Save</button>
+              	<button class="action-button shadow animate" id="Run" class="Run">Run</button>
+              	<button class="action-button shadow animate" id="Submit">Submit</button>
               </div>
           </div> 
 
