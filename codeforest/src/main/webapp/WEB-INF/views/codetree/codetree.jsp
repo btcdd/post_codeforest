@@ -1098,13 +1098,19 @@ window.onload = function() {
        <div class="menu-cool-container">
         <ul>
           <li><a>Home</a></li>
-          <li><a>Web Apps</a>
+          <li>File
             <ul class="sub-menu">
               <li>Save</li>
               <li>Run</li>
               <li>Submit</li>              
             </ul>
           </li>
+          <li>
+          	Mobile Apps
+          </li>
+          <li>
+          	About Us
+          </li>          
 <!--           <li><a>Mobile Apps</a>
             <ul class="sub-menu">
               <li><a>Cordova/PhoneGap</a></li>
