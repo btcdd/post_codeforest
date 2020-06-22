@@ -1098,7 +1098,7 @@ window.onload = function() {
        <div class="menu-cool-container">
         <ul>
           <li><a>Home</a></li>
-          <li>File
+          <li><a>File</a>
             <ul class="sub-menu">
               <li>Save</li>
               <li>Run</li>
@@ -1106,10 +1106,10 @@ window.onload = function() {
             </ul>
           </li>
           <li>
-          	Mobile Apps
+          	<a>Mobile Apps</a>
           </li>
           <li>
-          	About Us
+          	<a>About Us</a>
           </li>          
 <!--           <li><a>Mobile Apps</a>
             <ul class="sub-menu">
