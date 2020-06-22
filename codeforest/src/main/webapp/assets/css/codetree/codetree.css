@@ -535,6 +535,7 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 	background-color: #E74C3C;
 	border-bottom: 3px solid #BD3E31;
 	text-shadow: 0px -1px #BD3E31;
+	cursor:pointer;
 }
 
 #Run
@@ -542,6 +543,7 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 	background-color: #3498DB;
 	border-bottom: 3px solid #2980B9;
 	text-shadow: 0px -1px #2980B9;
+	cursor:pointer;
 }
 
 #Submit
@@ -549,6 +551,7 @@ background: linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% tran
 	background-color: #82BF56;
 	border-bottom: 3px solid #669644;
 	text-shadow: 0px -1px #669644;
+	cursor:pointer;
 }
 .action-button:active
 {
