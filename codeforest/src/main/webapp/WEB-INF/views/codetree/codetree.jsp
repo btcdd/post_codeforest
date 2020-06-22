@@ -81,47 +81,8 @@ var editorArrayIndex = 0;
 $(function() {
 	fileFetchList();
 	
-////////////////// code-mirror /////////////////////////////
-   var save = false;
-   $(".codeTest").submit(function(event) {
-      event.preventDefault();
-      var lang = $("select option:selected").val();
-      
-      var code = currentEditor.getValue();
+////////////////// code-mirror /////////////////////////////   
 
-      $.ajax({
-         url: '${pageContext.request.contextPath }/compile/' + lang,
-         async: true,
-         type: 'post',
-         dataType: 'json',
-         data: {code:code},
-         success: function(response){
-            if(response.result != "success") {
-               console.error(response.message);
-               return;
-            }
-            if(response.data[1] != "") {
-               console.log("data[1]\n" + response.data[1]);
-               $("#result").val(response.data[1]);
-            } else {
-               console.log("data[0]\n" + response.data[0]);
-               $('#result').val(response.data[0]);
-            }
-         
-         },
-         error: function(xhr, status, e) {
-            console.error(status + ":" + e);
-         }
-      });
-   });
-   
-//    var code = $('.CodeMirror')[0];
-//    var editor = CodeMirror.fromTextArea(code, {
-//    		lineNumbers: true,
-//    		mode: 'text/x-java',
-//    		theme: 'panda-syntax',
-//    		matchBrackets: true
-//    });
    
    var theme = 'panda-syntax';
    $('.theme').click(function() {
@@ -174,6 +135,7 @@ $(function() {
 		   $(".window .terminal .path").css('color', "#1f0d98");
 		   $(".folder--open").css('color', "#000000");
 		   $(".folder").css('color', "#000000");
+		   $(".ui__sidebar").css('color', "#2c2c2c");
 	   }
 	   else {
 		   $(".window .terminal").css('color', "#FFFFFF");
@@ -181,6 +143,7 @@ $(function() {
 		   $(".path").css('color', "#5ed7ff");
 		   $(".folder--open").css('color', "#FFFFFF");
 		   $(".folder").css('color', "#FFFFFF");
+		   $(".ui__sidebar").css('color', "#FFFFFF");
 	   }
    });
    
@@ -215,7 +178,7 @@ $(function() {
  	        t.addClass("folder--open");
  	        tree.addClass("file-tree__item--open");
  	    }
-
+ 
  	    // Close all siblings
  	    /*
  	    tree
@@ -493,6 +456,7 @@ $(function() {
  	$(document).on("click", "#userfile-update", function() {
  		var lang = $(".lang option:selected").val();
  		var fileName = null;
+ 		codeNo = fileNo;
  		$('<div> <input type="text" style="z-index:10000" class="fileName-update" placeholder='+'.'+lang+'></div>')
 		    .attr("title","파일 수정")
 		    .dialog({
@@ -520,12 +484,13 @@ $(function() {
 								'prevFileName':prevFileName
 							},
 							success: function(response) {
-								if(root != null) {
-								 	layoutId = "layout"+codeNo;
+				
+								 	layoutId = "layout-"+codeNo;
 									tempLayout = root.getItemsById(layoutId)[0];
-									console.log(tempLayout);
-									tempLayout.setTitle(fileName);
-								}
+	
+									if(tempLayout != null) {
+										tempLayout.setTitle(fileName);
+									}
 								
  								if(response.data.result == 'no'){
 									alert("이미 파일이 존재합니다.");//메시지 처리 필요
@@ -697,10 +662,12 @@ $(function() {
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[0]);
 		console.log("getActiveContentItem()>>",root.getActiveContentItem().config.id.split("-")[1]);
 		var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
+		fileNo = tabFileNo;
  		tempFile = fileMap.get(tabFileNo+"");
-		$(this).parent().attr("id", "tab"+tabFileNo);
+		$(this).parent().attr("id", "tab"+tabFileNo); //dom 분리시 작업 코드 진행중
  		console.log("mousedown tempFile>>>>>>>",tempFile.data("fileName"));
  		currentEditor = HashMap.get("editor"+tabFileNo);
+		
  		
  		     
 	});
@@ -712,6 +679,7 @@ $(function() {
 		console.log("this.parent().parent>>",$(this).parent().parent().attr("id"));
 		console.log("this.parent().parent>>",$(this).parent().parent().attr("id").split("cm"));
  		var cmNo = $(this).parent().parent().attr("id").split("cm")[1];
+ 		fileNo = cmNo;
  		tempFile = fileMap.get(cmNo+"");
  		currentEditor = HashMap.get("editor"+cmNo);
  		
@@ -726,31 +694,23 @@ $(function() {
 	        case 's':
 	            event.preventDefault();
 	            $("#Save").trigger("click");
-	            /* $("#Run").trigger("click"); */				
-				/* tempLayout.setTitle(tempFile.data("fileName")); */
-				/* tempFile = fileMap.get(fileNo+"");
-				console.log("ctrl+s tempFile[0].dataset>>>",tempFile[0].dataset); */
 	            break;
 	        } 
 	     }
     });
  	 
-	$(document).on("propertychange change keyup paste",function(e){
-		console.log("key press tempFile[0].dataset>>>",tempFile[0].dataset);
-		 
-		if(e.target.nodeName == "TEXTAREA"){
-			
-			/* console.log("root.getActiveContentItem()>>>",root.getActiveContentItem().config.id.split("-")[1]);
-			console.log('tempFile.data("no")>>',tempFile.data("no"));
-			var tabFileNo = root.getActiveContentItem().config.id.split("-")[1];
-			console.log('tabFileNo>>',tabFileNo);
-            tempFile = fileMap.get(tabFileNo+""); */
+	$(document).on("propertychange change keyup paste", function(e){
+
+		if(e.target.nodeName == "TEXTAREA" && e.target.className != "fileName-update"){
 			if(currentEditor.getValue() != SavedCode.get(fileNo+"")){
 				layoutId = "layout-"+fileNo;
 				tempFile = fileMap.get(fileNo+"");
 				tempLayout = root.getItemsById(layoutId)[0];
 				tempLayout.setTitle("*"+tempFile.data("fileName"));
 			}else{
+				layoutId = "layout-"+fileNo;
+				tempFile = fileMap.get(fileNo+"");
+				tempLayout = root.getItemsById(layoutId)[0];
 				tempLayout.setTitle(tempFile.data("fileName"));
 			}			
 		}
@@ -845,6 +805,10 @@ $(function() {
 			success: function(response) {
 				SavedCode.set(fileNo+"", currentEditor.getValue());
 				console.log("ok");
+				layoutId = "layout-"+fileNo;
+				tempFile = fileMap.get(fileNo+"");
+				tempLayout = root.getItemsById(layoutId)[0];
+				tempLayout.setTitle(tempFile.data("fileName"));
 			},
 			error: function(xhr, status, e) {
 				console.error(status + ":" + e);
@@ -951,11 +915,11 @@ $(function() {
 	var glCm3 = document.getElementsByClassName("lm_items")[0];
 	glCm3.style = "";
 	
-	var glCm4 = document.getElementsByClassName("lm_item_container")[0];
-	glCm4.style = "";
+// 	var glCm4 = document.getElementsByClassName("lm_item_container")[0];
+// 	glCm4.style = "";
 	
-	var glCm5 = document.getElementsByClassName("lm_content")[0];
-	glCm5.style = "";
+// 	var glCm5 = document.getElementsByClassName("lm_content")[0];
+// 	glCm5.style = "";
  	
  	
  	
