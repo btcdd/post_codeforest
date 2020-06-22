@@ -211,7 +211,6 @@ $(function() {
 					data: '',
 					success: function(response) {
 						dialogDelete.dialog('close');
-						console.log(response.data.check);
 						// 삭제 추가해야하는 곳
 						$(".list-contents[data-no=" + no + "]").remove();
 						$(".sub-problem-contents" + no).remove();
