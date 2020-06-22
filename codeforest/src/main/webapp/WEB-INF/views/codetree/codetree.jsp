@@ -1132,6 +1132,7 @@ window.onload = function() {
 	  <div class="frame vertical" id="code-mirror">
 
 		  <div class='navigator'>
+
               <div class='language-selector dropdown dropdown-dark'>
                 <select class="lang dropdown-select" name="lang">
                     <option value="c">C</option>
@@ -1177,6 +1178,7 @@ window.onload = function() {
                     <option value="35px">35px</option>
                 </select>
               </div>
+              
 			  <div class="buttons">
 		         	<button class="action-button shadow animate" id="Save" class="Save">Save</button>	
 		           	<button class="action-button shadow animate" id="Run" class="Run">Run</button>
