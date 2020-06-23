@@ -243,7 +243,7 @@ $(function() {
 		autoOpen: false,
 		resizable: false,
 		height: 600,
-		width: 1200,
+		width: 1040,
 		modal: true,
 		buttons: {
 			"다운로드": function() {		
@@ -480,7 +480,7 @@ $(function() {
           <label><input class="box-component" type="checkbox" name="problem-list-table" value="lang" checked>언어</label>
           <label><input class="box-component" type="checkbox" name="problem-list-table" value="solve-time" checked>해결시간</label>
        </div>
-       <table class="problem-list-table">
+       <table class="problem-list-table rtable">
           <tr>
                <th id="name">이름</th>
                 <th id="email">이메일</th>

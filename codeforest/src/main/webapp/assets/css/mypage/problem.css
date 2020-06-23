@@ -255,3 +255,31 @@ input[type=text] {
     border: 1.5px #dfdfdf solid;
     cursor: pointer;
 }
+
+/* ----------------- 문제 푼 사람 리스트(problem-list) ----------------- */
+.rtable {
+  display: inline-block;
+  vertical-align: top;
+  max-width: 100%;  
+  overflow-x: auto;  
+  white-space: nowrap;
+  border-collapse: collapse;
+  border-spacing: 0;
+  padding: 20px 10px;
+}
+
+.rtable th {
+  font-size: 11px;
+  text-align: left;
+  text-transform: uppercase;
+  background: #f2f0e6;
+}
+
+.rtable th,
+.rtable td {
+  padding: 8px 80px 8px 12px;
+  border: 1px solid #d9d7ce;
+  font-size : 1em;
+  width: 200px;
+}
+
