@@ -1162,7 +1162,6 @@ window.onload = function() {
       </div>
        <div class="menu-cool-container">
         <ul>
-          <li><a>Home</a></li>
           <li><a>File</a>
             <ul class="sub-menu">
               <li>Save</li>
@@ -1170,11 +1169,24 @@ window.onload = function() {
               <li>Submit</li>              
             </ul>
           </li>
-          <li>
-          	<a>Mobile Apps</a>
+          <li><a>Run</a>
+            <ul class="sub-menu">
+              <li>Run</li>            
+            </ul>
           </li>
           <li>
-          	<a>About Us</a>
+          	<a>Search</a>
+          	<ul class="sub-menu">
+              <li>Search</li>            
+            </ul>
+          </li>
+          <li>
+          	<a>Setting</a>
+          	<ul class="sub-menu">
+              <li>Language</li>
+              <li>Theme</li>
+              <li>Font-Size</li>              
+            </ul>
           </li>          
 <!--           <li><a>Mobile Apps</a>
             <ul class="sub-menu">
