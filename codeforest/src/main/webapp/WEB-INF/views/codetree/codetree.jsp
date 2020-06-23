@@ -38,7 +38,8 @@
 
 <script type="text/javascript" src="${pageContext.servletContext.contextPath }/assets/js/jquery/goldenlayout.min.js"></script>
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/codetree/goldenlayout-base.css" />
-<link rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/codetree/goldenlayout-dark-theme.css" />
+<link id="goldenlayout-theme" rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/codetree/goldenlayout-dark-theme.css" />
+<%-- <link id="goldenlayout-theme" rel="stylesheet" href="${pageContext.servletContext.contextPath }/assets/css/codetree/goldenlayout-light-theme.css" /> --%>
 
 <script>
 
@@ -136,6 +137,43 @@ $(function() {
 		   $(".folder--open").css('color', "#000000");
 		   $(".folder").css('color', "#000000");
 		   $(".ui__sidebar").css('color', "#2c2c2c");
+		   
+		   $("#goldenlayout-theme").attr("href", "${pageContext.servletContext.contextPath }/assets/css/codetree/goldenlayout-light-theme.css");
+		   
+		   $(".accordion").css("background-color", "#F3F3F3");
+		   
+		   $(".accordion__title").css("background-color", "#F3F3F3");
+		   $(".accordion__title").css("border-bottom", "#f3f3f3");
+		   $(".accordion__title").css("color", "#414141");
+		   
+		   $(".navigator").css("background-color", "#F3F3F3");
+		   $(".navigator").css("background ", "#F3F3F3");
+		   
+		   $(".accordion__items").css("background-color", "#E2E2E2");
+		   $(".accordion__items").css("border-bottom", "2px solid #CDCDCD");
+		   $(".accordion__items").css("color", "#414141");
+		   $(".accordion__items").css("box-shadow", "0 0 10px rgba(150, 150, 150, 1)");
+		   
+		   $(".accordion__items:nth-of-type(even)").css("background-color", "#D8D8D8");
+		   
+		   $(".accordion__content").css("background-color", "#fff");
+		   $(".accordion__content").css("border-bottom", "2px solid #D8D8D8");
+		   
+		   $(".accordion__content__caption").css("color", "#414141");
+		   
+		   $(".accordion__content__txt").css("color", "#414141");
+		   
+		   $(".accordion__items.active ").css("background-color", "#CDCDCD");
+		   
+		   $(".accordion__items:hover").css("background-color", " #CDCDCD");
+		   
+		   $(".resizer[data-resizer-type=H]").css("background", "#bebebe");
+		   $(".resizer[data-resizer-type=V]").css("background", "#bebebe");
+		   
+		   $(".box").css("background", "");
+		   $(".box").css("background", "#bebebe");
+		   
+		   $(".dropdown").removeClass("dropdown-dark");
 	   }
 	   else {
 		   $(".window .terminal").css('color', "#FFFFFF");
@@ -144,6 +182,44 @@ $(function() {
 		   $(".folder--open").css('color', "#FFFFFF");
 		   $(".folder").css('color', "#FFFFFF");
 		   $(".ui__sidebar").css('color', "#FFFFFF");
+		   
+		   $("#goldenlayout-theme").attr("href", "${pageContext.servletContext.contextPath }/assets/css/codetree/goldenlayout-dark-theme.css");
+		   
+		   $(".accordion").css("background-color", "#18202a");
+		   
+		   $(".accordion__title").css("background-color", "#253141");
+		   $(".accordion__title").css("border-bottom", "#11161d");
+		   $(".accordion__title").css("color", "#fff");
+		   
+		   $(".navigator").css("background-color", "#253141");
+		   $(".navigator").css("background ", "#253141");
+		   
+		   $(".accordion__items").css("background-color", "#18202a");
+		   $(".accordion__items").css("border-bottom", "2px solid #090c10");
+		   $(".accordion__items").css("color", "#fff");
+		   $(".accordion__items").css("box-shadow", "");
+		   
+		   $(".accordion__items:nth-of-type(even)").css("background-color", "#0d1117");
+		   
+		   $(".accordion__content").css("background-color", "#18202a");
+		   $(".accordion__content").css("border-bottom", "");
+		   
+		   $(".accordion__content__caption").css("color", "#ffe");
+		   
+		   $(".accordion__content__txt").css("color", "#D0CECE");
+		   
+		   $(".accordion__items.active ").css("background-color", "#000");
+		   
+		   $(".accordion__items:hover").css("background-color", " #000");
+		   
+		   $(".resizer[data-resizer-type=H]").css("background", "");
+		   $(".resizer[data-resizer-type=V]").css("background", "");
+		   $(".resizer[data-resizer-type=H]").css("background", "linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% transparent; cursor: col-resize");
+		   $(".resizer[data-resizer-type=V]").css("background", "linear-gradient(to right, #9DBFE3, #4E5F70) repeat scroll 0% 0% transparent; cursor: col-resize");
+		   
+		   $(".box").css("background", "linear-gradient(45deg, #1D1F20, #2F3031) repeat scroll 0% 0% transparent !important");
+		   
+		   $(".dropdown").addClass("dropdown-dark");
 	   }
    });
    
